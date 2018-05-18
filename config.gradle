@@ -1,0 +1,56 @@
+ext{
+    android = [
+            compileSdkVersion: 26,
+            buildToolsVersion: "26.0.2",
+
+            minSdkVersion    : 19,
+            targetSdkVersion : 25,
+
+            versionCode      : 1,
+            versionName      : '1.0.0',
+
+            VSupportSdk      : '26.1.0'
+    ]
+
+    dependencies = [
+            "appcompat-v7"          : "com.android.support:appcompat-v7:${android["VSupportSdk"]}",
+            "support-v4"            : "com.android.support:support-v4:${android["VSupportSdk"]}",
+            "design"                : "com.android.support:design:${android["VSupportSdk"]}",
+            "cardview"                : "com.android.support:cardview-v7:${android["VSupportSdk"]}",
+            "annotations"           : "com.android.support:support-annotations:${android["VSupportSdk"]}",
+            "recyclerview-v7"       : "com.android.support:recyclerview-v7:${android["VSupportSdk"]}",
+            "glide"                 : "com.github.bumptech.glide:glide:3.8.0",
+            "picasso"               : "com.squareup.picasso:picasso:2.5.2",
+            "okhttp3"               : "com.squareup.okhttp3:okhttp:3.10.0",
+            "rxjava"                : "io.reactivex.rxjava2:rxjava:2.1.5",
+            "rxandroid"             : "io.reactivex.rxjava2:rxandroid:2.0.1",
+            "retrofit"               : "com.squareup.retrofit2:retrofit:2.4.0",
+            "retrofit-converters"    : "com.squareup.retrofit2:retrofit-converters:2.3.0",
+            "converter-gson"        : "com.squareup.retrofit2:converter-gson:2.3.0",
+            "adapter-rxjava"        : "com.squareup.retrofit2:adapter-rxjava2:2.3.0",
+            "logging-interceptor"   : "com.squareup.okhttp3:logging-interceptor:3.8.1",
+            "gson"                  : "com.google.code.gson:gson:2.8.0",
+            "eventbus"              : "org.greenrobot:eventbus:3.0.0",
+            "xrecyclerview"         : "com.github.limedroid:ARecyclerView:v1.1.5",
+            "okhttputils"           : "com.zhy:okhttputils:2.6.2",
+            "canary-debug"          : "com.squareup.leakcanary:leakcanary-android:1.4-beta2",
+            "canary-release"        : "com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2",
+            "SpinKit"               : "com.github.ybq:Android-SpinKit:1.1.0",
+            "statusbar-utils"       : "com.jaeger.statusbaruitl:library:1.4.0",
+            "base-rv-helper"        : "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.21",
+            "picker-view"           : "com.contrarywind:Android-PickerView:3.2.2",
+            "pickerimg"             : "com.github.LuckSiege.PictureSelector:picture_library:v1.5.3",
+            "circleimageview"       : "de.hdodenhof:circleimageview:2.2.0",
+            "pickerimg_zhihu"       : "com.zhihu.android:matisse:0.4.3",
+            "novate"                : "com.tamic.novate:novate:1.5.2.3",
+            "rxbinding"             : "com.jakewharton.rxbinding2:rxbinding:2.0.0",
+            "rxpermissions"         : "com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar",
+            "rxlifecycle"           : "com.trello.rxlifecycle2:rxlifecycle:2.2.0",
+            "rxlifecycle-components": "com.trello.rxlifecycle2:rxlifecycle-components:2.2.0",
+            "rxrelay"               : "com.jakewharton.rxrelay2:rxrelay:2.0.0",
+            "rxbinding-support-v4"  : "com.jakewharton.rxbinding2:rxbinding-support-v4:2.0.0",
+            "rxbinding-appcompat-v7": "com.jakewharton.rxbinding2:rxbinding-appcompat-v7:2.0.0",
+            "rxbinding-design"      : "com.jakewharton.rxbinding2:rxbinding-design:2.0.0",
+            "rxbinding-recyclerview-v7"      : "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7:2.0.0",
+    ]
+}

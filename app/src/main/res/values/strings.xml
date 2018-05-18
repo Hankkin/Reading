@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">好记单词</string>
+    <string name="title_dictionary">词典</string>
+    <string name="title_translate">翻译</string>
+    <string name="title_person">我的</string>
+    
+    <string name="translate_search_hint">在此输入单词或句子</string>
+    <string name="format_weather">%1$s  %2$s℃</string>
+</resources>

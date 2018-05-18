@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_dic"
+        android:icon="@drawable/home_dictionary_selector"
+        android:title="@string/title_dictionary" />
+
+    <item
+        android:id="@+id/navigation_tran"
+        android:icon="@drawable/home_translate_selector"
+        android:title="@string/title_translate" />
+
+    <item
+        android:id="@+id/navigation_person"
+        android:icon="@drawable/home_person_selector"
+        android:title="@string/title_person" />
+
+</menu>
