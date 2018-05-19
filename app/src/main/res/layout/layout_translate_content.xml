@@ -40,14 +40,13 @@
 
     </RelativeLayout>
 
-    <LinearLayout
+    <android.support.v7.widget.RecyclerView
         android:padding="@dimen/dp_10"
-        android:orientation="horizontal"
-        android:id="@+id/ll_translate_speak"
+        android:id="@+id/rv_translate_speak"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    </LinearLayout>
+    </android.support.v7.widget.RecyclerView>
 
     <TextView
         android:visibility="gone"
