@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.animation.AnimationUtils;
 
 import com.hankkin.library.R;
+import com.hankkin.library.widget.indicators.BallPulseIndicator;
 
 
 public class AVLoadingIndicatorView extends View {

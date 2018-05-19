@@ -13,6 +13,7 @@ import butterknife.BindView
 import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseFragment
 import com.hankkin.reading.domain.*
+import com.hankkin.reading.utils.LoadingUtils
 import com.hankkin.reading.utils.LogUtils
 import com.hankkin.reading.utils.WeatherUtils
 
@@ -56,6 +57,7 @@ class TranslateFragment : BaseFragment<TranslateContract.IPresenter>(), Translat
             override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
                 when (actionId) {
                     EditorInfo.IME_ACTION_SEARCH -> {
+                        LoadingUtils.showLoading(context)
                         getmPresenter().getWrod(etSearch.text.toString().trim())
                     }
                 }
@@ -77,37 +79,36 @@ class TranslateFragment : BaseFragment<TranslateContract.IPresenter>(), Translat
         tvWeather.text = "获取天气失败"
     }
 
-    override fun searchWordResult(wordBean: WordBean) {
-        if (wordBean.data == null) return
-        this.word = wordBean
-        val data = wordBean.data
-        tvWord.text = data.title
+    override fun searchWordResult(reponse: BaseResponse<WordBean>) {
+        if (reponse.data == null) return
+        this.word = reponse.data
+        tvWord.text = word.title
         llSpeak.removeAllViews()
         llPara.removeAllViews()
-        for (phonetics in data.phonetics) {
+        for (phonetics in word.phonetics) {
             val tv: TextView = LayoutInflater.from(context).inflate(R.layout.layout_translate_speak, null) as TextView
             tv.text = if (phonetics.type == 1) "英  ${phonetics.content}" else "美  ${phonetics.content}"
             llSpeak.addView(tv)
+//            getmPresenter().downRank(data.title +".mp3", phonetics.url,phonetics.name)
         }
-        getmPresenter().downRank(data.title + data.phonetics[0].name, data.phonetics[0].url)
-        data.ranks?.let {
+        word.ranks?.let {
             tvRank.visibility = View.VISIBLE
         }
 
         var rank = ""
-        for (s in data.ranks!!) {
+        for (s in word.ranks!!) {
             rank = rank + "/" + s
         }
         tvRank.text = rank
 
-        for (item in data.paraphrases) {
+        for (item in word.paraphrases) {
             llPara.addView(addParaItemView(item.key))
         }
-
+        LoadingUtils.hideLoading()
     }
 
     fun addParaItemView(key: String): View {
-        val data = word.data.paraphrases
+        val data = word.paraphrases
         val view = LayoutInflater.from(context).inflate(R.layout.adapter_translate_paraphrases_item, null)
         val tv = view.findViewById<TextView>(R.id.tv_translate_para_key)
         val value = view.findViewById<TextView>(R.id.tv_translate_para_value)

@@ -6,6 +6,7 @@ import com.hankkin.reading.utils.LogUtils
 import com.hankkin.reading.utils.RxUtils
 import io.reactivex.Observable
 import io.reactivex.disposables.Disposable
+import java.util.*
 
 /**
  * Created by huanghaijie on 2018/5/16.
@@ -80,5 +81,11 @@ abstract class BaseRxLifePresenter<out V : IBaseViewContract>(private val mvpVie
             //编写订阅完成后的公共代码
             onComplete.invoke()
         })
+    }
+
+    fun addParams(key: String, value: Any): Map<String, Any> {
+        val map = HashMap<String, Any>()
+        map.put(key,value)
+        return map
     }
 }

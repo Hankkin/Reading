@@ -29,9 +29,8 @@ android {
 }
 
 
-
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation rootProject.ext.dependencies["appcompat-v7"]
     implementation rootProject.ext.dependencies["support-v4"]
@@ -39,10 +38,13 @@ dependencies {
     implementation rootProject.ext.dependencies["retrofit"]
     implementation rootProject.ext.dependencies["rxjava"]
     implementation rootProject.ext.dependencies["rxandroid"]
+    implementation rootProject.ext.dependencies["adapter-rxjava"]
     implementation rootProject.ext.dependencies["okhttp3"]
     implementation rootProject.ext.dependencies["gson"]
     implementation rootProject.ext.dependencies["base-rv-helper"]
+    implementation rootProject.ext.dependencies["rxpermissions"]
+    implementation rootProject.ext.dependencies["converter-gson"]
     implementation 'com.jakewharton:butterknife:8.8.1'
     kapt "com.jakewharton:butterknife-compiler:8.8.1"
-
+    implementation project(':library')
 }

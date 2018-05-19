@@ -10,8 +10,8 @@ object Constant{
      *  HTTP URL
      * */
     object ConfigUrl {
-        private const val BASE_URL = ""
-        const val WEATHER_URL = "https://api.seniverse.com/v3/weather/now.json"
-        const val SEARCH_WORD_URL = "http://reading.ccyg.studio/en-us/"
+        const val BASE_URL = "http://reading.ccyg.studio/"
+        const val WEATHER_URL = "https://api.seniverse.com/"
     }
+
 }

@@ -1,5 +1,6 @@
 package com.hankkin.reading.ui.translate
 
+import com.hankkin.reading.domain.BaseResponse
 import com.hankkin.reading.domain.Weatherbean
 import com.hankkin.reading.domain.WordBean
 import com.hankkin.reading.mvp.contract.IBasePresenterContract
@@ -14,7 +15,7 @@ interface TranslateContract{
 
         fun setWeather(weatherbean: Weatherbean)
         fun setWeatherError()
-        fun searchWordResult(wordBean: WordBean)
+        fun searchWordResult(reponse: BaseResponse<WordBean>)
         fun searchFail()
         fun downRankSuc(path: String)
 
@@ -25,7 +26,7 @@ interface TranslateContract{
 
         fun getWrod(word: String)
 
-        fun downRank(path: String,url: String)
+        fun downRank(path: String,url: String,type: String)
     }
 
 }

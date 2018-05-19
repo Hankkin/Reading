@@ -1,5 +1,6 @@
 package com.hankkin.reading.utils
 
+import android.content.Context
 import android.os.Environment
 import java.io.File
 import java.io.IOException
@@ -11,11 +12,11 @@ import java.io.IOException
 object FileUtils{
     const val TAG = "fileutils"
 
-    val SAVE_RANK_PATH: String = Environment.getExternalStorageDirectory().getAbsolutePath() + "/easyword/rank"
+    val SAVE_RANK_PATH: String = Environment.getExternalStorageDirectory().getAbsolutePath() + "/reading/rank"
 
     fun initSd(){
         val file = File(SAVE_RANK_PATH)
-        if (!file.exists()) file.mkdir()
+        if (!file.exists()) file.mkdirs()
         LogUtils.d("$TAG 初始化文件夹成功 ${file.absolutePath}")
     }
 
@@ -24,9 +25,11 @@ object FileUtils{
     }
 
     @Throws(IOException::class)
-     fun isExistDir(saveDir: String): String {
-        val downloadFile = File(saveDir)
-        if (!downloadFile.mkdirs()) {
+     fun isExistDir(saveDir: String,type: String): String {
+        val path = File(SAVE_RANK_PATH+"/$type")
+        if (!path.exists()) path.mkdirs()
+        val downloadFile = File(path.absolutePath+"/$saveDir")
+        if (!downloadFile.exists()) {
             downloadFile.createNewFile()
         }
         return downloadFile.getAbsolutePath()

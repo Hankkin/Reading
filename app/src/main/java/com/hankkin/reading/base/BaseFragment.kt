@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import butterknife.ButterKnife
+import com.hankkin.library.widget.HLoading
+import com.hankkin.reading.R
 import com.hankkin.reading.mvp.contract.IBasePresenterContract
 import com.hankkin.reading.mvp.view.BaseMvpFragment
 
@@ -26,6 +28,7 @@ abstract class BaseFragment<out T : IBasePresenterContract> : BaseMvpFragment<T>
     private var isInitView = false
 
     private var isFirstLoad = true
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +57,8 @@ abstract class BaseFragment<out T : IBasePresenterContract> : BaseMvpFragment<T>
         isInitView = true
         lazyLoadData()
     }
+
+
 
     protected abstract fun getLayoutId(): Int
 

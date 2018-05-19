@@ -8,7 +8,6 @@ import com.hankkin.reading.base.BaseFragment
  * Created by huanghaijie on 2018/5/15.
  */
 class DictionaryFragment : BaseFragment<DictionaryContract.IPresenter>(), DictionaryContract.IView {
-
     override fun createmPresenter() = DictionaryPresenter(this)
 
     public fun newInstance(index: Int){

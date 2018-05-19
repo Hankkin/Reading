@@ -1,17 +1,18 @@
 package com.hankkin.reading.http
 
+import com.hankkin.reading.common.Constant
 import com.hankkin.reading.http.interceptor.NetLogInterceptor
-import com.hankkin.reading.utils.FileUtils
 import com.hankkin.reading.utils.LogUtils
-import io.reactivex.Observable
-import okhttp3.*
+import okhttp3.OkHttpClient
+import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 import java.security.cert.CertificateException
 import java.security.cert.X509Certificate
 import java.util.concurrent.TimeUnit
 import javax.net.ssl.SSLContext
 import javax.net.ssl.SSLSocketFactory
 import javax.net.ssl.X509TrustManager
-import java.io.File
 
 
 /**
@@ -21,10 +22,6 @@ object HttpClient {
 
     private const val DEFAULT_TIME_OUT = 5000L
 
-    const val METHOD_GET: String = "GET"
-    const val METHOD_POST: String = "POST"
-    const val METHOD_PUT: String = "PUT"
-    const val METHOD_DELETE: String = "DELETE"
 
     private val mHttpClient by lazy {
         OkHttpClient.Builder()
@@ -35,6 +32,30 @@ object HttpClient {
                 .connectTimeout(DEFAULT_TIME_OUT, TimeUnit.MILLISECONDS)
                 .build()
     }
+
+    private val jsonRetrofit by lazy {
+        Retrofit.Builder()
+                .client(mHttpClient)
+                .baseUrl(Constant.ConfigUrl.BASE_URL)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+    }
+
+    private val weatherRetrofit by lazy {
+        Retrofit.Builder()
+                .client(mHttpClient)
+                .baseUrl(Constant.ConfigUrl.WEATHER_URL)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+    }
+
+
+
+
+    fun getnorRetrofit() = jsonRetrofit
+    fun getWeaRetrofit() = weatherRetrofit
 
     private fun createSSLSocketFactory(): SSLSocketFactory {
         val sc = SSLContext.getInstance("SSL")
@@ -57,108 +78,5 @@ object HttpClient {
         }
     }
 
-
-    /**
-     * 同步
-     * */
-    fun execute(request: Request): Response = mHttpClient.newCall(request).execute()
-
-    /**
-     * 异步
-     * */
-    fun enqueue(request: Request, responseCallback: Callback) = mHttpClient.newCall(request).enqueue(responseCallback)
-
-    /**
-     * 下载文件
-     */
-    fun downFile(filePath: String, url: String): Observable<String> {
-        return Observable.create<String> {
-            try {
-                val request = Request.Builder().url(url).build()
-                val response = HttpClient.execute(request)
-                if (response.code() in 200..300) {
-                    val savePath = FileUtils.isExistDir(filePath)
-                    val file = File(savePath,FileUtils.getNameFromUrl(url))
-                    it.onNext(file.absolutePath)
-                }
-                else{
-                    it.onError(Throwable("http fail"))
-                }
-
-
-            } catch (e: Exception) {
-                it.onError(e)
-            }
-        }
-
-    }
-
-
-
-    /**
-     * 创建Request
-     * */
-    fun getRequest(url: String, method: String, params: Map<String, String>?): Request {
-        val builder = Request.Builder()
-        if (METHOD_GET.equals(method, true)) {
-            builder.url(initGetRequest(url, params)).get()
-        } else if (METHOD_POST.equals(method, true)) {
-            builder.url(url).post(initRequestBody(params))
-        } else if (METHOD_PUT.equals(method, true)) {
-            builder.url(url).put(initRequestBody(params))
-        } else if (METHOD_DELETE.equals(method, true)) {
-            if (params == null || params.isEmpty()) {
-                builder.url(url).delete()
-            } else {
-                builder.url(url).delete(initRequestBody(params))
-            }
-        }
-        return builder.build()
-    }
-
-
-    /**
-     * 创建Body请求体
-     * */
-    private fun initRequestBody(params: Map<String, String>?): RequestBody {
-        val bodyBuilder = MultipartBody.Builder().setType(MultipartBody.FORM)
-        val newParams = addCommonParams(params)
-        newParams.map {
-            bodyBuilder.addFormDataPart(it.key, it.value)
-        }
-        return bodyBuilder.build()
-    }
-
-
-    /**
-     * 创建Get链接
-     * */
-    private fun initGetRequest(url: String, params: Map<String, String>?): String {
-        return StringBuilder(url).apply {
-            val newParams = addCommonParams(params)
-            if (newParams.isNotEmpty()) {
-                append("?")
-                newParams.map {
-                    append(it.key).append("=").append(it.value).append("&")
-                }
-                delete(length - "&".length, length)
-            }
-        }.toString()
-    }
-
-    private fun addCommonParams(params: Map<String, String>?): Map<String, String> {
-        val newParams = HashMap<String, String>()
-//        newParams["platform"] = "APP_ANDROID"
-//        newParams["version"] = BuildConfig.VERSION_NAME
-//        newParams["uid"] = DeviceInfoUtils.getImei()
-        params?.let { newParams.putAll(it) }
-        return newParams
-    }
-
-    interface OnDownloadFileListener {
-        fun downloadSuccess(path: String)
-        fun downloading(progress: Int)
-        fun downloadFail()
-    }
 
 }
