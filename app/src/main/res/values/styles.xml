@@ -14,6 +14,9 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-
+    <style name="TabLayoutStyle">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">italic</item>
+    </style>
 
 </resources>

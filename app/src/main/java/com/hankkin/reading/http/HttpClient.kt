@@ -3,7 +3,9 @@ package com.hankkin.reading.http
 import com.hankkin.reading.common.Constant
 import com.hankkin.reading.http.interceptor.NetLogInterceptor
 import com.hankkin.reading.utils.LogUtils
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.Response
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -27,6 +29,7 @@ object HttpClient {
         OkHttpClient.Builder()
                 .sslSocketFactory(createSSLSocketFactory())
                 .hostnameVerifier { _, _ -> true }
+                .addInterceptor(HeaderInterceptor())
 //                .addInterceptor(AddCookiesInterceptor())
                 .addInterceptor(NetLogInterceptor(NetLogInterceptor.Level.BODY) { LogUtils.d(it) })
                 .connectTimeout(DEFAULT_TIME_OUT, TimeUnit.MILLISECONDS)
@@ -51,6 +54,18 @@ object HttpClient {
                 .build()
     }
 
+    class HeaderInterceptor : Interceptor{
+        override fun intercept(p0: Interceptor.Chain): Response {
+            val request = p0.request()
+            val build = request.newBuilder()
+                    .addHeader("X-Requested-With ","XMLHttpRequest")
+                    .addHeader("Platform : ","Android")
+                    .addHeader("Version:  : ","1.0.0.0")
+                    .build()
+            return p0.proceed(build)
+        }
+
+    }
 
 
 

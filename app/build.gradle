@@ -46,6 +46,7 @@ dependencies {
     implementation rootProject.ext.dependencies["rxpermissions"]
     implementation rootProject.ext.dependencies["converter-gson"]
     implementation 'com.jakewharton:butterknife:8.8.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     kapt "com.jakewharton:butterknife-compiler:8.8.1"
     implementation project(':library')
 }
