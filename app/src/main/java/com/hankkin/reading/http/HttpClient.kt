@@ -29,8 +29,8 @@ object HttpClient {
         OkHttpClient.Builder()
                 .sslSocketFactory(createSSLSocketFactory())
                 .hostnameVerifier { _, _ -> true }
-                .addInterceptor(HeaderInterceptor())
 //                .addInterceptor(AddCookiesInterceptor())
+                .addInterceptor({ chain -> addHeader(chain) })
                 .addInterceptor(NetLogInterceptor(NetLogInterceptor.Level.BODY) { LogUtils.d(it) })
                 .connectTimeout(DEFAULT_TIME_OUT, TimeUnit.MILLISECONDS)
                 .build()
@@ -54,19 +54,17 @@ object HttpClient {
                 .build()
     }
 
-    class HeaderInterceptor : Interceptor{
-        override fun intercept(p0: Interceptor.Chain): Response {
-            val request = p0.request()
-            val build = request.newBuilder()
-                    .addHeader("X-Requested-With ","XMLHttpRequest")
-                    .addHeader("Platform : ","Android")
-                    .addHeader("Version:  : ","1.0.0.0")
-                    .build()
-            return p0.proceed(build)
-        }
 
+
+    private  fun addHeader(chain: Interceptor.Chain) : Response{
+        val request = chain.request()
+        val build = request.newBuilder()
+                .addHeader("X-Requested-With ","XMLHttpRequest")
+                .addHeader("Platform : ","Android")
+                .addHeader("Version:  : ","1.0.0.0")
+                .build()
+        return chain.proceed(build)
     }
-
 
 
     fun getnorRetrofit() = jsonRetrofit
