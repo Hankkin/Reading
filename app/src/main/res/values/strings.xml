@@ -6,4 +6,7 @@
 
     <string name="translate_search_hint">在此输入单词或句子</string>
     <string name="format_weather">%1$s  %2$s℃</string>
+    
+    <string name="person_title">我的</string>
+    <string name="person_no_login">未登录</string>
 </resources>

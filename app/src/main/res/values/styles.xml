@@ -19,4 +19,9 @@
         <item name="android:textStyle">italic</item>
     </style>
 
+    <style name="whiteTxt">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/sp_15</item>
+    </style>
+
 </resources>

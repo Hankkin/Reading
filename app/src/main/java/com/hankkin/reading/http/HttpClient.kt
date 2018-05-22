@@ -59,9 +59,9 @@ object HttpClient {
     private  fun addHeader(chain: Interceptor.Chain) : Response{
         val request = chain.request()
         val build = request.newBuilder()
-                .addHeader("X-Requested-With ","XMLHttpRequest")
-                .addHeader("Platform : ","Android")
-                .addHeader("Version:  : ","1.0.0.0")
+                .addHeader("X-Requested-With","XMLHttpRequest")
+                .addHeader("Platform","Android")
+                .addHeader("Version","1.0.0.0")
                 .build()
         return chain.proceed(build)
     }

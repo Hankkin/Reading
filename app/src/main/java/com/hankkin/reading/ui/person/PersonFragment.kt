@@ -1,5 +1,6 @@
 package com.hankkin.reading.ui.person
 
+import butterknife.OnClick
 import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseFragment
 
@@ -19,6 +20,10 @@ class PersonFragment : BaseFragment<PersonContract.IPresenter>(), PersonContract
     }
 
     override fun initViews() {
+    }
+
+    @OnClick(R.id.ll_person_avatar) fun llAvatarClick(){
+
     }
 
 }

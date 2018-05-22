@@ -3,9 +3,55 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:text="我的"
+
+    <LinearLayout
+        android:paddingBottom="@dimen/dp_10"
+        android:orientation="vertical"
+        android:background="@color/colorPrimary"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_bar_height">
+            <TextView
+                android:text="@string/person_title"
+                android:layout_centerInParent="true"
+                style="@style/whiteTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <com.hankkin.reading.view.ClickImageView
+                android:paddingRight="@dimen/dp_10"
+                android:paddingLeft="@dimen/dp_10"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:src="@mipmap/icon_person_set"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_person_avatar"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/iv_person_avatar"
+                android:src="@mipmap/icon_person_avatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_person_name"
+                android:text="@string/person_no_login"
+                style="@style/whiteTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+
+
+    </LinearLayout>
 
 </LinearLayout>
