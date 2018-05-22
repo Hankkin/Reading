@@ -61,7 +61,7 @@ object HttpClient {
         val build = request.newBuilder()
                 .addHeader("X-Requested-With","XMLHttpRequest")
                 .addHeader("Platform","Android")
-                .addHeader("Version","1.0.0.0")
+                .addHeader("Version","1.0.0")
                 .build()
         return chain.proceed(build)
     }

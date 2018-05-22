@@ -2,6 +2,8 @@ package com.hankkin.reading.utils
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.google.gson.Gson
+import java.security.Key
 
 
 /**
@@ -12,10 +14,10 @@ import android.content.SharedPreferences
  *     desc  : SP相关工具类
  * </pre>
  */
-class SPUtils(spName: String) {
-
-    lateinit var sp: SharedPreferences
-    lateinit var editor: SharedPreferences.Editor
+object SPUtils {
+    private const val SP_NAME = "Reading"
+    private lateinit var editor: SharedPreferences.Editor
+    private lateinit var sp: SharedPreferences
 
     /**
      * SPUtils构造函数
@@ -23,8 +25,8 @@ class SPUtils(spName: String) {
      *
      * @param spName spName
      */
-    init {
-        sp = Utils.context.getSharedPreferences(spName, Context.MODE_PRIVATE)
+    fun init(context: Context) {
+        sp = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)
         editor = sp.edit()
         editor.apply()
     }
@@ -78,9 +80,8 @@ class SPUtils(spName: String) {
      * @param key 键
      * @return 存在返回对应值，不存在返回默认值-1
      */
-    public int getInt(String key)
-    {
-        return getInt(key, -1);
+    fun getInt(key: String?): Int {
+        return getInt(key)
     }
 
     /**
@@ -90,10 +91,10 @@ class SPUtils(spName: String) {
      * @param defaultValue 默认值
      * @return 存在返回对应值，不存在返回默认值{@code defaultValue}
      */
-    public int getInt(String key, int defaultValue)
-    {
-        return sp.getInt(key, defaultValue);
+    fun getInt(key: String?, defaultValue: Int): Int {
+        return sp.getInt(key, defaultValue)
     }
+
 
     /**
      * SP中写入long类型value
@@ -101,9 +102,8 @@ class SPUtils(spName: String) {
      * @param key   键
      * @param value 值
      */
-    public void put(String key, long value)
-    {
-        editor.putLong(key, value).apply();
+    fun put(key: String?, value: Long) {
+        editor.putLong(key, value).apply()
     }
 
     /**
@@ -112,9 +112,8 @@ class SPUtils(spName: String) {
      * @param key 键
      * @return 存在返回对应值，不存在返回默认值-1
      */
-    public long getLong(String key)
-    {
-        return getLong(key, -1L);
+    fun getLong(key: String?): Long {
+        return getLong(key, -1L)
     }
 
     /**
@@ -124,10 +123,10 @@ class SPUtils(spName: String) {
      * @param defaultValue 默认值
      * @return 存在返回对应值，不存在返回默认值{@code defaultValue}
      */
-    public long getLong(String key, long defaultValue)
-    {
-        return sp.getLong(key, defaultValue);
+    fun getLong(key: String?, defaultValue: Long): Long {
+        return sp.getLong(key, defaultValue)
     }
+
 
     /**
      * SP中写入float类型value
@@ -135,10 +134,10 @@ class SPUtils(spName: String) {
      * @param key   键
      * @param value 值
      */
-    public void put(String key, float value)
-    {
-        editor.putFloat(key, value).apply();
+    fun put(key: String?, value: Float) {
+        editor.putFloat(key, value).apply()
     }
+
 
     /**
      * SP中读取float
@@ -146,10 +145,10 @@ class SPUtils(spName: String) {
      * @param key 键
      * @return 存在返回对应值，不存在返回默认值-1
      */
-    public float getFloat(String key)
-    {
-        return getFloat(key, -1f);
+    fun getFloat(key: String?): Float {
+        return getFloat(key, -1f)
     }
+
 
     /**
      * SP中读取float
@@ -158,10 +157,10 @@ class SPUtils(spName: String) {
      * @param defaultValue 默认值
      * @return 存在返回对应值，不存在返回默认值{@code defaultValue}
      */
-    public float getFloat(String key, float defaultValue)
-    {
-        return sp.getFloat(key, defaultValue);
+    fun getFloat(key: String?, defaultValue: Float): Float {
+        return sp.getFloat(key, defaultValue)
     }
+
 
     /**
      * SP中写入boolean类型value
@@ -169,10 +168,10 @@ class SPUtils(spName: String) {
      * @param key   键
      * @param value 值
      */
-    public void put(String key, boolean value)
-    {
-        editor.putBoolean(key, value).apply();
+    fun put(key: String?, value: Boolean) {
+        editor.putBoolean(key, value)
     }
+
 
     /**
      * SP中读取boolean
@@ -180,10 +179,10 @@ class SPUtils(spName: String) {
      * @param key 键
      * @return 存在返回对应值，不存在返回默认值{@code false}
      */
-    public boolean getBoolean(String key)
-    {
-        return getBoolean(key, false);
+    fun getBoolean(key: String?): Boolean {
+        return getBoolean(key, false)
     }
+
 
     /**
      * SP中读取boolean
@@ -192,9 +191,8 @@ class SPUtils(spName: String) {
      * @param defaultValue 默认值
      * @return 存在返回对应值，不存在返回默认值{@code defaultValue}
      */
-    public boolean getBoolean(String key, boolean defaultValue)
-    {
-        return sp.getBoolean(key, defaultValue);
+    fun getBoolean(key: String?, defaultValue: Boolean): Boolean {
+        return sp.getBoolean(key, defaultValue)
     }
 
     /**
@@ -203,10 +201,10 @@ class SPUtils(spName: String) {
      * @param key    键
      * @param values 值
      */
-    public void put(String key, @Nullable Set<String> values)
-    {
-        editor.putStringSet(key, values).apply();
+    fun put(key: String?, value: Set<String>) {
+        editor.putStringSet(key, value).apply()
     }
+
 
     /**
      * SP中读取StringSet
@@ -214,10 +212,10 @@ class SPUtils(spName: String) {
      * @param key 键
      * @return 存在返回对应值，不存在返回默认值{@code null}
      */
-    public Set<String> getStringSet(String key)
-    {
-        return getStringSet(key, null);
+    fun getStringSet(key: String?): Set<String> {
+        return getStringSet(key, null)
     }
+
 
     /**
      * SP中读取StringSet
@@ -226,9 +224,8 @@ class SPUtils(spName: String) {
      * @param defaultValue 默认值
      * @return 存在返回对应值，不存在返回默认值{@code defaultValue}
      */
-    public Set<String> getStringSet(String key, @Nullable Set<String> defaultValue)
-    {
-        return sp.getStringSet(key, defaultValue);
+    fun getStringSet(key: String?, defaultValue: Set<String>?): Set<String> {
+        return sp.getStringSet(key, defaultValue)
     }
 
     /**
@@ -236,9 +233,8 @@ class SPUtils(spName: String) {
      *
      * @return Map对象
      */
-    public Map<String, ?> getAll()
-    {
-        return sp.getAll();
+    fun getAll(): Map<String, *> {
+        return sp.all
     }
 
     /**
@@ -246,10 +242,10 @@ class SPUtils(spName: String) {
      *
      * @param key 键
      */
-    public void remove(String key)
-    {
-        editor.remove(key).apply();
+    fun remove(key: String?) {
+        editor.remove(key).apply()
     }
+
 
     /**
      * SP中是否存在该key
@@ -257,17 +253,16 @@ class SPUtils(spName: String) {
      * @param key 键
      * @return {@code true}: 存在<br>{@code false}: 不存在
      */
-    public boolean contains(String key)
-    {
-        return sp.contains(key);
+    fun contains(key: String?): Boolean {
+        return sp.contains(key)
     }
+
 
     /**
      * SP中清除所有数据
      */
-    public void clear()
-    {
-        editor.clear().apply();
+    fun clear() {
+        editor.clear().apply()
     }
 
 
@@ -276,22 +271,19 @@ class SPUtils(spName: String) {
      * @param obj 要保存的对象，只能保存实现了serializable的对象
      * modified:
      */
-    public void saveObject(String key,Object obj)
-    {
-        String str = new Gson().toJson(obj, obj.getClass());
-        editor.putString(key, str);
-        editor.commit();
+    fun saveObject(key: String?, obj: Any) {
+        val str = Gson().toJson(obj, obj.javaClass)
+        editor.putString(key, str)
+        editor.commit()
     }
 
 
-
-
-    public <T> T getObject(String key,Class<?> classItem)
+    fun getObject(key: String?, clazz: Class<*>): Any?
     {
-        String str = sp . getString (key, null);
+        val str = sp.getString(key, "")
         if (str != null) {
-            return (T) new Gson().fromJson(str, classItem);
+            return Gson().fromJson(str, clazz)
         }
-        return null;
+        return null
     }
 }

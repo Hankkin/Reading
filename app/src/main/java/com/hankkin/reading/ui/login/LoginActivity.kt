@@ -7,8 +7,17 @@ import android.support.v4.view.ViewPager
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.MainFragmentAdapter
 import com.hankkin.reading.base.BaseActivity
+import com.hankkin.reading.domain.CaptchaBean
 
 class LoginActivity : BaseActivity<LoginContract.IPresenter>() ,LoginContract.IView{
+    override fun showLoading() {
+    }
+
+    override fun hideLoading() {
+    }
+
+    override fun getCapcha(captchaBean: CaptchaBean) {
+    }
 
 
     private val fragments = listOf<Fragment>(

@@ -23,7 +23,7 @@
         <EditText
             android:textSize="@dimen/sp_15"
             android:layout_marginLeft="@dimen/dp_14"
-            android:hint="用户名"
+            android:hint="@string/login_name"
             android:background="@null"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -45,18 +45,19 @@
         <EditText
             android:textSize="@dimen/sp_15"
             android:layout_marginLeft="@dimen/dp_14"
-            android:hint="密码"
+            android:hint="@string/login_pwd"
             android:background="@null"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
-            android:layout_weight="1"
+            android:id="@+id/ll_login_code"
+            android:layout_toLeftOf="@+id/iv_login_code"
             android:orientation="horizontal"
             android:padding="@dimen/dp_10"
             android:layout_marginTop="@dimen/dp_14"
@@ -72,15 +73,21 @@
             <EditText
                 android:textSize="@dimen/sp_15"
                 android:layout_marginLeft="@dimen/dp_10"
-                android:hint="验证码"
+                android:hint="@string/login_code"
                 android:background="@null"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
         <ImageView
+            android:layout_alignBottom="@+id/ll_login_code"
+            android:layout_alignTop="@+id/ll_login_code"
+            android:layout_alignParentRight="true"
+            android:scaleType="fitXY"
+            android:id="@+id/iv_login_code"
+            android:layout_marginLeft="@dimen/dp_10"
             android:layout_width="100dp"
             android:layout_height="wrap_content" />
-    </LinearLayout>
+    </RelativeLayout>
 
     <TextView
         android:gravity="center"
@@ -90,7 +97,7 @@
         android:textColor="@color/white"
         android:layout_marginTop="@dimen/dp_14"
         android:background="@drawable/bg_theme_circle"
-        android:text="登录"
+        android:text="@string/login_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -102,14 +109,14 @@
             android:autoLink="all"
             android:textSize="@dimen/sp_15"
             android:textColor="@color/colorPrimary"
-            android:text="还没有帐号？"
+            android:text="@string/login_no_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
             android:autoLink="all"
             android:textSize="@dimen/sp_15"
             android:textColor="@color/colorPrimary"
-            android:text="忘记密码"
+            android:text="@string/login_forget"
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

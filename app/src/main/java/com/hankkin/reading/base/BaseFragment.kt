@@ -85,4 +85,5 @@ abstract class BaseFragment<out T : IBasePresenterContract> : BaseMvpFragment<T>
         super.onDestroyView()
     }
 
+
 }

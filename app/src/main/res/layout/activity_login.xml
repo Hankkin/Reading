@@ -19,7 +19,7 @@
         <android.support.design.widget.TabLayout
             android:background="@color/colorPrimary"
             app:tabIndicatorColor="@color/blue"
-            app:tabTextColor="@color/grey"
+            app:tabTextColor="@color/grey1"
             app:tabSelectedTextColor="@color/white"
             app:tabMode="fixed"
             app:tabTextAppearance="@style/TabLayoutStyle"

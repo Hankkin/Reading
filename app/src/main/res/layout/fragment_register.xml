@@ -23,7 +23,7 @@
         <EditText
             android:textSize="@dimen/sp_15"
             android:layout_marginLeft="@dimen/dp_14"
-            android:hint="用户名"
+            android:hint="@string/login_name"
             android:background="@null"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -45,7 +45,7 @@
         <EditText
             android:textSize="@dimen/sp_15"
             android:layout_marginLeft="@dimen/dp_14"
-            android:hint="邮箱地址"
+            android:hint="@string/login_email"
             android:background="@null"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -67,7 +67,7 @@
         <EditText
             android:textSize="@dimen/sp_15"
             android:layout_marginLeft="@dimen/dp_14"
-            android:hint="密码"
+            android:hint="@string/login_pwd"
             android:background="@null"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -89,18 +89,19 @@
         <EditText
             android:textSize="@dimen/sp_15"
             android:layout_marginLeft="@dimen/dp_14"
-            android:hint="重复密码"
+            android:hint="@string/login_pwd_repeat"
             android:background="@null"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
-            android:layout_weight="1"
+            android:id="@+id/ll_reg_code"
+            android:layout_toStartOf="@+id/iv_reg_code"
             android:orientation="horizontal"
             android:padding="@dimen/dp_10"
             android:layout_marginTop="@dimen/dp_14"
@@ -115,16 +116,23 @@
 
             <EditText
                 android:textSize="@dimen/sp_15"
-                android:layout_marginLeft="@dimen/dp_10"
-                android:hint="验证码"
+                android:layout_marginStart="@dimen/dp_10"
+                android:hint="@string/login_code"
                 android:background="@null"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
         <ImageView
+            android:contentDescription="@string/login_registered"
+            android:layout_alignBottom="@+id/ll_reg_code"
+            android:layout_alignTop="@+id/ll_reg_code"
+            android:layout_alignParentEnd="true"
+            android:scaleType="fitXY"
+            android:id="@+id/iv_reg_code"
+            android:layout_marginStart="@dimen/dp_10"
             android:layout_width="100dp"
             android:layout_height="wrap_content" />
-    </LinearLayout>
+    </RelativeLayout>
 
     <TextView
         android:gravity="center"
@@ -134,7 +142,7 @@
         android:textColor="@color/white"
         android:layout_marginTop="@dimen/dp_14"
         android:background="@drawable/bg_teal_circle"
-        android:text="注册"
+        android:text="@string/login_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -146,7 +154,7 @@
             android:autoLink="all"
             android:textSize="@dimen/sp_15"
             android:textColor="@color/teal"
-            android:text="已有帐号？"
+            android:text="@string/login_registered"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </RelativeLayout>

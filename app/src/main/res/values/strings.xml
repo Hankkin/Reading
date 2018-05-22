@@ -9,4 +9,15 @@
     
     <string name="person_title">我的</string>
     <string name="person_no_login">未登录</string>
+
+    <string name="login_name">用户名</string>
+    <string name="login_pwd">密码</string>
+    <string name="login_pwd_repeat">重复密码</string>
+    <string name="login_code">验证码</string>
+    <string name="login_login">登录</string>
+    <string name="login_register">注册</string>
+    <string name="login_no_register">还没有帐号？</string>
+    <string name="login_registered">已有帐号？</string>
+    <string name="login_forget">忘记密码</string>
+    <string name="login_email">邮箱地址</string>
 </resources>

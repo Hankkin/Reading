@@ -12,6 +12,7 @@ import retrofit2.http.QueryMap
  * Created by huanghaijie on 2018/5/19.
  */
 interface TranslateApi {
+
     @GET("v3/weather/now.json")
     fun getWeather(@QueryMap params: HashMap<String,Any>) : Observable<Weatherbean>
 
