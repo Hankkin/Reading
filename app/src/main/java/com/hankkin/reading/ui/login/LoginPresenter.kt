@@ -10,30 +10,23 @@ import io.reactivex.schedulers.Schedulers
  * Created by huanghaijie on 2018/5/21.
  */
 class LoginPresenter(mvpView: LoginContract.IView) : BaseRxLifePresenter<LoginContract.IView>(mvpView), LoginContract.IPresenter {
-    override fun loginHttp(map: HashMap<String, Any>) {
-        HttpClient.getnorRetrofit().create(LoginApi::class.java)
-                .login(map)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeEx ({
-                    getMvpView().loginResult()
-                    getMvpView().hideLoading()
-                },{
-                    getMvpView().hideLoading()
-                })
-    }
 
-    override fun getCsrfTokeHttp() {
+    override fun loginHttp(map: HashMap<String, Any>) {
         getMvpView().showLoading()
         HttpClient.getnorRetrofit().create(LoginApi::class.java)
                 .getCsrfToken()
-                .subscribeOn(Schedulers.io())
+                .flatMap {
+                    map.put("csrfmiddlewaretoken",it.data.csrfmiddlewaretoken)
+                    HttpClient.getnorRetrofit().create(LoginApi::class.java).login(map)
+                }.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeEx({
-                    getMvpView().getCsrfToken(it)
+                    getMvpView().loginResult()
+                    getMvpView().hideLoading()
                 }, {
                     getMvpView().hideLoading()
                 })
+
     }
 
     override fun getCapchaHttp() {

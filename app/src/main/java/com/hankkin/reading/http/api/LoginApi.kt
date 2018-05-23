@@ -20,5 +20,9 @@ interface LoginApi {
     @FormUrlEncoded
     @POST("account/login")
     fun login(@FieldMap map: HashMap<String,Any>): Observable<String>
+
+    @FormUrlEncoded
+    @POST("account/signup")
+    fun signUp(@FieldMap map: HashMap<String,String>): Observable<String>
 }
 

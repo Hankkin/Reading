@@ -23,17 +23,6 @@ class LoginFragment : BaseFragment<LoginContract.IPresenter>(), LoginContract.IV
         ToastUtils.showToast(context,"登录成功")
     }
 
-    override fun getCsrfToken(csrfTokenBean: BaseResponse<CsrfTokenBean>) {
-        val map = HashMap<String,Any>()
-        map.put("csrfmiddlewaretoken",csrfTokenBean.data.csrfmiddlewaretoken)
-        map.put("username","yes")
-        map.put("password","12345678a")
-        map.put("password","12345678a")
-        map.put("captcha_1",code)
-        map.put("captcha_0",code)
-        getmPresenter().loginHttp(map)
-    }
-
     @BindView(R.id.iv_login_code) lateinit var ivCode: ImageView
 
     override fun createmPresenter() = LoginPresenter(this)
@@ -55,7 +44,13 @@ class LoginFragment : BaseFragment<LoginContract.IPresenter>(), LoginContract.IV
     }
 
     @OnClick(R.id.tv_login_btn) fun loginClick(){
-        getmPresenter().getCsrfTokeHttp()
+        val map = HashMap<String,Any>()
+        map.put("username","yes")
+        map.put("password","12345678a")
+        map.put("password","12345678a")
+        map.put("captcha_1",code)
+        map.put("captcha_0",code)
+        getmPresenter().loginHttp(map)
     }
 
     override fun showLoading() {
