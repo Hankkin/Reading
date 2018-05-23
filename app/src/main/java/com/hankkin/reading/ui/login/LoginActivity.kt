@@ -7,9 +7,19 @@ import android.support.v4.view.ViewPager
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.MainFragmentAdapter
 import com.hankkin.reading.base.BaseActivity
+import com.hankkin.reading.domain.BaseResponse
 import com.hankkin.reading.domain.CaptchaBean
+import com.hankkin.reading.domain.CsrfTokenBean
 
 class LoginActivity : BaseActivity<LoginContract.IPresenter>() ,LoginContract.IView{
+    override fun loginResult() {
+
+    }
+
+    override fun getCsrfToken(csrfTokenBean: BaseResponse<CsrfTokenBean>) {
+
+    }
+
     override fun showLoading() {
     }
 

@@ -1,6 +1,9 @@
 package com.hankkin.reading.http
 
+import com.hankkin.reading.EApplication
 import com.hankkin.reading.common.Constant
+import com.hankkin.reading.http.cookie.AddCookiesInterceptor
+import com.hankkin.reading.http.cookie.ReceivedCookiesInterceptor
 import com.hankkin.reading.http.interceptor.NetLogInterceptor
 import com.hankkin.reading.utils.LogUtils
 import okhttp3.Interceptor
@@ -22,14 +25,15 @@ import javax.net.ssl.X509TrustManager
  */
 object HttpClient {
 
-    private const val DEFAULT_TIME_OUT = 5000L
+    private const val DEFAULT_TIME_OUT = 15000L
 
 
     private val mHttpClient by lazy {
         OkHttpClient.Builder()
                 .sslSocketFactory(createSSLSocketFactory())
                 .hostnameVerifier { _, _ -> true }
-//                .addInterceptor(AddCookiesInterceptor())
+                .addInterceptor(ReceivedCookiesInterceptor(EApplication.instance()))
+                .addInterceptor(AddCookiesInterceptor(EApplication.instance()))
                 .addInterceptor({ chain -> addHeader(chain) })
                 .addInterceptor(NetLogInterceptor(NetLogInterceptor.Level.BODY) { LogUtils.d(it) })
                 .connectTimeout(DEFAULT_TIME_OUT, TimeUnit.MILLISECONDS)
@@ -62,6 +66,7 @@ object HttpClient {
                 .addHeader("X-Requested-With","XMLHttpRequest")
                 .addHeader("Platform","Android")
                 .addHeader("Version","1.0.0")
+                .addHeader("User-Agent","(Windows NT 10.0; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0")
                 .build()
         return chain.proceed(build)
     }

@@ -5,7 +5,9 @@ import butterknife.BindView
 import butterknife.OnClick
 import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseFragment
+import com.hankkin.reading.domain.BaseResponse
 import com.hankkin.reading.domain.CaptchaBean
+import com.hankkin.reading.domain.CsrfTokenBean
 import com.hankkin.reading.utils.LoadingUtils
 import com.wuba.guchejia.img.ImageLoader
 
@@ -13,6 +15,13 @@ import com.wuba.guchejia.img.ImageLoader
  * Created by huanghaijie on 2018/5/15.
  */
 class RegFragment : BaseFragment<LoginContract.IPresenter>(), LoginContract.IView {
+    override fun loginResult() {
+
+    }
+
+    override fun getCsrfToken(csrfTokenBean: BaseResponse<CsrfTokenBean>) {
+
+    }
 
 
     @BindView(R.id.iv_reg_code) lateinit var ivCode: ImageView
@@ -32,7 +41,7 @@ class RegFragment : BaseFragment<LoginContract.IPresenter>(), LoginContract.IVie
         getmPresenter().getCapchaHttp()
     }
 
-    @OnClick(R.id.iv_login_code)
+//    @OnClick(R.id.iv_login_code)
 
 
     override fun showLoading() {

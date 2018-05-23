@@ -10,8 +10,15 @@ import com.tbruyelle.rxpermissions2.RxPermissions
  */
 class EApplication : Application() {
 
+    companion object {
+        private var instance: EApplication? = null
+
+        fun instance() = instance!!
+    }
+
     override fun onCreate() {
         super.onCreate()
+        instance = this
         FileUtils.initSd()
         SPUtils.init(this)
     }

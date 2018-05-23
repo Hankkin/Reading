@@ -90,6 +90,7 @@
     </RelativeLayout>
 
     <TextView
+        android:id="@+id/tv_login_btn"
         android:gravity="center"
         android:textSize="@dimen/sp_15"
         android:paddingBottom="@dimen/dp_10"

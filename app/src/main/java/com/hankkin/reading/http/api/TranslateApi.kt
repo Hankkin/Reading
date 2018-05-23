@@ -16,6 +16,6 @@ interface TranslateApi {
     @GET("v3/weather/now.json")
     fun getWeather(@QueryMap params: HashMap<String,Any>) : Observable<Weatherbean>
 
-    @GET("en-us/word/search/{word}/?format=json")
+    @GET("word/search/{word}/?format=json")
     fun searchWord(@Path("word") word: String) : Observable<BaseResponse<WordBean>>
 }
