@@ -2,10 +2,10 @@ package com.hankkin.reading.ui.login.register
 
 import com.hankkin.reading.http.HttpClient
 import com.hankkin.reading.http.api.LoginApi
+import com.hankkin.reading.http.api.UserApi
 import com.hankkin.reading.mvp.presenter.BaseRxLifePresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import java.util.regex.Pattern
 
 /**
  * Created by huanghaijie on 2018/5/21.
@@ -17,7 +17,8 @@ class RegisterPresenter(mvpView: RegisterContract.IView) : BaseRxLifePresenter<R
         const val NAME = "username"
         const val PASSWORD = "password1"
         const val RPASSWORD = "password2"
-        const val CODE = "csrfmiddlewaretoken"
+        const val CAPTCHA_KEY = "captcha_0"
+        const val CAPTCHA_INPUT = "captcha_1"
 
         const val EMAIL_MSG = "请输入正确的邮箱地址"
         const val NAME_MSG = "请输入用户名至少2个字符"
@@ -25,36 +26,40 @@ class RegisterPresenter(mvpView: RegisterContract.IView) : BaseRxLifePresenter<R
         const val RPASSWORD_MSG = "请输入重复密码至少8个字符"
         const val CODE_MSG = "请输入验证码4个字符"
         const val PASSWORD_AND_MSG = "两次密码不一致"
+
+        const val EMAIL_REG = "^([a-z0-9A-Z]+[-|\\.]?+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}\$)"
     }
 
 
     override fun verifiyFormat(paramsMap: HashMap<String, String>) {
-        val email = paramsMap[EMAIL]
-        val reg = "^[a-z0-9]+([._\\\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+\$"
-        if (!Pattern.matches(reg, email)){
-            getMvpView().verifiyFormatResult(EMAIL_MSG)
-            return
-        }
-        if (paramsMap[NAME].isNullOrEmpty()){
+        if (paramsMap[NAME].isNullOrEmpty()) {
             getMvpView().verifiyFormatResult(NAME_MSG)
             return
         }
-        if (paramsMap[PASSWORD].isNullOrEmpty()){
+        if (paramsMap[EMAIL].isNullOrBlank()) {
+            getMvpView().verifiyFormatResult(EMAIL_MSG)
+            return
+        }
+        if (paramsMap[PASSWORD].isNullOrEmpty()) {
             getMvpView().verifiyFormatResult(PASSWORD_MSG)
             return
         }
-        if (paramsMap[RPASSWORD].isNullOrEmpty()){
+        if (paramsMap[RPASSWORD].isNullOrEmpty()) {
             getMvpView().verifiyFormatResult(RPASSWORD_MSG)
             return
         }
-        if (paramsMap[CODE].isNullOrEmpty()){
+        if (paramsMap[CAPTCHA_INPUT].isNullOrEmpty()) {
             getMvpView().verifiyFormatResult(CODE_MSG)
             return
         }
-        if (!paramsMap[PASSWORD_MSG].equals(paramsMap[RPASSWORD])){
+        if (!paramsMap[PASSWORD].equals(paramsMap[RPASSWORD])) {
             getMvpView().verifiyFormatResult(PASSWORD_AND_MSG)
             return
         }
+//        if (!Pattern.matches(EMAIL_REG, paramsMap[EMAIL])){
+//            getMvpView().verifiyFormatResult(EMAIL_MSG)
+//            return
+//        }
         regHttp(paramsMap)
     }
 
@@ -65,10 +70,13 @@ class RegisterPresenter(mvpView: RegisterContract.IView) : BaseRxLifePresenter<R
                 .flatMap {
                     map.put("csrfmiddlewaretoken", it.data.csrfmiddlewaretoken)
                     HttpClient.getnorRetrofit().create(LoginApi::class.java).signUp(map)
+                }
+                .flatMap {
+                    HttpClient.getnorRetrofit().create(UserApi::class.java).getUserProfile()
                 }.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeEx({
-                    getMvpView().regResult()
+                    getMvpView().regResult(it)
                     getMvpView().hideLoading()
                 }, {
                     getMvpView().hideLoading()

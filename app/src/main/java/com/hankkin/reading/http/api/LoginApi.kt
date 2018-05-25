@@ -3,6 +3,7 @@ package com.hankkin.reading.http.api
 import com.hankkin.reading.domain.BaseResponse
 import com.hankkin.reading.domain.CaptchaBean
 import com.hankkin.reading.domain.CsrfTokenBean
+import com.hankkin.reading.domain.SignUpBean
 import io.reactivex.Observable
 import retrofit2.http.*
 
@@ -23,6 +24,6 @@ interface LoginApi {
 
     @FormUrlEncoded
     @POST("account/signup")
-    fun signUp(@FieldMap map: HashMap<String,String>): Observable<String>
+    fun signUp(@FieldMap map: HashMap<String,String>): Observable<SignUpBean>
 }
 

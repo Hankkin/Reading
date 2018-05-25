@@ -7,17 +7,22 @@ import com.hankkin.reading.utils.SPUtils
 object UserControl {
     const val USER = "user"
 
-    private lateinit var user: UserBean
+    private var user: UserBean? = null
+
+    init {
+
+    }
 
     fun setCurrentUser(userBean: UserBean) {
         this.user = userBean
     }
 
-    fun getCurrentUser(): UserBean {
+    fun getCurrentUser(): UserBean? {
         return this.user
     }
 
     fun saveUserSp(userBean: UserBean) {
+        setCurrentUser(userBean)
         SPUtils.saveObject(USER, userBean)
         LogUtils.d(USER + userBean.id)
     }

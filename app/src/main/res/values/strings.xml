@@ -20,4 +20,5 @@
     <string name="login_registered">已有帐号？</string>
     <string name="login_forget">忘记密码</string>
     <string name="login_email">邮箱地址</string>
+    <string name="reg_suc_toast">注册成功...</string>
 </resources>

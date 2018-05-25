@@ -9,12 +9,12 @@ class HttpFactory {
 
     val map = HashMap<Class<*>, WeakReference<Any>>()
 
-    fun <T> getService(clazz: Class<T>): WeakReference<Any>? {
-        if (!map.containsKey(clazz)) {
-            val value = HttpClient.getnorRetrofit().create(clazz)
-            val realValue = WeakReference(value)
-            map.put(clazz, realValue)
-        }
-        return map[clazz]
-    }
+//    fun <T> getService(clazz: Class<T>): WeakReference<Any>? {
+//        if (!map.containsKey(clazz)) {
+//            val value = HttpClient.getnorRetrofit().create(clazz)
+//            val realValue = WeakReference(value)
+//            map.put(clazz, realValue)
+//        }
+//        return map[clazz]
+//    }
 }

@@ -1,6 +1,7 @@
 package com.hankkin.reading.ui.login.register
 
 import com.hankkin.reading.domain.CaptchaBean
+import com.hankkin.reading.domain.UserBean
 import com.hankkin.reading.mvp.contract.IBaseLoadingContract
 import com.hankkin.reading.mvp.contract.IBasePresenterContract
 
@@ -11,7 +12,7 @@ interface RegisterContract {
 
     interface IView : IBaseLoadingContract {
         fun getCapcha(captchaBean: CaptchaBean)
-        fun regResult()
+        fun regResult(userBean: UserBean)
         fun verifiyFormatResult(msg: String)
     }
 

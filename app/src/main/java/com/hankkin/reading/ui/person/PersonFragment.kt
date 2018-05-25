@@ -32,7 +32,7 @@ class PersonFragment : BaseFragment<PersonContract.IPresenter>(), PersonContract
 
     override fun initViews() {
         if (UserControl.isLogin())
-            tvName.text = UserControl.getCurrentUser().username
+            tvName.text = UserControl.getCurrentUser()!!.username
         tvName.text = resources.getString(R.string.person_no_login)
 
     }
@@ -40,6 +40,13 @@ class PersonFragment : BaseFragment<PersonContract.IPresenter>(), PersonContract
     @OnClick(R.id.ll_person_avatar) fun llAvatarClick(){
         if(!UserControl.isLogin()){
             startActivity(Intent(activity,LoginActivity::class.java))
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (UserControl.getCurrentUser() != null){
+            tvName.text = UserControl.getCurrentUser()!!.username
         }
     }
 

@@ -73,6 +73,7 @@ abstract class BaseRxLifePresenter<out V : IBaseViewContract>(private val mvpVie
         return this.subscribe({
             //编写订阅触发时的公共代码
             onNext.invoke(it)
+
         }, {
             //编写订阅失败的公共代码
             LogUtils.e(it)
