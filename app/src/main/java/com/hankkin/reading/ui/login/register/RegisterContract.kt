@@ -1,5 +1,6 @@
 package com.hankkin.reading.ui.login.register
 
+import com.hankkin.reading.domain.BaseResponse
 import com.hankkin.reading.domain.CaptchaBean
 import com.hankkin.reading.domain.UserBean
 import com.hankkin.reading.mvp.contract.IBaseLoadingContract

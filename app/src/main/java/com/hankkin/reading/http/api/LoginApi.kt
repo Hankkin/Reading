@@ -13,17 +13,17 @@ import retrofit2.http.*
 interface LoginApi {
 
     @GET("captcha/refresh")
-    fun getCaptcha(): Observable<CaptchaBean>
+    fun getCaptcha(): Observable<BaseResponse<CaptchaBean>>
 
     @GET("reading/csrftoken")
     fun getCsrfToken(): Observable<BaseResponse<CsrfTokenBean>>
 
     @FormUrlEncoded
     @POST("account/login")
-    fun login(@FieldMap map: HashMap<String,Any>): Observable<String>
+    fun login(@FieldMap map: HashMap<String,Any>): Observable<BaseResponse<String>>
 
     @FormUrlEncoded
     @POST("account/signup")
-    fun signUp(@FieldMap map: HashMap<String,String>): Observable<SignUpBean>
+    fun signUp(@FieldMap map: HashMap<String,String>): Observable<BaseResponse<SignUpBean>>
 }
 

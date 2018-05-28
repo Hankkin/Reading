@@ -7,6 +7,7 @@ import butterknife.OnClick
 import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseFragment
 import com.hankkin.reading.control.UserControl
+import com.hankkin.reading.domain.BaseResponse
 import com.hankkin.reading.domain.CaptchaBean
 import com.hankkin.reading.domain.UserBean
 import com.hankkin.reading.ui.login.register.RegisterPresenter.Companion.CAPTCHA_INPUT

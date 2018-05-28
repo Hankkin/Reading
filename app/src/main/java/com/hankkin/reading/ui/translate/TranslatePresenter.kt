@@ -6,6 +6,7 @@ import com.hankkin.reading.http.api.DownApi
 import com.hankkin.reading.http.api.TranslateApi
 import com.hankkin.reading.mvp.presenter.BaseRxLifePresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
 /**
@@ -19,7 +20,7 @@ class TranslatePresenter(mvpView: TranslateContract.IView) : BaseRxLifePresenter
                 .downloadFile(url)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeEx({
+                .subscribeNx({
                     getMvpView().downRankSuc(it,name,type,int)
                 }).bindRxLifeEx(RxLife.ON_DESTROY)
     }
@@ -48,7 +49,7 @@ class TranslatePresenter(mvpView: TranslateContract.IView) : BaseRxLifePresenter
                 getWeather(map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeEx({
+                .subscribeNx({
                     getMvpView().setWeather(it)
                 }, {
                     getMvpView().setWeatherError()

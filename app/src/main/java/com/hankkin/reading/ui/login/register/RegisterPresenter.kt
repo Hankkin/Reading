@@ -73,15 +73,15 @@ class RegisterPresenter(mvpView: RegisterContract.IView) : BaseRxLifePresenter<R
                 }
                 .flatMap {
                     HttpClient.getnorRetrofit().create(UserApi::class.java).getUserProfile()
-                }.subscribeOn(Schedulers.io())
+                }
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeEx({
-                    getMvpView().regResult(it)
+//                    getMvpView().regResult(it)
                     getMvpView().hideLoading()
                 }, {
                     getMvpView().hideLoading()
                 })
-
     }
 
     override fun getCapchaHttp() {
