@@ -1,10 +1,12 @@
 package com.hankkin.reading.mvp.presenter
 
+import com.hankkin.reading.EApplication
 import com.hankkin.reading.domain.BaseResponse
 import com.hankkin.reading.mvp.contract.IBasePresenterContract
 import com.hankkin.reading.mvp.contract.IBaseViewContract
 import com.hankkin.reading.utils.LogUtils
 import com.hankkin.reading.utils.RxUtils
+import com.hankkin.reading.utils.ToastUtils
 import io.reactivex.Observable
 import io.reactivex.disposables.Disposable
 import java.util.*
@@ -73,7 +75,14 @@ abstract class BaseRxLifePresenter<out V : IBaseViewContract>(private val mvpVie
     fun <T> Observable<BaseResponse<T>>.subscribeEx(onNext: (data: T) -> Unit = {}, onError: (e: Throwable) -> Unit = {}, onComplete: () -> Unit = {}): Disposable {
         return this.subscribe({
             //编写订阅触发时的公共代码
-            onNext.invoke(it.data)
+
+            if(it.state != 200){
+                ToastUtils.showToast(EApplication.instance(),it.message)
+                onError.invoke(kotlin.Throwable())
+            }
+            else{
+                onNext.invoke(it.data)
+            }
 
         }, {
             //编写订阅失败的公共代码

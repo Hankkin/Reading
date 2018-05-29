@@ -90,7 +90,7 @@ class RegisterPresenter(mvpView: RegisterContract.IView) : BaseRxLifePresenter<R
                 .getCaptcha()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeEx({
+                .subscribeNx({
                     getMvpView().getCapcha(it)
                     getMvpView().hideLoading()
                 }, {

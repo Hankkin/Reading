@@ -13,7 +13,7 @@ import retrofit2.http.*
 interface LoginApi {
 
     @GET("captcha/refresh")
-    fun getCaptcha(): Observable<BaseResponse<CaptchaBean>>
+    fun getCaptcha(): Observable<CaptchaBean>
 
     @GET("reading/csrftoken")
     fun getCsrfToken(): Observable<BaseResponse<CsrfTokenBean>>

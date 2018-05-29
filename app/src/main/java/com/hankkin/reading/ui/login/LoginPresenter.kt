@@ -35,7 +35,7 @@ class LoginPresenter(mvpView: LoginContract.IView) : BaseRxLifePresenter<LoginCo
                 .getCaptcha()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeEx({
+                .subscribeNx({
                     getMvpView().getCapcha(it)
                     getMvpView().hideLoading()
                 }, {
