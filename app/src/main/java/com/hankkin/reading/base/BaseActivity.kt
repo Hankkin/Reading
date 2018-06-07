@@ -2,9 +2,6 @@ package com.hankkin.reading.base
 
 import android.app.Activity
 import android.os.Bundle
-import android.support.v4.app.FragmentActivity
-import android.support.v7.app.AppCompatActivity
-import butterknife.ButterKnife
 import com.hankkin.reading.mvp.contract.IBasePresenterContract
 import com.hankkin.reading.mvp.view.BaseMvpFragmentActivity
 
@@ -24,14 +21,10 @@ abstract class BaseActivity<out T : IBasePresenterContract>  : BaseMvpFragmentAc
         super.onCreate(savedInstanceState)
         activity = this
         if (getLayoutId() != 0) setContentView(getLayoutId())
-        initBind()
         initViews(savedInstanceState)
         initData()
     }
 
-    protected fun initBind(){
-        ButterKnife.bind(this)
-    }
 
     protected abstract fun initViews(savedInstanceState: Bundle?)
 }

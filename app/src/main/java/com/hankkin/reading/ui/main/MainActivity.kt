@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.widget.Toast
-import butterknife.BindView
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.MainFragmentAdapter
 import com.hankkin.reading.base.BaseActivity
@@ -13,8 +12,8 @@ import com.hankkin.reading.ui.dictionary.DictionaryFragment
 import com.hankkin.reading.ui.person.PersonFragment
 import com.hankkin.reading.ui.translate.TranslateFragment
 import com.hankkin.reading.utils.LogUtils
-import com.hankkin.reading.view.NoScrollViewPager
 import com.tbruyelle.rxpermissions2.RxPermissions
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity<MainContract.IPresenter>(), MainContract.IView {
 
@@ -29,8 +28,6 @@ class MainActivity : BaseActivity<MainContract.IPresenter>(), MainContract.IView
         private const val PERSON_INDEX = 2
     }
 
-    @BindView(R.id.vp_home) lateinit var vp: NoScrollViewPager
-    @BindView(R.id.navigation) lateinit var navigation: BottomNavigationView
 
     private val fgList = listOf<Fragment>(
             DictionaryFragment(),
@@ -69,23 +66,23 @@ class MainActivity : BaseActivity<MainContract.IPresenter>(), MainContract.IView
     override fun initViews(savedInstanceState: Bundle?) {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         val mainAdapter = MainFragmentAdapter(supportFragmentManager, fgList)
-        vp.adapter = mainAdapter
-        vp.offscreenPageLimit = DEFAULT_FG_SIZE
+        vp_home.adapter = mainAdapter
+        vp_home.offscreenPageLimit = DEFAULT_FG_SIZE
     }
 
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_dic -> {
-                vp.setCurrentItem(DICTIONARY_INDEX, false)
+                vp_home.setCurrentItem(DICTIONARY_INDEX, false)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_tran -> {
-                vp.setCurrentItem(TRANSLATE_INDEX, false)
+                vp_home.setCurrentItem(TRANSLATE_INDEX, false)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_person -> {
-                vp.setCurrentItem(PERSON_INDEX, false)
+                vp_home.setCurrentItem(PERSON_INDEX, false)
                 return@OnNavigationItemSelectedListener true
             }
         }

@@ -1,13 +1,8 @@
 package com.hankkin.reading.ui.login.register
 
-import android.widget.EditText
-import android.widget.ImageView
-import butterknife.BindView
-import butterknife.OnClick
 import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseFragment
 import com.hankkin.reading.control.UserControl
-import com.hankkin.reading.domain.BaseResponse
 import com.hankkin.reading.domain.CaptchaBean
 import com.hankkin.reading.domain.UserBean
 import com.hankkin.reading.ui.login.register.RegisterPresenter.Companion.CAPTCHA_INPUT
@@ -19,18 +14,13 @@ import com.hankkin.reading.ui.login.register.RegisterPresenter.Companion.RPASSWO
 import com.hankkin.reading.utils.LoadingUtils
 import com.hankkin.reading.utils.ToastUtils
 import com.wuba.guchejia.img.ImageLoader
+import kotlinx.android.synthetic.main.fragment_register.*
 
 /**
  * Created by huanghaijie on 2018/5/15.
  */
 class RegFragment : BaseFragment<RegisterContract.IPresenter>(), RegisterContract.IView {
 
-    @BindView(R.id.iv_reg_code) lateinit var ivCode: ImageView
-    @BindView(R.id.et_reg_name) lateinit var etName: EditText
-    @BindView(R.id.et_reg_email) lateinit var etEmail: EditText
-    @BindView(R.id.et_reg_pwd) lateinit var etPwd: EditText
-    @BindView(R.id.et_reg_pwd_repeat) lateinit var etPwdRepeat: EditText
-    @BindView(R.id.et_reg_code) lateinit var etCode: EditText
 
     lateinit var captchaBean: CaptchaBean
 
@@ -54,25 +44,22 @@ class RegFragment : BaseFragment<RegisterContract.IPresenter>(), RegisterContrac
     }
 
     override fun initData() {
+        iv_reg_code.setOnClickListener { getmPresenter().getCapchaHttp() }
+        tv_reg_reg.setOnClickListener { regClick() }
     }
 
     override fun initViews() {
         getmPresenter().getCapchaHttp()
     }
 
-    @OnClick(R.id.iv_reg_code)
-    fun codeClick() {
-        getmPresenter().getCapchaHttp()
-    }
 
-    @OnClick(R.id.tv_reg_reg)
     fun regClick(){
         val map = HashMap<String,String>()
-        map.put(EMAIL,etEmail.text.toString())
-        map.put(NAME,etName.text.toString())
-        map.put(PASSWORD,etPwd.text.toString())
-        map.put(RPASSWORD,etPwdRepeat.text.toString())
-        map.put(CAPTCHA_INPUT,etCode.text.toString())
+        map.put(EMAIL,et_reg_email.text.toString())
+        map.put(NAME,et_reg_name.text.toString())
+        map.put(PASSWORD,et_reg_pwd.text.toString())
+        map.put(RPASSWORD,et_reg_pwd_repeat.text.toString())
+        map.put(CAPTCHA_INPUT,et_reg_code.text.toString())
         map.put(CAPTCHA_KEY,captchaBean.key)
         getmPresenter().verifiyFormat(map)
     }
@@ -89,7 +76,7 @@ class RegFragment : BaseFragment<RegisterContract.IPresenter>(), RegisterContrac
     override fun getCapcha(captchaBean: CaptchaBean) {
         this.captchaBean = captchaBean
         if (captchaBean.image_url.isNotEmpty()) {
-            ImageLoader.load(context, captchaBean.image_url, ivCode)
+            ImageLoader.load(context, captchaBean.image_url, iv_reg_code)
         }
     }
 

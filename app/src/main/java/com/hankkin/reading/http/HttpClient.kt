@@ -25,7 +25,6 @@ import javax.net.ssl.X509TrustManager
  * Created by huanghaijie on 2018/5/16.
  */
 object HttpClient {
-
     private const val DEFAULT_TIME_OUT = 15000L
 
 

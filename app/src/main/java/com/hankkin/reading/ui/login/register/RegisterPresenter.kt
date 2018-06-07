@@ -1,10 +1,15 @@
 package com.hankkin.reading.ui.login.register
 
+import com.hankkin.reading.domain.BaseResponse
+import com.hankkin.reading.domain.SignUpBean
 import com.hankkin.reading.http.HttpClient
 import com.hankkin.reading.http.api.LoginApi
 import com.hankkin.reading.http.api.UserApi
 import com.hankkin.reading.mvp.presenter.BaseRxLifePresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.functions.Consumer
+import io.reactivex.functions.Function
+import io.reactivex.functions.Predicate
 import io.reactivex.schedulers.Schedulers
 
 /**
@@ -69,7 +74,9 @@ class RegisterPresenter(mvpView: RegisterContract.IView) : BaseRxLifePresenter<R
                 .getCsrfToken()
                 .flatMap {
                     map.put("csrfmiddlewaretoken", it.data.csrfmiddlewaretoken)
-                    HttpClient.getnorRetrofit().create(LoginApi::class.java).signUp(map)
+                    val a =HttpClient.getnorRetrofit().create(LoginApi::class.java).signUp(map)
+
+                 a
                 }
                 .flatMap {
                     HttpClient.getnorRetrofit().create(UserApi::class.java).getUserProfile()

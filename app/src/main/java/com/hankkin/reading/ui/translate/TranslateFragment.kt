@@ -1,25 +1,19 @@
 package com.hankkin.reading.ui.translate
 
 import android.graphics.drawable.AnimationDrawable
-import android.media.AudioManager
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.EditorInfo
-import android.widget.EditText
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
-import butterknife.BindView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.PhoneticsAdapter
 import com.hankkin.reading.base.BaseFragment
-import com.hankkin.reading.domain.BaseResponse
 import com.hankkin.reading.domain.Weatherbean
 import com.hankkin.reading.domain.WordBean
 import com.hankkin.reading.utils.DownUtils
@@ -27,6 +21,8 @@ import com.hankkin.reading.utils.FileUtils
 import com.hankkin.reading.utils.LoadingUtils
 import com.hankkin.reading.utils.WeatherUtils
 import com.hankkin.reading.view.GridSpacingItemDecoration
+import kotlinx.android.synthetic.main.fragment_translate.*
+import kotlinx.android.synthetic.main.layout_translate_content.*
 import okhttp3.ResponseBody
 import java.io.File
 
@@ -39,13 +35,6 @@ class TranslateFragment : BaseFragment<TranslateContract.IPresenter>(), Translat
     override fun createmPresenter() = TranslatePresenter(this)
 
 
-    @BindView(R.id.et_translate_search) lateinit var etSearch: EditText
-    @BindView(R.id.tv_translate_weather) lateinit var tvWeather: TextView
-    @BindView(R.id.iv_translate_weather) lateinit var ivWeather: ImageView
-    @BindView(R.id.rv_translate_speak) lateinit var rv: RecyclerView
-    @BindView(R.id.tv_translate_word) lateinit var tvWord: TextView
-    @BindView(R.id.tv_translate_ranks) lateinit var tvRank: TextView
-    @BindView(R.id.ll_translate_para) lateinit var llPara: LinearLayout
 
 
 
@@ -71,12 +60,12 @@ class TranslateFragment : BaseFragment<TranslateContract.IPresenter>(), Translat
     }
 
     override fun initViews() {
-        tvWeather.text = "正在获取天气..."
-        etSearch.setOnEditorActionListener(object : TextView.OnEditorActionListener {
+        tv_translate_weather.text = "正在获取天气..."
+        et_translate_search.setOnEditorActionListener(object : TextView.OnEditorActionListener {
             override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
                 when (actionId) {
                     EditorInfo.IME_ACTION_SEARCH -> {
-                        getmPresenter().getWrod(etSearch.text.toString().trim())
+                        getmPresenter().getWrod(et_translate_search.text.toString().trim())
                     }
                 }
                 return false
@@ -89,25 +78,25 @@ class TranslateFragment : BaseFragment<TranslateContract.IPresenter>(), Translat
     override fun setWeather(weatherbean: Weatherbean) {
         val now = weatherbean.results[0].now
         val format = resources.getString(R.string.format_weather)
-        tvWeather.text = String.format(format, now.text, now.temperature)
-        ivWeather.setImageResource(WeatherUtils.getWeatherImg(now.code, context))
+        tv_translate_weather.text = String.format(format, now.text, now.temperature)
+        iv_translate_weather.setImageResource(WeatherUtils.getWeatherImg(now.code, context))
     }
 
     override fun setWeatherError() {
-        tvWeather.text = "获取天气失败"
+        tv_translate_weather.text = "获取天气失败"
     }
 
     override fun searchWordResult(reponse: WordBean) {
         if (reponse == null) return
         this.word = reponse
-        tvWord.text = word.title
-        llPara.removeAllViews()
+        tv_translate_word.text = word.title
+        ll_translate_para.removeAllViews()
 
         phoneticsAdapter = PhoneticsAdapter()
-        rv.layoutManager = GridLayoutManager(context,word.paraphrases.size)
-        rv.addItemDecoration( GridSpacingItemDecoration(word.paraphrases.size, 30, false))
+        rv_translate_speak.layoutManager = GridLayoutManager(context,word.paraphrases.size)
+        rv_translate_speak.addItemDecoration( GridSpacingItemDecoration(word.paraphrases.size, 30, false))
         phoneticsAdapter.setNewData(word.phonetics)
-        rv.adapter = phoneticsAdapter
+        rv_translate_speak.adapter = phoneticsAdapter
 
 
         phoneticsAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
@@ -116,17 +105,17 @@ class TranslateFragment : BaseFragment<TranslateContract.IPresenter>(), Translat
         }
 
         if(word.ranks!!.size>0) {
-            tvRank.visibility = View.VISIBLE
+            tv_translate_ranks.visibility = View.VISIBLE
         }
 
         var rank = ""
         for (s in word.ranks!!) {
             rank = rank + "/" + s
         }
-        tvRank.text = rank
+        tv_translate_ranks.text = rank
 
         for (item in word.paraphrases) {
-            llPara.addView(addParaItemView(item.key))
+            ll_translate_para.addView(addParaItemView(item.key))
         }
     }
 
@@ -173,7 +162,7 @@ class TranslateFragment : BaseFragment<TranslateContract.IPresenter>(), Translat
         mediaPlayer.setDataSource(path)
         mediaPlayer.prepare()
         mediaPlayer.start()
-        val iv = phoneticsAdapter.getViewByPosition(rv,index,R.id.iv_translate_play) as ImageView
+        val iv = phoneticsAdapter.getViewByPosition(rv_translate_speak,index,R.id.iv_translate_play) as ImageView
         mediaPlayer.setOnCompletionListener{
             mediaPlayer.reset()
             ((iv.drawable)as AnimationDrawable).stop()

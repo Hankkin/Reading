@@ -6,9 +6,10 @@
 
     <string name="translate_search_hint">在此输入单词或句子</string>
     <string name="format_weather">%1$s  %2$s℃</string>
-    
+
     <string name="person_title">我的</string>
     <string name="person_no_login">未登录</string>
+    <string name="person_authorize_login">授权登录</string>
 
     <string name="login_name">用户名</string>
     <string name="login_pwd">密码</string>
@@ -21,4 +22,6 @@
     <string name="login_forget">忘记密码</string>
     <string name="login_email">邮箱地址</string>
     <string name="reg_suc_toast">注册成功...</string>
+
+
 </resources>
