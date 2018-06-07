@@ -3,6 +3,7 @@ package com.hankkin.reading.ui.login
 import com.hankkin.reading.domain.BaseResponse
 import com.hankkin.reading.domain.CaptchaBean
 import com.hankkin.reading.domain.CsrfTokenBean
+import com.hankkin.reading.domain.UserBean
 import com.hankkin.reading.mvp.contract.IBaseLoadingContract
 import com.hankkin.reading.mvp.contract.IBasePresenterContract
 
@@ -13,7 +14,7 @@ interface LoginContract {
 
     interface IView : IBaseLoadingContract {
         fun getCapcha(captchaBean: CaptchaBean)
-        fun loginResult()
+        fun loginResult(userBean: UserBean)
     }
 
     interface IPresenter : IBasePresenterContract {

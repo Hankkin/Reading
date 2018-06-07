@@ -2,6 +2,7 @@ package com.hankkin.reading.ui.login
 
 import com.hankkin.reading.http.HttpClient
 import com.hankkin.reading.http.api.LoginApi
+import com.hankkin.reading.http.api.UserApi
 import com.hankkin.reading.mvp.presenter.BaseRxLifePresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -18,10 +19,12 @@ class LoginPresenter(mvpView: LoginContract.IView) : BaseRxLifePresenter<LoginCo
                 .flatMap {
                     map.put("csrfmiddlewaretoken",it.data.csrfmiddlewaretoken)
                     HttpClient.getnorRetrofit().create(LoginApi::class.java).login(map)
+                }.flatMap {
+                    HttpClient.getnorRetrofit().create(UserApi::class.java).getUserProfile()
                 }.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeEx({
-                    getMvpView().loginResult()
+                    getMvpView().loginResult(it)
                     getMvpView().hideLoading()
                 }, {
                     getMvpView().hideLoading()

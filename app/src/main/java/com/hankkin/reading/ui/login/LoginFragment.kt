@@ -8,9 +8,12 @@ import com.hankkin.reading.base.BaseFragment
 import com.hankkin.reading.domain.BaseResponse
 import com.hankkin.reading.domain.CaptchaBean
 import com.hankkin.reading.domain.CsrfTokenBean
+import com.hankkin.reading.domain.UserBean
 import com.hankkin.reading.utils.LoadingUtils
 import com.hankkin.reading.utils.ToastUtils
 import com.wuba.guchejia.img.ImageLoader
+import kotlinx.android.synthetic.main.fragment_login.*
+import kotlinx.android.synthetic.main.fragment_register.*
 
 /**
  * Created by huanghaijie on 2018/5/15.
@@ -19,8 +22,8 @@ class LoginFragment : BaseFragment<LoginContract.IPresenter>(), LoginContract.IV
 
     private lateinit var code:String
 
-    override fun loginResult() {
-        ToastUtils.showToast(context,"登录成功")
+    override fun loginResult(userBean: UserBean) {
+        ToastUtils.showToast(context,"登录成功"+userBean.username)
     }
 
     @BindView(R.id.iv_login_code) lateinit var ivCode: ImageView
@@ -45,10 +48,9 @@ class LoginFragment : BaseFragment<LoginContract.IPresenter>(), LoginContract.IV
 
     @OnClick(R.id.tv_login_btn) fun loginClick(){
         val map = HashMap<String,Any>()
-        map.put("username","yes")
-        map.put("password","12345678a")
-        map.put("password","12345678a")
-        map.put("captcha_1",code)
+        map.put("username",et_login_name.text)
+        map.put("password",et_login_pwd.text)
+        map.put("captcha_1",et_login_code.text)
         map.put("captcha_0",code)
         getmPresenter().loginHttp(map)
     }

@@ -21,6 +21,7 @@
             android:layout_height="wrap_content" />
 
         <EditText
+            android:id="@+id/et_login_name"
             android:textSize="@dimen/sp_15"
             android:layout_marginLeft="@dimen/dp_14"
             android:hint="@string/login_name"
@@ -43,6 +44,7 @@
             android:layout_height="wrap_content" />
 
         <EditText
+            android:id="@+id/et_login_pwd"
             android:textSize="@dimen/sp_15"
             android:layout_marginLeft="@dimen/dp_14"
             android:hint="@string/login_pwd"
@@ -71,6 +73,7 @@
                 android:layout_height="wrap_content" />
 
             <EditText
+                android:id="@+id/et_login_code"
                 android:textSize="@dimen/sp_15"
                 android:layout_marginLeft="@dimen/dp_10"
                 android:hint="@string/login_code"
