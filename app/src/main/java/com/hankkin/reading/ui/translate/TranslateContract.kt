@@ -16,7 +16,7 @@ interface TranslateContract{
 
         fun setWeather(weatherbean: Weatherbean)
         fun setWeatherError()
-        fun searchWordResult(reponse: BaseResponse<WordBean>)
+        fun searchWordResult(reponse: WordBean)
         fun searchFail()
         fun downRankSuc(body: ResponseBody,name: String,type: String,int: Int)
 

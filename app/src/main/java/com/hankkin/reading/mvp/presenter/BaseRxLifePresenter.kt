@@ -1,9 +1,12 @@
 package com.hankkin.reading.mvp.presenter
 
+import com.hankkin.reading.EApplication
+import com.hankkin.reading.domain.BaseResponse
 import com.hankkin.reading.mvp.contract.IBasePresenterContract
 import com.hankkin.reading.mvp.contract.IBaseViewContract
 import com.hankkin.reading.utils.LogUtils
 import com.hankkin.reading.utils.RxUtils
+import com.hankkin.reading.utils.ToastUtils
 import io.reactivex.Observable
 import io.reactivex.disposables.Disposable
 import java.util.*
@@ -69,7 +72,29 @@ abstract class BaseRxLifePresenter<out V : IBaseViewContract>(private val mvpVie
     /**
      * 扩展方法：用于处理订阅事件发生时的公共代码
      * */
-    fun <T> Observable<T>.subscribeEx(onNext: (data: T) -> Unit = {}, onError: (e: Throwable) -> Unit = {}, onComplete: () -> Unit = {}): Disposable {
+    fun <T> Observable<BaseResponse<T>>.subscribeEx(onNext: (data: T) -> Unit = {}, onError: (e: Throwable) -> Unit = {}, onComplete: () -> Unit = {}): Disposable {
+        return this.subscribe({
+            //编写订阅触发时的公共代码
+
+            if(it.state != 200){
+                ToastUtils.showToast(EApplication.instance(),it.message)
+                onError.invoke(kotlin.Throwable())
+            }
+            else{
+                onNext.invoke(it.data)
+            }
+
+        }, {
+            //编写订阅失败的公共代码
+            LogUtils.e(it)
+            onError.invoke(it)
+        }, {
+            //编写订阅完成后的公共代码
+            onComplete.invoke()
+        })
+    }
+
+    fun <T> Observable<T>.subscribeNx(onNext: (data: T) -> Unit = {},onError: (e: Throwable) -> Unit = {},onComplete: () -> Unit = {}): Disposable{
         return this.subscribe({
             //编写订阅触发时的公共代码
             onNext.invoke(it)
@@ -89,4 +114,5 @@ abstract class BaseRxLifePresenter<out V : IBaseViewContract>(private val mvpVie
         map.put(key,value)
         return map
     }
+
 }

@@ -97,9 +97,9 @@ class TranslateFragment : BaseFragment<TranslateContract.IPresenter>(), Translat
         tvWeather.text = "获取天气失败"
     }
 
-    override fun searchWordResult(reponse: BaseResponse<WordBean>) {
-        if (reponse.data == null) return
-        this.word = reponse.data
+    override fun searchWordResult(reponse: WordBean) {
+        if (reponse == null) return
+        this.word = reponse
         tvWord.text = word.title
         llPara.removeAllViews()
 
