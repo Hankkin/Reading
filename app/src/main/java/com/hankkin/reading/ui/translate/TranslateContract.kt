@@ -1,10 +1,9 @@
 package com.hankkin.reading.ui.translate
 
-import com.hankkin.reading.domain.BaseResponse
 import com.hankkin.reading.domain.Weatherbean
 import com.hankkin.reading.domain.WordBean
 import com.hankkin.reading.mvp.contract.IBaseLoadingContract
-import com.hankkin.reading.mvp.contract.IBasePresenterContract
+import com.hankkin.reading.mvp.contract.IPresenterContract
 import okhttp3.ResponseBody
 
 /**
@@ -22,7 +21,7 @@ interface TranslateContract{
 
     }
 
-    interface IPresenter : IBasePresenterContract{
+    interface IPresenter : IPresenterContract {
         fun getWeather(city: String)
 
         fun getWrod(word: String)

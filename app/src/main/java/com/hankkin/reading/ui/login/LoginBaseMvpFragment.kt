@@ -1,7 +1,7 @@
 package com.hankkin.reading.ui.login
 
 import com.hankkin.reading.R
-import com.hankkin.reading.base.BaseFragment
+import com.hankkin.reading.base.BaseMvpFragment
 import com.hankkin.reading.domain.CaptchaBean
 import com.hankkin.reading.domain.UserBean
 import com.hankkin.reading.utils.LoadingUtils
@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.fragment_login.*
 /**
  * Created by huanghaijie on 2018/5/15.
  */
-class LoginFragment : BaseFragment<LoginContract.IPresenter>(), LoginContract.IView {
+class LoginBaseMvpFragment : BaseMvpFragment<LoginContract.IPresenter>(), LoginContract.IView {
 
     private lateinit var code:String
 
@@ -21,7 +21,7 @@ class LoginFragment : BaseFragment<LoginContract.IPresenter>(), LoginContract.IV
     }
 
 
-    override fun createmPresenter() = LoginPresenter(this)
+    override fun registerPresenter() = LoginPresenter::class.java
 
 
     override fun getLayoutId(): Int {
@@ -29,12 +29,12 @@ class LoginFragment : BaseFragment<LoginContract.IPresenter>(), LoginContract.IV
     }
 
     override fun initData() {
-        iv_login_code.setOnClickListener { getmPresenter().getCapchaHttp() }
+        iv_login_code.setOnClickListener { getPresenter().getCapchaHttp() }
         tv_login_btn.setOnClickListener { loginClick() }
     }
 
-    override fun initViews() {
-        getmPresenter().getCapchaHttp()
+    override fun initView() {
+        getPresenter().getCapchaHttp()
     }
 
 
@@ -45,7 +45,7 @@ class LoginFragment : BaseFragment<LoginContract.IPresenter>(), LoginContract.IV
         map.put("password",et_login_pwd.text)
         map.put("captcha_1",et_login_code.text)
         map.put("captcha_0",code)
-        getmPresenter().loginHttp(map)
+        getPresenter().loginHttp(map)
     }
 
     override fun showLoading() {

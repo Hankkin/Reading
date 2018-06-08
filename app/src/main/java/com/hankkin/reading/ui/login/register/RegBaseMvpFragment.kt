@@ -1,7 +1,7 @@
 package com.hankkin.reading.ui.login.register
 
 import com.hankkin.reading.R
-import com.hankkin.reading.base.BaseFragment
+import com.hankkin.reading.base.BaseMvpFragment
 import com.hankkin.reading.control.UserControl
 import com.hankkin.reading.domain.CaptchaBean
 import com.hankkin.reading.domain.UserBean
@@ -19,7 +19,8 @@ import kotlinx.android.synthetic.main.fragment_register.*
 /**
  * Created by huanghaijie on 2018/5/15.
  */
-class RegFragment : BaseFragment<RegisterContract.IPresenter>(), RegisterContract.IView {
+class RegBaseMvpFragment : BaseMvpFragment<RegisterContract.IPresenter>(), RegisterContract.IView {
+    override fun registerPresenter() = RegisterPresenter::class.java
 
 
     lateinit var captchaBean: CaptchaBean
@@ -36,7 +37,6 @@ class RegFragment : BaseFragment<RegisterContract.IPresenter>(), RegisterContrac
 
 
 
-    override fun createmPresenter() = RegisterPresenter(this)
 
 
     override fun getLayoutId(): Int {
@@ -44,12 +44,12 @@ class RegFragment : BaseFragment<RegisterContract.IPresenter>(), RegisterContrac
     }
 
     override fun initData() {
-        iv_reg_code.setOnClickListener { getmPresenter().getCapchaHttp() }
+        iv_reg_code.setOnClickListener { getPresenter().getCapchaHttp() }
         tv_reg_reg.setOnClickListener { regClick() }
     }
 
-    override fun initViews() {
-        getmPresenter().getCapchaHttp()
+    override fun initView() {
+        getPresenter().getCapchaHttp()
     }
 
 
@@ -61,7 +61,7 @@ class RegFragment : BaseFragment<RegisterContract.IPresenter>(), RegisterContrac
         map.put(RPASSWORD,et_reg_pwd_repeat.text.toString())
         map.put(CAPTCHA_INPUT,et_reg_code.text.toString())
         map.put(CAPTCHA_KEY,captchaBean.key)
-        getmPresenter().verifiyFormat(map)
+        getPresenter().verifiyFormat(map)
     }
 
 

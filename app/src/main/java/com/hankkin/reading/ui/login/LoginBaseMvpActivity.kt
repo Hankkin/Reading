@@ -7,35 +7,22 @@ import android.support.v4.view.ViewPager
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.MainFragmentAdapter
 import com.hankkin.reading.base.BaseActivity
-import com.hankkin.reading.domain.CaptchaBean
-import com.hankkin.reading.domain.UserBean
-import com.hankkin.reading.ui.login.register.RegFragment
+import com.hankkin.reading.ui.login.register.RegBaseMvpFragment
 
-class LoginActivity : BaseActivity<LoginContract.IPresenter>() ,LoginContract.IView{
-    override fun loginResult(userBean: UserBean) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+class LoginBaseMvpActivity : BaseActivity(){
 
 
-    override fun showLoading() {
-    }
 
-    override fun hideLoading() {
-    }
 
-    override fun getCapcha(captchaBean: CaptchaBean) {
-    }
+
 
 
     private val fragments = listOf<Fragment>(
-            LoginFragment(),
-            RegFragment()
+            LoginBaseMvpFragment(),
+            RegBaseMvpFragment()
     )
     val adapter = MainFragmentAdapter(supportFragmentManager,fragments)
 
-    override fun createPresenter(): LoginContract.IPresenter {
-        return LoginPresenter(this)
-    }
 
     override fun getLayoutId(): Int {
         return R.layout.activity_login

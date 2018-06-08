@@ -4,15 +4,14 @@ import com.hankkin.reading.common.Constant
 import com.hankkin.reading.http.HttpClient
 import com.hankkin.reading.http.api.DownApi
 import com.hankkin.reading.http.api.TranslateApi
-import com.hankkin.reading.mvp.presenter.BaseRxLifePresenter
+import com.hankkin.reading.mvp.presenter.RxLifePresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
 /**
  * Created by huanghaijie on 2018/5/16.
  */
-class TranslatePresenter(mvpView: TranslateContract.IView) : BaseRxLifePresenter<TranslateContract.IView>(mvpView), TranslateContract.IPresenter {
+class TranslatePresenter : RxLifePresenter<TranslateContract.IView>(), TranslateContract.IPresenter {
 
 
     override fun downRank(name: String, url: String, type: String,int: Int) {

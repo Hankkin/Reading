@@ -3,7 +3,7 @@ package com.hankkin.reading.mvp.contract
 /**
  * Created by huanghaijie on 2018/5/16.
  */
-interface IBasePresenterContract{
+interface IPresenterContract {
 
     fun onCreate()
 
@@ -16,4 +16,6 @@ interface IBasePresenterContract{
     fun onStop()
 
     fun onDestroy()
+
+    fun registerMvpView(mvpView: IBaseViewContract)
 }

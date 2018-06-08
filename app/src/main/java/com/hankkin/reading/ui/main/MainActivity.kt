@@ -15,11 +15,10 @@ import com.hankkin.reading.utils.LogUtils
 import com.tbruyelle.rxpermissions2.RxPermissions
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : BaseActivity<MainContract.IPresenter>(), MainContract.IView {
+class MainActivity : BaseActivity() {
 
 
 
-    override fun createPresenter() = MainPresenter(this)
 
     companion object {
         private const val DEFAULT_FG_SIZE = 3

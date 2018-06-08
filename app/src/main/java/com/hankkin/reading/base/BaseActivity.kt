@@ -2,13 +2,12 @@ package com.hankkin.reading.base
 
 import android.app.Activity
 import android.os.Bundle
-import com.hankkin.reading.mvp.contract.IBasePresenterContract
-import com.hankkin.reading.mvp.view.BaseMvpFragmentActivity
+import android.support.v4.app.FragmentActivity
 
 /**
  * Created by huanghaijie on 2018/5/15.
  */
-abstract class BaseActivity<out T : IBasePresenterContract>  : BaseMvpFragmentActivity<T>() {
+abstract class BaseActivity: FragmentActivity() {
 
     protected var activity: Activity? = null
 

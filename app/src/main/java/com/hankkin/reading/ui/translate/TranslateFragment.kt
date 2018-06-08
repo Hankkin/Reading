@@ -13,7 +13,7 @@ import android.widget.TextView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.PhoneticsAdapter
-import com.hankkin.reading.base.BaseFragment
+import com.hankkin.reading.base.BaseMvpFragment
 import com.hankkin.reading.domain.Weatherbean
 import com.hankkin.reading.domain.WordBean
 import com.hankkin.reading.utils.DownUtils
@@ -29,13 +29,10 @@ import java.io.File
 /**
  * Created by huanghaijie on 2018/5/15.
  */
-class TranslateFragment : BaseFragment<TranslateContract.IPresenter>(), TranslateContract.IView {
+class TranslateFragment : BaseMvpFragment<TranslateContract.IPresenter>(), TranslateContract.IView {
 
 
-    override fun createmPresenter() = TranslatePresenter(this)
-
-
-
+    override fun registerPresenter() = TranslatePresenter::class.java
 
 
     lateinit var word: WordBean
@@ -56,16 +53,16 @@ class TranslateFragment : BaseFragment<TranslateContract.IPresenter>(), Translat
     }
 
     override fun initData() {
-        getmPresenter().getWeather("beijing")
+        getPresenter().getWeather("beijing")
     }
 
-    override fun initViews() {
+    override fun initView() {
         tv_translate_weather.text = "正在获取天气..."
         et_translate_search.setOnEditorActionListener(object : TextView.OnEditorActionListener {
             override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
                 when (actionId) {
                     EditorInfo.IME_ACTION_SEARCH -> {
-                        getmPresenter().getWrod(et_translate_search.text.toString().trim())
+                        getPresenter().getWrod(et_translate_search.text.toString().trim())
                     }
                 }
                 return false
@@ -153,7 +150,7 @@ class TranslateFragment : BaseFragment<TranslateContract.IPresenter>(), Translat
             if (mediaPlayer.isPlaying) return
             playPhonetice(name, type,index)
         } else {
-            getmPresenter().downRank(name, url, type,index)
+            getPresenter().downRank(name, url, type,index)
         }
     }
 

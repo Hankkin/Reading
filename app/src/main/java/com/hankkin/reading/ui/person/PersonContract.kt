@@ -1,6 +1,6 @@
 package com.hankkin.reading.ui.person
 
-import com.hankkin.reading.mvp.contract.IBasePresenterContract
+import com.hankkin.reading.mvp.contract.IPresenterContract
 import com.hankkin.reading.mvp.contract.IBaseViewContract
 
 /**
@@ -10,6 +10,6 @@ interface PersonContract{
 
     interface IView : IBaseViewContract
 
-    interface IPresenter : IBasePresenterContract
+    interface IPresenter : IPresenterContract
 
 }

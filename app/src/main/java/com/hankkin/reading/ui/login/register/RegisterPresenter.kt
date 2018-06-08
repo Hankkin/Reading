@@ -1,21 +1,16 @@
 package com.hankkin.reading.ui.login.register
 
-import com.hankkin.reading.domain.BaseResponse
-import com.hankkin.reading.domain.SignUpBean
 import com.hankkin.reading.http.HttpClient
 import com.hankkin.reading.http.api.LoginApi
 import com.hankkin.reading.http.api.UserApi
-import com.hankkin.reading.mvp.presenter.BaseRxLifePresenter
+import com.hankkin.reading.mvp.presenter.RxLifePresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.functions.Consumer
-import io.reactivex.functions.Function
-import io.reactivex.functions.Predicate
 import io.reactivex.schedulers.Schedulers
 
 /**
  * Created by huanghaijie on 2018/5/21.
  */
-class RegisterPresenter(mvpView: RegisterContract.IView) : BaseRxLifePresenter<RegisterContract.IView>(mvpView), RegisterContract.IPresenter {
+class RegisterPresenter : RxLifePresenter<RegisterContract.IView>(), RegisterContract.IPresenter {
 
     companion object {
         const val EMAIL = "email"

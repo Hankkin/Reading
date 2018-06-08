@@ -2,7 +2,7 @@ package com.hankkin.reading.mvp.presenter
 
 import com.hankkin.reading.EApplication
 import com.hankkin.reading.domain.BaseResponse
-import com.hankkin.reading.mvp.contract.IBasePresenterContract
+import com.hankkin.reading.mvp.contract.IPresenterContract
 import com.hankkin.reading.mvp.contract.IBaseViewContract
 import com.hankkin.reading.utils.LogUtils
 import com.hankkin.reading.utils.RxUtils
@@ -14,7 +14,15 @@ import java.util.*
 /**
  * Created by huanghaijie on 2018/5/16.
  */
-abstract class BaseRxLifePresenter<out V : IBaseViewContract>(private val mvpView: V) : IBasePresenter<V>, IBasePresenterContract {
+abstract class RxLifePresenter<out V : IBaseViewContract> : IBasePresenter<V>, IPresenterContract {
+
+    private lateinit var mMVPView: V
+
+    @Suppress("UNCHECKED_CAST")
+    override fun registerMvpView(mvpView: IBaseViewContract) {
+        mMVPView = mvpView as V
+    }
+    override fun getMvpView() = mMVPView
 
     enum class RxLife {
         ON_CREATE, ON_START, ON_RESUME, ON_PAUSE, ON_STOP, ON_DESTROY
@@ -22,7 +30,6 @@ abstract class BaseRxLifePresenter<out V : IBaseViewContract>(private val mvpVie
 
     private val mRxLifeMap = HashMap<RxLife, ArrayList<Disposable>>()
 
-    override fun getMvpView() = mvpView
 
     override fun onCreate() {
         destroyRxLife(RxLife.ON_CREATE)

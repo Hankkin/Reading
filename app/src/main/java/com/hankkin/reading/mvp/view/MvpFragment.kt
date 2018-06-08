@@ -1,20 +1,25 @@
 package com.hankkin.reading.mvp.view
 
-import android.app.Activity
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import com.hankkin.reading.mvp.contract.IBaseViewContract
-import com.hankkin.reading.mvp.contract.IBasePresenterContract
+import com.hankkin.reading.mvp.contract.IPresenterContract
 
 /**
  * Created by huanghaijie on 2018/5/16.
  */
- abstract class BaseMvpActivity<out T : IBasePresenterContract> : Activity() , IBaseViewContract {
+abstract class MvpFragment<out T : IPresenterContract> : Fragment(),IBaseView<T>,IBaseViewContract {
 
-    private val mPresenter: T by lazy { createPresenter() }
+    private val mPresenter: T by lazy {
+        val clazz = registerPresenter()
+        val constructor = clazz.getConstructor()
+        val presenter = constructor.newInstance()
+        presenter.registerMvpView(this)
+        presenter
+    }
 
-    fun getPresenter(): T = mPresenter
+    fun getPresenter() = mPresenter
 
-    protected abstract fun createPresenter(): T
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,5 +50,4 @@ import com.hankkin.reading.mvp.contract.IBasePresenterContract
         super.onDestroy()
         mPresenter.onDestroy()
     }
-
 }

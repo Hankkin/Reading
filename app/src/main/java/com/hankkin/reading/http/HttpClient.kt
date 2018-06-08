@@ -43,7 +43,7 @@ object HttpClient {
     private val jsonRetrofit by lazy {
         Retrofit.Builder()
                 .client(mHttpClient)
-                .baseUrl(Constant.ConfigUrl.BASE_URL)
+                .baseUrl(Constant.OSChinaUrl.BASE_URL)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()

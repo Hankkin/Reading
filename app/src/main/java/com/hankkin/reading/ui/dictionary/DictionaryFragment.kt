@@ -3,12 +3,15 @@ package com.hankkin.reading.ui.dictionary
 import android.os.Bundle
 import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseFragment
+import com.hankkin.reading.base.BaseMvpFragment
 
 /**
  * Created by huanghaijie on 2018/5/15.
  */
-class DictionaryFragment : BaseFragment<DictionaryContract.IPresenter>(), DictionaryContract.IView {
-    override fun createmPresenter() = DictionaryPresenter(this)
+class DictionaryFragment : BaseFragment() {
+    override fun initViews() {
+
+    }
 
     public fun newInstance(index: Int){
         val fragment = DictionaryFragment()
@@ -24,7 +27,5 @@ class DictionaryFragment : BaseFragment<DictionaryContract.IPresenter>(), Dictio
     override fun initData() {
     }
 
-    override fun initViews() {
-    }
 
 }

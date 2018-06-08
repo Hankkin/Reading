@@ -1,6 +1,6 @@
 package com.hankkin.reading.ui.dictionary
 
-import com.hankkin.reading.mvp.contract.IBasePresenterContract
+import com.hankkin.reading.mvp.contract.IPresenterContract
 import com.hankkin.reading.mvp.contract.IBaseViewContract
 
 /**
@@ -10,5 +10,5 @@ interface DictionaryContract{
 
     interface IView : IBaseViewContract
 
-    interface IPresenter : IBasePresenterContract
+    interface IPresenter : IPresenterContract
 }

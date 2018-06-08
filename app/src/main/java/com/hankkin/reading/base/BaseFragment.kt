@@ -3,16 +3,17 @@ package com.hankkin.reading.base
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.hankkin.reading.mvp.contract.IBasePresenterContract
-import com.hankkin.reading.mvp.view.BaseMvpFragment
+import com.hankkin.reading.mvp.contract.IPresenterContract
+import com.hankkin.reading.mvp.view.MvpFragment
 
 /**
  * Created by huanghaijie on 2018/5/15.
  */
-abstract class BaseFragment<out T : IBasePresenterContract> : BaseMvpFragment<T>() {
+abstract class BaseFragment : Fragment() {
 
 
     protected var TAG: String? = null

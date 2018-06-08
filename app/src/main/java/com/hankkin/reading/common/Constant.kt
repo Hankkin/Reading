@@ -5,10 +5,7 @@ package com.hankkin.reading.common
  */
 object Constant{
     const val WEATHER_KEY = "lwfgtgl1hehjy4vd"
-    const val WEATHER_CLIENT_ID = "vU5v471WoDUJdHksxN6c"
-    const val WEATHER_SCRET = "fduEurEC5N2tfLwOOZp1oVeizd0IqeSs"
-    const val WEATHER_REDURI = "https://blog.csdn.net/lyhhj"
-    const val OSCHINA_AUTHORIZE = "https://www.oschina.net/action/oauth2/authorize"
+
 
     /**
      *  HTTP URL
@@ -16,6 +13,17 @@ object Constant{
     object ConfigUrl {
         const val BASE_URL = "http://reading.ccyg.studio/"
         const val WEATHER_URL = "https://api.seniverse.com/"
+    }
+
+    object OSChinaUrl{
+        const val REDIRECT_URL = "https://blog.csdn.net/lyhhj"
+        const val CLIENT_ID = "vU5v471WoDUJdHksxN6c"
+        const val SCRET = "fduEurEC5N2tfLwOOZp1oVeizd0IqeSs"
+        const val BASE_URL = "https://www.oschina.net/action/"
+    }
+
+    object CONSTANT_KEY{
+        const val CODE = "code"
     }
 
 }

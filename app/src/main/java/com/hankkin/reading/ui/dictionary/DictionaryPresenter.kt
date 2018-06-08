@@ -1,10 +1,11 @@
 package com.hankkin.reading.ui.dictionary
 
-import com.hankkin.reading.mvp.presenter.BaseRxLifePresenter
+import com.hankkin.reading.mvp.presenter.RxLifePresenter
 
 /**
  * Created by huanghaijie on 2018/5/16.
  */
-class DictionaryPresenter(mvpView: DictionaryContract.IView) : BaseRxLifePresenter<DictionaryContract.IView>(mvpView), DictionaryContract.IPresenter {
+class DictionaryPresenter: RxLifePresenter<DictionaryContract.IView>(), DictionaryContract.IPresenter {
+
 
 }
