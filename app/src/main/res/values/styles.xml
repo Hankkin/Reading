@@ -24,4 +24,9 @@
         <item name="android:textSize">@dimen/sp_15</item>
     </style>
 
+    <style name="normalTxt">
+        <item name="android:textColor">@color/normal_txt</item>
+        <item name="android:textSize">@dimen/sp_15</item>
+    </style>
+
 </resources>

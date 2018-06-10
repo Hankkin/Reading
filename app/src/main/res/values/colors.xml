@@ -15,4 +15,5 @@
     <color name="violet">#EE82EE</color>
     <color name="teal">#008080</color>
     <color name="normal_txt">#4D4D4D</color>
+    <color name="normal_bg">#dcdcdc</color>
 </resources>
