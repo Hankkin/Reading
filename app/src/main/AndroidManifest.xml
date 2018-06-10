@@ -40,8 +40,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.login.LoginActivity"></activity>
-        <activity android:name=".ui.user.AuthorizeWebActivity"></activity>
+        <activity android:name=".ui.login.LoginActivity" />
+        <activity android:name=".ui.user.AuthorizeWebActivity" />
+        <activity android:name=".ui.person.PersonInfoActivity"></activity>
     </application>
 
 </manifest>
