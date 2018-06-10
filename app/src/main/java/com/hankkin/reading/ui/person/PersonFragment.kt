@@ -7,6 +7,7 @@ import com.hankkin.reading.common.Constant
 import com.hankkin.reading.control.UserControl
 import com.hankkin.reading.ui.user.AuthorizeWebActivity
 import com.hankkin.reading.utils.Key4Intent
+import com.sunfusheng.glideimageview.GlideImageView
 import kotlinx.android.synthetic.main.fragment_person.*
 
 /**
@@ -26,10 +27,7 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
     }
 
     override fun initView() {
-        if (UserControl.isLogin())
-            tv_person_name.text = UserControl.getCurrentUser()!!.username
-        tv_person_name.text = resources.getString(R.string.person_no_login)
-
+        setUserHeader()
     }
 
     fun llAvatarClick() {
@@ -45,8 +43,18 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
 
     override fun onResume() {
         super.onResume()
-        if (UserControl.getCurrentUser() != null) {
-            tv_person_name.text = UserControl.getCurrentUser()!!.username
+        setUserHeader()
+    }
+
+    fun setUserHeader(){
+        if (UserControl.isLogin()){
+            val user = UserControl.getCurrentUser()
+            tv_person_name.text = user!!.name
+            if (user.avatar.isNotEmpty())
+                iv_person_avatar.loadCircleImage(user.avatar,R.mipmap.icon_person_avatar)
+        }
+        else{
+            tv_person_name.text = resources.getString(R.string.person_no_login)
         }
     }
 

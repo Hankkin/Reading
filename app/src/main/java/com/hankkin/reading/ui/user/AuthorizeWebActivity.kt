@@ -14,8 +14,10 @@ import android.webkit.WebViewClient
 import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseMvpActivity
 import com.hankkin.reading.common.Constant
+import com.hankkin.reading.control.UserControl
 import com.hankkin.reading.domain.UserBean
 import com.hankkin.reading.utils.Key4Intent
+import com.hankkin.reading.utils.LoadingUtils
 import com.hankkin.reading.utils.LogUtils
 import com.hankkin.reading.utils.SPUtils
 import kotlinx.android.synthetic.main.activity_common_web.*
@@ -23,16 +25,17 @@ import kotlinx.android.synthetic.main.layout_title_bar_back.*
 
 open class AuthorizeWebActivity : BaseMvpActivity<AuthorizePresenter>(), View.OnClickListener,AuthorizeContract.IView {
     override fun showLoading() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        LoadingUtils.showLoading(this)
     }
 
     override fun hideLoading() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        LoadingUtils.hideLoading()
     }
 
 
     override fun saveUserInfo(userBean: UserBean) {
-        LogUtils.d(userBean.first_name)
+        UserControl.setCurrentUser(userBean)
+        finish()
     }
 
     override fun getLayoutId(): Int {
@@ -72,13 +75,9 @@ open class AuthorizeWebActivity : BaseMvpActivity<AuthorizePresenter>(), View.On
             }
 
 
-            override fun onPageFinished(view: WebView?, url: String?) {
-                super.onPageFinished(view, url)
-                handleUrlAndCode(url!!)
-            }
-
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
                 super.onPageStarted(view, url, favicon)
+                handleUrlAndCode(url!!)
             }
         }
 

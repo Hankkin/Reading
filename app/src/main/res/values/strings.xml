@@ -23,5 +23,7 @@
     <string name="login_email">邮箱地址</string>
     <string name="reg_suc_toast">注册成功...</string>
 
+    <string name="loading_wait">加载中...</string>
+
 
 </resources>

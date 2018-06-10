@@ -1,8 +1,7 @@
 package com.hankkin.reading.utils
 
 import android.content.Context
-import com.hankkin.library.widget.HLoading
-import com.hankkin.reading.EApplication
+import com.afollestad.materialdialogs.MaterialDialog
 import com.hankkin.reading.R
 
 /**
@@ -10,18 +9,20 @@ import com.hankkin.reading.R
  */
 object LoadingUtils{
 
-    private var loading: HLoading? = null
+    private var loading: MaterialDialog.Builder? = null
 
     fun showLoading(context: Context){
         if (loading == null){
-            loading = HLoading(context,context.resources.getColor(R.color.colorPrimary))
+            loading = MaterialDialog.Builder(context)
+                    .content(context.resources.getString(R.string.loading_wait))
+                    .progress(true,0)
         }
         loading!!.show()
     }
 
     fun hideLoading(){
-        if(loading != null && loading!!.isShowing){
-            loading!!.hide()
+        if(loading != null ){
+            loading!!.build().dismiss()
         }
     }
 }

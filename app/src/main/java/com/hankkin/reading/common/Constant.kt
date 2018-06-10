@@ -16,7 +16,7 @@ object Constant{
     }
 
     object OSChinaUrl{
-        const val REDIRECT_URL = "https://blog.csdn.net/lyhhj"
+        const val REDIRECT_URL = "http://hankkin.cn/authorize/"
         const val CLIENT_ID = "vU5v471WoDUJdHksxN6c"
         const val SCRET = "fduEurEC5N2tfLwOOZp1oVeizd0IqeSs"
         const val BASE_URL = "https://www.oschina.net/action/"

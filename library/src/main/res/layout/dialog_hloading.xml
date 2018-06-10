@@ -6,7 +6,7 @@
                 android:background="@color/transparent"
     >
 
-    <com.hankkin.library.widget.AVLoadingIndicatorView
+    <com.hankkin.library.commpoent.AVLoadingIndicatorView
         android:id="@+id/avi"
         app:indicatorColor="@color/blue"
         android:layout_centerInParent="true"

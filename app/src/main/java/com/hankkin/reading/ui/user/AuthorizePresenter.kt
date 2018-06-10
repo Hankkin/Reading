@@ -14,6 +14,7 @@ class AuthorizePresenter: RxLifePresenter<AuthorizeContract.IView>(),AuthorizeCo
 
 
     override fun getToken(code: String) {
+        getMvpView().showLoading()
         val map = HashMap<String,Any>()
         map.put("client_id",Constant.OSChinaUrl.CLIENT_ID)
         map.put("client_secret",Constant.OSChinaUrl.SCRET)
@@ -33,6 +34,7 @@ class AuthorizePresenter: RxLifePresenter<AuthorizeContract.IView>(),AuthorizeCo
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeNx({
                     getMvpView().saveUserInfo(it)
+                    getMvpView().hideLoading()
                 })
     }
 

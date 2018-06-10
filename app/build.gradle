@@ -44,10 +44,10 @@ dependencies {
     implementation rootProject.ext.dependencies["base-rv-helper"]
     implementation rootProject.ext.dependencies["rxpermissions"]
     implementation rootProject.ext.dependencies["converter-gson"]
-    implementation rootProject.ext.dependencies["glide"]
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     implementation('com.github.afollestad.material-dialogs:core:0.8.5.8@aar') {
         transitive = true
     }
+    implementation 'com.sunfusheng:glideimageview:1.2.0'
     implementation project(':library')
 }

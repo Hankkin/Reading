@@ -15,14 +15,17 @@ object UserControl {
 
     fun setCurrentUser(userBean: UserBean) {
         this.user = userBean
+        saveUserSp(userBean)
     }
 
     fun getCurrentUser(): UserBean? {
+        if (this.user == null){
+            this.user = SPUtils.getObject(USER,UserBean::class.java) as UserBean
+        }
         return this.user
     }
 
-    fun saveUserSp(userBean: UserBean) {
-        setCurrentUser(userBean)
+    private fun saveUserSp(userBean: UserBean) {
         SPUtils.saveObject(USER, userBean)
         LogUtils.d(USER + userBean.id)
     }

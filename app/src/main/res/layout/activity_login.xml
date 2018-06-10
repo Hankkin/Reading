@@ -1,38 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout android:gravity="center_horizontal"
+    android:layout_marginTop="@dimen/dp_20"
+    android:paddingLeft="@dimen/dp_40"
+    android:paddingRight="@dimen/dp_40"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:background="@color/white"
-    tools:context="com.hankkin.reading.ui.login.LoginBaseMvpActivity">
-
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
-        android:layout_weight="1"
-        android:background="@color/white"
-        android:orientation="vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/dp_10"
+        android:background="@drawable/bg_border_theme_grey"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <android.support.design.widget.TabLayout
-            android:background="@color/colorPrimary"
-            app:tabIndicatorColor="@color/blue"
-            app:tabTextColor="@color/grey1"
-            app:tabSelectedTextColor="@color/white"
-            app:tabMode="fixed"
-            app:tabTextAppearance="@style/TabLayoutStyle"
-            android:id="@+id/tablayout"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_40">
+        android:layout_height="wrap_content">
 
-        </android.support.design.widget.TabLayout>
-        <android.support.v4.view.ViewPager
-            android:layout_marginTop="@dimen/dp_40"
-            android:id="@+id/vp_login"
+        <ImageView
+            android:src="@mipmap/icon_person"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/et_login_name"
+            android:textSize="@dimen/sp_15"
+            android:layout_marginLeft="@dimen/dp_14"
+            android:hint="@string/login_name"
+            android:background="@null"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="wrap_content" />
     </LinearLayout>
-    
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:padding="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_14"
+        android:background="@drawable/bg_border_theme_grey"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:src="@mipmap/icon_pwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/et_login_pwd"
+            android:textSize="@dimen/sp_15"
+            android:layout_marginLeft="@dimen/dp_14"
+            android:hint="@string/login_pwd"
+            android:background="@null"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/ll_login_code"
+            android:layout_toLeftOf="@+id/iv_login_code"
+            android:orientation="horizontal"
+            android:padding="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_14"
+            android:background="@drawable/bg_border_theme_grey"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@mipmap/icon_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/et_login_code"
+                android:textSize="@dimen/sp_15"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:hint="@string/login_code"
+                android:background="@null"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <ImageView
+            android:layout_alignBottom="@+id/ll_login_code"
+            android:layout_alignTop="@+id/ll_login_code"
+            android:layout_alignParentRight="true"
+            android:scaleType="fitXY"
+            android:id="@+id/iv_login_code"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_login_btn"
+        android:gravity="center"
+        android:textSize="@dimen/sp_15"
+        android:paddingBottom="@dimen/dp_10"
+        android:paddingTop="@dimen/dp_10"
+        android:textColor="@color/white"
+        android:layout_marginTop="@dimen/dp_14"
+        android:background="@drawable/bg_theme_circle"
+        android:text="@string/login_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:autoLink="all"
+            android:textSize="@dimen/sp_15"
+            android:textColor="@color/colorPrimary"
+            android:text="@string/login_no_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:autoLink="all"
+            android:textSize="@dimen/sp_15"
+            android:textColor="@color/colorPrimary"
+            android:text="@string/login_forget"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+
 </LinearLayout>

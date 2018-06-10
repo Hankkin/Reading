@@ -13,7 +13,6 @@ import com.hankkin.reading.ui.login.register.RegisterPresenter.Companion.PASSWOR
 import com.hankkin.reading.ui.login.register.RegisterPresenter.Companion.RPASSWORD
 import com.hankkin.reading.utils.LoadingUtils
 import com.hankkin.reading.utils.ToastUtils
-import com.wuba.guchejia.img.ImageLoader
 import kotlinx.android.synthetic.main.fragment_register.*
 
 /**
@@ -30,7 +29,7 @@ class RegBaseMvpFragment : BaseMvpFragment<RegisterContract.IPresenter>(), Regis
     }
 
     override fun regResult(userBean: UserBean) {
-        UserControl.saveUserSp(userBean)
+        UserControl.setCurrentUser(userBean)
         activity!!.finish()
     }
 
@@ -76,7 +75,6 @@ class RegBaseMvpFragment : BaseMvpFragment<RegisterContract.IPresenter>(), Regis
     override fun getCapcha(captchaBean: CaptchaBean) {
         this.captchaBean = captchaBean
         if (captchaBean.image_url.isNotEmpty()) {
-            ImageLoader.load(context, captchaBean.image_url, iv_reg_code)
         }
     }
 
