@@ -22,4 +22,7 @@ interface UserApi {
 
     @GET("openapi/user_notice")
     fun getUserNotice(@Query("access_token") access_token: String): Observable<NoticeBean>
+
+    @GET("openapi/friends_list")
+    fun getFriendList(@QueryMap map: HashMap<String, Any>): Observable<FriendBean>
 }

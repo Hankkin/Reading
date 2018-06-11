@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: me.zhanghai.android.materialprogressbar:library-1.1.5">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../gradle-4.4/caches/transforms-1/files-1.1/library-1.1.5.aar/666e12a8eb88a7eeb49f2647cf0d4895/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../gradle-4.4/caches/transforms-1/files-1.1/library-1.1.5.aar/666e12a8eb88a7eeb49f2647cf0d4895/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../gradle-4.4/caches/modules-2/files-2.1/me.zhanghai.android.materialprogressbar/library/1.1.5/298dd31527702a1375342583d627316776609234/library-1.1.5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

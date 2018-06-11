@@ -2,7 +2,7 @@ package com.hankkin.reading.ui.translate
 
 import com.hankkin.reading.domain.Weatherbean
 import com.hankkin.reading.domain.WordBean
-import com.hankkin.reading.mvp.contract.IBaseLoadingContract
+import com.hankkin.reading.mvp.contract.IBaseLoading
 import com.hankkin.reading.mvp.contract.IPresenterContract
 import okhttp3.ResponseBody
 
@@ -11,7 +11,7 @@ import okhttp3.ResponseBody
  */
 interface TranslateContract{
 
-    interface IView : IBaseLoadingContract{
+    interface IView : IBaseLoading{
 
         fun setWeather(weatherbean: Weatherbean)
         fun setWeatherError()

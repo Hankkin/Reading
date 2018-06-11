@@ -19,8 +19,8 @@ abstract class RxLifePresenter<out V : IBaseViewContract> : IBasePresenter<V>, I
     private lateinit var mMVPView: V
 
     @Suppress("UNCHECKED_CAST")
-    override fun registerMvpView(mvpView: IBaseViewContract) {
-        mMVPView = mvpView as V
+    override fun registerMvpView(mvpViewContract: IBaseViewContract) {
+        mMVPView = mvpViewContract as V
     }
     override fun getMvpView() = mMVPView
 

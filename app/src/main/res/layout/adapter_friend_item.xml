@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="@dimen/dp_14"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.sunfusheng.glideimageview.GlideImageView
+        android:src="@mipmap/icon_person_avatar"
+        android:id="@+id/iv_adapter_friend_avatar"
+        app:siv_border_color="@color/colorPrimary"
+        app:siv_shape_type="circle"
+        app:siv_border_width="2dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp" />
+
+
+    <LinearLayout
+        android:layout_alignBottom="@+id/iv_adapter_friend_avatar"
+        android:layout_alignTop="@+id/iv_adapter_friend_avatar"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_toEndOf="@+id/iv_adapter_friend_avatar"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            style="@style/normalTxtBig"
+            android:id="@+id/tv_adapter_friend_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/iv_adapter_friend_gender"
+                android:src="@mipmap/icon_boy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginStart="@dimen/dp_4"
+                android:id="@+id/tv_adapter_friend_gender"
+                android:layout_marginTop="@dimen/dp_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

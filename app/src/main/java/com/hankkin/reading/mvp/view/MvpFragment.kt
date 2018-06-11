@@ -8,7 +8,7 @@ import com.hankkin.reading.mvp.contract.IPresenterContract
 /**
  * Created by huanghaijie on 2018/5/16.
  */
-abstract class MvpFragment<out T : IPresenterContract> : Fragment(),IBaseView<T>,IBaseViewContract {
+abstract class MvpFragment<out T : IPresenterContract> : Fragment(),IBaseView<T>, IBaseViewContract {
 
     private val mPresenter: T by lazy {
         val clazz = registerPresenter()

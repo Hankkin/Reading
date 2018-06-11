@@ -31,7 +31,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <meta-data
             android:name="com.hankkin.reading.glide.OkHttpGlideModule"
             android:value="GlideModule" />
@@ -47,7 +46,8 @@
         </activity>
         <activity android:name=".ui.login.LoginActivity" />
         <activity android:name=".ui.user.AuthorizeWebActivity" />
-        <activity android:name=".ui.person.PersonInfoActivity"></activity>
+        <activity android:name=".ui.person.PersonInfoActivity" />
+        <activity android:name=".ui.person.friend.FriendListActivity"></activity>
     </application>
 
 </manifest>

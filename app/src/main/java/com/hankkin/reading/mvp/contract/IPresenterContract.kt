@@ -17,5 +17,5 @@ interface IPresenterContract {
 
     fun onDestroy()
 
-    fun registerMvpView(mvpView: IBaseViewContract)
+    fun registerMvpView(mvpViewContract: IBaseViewContract)
 }

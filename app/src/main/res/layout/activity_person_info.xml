@@ -51,7 +51,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignBottom="@+id/iv_person_info_avatar"
                         android:layout_alignTop="@+id/iv_person_info_avatar"
-                        android:layout_marginStart="@dimen/dp_6"
+                        android:layout_marginStart="@dimen/dp_10"
                         android:layout_toEndOf="@+id/iv_person_info_avatar"
                         android:orientation="vertical">
 
@@ -114,7 +114,6 @@
                             android:layout_height="wrap_content" />
 
                         <TextView
-                            style="@style/themeTxt"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/dp_4"
@@ -140,7 +139,6 @@
                             android:layout_height="wrap_content" />
 
                         <TextView
-                            style="@style/themeTxt"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/dp_4"
@@ -165,7 +163,6 @@
                             android:layout_height="wrap_content" />
 
                         <TextView
-                            style="@style/themeTxt"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/dp_4"

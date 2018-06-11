@@ -1,7 +1,7 @@
 package com.hankkin.reading.ui.user
 
 import com.hankkin.reading.domain.UserBean
-import com.hankkin.reading.mvp.contract.IBaseLoadingContract
+import com.hankkin.reading.mvp.contract.IBaseLoading
 import com.hankkin.reading.mvp.contract.IPresenterContract
 
 /**
@@ -9,7 +9,7 @@ import com.hankkin.reading.mvp.contract.IPresenterContract
  */
 interface AuthorizeContract{
 
-    interface IView : IBaseLoadingContract{
+    interface IView : IBaseLoading{
         fun saveUserInfo(userBean: UserBean)
     }
 

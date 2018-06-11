@@ -52,5 +52,6 @@ ext{
             "rxbinding-appcompat-v7": "com.jakewharton.rxbinding2:rxbinding-appcompat-v7:2.0.0",
             "rxbinding-design"      : "com.jakewharton.rxbinding2:rxbinding-design:2.0.0",
             "rxbinding-recyclerview-v7"      : "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7:2.0.0",
+            "base-rvadapter"        : "com.zhy:base-rvadapter:3.0.3",
     ]
 }

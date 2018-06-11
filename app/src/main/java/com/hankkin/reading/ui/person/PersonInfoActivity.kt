@@ -26,7 +26,7 @@ class PersonInfoActivity : BaseMvpActivity<PersonInfoPresenter>(), PersonInfoCon
         return R.layout.activity_person_info
     }
 
-    override fun registerPresenter(): Class<out PersonInfoPresenter> = PersonInfoPresenter::class.java
+     override fun registerPresenter(): Class<out PersonInfoPresenter> = PersonInfoPresenter::class.java
 
     override fun initView() {
         tv_normal_title.text = resources.getString(R.string.person_info_title)
