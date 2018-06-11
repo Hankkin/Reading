@@ -15,9 +15,11 @@
         android:layout_height="match_parent" />
 
     <TextView
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_toRightOf="@+id/iv_back_icon"
         android:id="@+id/tv_normal_title"
-        android:layout_centerInParent="true"
-        style="@style/whiteTxt"
+        android:layout_centerVertical="true"
+        style="@style/whiteTxtBig"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

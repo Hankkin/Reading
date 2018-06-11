@@ -1,6 +1,7 @@
 package com.hankkin.reading.utils
 
 import android.content.Context
+import android.view.Gravity
 import android.widget.Toast
 
 /**
@@ -9,7 +10,8 @@ import android.widget.Toast
 object ToastUtils{
 
     fun showToast(context: Context, msg: String) {
-        val mToast = Toast.makeText(context, msg, Toast.LENGTH_SHORT)
+        var mToast: Toast = Toast.makeText(context, msg, Toast.LENGTH_SHORT)
+        mToast.setGravity(Gravity.CENTER,0,0)
         mToast.setText(msg)
         mToast.show()
     }

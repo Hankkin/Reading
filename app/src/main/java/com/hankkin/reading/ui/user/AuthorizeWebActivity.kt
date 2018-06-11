@@ -4,8 +4,6 @@ import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.net.http.SslError
 import android.os.Build
-import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.webkit.SslErrorHandler
 import android.webkit.WebSettings
@@ -18,8 +16,7 @@ import com.hankkin.reading.control.UserControl
 import com.hankkin.reading.domain.UserBean
 import com.hankkin.reading.utils.Key4Intent
 import com.hankkin.reading.utils.LoadingUtils
-import com.hankkin.reading.utils.LogUtils
-import com.hankkin.reading.utils.SPUtils
+import com.hankkin.library.utils.SPUtils
 import kotlinx.android.synthetic.main.activity_common_web.*
 import kotlinx.android.synthetic.main.layout_title_bar_back.*
 

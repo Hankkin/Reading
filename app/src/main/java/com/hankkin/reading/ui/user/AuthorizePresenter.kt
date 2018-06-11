@@ -1,9 +1,11 @@
 package com.hankkin.reading.ui.user
 
 import com.hankkin.reading.common.Constant
+import com.hankkin.reading.control.UserControl
 import com.hankkin.reading.http.HttpClient
 import com.hankkin.reading.http.api.UserApi
 import com.hankkin.reading.mvp.presenter.RxLifePresenter
+import com.hankkin.library.utils.SPUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -28,6 +30,7 @@ class AuthorizePresenter: RxLifePresenter<AuthorizeContract.IView>(),AuthorizeCo
                     val map = HashMap<String,Any>()
                     map.put("dataType","json")
                     map.put("access_token",it.access_token)
+                    SPUtils.put(UserControl.TOKEN,it.access_token)
                     HttpClient.getnorRetrofit().create(UserApi::class.java).getUser(map)
                 }
                 .subscribeOn(Schedulers.io())

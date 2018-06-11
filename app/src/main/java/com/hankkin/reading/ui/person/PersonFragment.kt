@@ -24,10 +24,10 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
 
     override fun initData() {
         setUserHeader()
-        ll_person_avatar.setOnClickListener { llAvatarClick() }
     }
 
     override fun initView() {
+        iv_person_avatar.setOnClickListener { llAvatarClick() }
     }
 
     fun llAvatarClick() {

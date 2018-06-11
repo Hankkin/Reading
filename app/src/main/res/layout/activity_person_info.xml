@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/normal_bg"
+    android:orientation="vertical"
     tools:context="com.hankkin.reading.ui.person.PersonInfoActivity">
 
 
-    <include layout="@layout/layout_title_bar_back"/>
+    <include layout="@layout/layout_title_bar_back" />
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/refresh_person_info"
@@ -17,73 +17,251 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                tools:ignore="UselessParent">
+
                 <RelativeLayout
-                    android:clickable="true"
-                    android:padding="@dimen/dp_10"
-                    android:background="@drawable/bg_normal_selector"
-                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_normal_selector"
+                    android:clickable="true"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dp_10"
+                    android:focusable="true"
+                    tools:ignore="UselessParent">
+
                     <com.sunfusheng.glideimageview.GlideImageView
                         android:id="@+id/iv_person_info_avatar"
-                        android:src="@mipmap/icon_person_avatar"
                         android:layout_width="70dp"
-                        android:layout_height="70dp" />
+                        android:layout_height="70dp"
+                        android:src="@mipmap/icon_person_avatar"
+                        app:siv_border_color="@color/colorPrimary"
+                        app:siv_border_width="2dp" />
+
                     <LinearLayout
+                        android:id="@+id/ll_person_info_header_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_alignBottom="@+id/iv_person_info_avatar"
                         android:layout_alignTop="@+id/iv_person_info_avatar"
-                        android:layout_toRightOf="@+id/iv_person_info_avatar"
-                        android:layout_marginLeft="@dimen/dp_6"
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_marginStart="@dimen/dp_6"
+                        android:layout_toEndOf="@+id/iv_person_info_avatar"
+                        android:orientation="vertical">
+
                         <TextView
-                            style="@style/normalTxt"
                             android:id="@+id/tv_person_info_name"
-                            android:text="Hankkin"
+                            style="@style/normalTxtBig"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:text="" />
+
                         <LinearLayout
-                            android:layout_marginTop="@dimen/dp_4"
-                            android:gravity="center_vertical"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_4"
+                            android:gravity="center_vertical">
+
                             <TextView
                                 android:id="@+id/tv_person_info_platforms"
-                                android:text="android"
                                 style="@style/normalTxt"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:text="" />
+
                             <ImageView
                                 android:id="@+id/iv_person_info_gender"
-                                android:layout_marginLeft="@dimen/dp_20"
-                                android:src="@mipmap/icon_boy"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dp_20"
+                                android:src="@mipmap/icon_boy" />
+
                             <TextView
-                                android:layout_marginLeft="@dimen/dp_4"
-                                android:text="nan"
                                 android:id="@+id/tv_person_info_gender"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dp_4"
+                                android:text="" />
                         </LinearLayout>
 
                         <TextView
-                            android:layout_marginTop="@dimen/dp_4"
                             android:id="@+id/tv_person_info_expertise"
                             android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_4" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:gravity="center"
+                        android:id="@+id/ll_person_info_header_fans"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/iv_person_info_avatar"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_person_info_fans"
+                            style="@style/normalTxtBig"
+                            android:textStyle="bold"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
+                        <TextView
+                            style="@style/themeTxt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_4"
+                            android:text="@string/person_info_fans" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:gravity="center"
+                        android:id="@+id/ll_person_info_header_favorite"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/iv_person_info_avatar"
+                        android:layout_marginStart="@dimen/dp_20"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:layout_toEndOf="@+id/ll_person_info_header_fans"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:textStyle="bold"
+                            android:id="@+id/tv_person_info_favorite"
+                            style="@style/normalTxtBig"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            style="@style/themeTxt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_4"
+                            android:text="@string/person_info_favorite" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/iv_person_info_avatar"
+                        android:layout_marginStart="@dimen/dp_20"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:layout_toEndOf="@+id/ll_person_info_header_favorite"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:textStyle="bold"
+                            android:id="@+id/tv_person_info_followers"
+                            style="@style/normalTxtBig"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            style="@style/themeTxt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_4"
+                            android:text="@string/person_info_followers" />
                     </LinearLayout>
                 </RelativeLayout>
             </LinearLayout>
+
+            <RelativeLayout
+                android:padding="@dimen/dp_14"
+                android:layout_marginTop="@dimen/dp_10"
+                android:clickable="true"
+                android:background="@drawable/bg_normal_selector"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true">
+
+                <TextView
+                    android:text="@string/person_info_city"
+                    style="@style/normalTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    style="@style/normalTxtBig"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/tv_person_info_city"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:padding="@dimen/dp_14"
+                android:layout_marginTop="@dimen/dp_10"
+                android:clickable="true"
+                android:background="@drawable/bg_normal_selector"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true">
+
+                <TextView
+                    android:text="@string/person_info_join_time"
+                    style="@style/normalTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    style="@style/normalTxtBig"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/tv_person_info_join_time"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:padding="@dimen/dp_14"
+                android:layout_marginTop="@dimen/dp_10"
+                android:clickable="true"
+                android:background="@drawable/bg_normal_selector"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true">
+
+                <TextView
+                    android:text="@string/person_info_last_login_time"
+                    style="@style/normalTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    style="@style/normalTxtBig"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/tv_person_info_last_login_time"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/tv_person_info_logout"
+                android:padding="@dimen/dp_10"
+                android:gravity="center"
+                style="@style/whiteTxtBig"
+                android:text="@string/person_info_logout"
+                android:background="@drawable/bg_theme_circle"
+                android:layout_marginEnd="@dimen/dp_40"
+                android:layout_marginTop="@dimen/dp_40"
+                android:layout_marginStart="@dimen/dp_40"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
     </android.support.v4.widget.SwipeRefreshLayout>

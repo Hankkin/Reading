@@ -2,10 +2,11 @@ package com.hankkin.reading.control
 
 import com.hankkin.reading.domain.UserBean
 import com.hankkin.reading.utils.LogUtils
-import com.hankkin.reading.utils.SPUtils
+import com.hankkin.library.utils.SPUtils
 
 object UserControl {
     const val USER = "user"
+    const val TOKEN = "access_token"
 
     private var user: UserBean? = null
 
@@ -34,5 +35,10 @@ object UserControl {
         val user = SPUtils.getObject(USER, UserBean::class.java)
         if (user != null) return true
         return false
+    }
+
+    fun logout(){
+        this.user = null
+        SPUtils.clear()
     }
 }

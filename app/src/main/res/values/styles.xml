@@ -21,12 +21,27 @@
 
     <style name="whiteTxt">
         <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">@dimen/sp_15</item>
+        <item name="android:textSize">@dimen/sp_16</item>
+    </style>
+
+    <style name="whiteTxtBig">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/sp_18</item>
     </style>
 
     <style name="normalTxt">
         <item name="android:textColor">@color/normal_txt</item>
-        <item name="android:textSize">@dimen/sp_15</item>
+        <item name="android:textSize">@dimen/sp_16</item>
+    </style>
+
+    <style name="normalTxtBig">
+        <item name="android:textColor">@color/normal_txt</item>
+        <item name="android:textSize">@dimen/sp_18</item>
+    </style>
+
+    <style name="themeTxt">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">@dimen/sp_16</item>
     </style>
 
 </resources>
