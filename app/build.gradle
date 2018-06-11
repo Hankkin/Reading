@@ -28,7 +28,6 @@ android {
     buildToolsVersion '26.0.2'
 }
 
-
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
@@ -41,6 +40,7 @@ dependencies {
     implementation rootProject.ext.dependencies["adapter-rxjava"]
     implementation rootProject.ext.dependencies["okhttp3"]
     implementation rootProject.ext.dependencies["gson"]
+    implementation rootProject.ext.dependencies["glide"]
     implementation rootProject.ext.dependencies["base-rv-helper"]
     implementation rootProject.ext.dependencies["rxpermissions"]
     implementation rootProject.ext.dependencies["converter-gson"]

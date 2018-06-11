@@ -6,6 +6,15 @@
     <color name="black">#000000</color>
     <color name="colorPrimary">#584F60</color>
     <color name="colorPrimaryDark">#584F60</color>
-    <color name="white">#FFFFFF</color>
     <color name="blue">#2185D0</color>
+    <color name="orginal">#FE9A76</color>
+    <color name="grey">#A0A0A0</color>
+    <color name="grey1">#dddddd</color>
+    <color name="yellow">#FFD700</color>
+    <color name="green">#016936</color>
+    <color name="brown">#A52A2A</color>
+    <color name="violet">#EE82EE</color>
+    <color name="teal">#008080</color>
+    <color name="normal_txt">#4D4D4D</color>
+    <color name="normal_bg">#dcdcdc</color>
 </resources>

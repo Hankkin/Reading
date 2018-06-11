@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -44,8 +45,8 @@
                 app:siv_border_width="2dp"
                 android:id="@+id/iv_person_avatar"
                 android:src="@mipmap/icon_person_avatar"
-                android:layout_width="80dp"
-                android:layout_height="80dp" />
+                android:layout_width="70dp"
+                android:layout_height="70dp" />
             <TextView
                 android:layout_marginTop="@dimen/dp_6"
                 android:id="@+id/tv_person_name"

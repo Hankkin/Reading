@@ -7,8 +7,6 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.hankkin.reading.mvp.contract.IPresenterContract
-import com.hankkin.reading.mvp.view.MvpFragment
 
 /**
  * Created by huanghaijie on 2018/5/15.
@@ -42,7 +40,8 @@ abstract class BaseFragment : Fragment() {
         this.activity = activity
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val convertView: View = inflater?.inflate(getLayoutId(), container, false)!!
         return convertView
     }
