@@ -5,6 +5,7 @@ import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseMvpFragment
 import com.hankkin.reading.common.Constant
 import com.hankkin.reading.control.UserControl
+import com.hankkin.reading.domain.NoticeBean
 import com.hankkin.reading.ui.user.AuthorizeWebActivity
 import com.hankkin.reading.utils.Key4Intent
 import com.hankkin.reading.utils.LogUtils
@@ -16,6 +17,7 @@ import kotlinx.android.synthetic.main.fragment_person.*
 class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContract.IView {
 
 
+
     override fun registerPresenter() = PersonPresenter::class.java
 
     override fun getLayoutId(): Int {
@@ -23,10 +25,10 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
     }
 
     override fun initData() {
-        setUserHeader()
     }
 
     override fun initView() {
+        refresh_person.setColorSchemeResources(R.color.colorPrimary)
         iv_person_avatar.setOnClickListener { llAvatarClick() }
     }
 
@@ -56,10 +58,21 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
             if (user.avatar.isNotEmpty())
                 LogUtils.d(javaClass.simpleName+">>>>"+user.avatar)
                 iv_person_avatar.loadCircleImage(user.avatar,R.mipmap.icon_person_avatar)
+            getPresenter()
         }
         else{
             tv_person_name.text = resources.getString(R.string.person_no_login)
         }
+    }
+
+    override fun refresh() {
+
+    }
+
+    override fun refreshStop() {
+    }
+
+    override fun setNotice(noticeBean: NoticeBean) {
     }
 
 }

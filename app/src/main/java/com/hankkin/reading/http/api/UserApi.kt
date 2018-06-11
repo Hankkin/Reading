@@ -21,5 +21,5 @@ interface UserApi {
     fun getUserInfo(@QueryMap map: HashMap<String, Any>): Observable<UserInfoBean>
 
     @GET("openapi/user_notice")
-    fun getUserNotice()
+    fun getUserNotice(@Query("access_token") access_token: String): Observable<NoticeBean>
 }
