@@ -44,4 +44,10 @@
         <item name="android:textSize">@dimen/sp_16</item>
     </style>
 
+    <style name="menu_labels_style">
+        <item name="fab_colorNormal">@color/colorPrimary</item>
+        <item name="fab_colorPressed">@color/colorPrimaryDark</item>
+        <item name="fab_colorRipple">@color/colorPrimary</item>
+    </style>
+
 </resources>

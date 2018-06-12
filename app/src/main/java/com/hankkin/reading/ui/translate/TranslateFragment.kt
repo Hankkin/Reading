@@ -21,7 +21,7 @@ import com.hankkin.reading.utils.FileUtils
 import com.hankkin.reading.utils.LoadingUtils
 import com.hankkin.reading.utils.WeatherUtils
 import com.hankkin.reading.view.GridSpacingItemDecoration
-import kotlinx.android.synthetic.main.fragment_translate.*
+import kotlinx.android.synthetic.main.fragment_word.*
 import kotlinx.android.synthetic.main.layout_translate_content.*
 import okhttp3.ResponseBody
 import java.io.File
@@ -49,7 +49,7 @@ class TranslateFragment : BaseMvpFragment<TranslateContract.IPresenter>(), Trans
 
 
     override fun getLayoutId(): Int {
-        return R.layout.fragment_translate
+        return R.layout.fragment_word
     }
 
     override fun initData() {

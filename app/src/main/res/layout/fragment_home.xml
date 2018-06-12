@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.Toolbar
+            app:layout_scrollFlags="scroll|enterAlways"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_marginEnd="@dimen/dp_20"
+                android:layout_marginStart="@dimen/dp_10"
+                android:background="@drawable/bg_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:drawablePadding="@dimen/dp_6"
+                    android:drawableLeft="@mipmap/icon_search"
+                    android:layout_centerInParent="true"
+                    android:padding="@dimen/dp_6"
+                    style="@style/whiteTxt"
+                    android:gravity="center"
+                    android:text="搜索"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+        </android.support.v7.widget.Toolbar>
+        <com.kekstudio.dachshundtablayout.DachshundTabLayout
+            android:id="@+id/tab"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_40"
+            android:background="@color/colorPrimary"
+            app:tabTextColor="@color/grey"
+            app:tabSelectedTextColor="@color/white"
+            custom:ddAnimatedIndicator="dachshund"
+            custom:ddIndicatorColor="@android:color/white"
+            custom:ddIndicatorHeight="6dp"
+            custom:tabMode="scrollable"/>
+    </android.support.design.widget.AppBarLayout>
+
+
+
+    <android.support.v4.view.ViewPager
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:id="@+id/vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <com.github.clans.fab.FloatingActionMenu
+        app:layout_behavior="com.hankkin.reading.view.ScrollAwareFABBehavior"
+        android:id="@+id/fab_menu_add"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        fab:menu_labels_ellipsize="end"
+        fab:menu_labels_singleLine="true"
+        fab:menu_backgroundColor="#99ffffff"
+        fab:menu_colorNormal="@color/colorPrimary"
+        fab:menu_colorPressed="@color/colorPrimary"
+        fab:menu_colorRipple="@color/colorPrimaryDark"
+        fab:menu_fab_label="">
+
+        <com.github.clans.fab.FloatingActionButton
+            fab:menu_colorNormal="@color/colorPrimary"
+            fab:menu_colorPressed="@color/colorPrimary"
+            fab:menu_colorRipple="@color/colorPrimaryDark"
+            android:id="@+id/fab_fire"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/fab_active"
+            style="@style/menu_labels_style"
+            fab:fab_size="mini"
+            fab:fab_label="@string/home_active" />
+
+        <com.github.clans.fab.FloatingActionButton
+            fab:menu_colorNormal="@color/colorPrimary"
+            fab:menu_colorPressed="@color/colorPrimary"
+            fab:menu_colorRipple="@color/colorPrimaryDark"
+            android:id="@+id/fab_refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/fab_blog"
+            style="@style/menu_labels_style"
+            fab:fab_size="mini"
+            fab:fab_label="@string/home_blog" />
+
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab_write"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/fab_post"
+            fab:fab_size="mini"
+            style="@style/menu_labels_style"
+            fab:menu_colorNormal="@color/colorPrimary"
+            fab:menu_colorPressed="@color/colorPrimary"
+            fab:menu_colorRipple="@color/colorPrimaryDark"
+            fab:fab_label="@string/home_post" />
+
+    </com.github.clans.fab.FloatingActionMenu>
+
+</android.support.design.widget.CoordinatorLayout>

@@ -8,7 +8,7 @@ import android.widget.Toast
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.MainFragmentAdapter
 import com.hankkin.reading.base.BaseActivity
-import com.hankkin.reading.ui.dictionary.DictionaryFragment
+import com.hankkin.reading.ui.home.HomeFragment
 import com.hankkin.reading.ui.person.PersonFragment
 import com.hankkin.reading.ui.translate.TranslateFragment
 import com.hankkin.reading.utils.LogUtils
@@ -29,7 +29,7 @@ class MainActivity : BaseActivity() {
 
 
     private val fgList = listOf<Fragment>(
-            DictionaryFragment(),
+            HomeFragment(),
             TranslateFragment(),
             PersonFragment()
     )

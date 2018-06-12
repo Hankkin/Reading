@@ -16,4 +16,5 @@
     <color name="teal">#008080</color>
     <color name="normal_txt">#4D4D4D</color>
     <color name="normal_bg">#F0EFF5</color>
+    <color name="transanct">#88FFFFFF</color>
 </resources>

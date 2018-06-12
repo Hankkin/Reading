@@ -41,10 +41,15 @@ dependencies {
     implementation rootProject.ext.dependencies["base-rv-helper"]
     implementation rootProject.ext.dependencies["rxpermissions"]
     implementation rootProject.ext.dependencies["converter-gson"]
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    //materialdialog
     implementation('com.github.afollestad.material-dialogs:core:0.8.5.8@aar') {
         transitive = true
     }
+    //glide图片封装
     implementation 'com.sunfusheng:glideimageview:1.2.0'
+    //首页tab
+    implementation 'com.github.Andy671:Dachshund-Tab-Layout:v0.3.0'
+    //悬浮按钮
+    implementation 'com.github.clans:fab:1.6.4'
     implementation project(':library')
 }
