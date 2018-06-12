@@ -14,24 +14,42 @@
             app:layout_scrollFlags="scroll|enterAlways"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <RelativeLayout
-                android:layout_marginEnd="@dimen/dp_20"
-                android:layout_marginStart="@dimen/dp_10"
-                android:background="@drawable/bg_search"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center">
 
-                <TextView
-                    android:drawablePadding="@dimen/dp_6"
-                    android:drawableLeft="@mipmap/icon_search"
-                    android:layout_centerInParent="true"
-                    android:padding="@dimen/dp_6"
-                    style="@style/whiteTxt"
-                    android:gravity="center"
-                    android:text="搜索"
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </RelativeLayout>
+                    android:layout_height="match_parent"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    >
+
+                    <ImageView
+                        android:id="@+id/iv_title_one"
+                        android:layout_width="55dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@drawable/home_news_selector" />
+
+                    <ImageView
+                        android:id="@+id/iv_title_two"
+                        android:layout_width="55dp"
+                        android:layout_height="match_parent"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@drawable/home_post_selector" />
+
+                    <ImageView
+                        android:id="@+id/iv_title_three"
+                        android:layout_width="55dp"
+                        android:layout_height="match_parent"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@drawable/home_blog_selector" />
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
 
         </android.support.v7.widget.Toolbar>
         <com.kekstudio.dachshundtablayout.DachshundTabLayout
