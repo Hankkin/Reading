@@ -8,6 +8,7 @@
     android:orientation="vertical">
 
     <android.support.design.widget.AppBarLayout
+        android:theme="@style/AppTheme.AppBarOverlay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <android.support.v7.widget.Toolbar
@@ -27,7 +28,7 @@
 
                     <ImageView
                         android:id="@+id/iv_title_one"
-                        android:layout_width="55dp"
+                        android:layout_width="65dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:background="?attr/selectableItemBackgroundBorderless"
@@ -35,14 +36,14 @@
 
                     <ImageView
                         android:id="@+id/iv_title_two"
-                        android:layout_width="55dp"
+                        android:layout_width="65dp"
                         android:layout_height="match_parent"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:src="@drawable/home_post_selector" />
 
                     <ImageView
                         android:id="@+id/iv_title_three"
-                        android:layout_width="55dp"
+                        android:layout_width="65dp"
                         android:layout_height="match_parent"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:src="@drawable/home_blog_selector" />
@@ -52,24 +53,13 @@
             </HorizontalScrollView>
 
         </android.support.v7.widget.Toolbar>
-        <com.kekstudio.dachshundtablayout.DachshundTabLayout
-            android:id="@+id/tab"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_40"
-            android:background="@color/colorPrimary"
-            app:tabTextColor="@color/grey"
-            app:tabSelectedTextColor="@color/white"
-            custom:ddAnimatedIndicator="dachshund"
-            custom:ddIndicatorColor="@android:color/white"
-            custom:ddIndicatorHeight="6dp"
-            custom:tabMode="scrollable"/>
     </android.support.design.widget.AppBarLayout>
 
 
 
     <android.support.v4.view.ViewPager
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:id="@+id/vp"
+        android:id="@+id/vp_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

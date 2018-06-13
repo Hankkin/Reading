@@ -50,4 +50,8 @@
         <item name="fab_colorRipple">@color/colorPrimary</item>
     </style>
 
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="elevation">0dp</item>
+    </style>
+
 </resources>
