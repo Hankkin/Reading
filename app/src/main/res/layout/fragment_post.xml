@@ -10,14 +10,14 @@
         android:background="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="45dp">
-        <android.support.design.widget.TabLayout
+        <com.kekstudio.dachshundtablayout.DachshundTabLayout
             android:id="@+id/tab"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_40"
             custom:tabGravity="fill"
             custom:tabMode="fixed"
             custom:tabSelectedTextColor="@color/white"
-            custom:tabTextColor="#acb4be"
+            custom:tabTextColor="@color/grey1"
             custom:tabIndicatorColor="@color/white"
             />
     </LinearLayout>
