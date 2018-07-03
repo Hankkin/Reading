@@ -47,7 +47,8 @@
         <activity android:name=".ui.login.LoginActivity" />
         <activity android:name=".ui.user.AuthorizeWebActivity" />
         <activity android:name=".ui.person.PersonInfoActivity" />
-        <activity android:name=".ui.person.friend.FriendListActivity"></activity>
+        <activity android:name=".ui.person.friend.FriendListActivity" />
+        <activity android:name=".ui.person.SettingActivity"></activity>
     </application>
 
 </manifest>

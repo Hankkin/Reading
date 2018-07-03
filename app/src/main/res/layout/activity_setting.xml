@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:padding="@dimen/dp_12"
+    tools:context="com.hankkin.reading.ui.person.SettingActivity">
+
+
+    <TextView
+        android:textStyle="bold"
+        android:textSize="@dimen/sp_20"
+        android:gravity="center_vertical"
+        style="@style/normalTxt"
+        android:text="@string/setting"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40" />
+
+</android.support.constraint.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.hankkin.library.widget.view;
+package com.hankkin.library.view;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;

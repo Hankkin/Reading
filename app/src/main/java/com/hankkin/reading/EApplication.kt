@@ -3,7 +3,6 @@ package com.hankkin.reading
 import android.app.Application
 import com.hankkin.reading.utils.FileUtils
 import com.hankkin.library.utils.SPUtils
-
 /**
  * Created by huanghaijie on 2018/5/18.
  */

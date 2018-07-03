@@ -1,12 +1,15 @@
 package com.hankkin.reading.ui.person
 
 import android.content.Intent
+import android.support.v7.widget.LinearLayoutManager
 import com.hankkin.library.utils.SPUtils
 import com.hankkin.reading.R
+import com.hankkin.reading.adapter.PersonListAdapter
 import com.hankkin.reading.base.BaseMvpFragment
 import com.hankkin.reading.common.Constant
 import com.hankkin.reading.control.UserControl
 import com.hankkin.reading.domain.NoticeBean
+import com.hankkin.reading.domain.PersonListBean
 import com.hankkin.reading.ui.user.AuthorizeWebActivity
 import com.hankkin.reading.utils.Key4Intent
 import com.hankkin.reading.utils.LogUtils
@@ -17,6 +20,7 @@ import kotlinx.android.synthetic.main.fragment_person.*
  */
 class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContract.IView {
 
+    private lateinit var mAdapter: PersonListAdapter
 
     override fun registerPresenter() = PersonPresenter::class.java
 
@@ -25,12 +29,23 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
     }
 
     override fun initData() {
+        mAdapter = PersonListAdapter()
+        mAdapter.data.add(PersonListBean(R.mipmap.icon_person_star,resources.getString(R.string.person_star)))
+        mAdapter.data.add(PersonListBean(R.mipmap.icon_person_follow,resources.getString(R.string.person_follow)))
+        mAdapter.data.add(PersonListBean(R.mipmap.icon_person_active,resources.getString(R.string.person_active)))
+        mAdapter.data.add(PersonListBean(R.mipmap.icon_person_look,resources.getString(R.string.person_look)))
+        xrv_person_lisy.layoutManager = LinearLayoutManager(context)
+        xrv_person_lisy.adapter = mAdapter
     }
 
     override fun initView() {
         refresh_person.setColorSchemeResources(R.color.colorPrimary)
         refresh_person.setOnRefreshListener { getPresenter().getUserNotice(SPUtils.getString(UserControl.TOKEN)) }
         iv_person_avatar.setOnClickListener { llAvatarClick() }
+        iv_person_setting.setOnClickListener { startActivity(Intent(context,SettingActivity::class.java)) }
+    }
+
+    fun changTheme(){
     }
 
     fun llAvatarClick() {

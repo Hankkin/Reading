@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#574E5F</color>
-    <color name="colorPrimaryDark">#574E5F</color>
-    <color name="colorAccent">#574E5F</color>
+    <color name="colorPrimary">#db4437</color>
+    <color name="colorPrimaryDark">#db4437</color>
+    <color name="colorAccent">#db4437</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
     <color name="blue">#0E6EB8</color>
@@ -17,4 +17,19 @@
     <color name="normal_txt">#4D4D4D</color>
     <color name="normal_bg">#F0EFF5</color>
     <color name="transanct">#88FFFFFF</color>
+
+    <color name="skin_colorPrimary_yima">#db4437</color>
+    <color name="skin_colorPrimary_kuan">#0e9d59</color>
+    <color name="skin_colorPrimary_bili_pink">#fb7299</color>
+    <color name="skin_colorPrimary_yidi_blue">#3f51b5</color>
+    <color name="skin_colorPrimary_zhihu_blue">#2195f3</color>
+    <color name="skin_colorPrimary_purpose">#673ab7</color>
+    <color name="skin_colorPrimary_orignal">#ff9800</color>
+    <color name="skin_colorPrimary_teal">#009688</color>
+    <color name="skin_colorPrimary_zong">#795548</color>
+    <color name="skin_colorPrimary_grey">#617d8c</color>
+    <color name="skin_colorPrimary_light_black">#212121</color>
+    <color name="skin_colorPrimary_light_gutong_zong">#795549</color>
+    <color name="skin_colorPrimary_ya_teal">#009688</color>
+    <color name="skin_colorPrimary_black">#000000</color>
 </resources>

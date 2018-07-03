@@ -30,7 +30,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_normal_selector"
+                    android:background="@drawable/ripple_normal_selector"
                     android:clickable="true"
                     android:orientation="horizontal"
                     android:padding="@dimen/dp_10"
@@ -175,7 +175,7 @@
                 android:padding="@dimen/dp_14"
                 android:layout_marginTop="@dimen/dp_10"
                 android:clickable="true"
-                android:background="@drawable/bg_normal_selector"
+                android:background="@drawable/ripple_normal_selector"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:focusable="true">
@@ -200,7 +200,7 @@
                 android:padding="@dimen/dp_14"
                 android:layout_marginTop="@dimen/dp_10"
                 android:clickable="true"
-                android:background="@drawable/bg_normal_selector"
+                android:background="@drawable/ripple_normal_selector"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:focusable="true">
@@ -225,7 +225,7 @@
                 android:padding="@dimen/dp_14"
                 android:layout_marginTop="@dimen/dp_10"
                 android:clickable="true"
-                android:background="@drawable/bg_normal_selector"
+                android:background="@drawable/ripple_normal_selector"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:focusable="true">

@@ -49,6 +49,8 @@
     <string name="person_info_last_login_time">最近登录时间</string>
     <string name="person_info_logout">注销</string>
 
+    <string name="setting">设置</string>
+
     <string-array name="select_img_items">
         <item>拍照</item>
         <item>相册</item>

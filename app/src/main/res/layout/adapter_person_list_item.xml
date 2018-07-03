@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/rl_adapter_person"
+    android:background="@drawable/ripple_normal_selector"
+    android:padding="@dimen/dp_12"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+    <ImageView
+        android:layout_centerVertical="true"
+        android:id="@+id/iv_adapter_person_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:text=""
+        />
+    <TextView
+        android:layout_marginLeft="@dimen/dp_12"
+        android:layout_toEndOf="@+id/iv_adapter_person_icon"
+        android:layout_centerVertical="true"
+        android:id="@+id/tv_adapter_person_text"
+        style="@style/normalTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:text=""
+        />
+    <ImageView
+        android:src="@mipmap/icon_common_arrow"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

@@ -31,6 +31,7 @@
                     android:text="@string/person_title" />
 
                 <com.hankkin.reading.view.ClickImageView
+                    android:id="@+id/iv_person_setting"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
@@ -67,183 +68,123 @@
 
         </LinearLayout>
 
-        <LinearLayout
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dp_10"
-            android:background="@drawable/bg_white_circle"
-            android:padding="@dimen/dp_10">
+            android:background="?attr/selectableItemBackground">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:padding="@dimen/dp_10">
 
-                <TextView
-                    android:id="@+id/tv_person_comments"
-                    style="@style/normalTxt"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textStyle="bold" />
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/tv_person_comments"
+                        style="@style/normalTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_4"
+                        android:text="@string/person_comment" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_4"
-                    android:text="@string/person_comment" />
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_person_msg"
+                        style="@style/normalTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_4"
+                        android:text="@string/person_msg" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_person_at"
+                        style="@style/normalTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_4"
+                        android:text="@string/person_at" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_person_fans"
+                        style="@style/normalTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_4"
+                        android:text="@string/person_fans" />
+                </LinearLayout>
+
             </LinearLayout>
+        </android.support.v7.widget.CardView>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tv_person_msg"
-                    style="@style/normalTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_4"
-                    android:text="@string/person_msg" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tv_person_at"
-                    style="@style/normalTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_4"
-                    android:text="@string/person_at" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tv_person_fans"
-                    style="@style/normalTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_4"
-                    android:text="@string/person_fans" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dp_10"
-            android:background="@drawable/bg_white_circle"
-            android:orientation="vertical">
+            android:background="?attr/selectableItemBackground">
 
-            <TextView
-                android:id="@+id/tv_person_star"
-                style="@style/normalTxt"
+            <com.hankkin.library.xrecycleview.XRecyclerView
+                android:id="@+id/xrv_person_lisy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_normal_selector"
-                android:clickable="true"
-                android:drawablePadding="@dimen/dp_16"
-                android:drawableStart="@mipmap/icon_person_star"
-                android:focusable="true"
-                android:gravity="center_vertical"
-                android:padding="@dimen/dp_12"
-                android:text="@string/person_star" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:background="@color/grey1" />
-
-            <TextView
-                android:id="@+id/tv_person_follow"
-                style="@style/normalTxt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_normal_selector"
-                android:clickable="true"
-                android:drawablePadding="@dimen/dp_16"
-                android:drawableStart="@mipmap/icon_person_follow"
-                android:focusable="true"
-                android:gravity="center_vertical"
-                android:padding="@dimen/dp_12"
-                android:text="@string/person_follow" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:background="@color/grey1" />
-
-            <TextView
-                android:id="@+id/tv_person_active"
-                style="@style/normalTxt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_normal_selector"
-                android:clickable="true"
-                android:drawablePadding="@dimen/dp_16"
-                android:drawableStart="@mipmap/icon_person_active"
-                android:focusable="true"
-                android:gravity="center_vertical"
-                android:padding="@dimen/dp_12"
-                android:text="@string/person_active" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:background="@color/grey1" />
-
-            <TextView
-                android:id="@+id/tv_person_look"
-                style="@style/normalTxt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_normal_selector"
-                android:clickable="true"
-                android:drawablePadding="@dimen/dp_16"
-                android:drawableStart="@mipmap/icon_person_look"
-                android:focusable="true"
-                android:gravity="center_vertical"
-                android:padding="@dimen/dp_12"
-                android:text="@string/person_look" />
-
-        </LinearLayout>
-
+                android:scrollbarAlwaysDrawVerticalTrack="true"
+                android:scrollbarFadeDuration="1"
+                android:scrollbarSize="4dp"
+                android:scrollbars="vertical" />
+        </android.support.v7.widget.CardView>
 
     </LinearLayout>
 </android.support.v4.widget.SwipeRefreshLayout>
