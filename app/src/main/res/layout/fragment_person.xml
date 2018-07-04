@@ -72,6 +72,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dp_10"
+            app:cardCornerRadius="@dimen/dp_6"
             android:background="?attr/selectableItemBackground">
 
             <LinearLayout
@@ -174,9 +175,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dp_10"
+            app:cardCornerRadius="@dimen/dp_6"
             android:background="?attr/selectableItemBackground">
 
-            <com.hankkin.library.xrecycleview.XRecyclerView
+            <android.support.v7.widget.RecyclerView
                 android:id="@+id/xrv_person_lisy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

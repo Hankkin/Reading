@@ -2,7 +2,9 @@
 <RelativeLayout
     android:id="@+id/rl_adapter_person"
     android:background="@drawable/ripple_normal_selector"
-    android:padding="@dimen/dp_12"
+    android:paddingLeft="@dimen/dp_12"
+    android:paddingTop="@dimen/dp_12"
+    android:paddingRight="@dimen/dp_12"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -34,4 +36,11 @@
         android:layout_centerVertical="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+    <View
+        android:layout_below="@+id/tv_adapter_person_text"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="@dimen/dp_12"
+        android:background="@color/normal_bg" />
 </RelativeLayout>
