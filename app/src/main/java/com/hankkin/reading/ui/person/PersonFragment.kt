@@ -39,7 +39,7 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
     }
 
     override fun initView() {
-        refresh_person.setColorSchemeResources(R.color.colorPrimary)
+        refresh_person.setColorSchemeResources(R.color.theme_color_primary)
         refresh_person.setOnRefreshListener { getPresenter().getUserNotice(SPUtils.getString(UserControl.TOKEN)) }
         iv_person_avatar.setOnClickListener { llAvatarClick() }
         iv_person_setting.setOnClickListener { startActivity(Intent(context,SettingActivity::class.java)) }

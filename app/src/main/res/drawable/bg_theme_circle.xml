@@ -3,7 +3,7 @@
     android:shape="rectangle" >
 
     <!-- 填充的颜色：这里设置背景透明 -->
-    <solid android:color="@color/colorPrimary" />
+    <solid android:color="@color/theme_color_primary" />
     <!-- 边框的颜色 ：不能和窗口背景色一样 -->
     <!-- 设置按钮的四个角为弧形 -->
     <!-- android:radius 弧形的半径 -->

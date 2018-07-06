@@ -9,9 +9,11 @@
 
     <android.support.design.widget.AppBarLayout
         android:theme="@style/AppTheme.AppBarOverlay"
+        android:background="@color/theme_color_primary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <android.support.v7.widget.Toolbar
+        <com.bilibili.magicasakura.widgets.TintToolbar
+            android:background="@color/theme_color_primary"
             app:layout_scrollFlags="scroll|enterAlways"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -52,7 +54,7 @@
 
             </HorizontalScrollView>
 
-        </android.support.v7.widget.Toolbar>
+        </com.bilibili.magicasakura.widgets.TintToolbar>
     </android.support.design.widget.AppBarLayout>
 
 
@@ -76,15 +78,15 @@
         fab:menu_labels_ellipsize="end"
         fab:menu_labels_singleLine="true"
         fab:menu_backgroundColor="#99ffffff"
-        fab:menu_colorNormal="@color/colorPrimary"
-        fab:menu_colorPressed="@color/colorPrimary"
-        fab:menu_colorRipple="@color/colorPrimaryDark"
+        fab:menu_colorNormal="@color/theme_color_primary"
+        fab:menu_colorPressed="@color/theme_color_primary"
+        fab:menu_colorRipple="@color/theme_color_primary"
         fab:menu_fab_label="">
 
         <com.github.clans.fab.FloatingActionButton
-            fab:menu_colorNormal="@color/colorPrimary"
-            fab:menu_colorPressed="@color/colorPrimary"
-            fab:menu_colorRipple="@color/colorPrimaryDark"
+            fab:menu_colorNormal="@color/theme_color_primary"
+            fab:menu_colorPressed="@color/theme_color_primary"
+            fab:menu_colorRipple="@color/theme_color_primary"
             android:id="@+id/fab_fire"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -94,9 +96,9 @@
             fab:fab_label="@string/home_active" />
 
         <com.github.clans.fab.FloatingActionButton
-            fab:menu_colorNormal="@color/colorPrimary"
-            fab:menu_colorPressed="@color/colorPrimary"
-            fab:menu_colorRipple="@color/colorPrimaryDark"
+            fab:menu_colorNormal="@color/theme_color_primary"
+            fab:menu_colorPressed="@color/theme_color_primary"
+            fab:menu_colorRipple="@color/theme_color_primary"
             android:id="@+id/fab_refresh"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -113,9 +115,9 @@
             android:src="@mipmap/fab_post"
             fab:fab_size="mini"
             style="@style/menu_labels_style"
-            fab:menu_colorNormal="@color/colorPrimary"
-            fab:menu_colorPressed="@color/colorPrimary"
-            fab:menu_colorRipple="@color/colorPrimaryDark"
+            fab:menu_colorNormal="@color/theme_color_primary"
+            fab:menu_colorPressed="@color/theme_color_primary"
+            fab:menu_colorRipple="@color/theme_color_primary_dark"
             fab:fab_label="@string/home_post" />
 
     </com.github.clans.fab.FloatingActionMenu>

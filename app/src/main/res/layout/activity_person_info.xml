@@ -42,7 +42,7 @@
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:src="@mipmap/icon_person_avatar"
-                        app:siv_border_color="@color/colorPrimary"
+                        app:siv_border_color="@color/grey"
                         app:siv_border_width="2dp" />
 
                     <LinearLayout
@@ -247,7 +247,7 @@
             </RelativeLayout>
 
 
-            <TextView
+            <com.bilibili.magicasakura.widgets.TintTextView
                 android:id="@+id/tv_person_info_logout"
                 android:padding="@dimen/dp_10"
                 android:gravity="center"

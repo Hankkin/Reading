@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:ignore="NamespaceTypo">
-    <LinearLayout
-        android:background="@color/colorPrimary"
+    <com.bilibili.magicasakura.widgets.TintLinearLayout
+        android:background="@color/theme_color_primary"
         android:layout_width="match_parent"
         android:layout_height="45dp">
         <com.kekstudio.dachshundtablayout.DachshundTabLayout
@@ -20,7 +20,7 @@
             custom:tabTextColor="@color/grey1"
             custom:tabIndicatorColor="@color/white"
             />
-    </LinearLayout>
+    </com.bilibili.magicasakura.widgets.TintLinearLayout>
 
 
     <android.support.v4.view.ViewPager

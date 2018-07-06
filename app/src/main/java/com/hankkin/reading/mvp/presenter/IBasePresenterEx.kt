@@ -10,6 +10,6 @@ import java.lang.IllegalStateException
  */
 fun IBasePresenter<*>.getContext(): Context = when {
     getMvpView() is Activity -> getMvpView() as Activity
-    getMvpView() is Fragment -> (getMvpView() as Fragment).activity
+    getMvpView() is Fragment -> (getMvpView() as Fragment).activity!!
     else -> throw IllegalStateException("the presenter not found context")
 }

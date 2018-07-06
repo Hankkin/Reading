@@ -9,7 +9,7 @@ import android.widget.Toast
  */
 object ToastUtils{
 
-    fun showToast(context: Context, msg: String) {
+    fun showToast(context: Context?, msg: String) {
         var mToast: Toast = Toast.makeText(context, msg, Toast.LENGTH_SHORT)
         mToast.setGravity(Gravity.CENTER,0,0)
         mToast.setText(msg)

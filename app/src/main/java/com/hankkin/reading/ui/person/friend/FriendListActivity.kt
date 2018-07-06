@@ -17,7 +17,7 @@ class FriendListActivity : BaseMvpActivity<FriendPresenter>(), FriendContract.IV
     }
 
     override fun initView() {
-        refresh_friend.setColorSchemeResources(R.color.colorPrimary)
+        refresh_friend.setColorSchemeResources(R.color.theme_color_primary)
     }
 
     override fun setFriendList(data: FriendBean) {

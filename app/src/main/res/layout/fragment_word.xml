@@ -5,10 +5,10 @@
     android:layout_height="match_parent">
 
 
-    <RelativeLayout
+    <com.bilibili.magicasakura.widgets.TintRelativeLayout
         android:paddingRight="@dimen/dp_10"
         android:paddingLeft="@dimen/dp_10"
-        android:background="@color/colorPrimary"
+        android:background="@color/theme_color_primary"
         android:layout_width="match_parent"
         android:layout_height="@dimen/title_bar_height">
 
@@ -37,10 +37,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-    </RelativeLayout>
+    </com.bilibili.magicasakura.widgets.TintRelativeLayout>
 
-    <RelativeLayout
-        android:background="@color/colorPrimary"
+    <com.bilibili.magicasakura.widgets.TintRelativeLayout
+        android:background="@color/theme_color_primary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <EditText
@@ -56,7 +56,7 @@
             android:hint="@string/translate_search_hint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-    </RelativeLayout>
+    </com.bilibili.magicasakura.widgets.TintRelativeLayout>
 
     <include layout="@layout/layout_translate_content"/>
 

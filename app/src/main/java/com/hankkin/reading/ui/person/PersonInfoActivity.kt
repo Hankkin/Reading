@@ -35,7 +35,7 @@ class PersonInfoActivity : BaseMvpActivity<PersonInfoPresenter>(), PersonInfoCon
             UserControl.logout()
             finish()
         }
-        refresh_person_info.setColorSchemeResources(R.color.colorPrimary)
+        refresh_person_info.setColorSchemeResources(R.color.theme_color_primary)
         refresh_person_info.setOnRefreshListener { initData() }
         iv_person_info_avatar.setOnClickListener { changeAvatar() }
     }

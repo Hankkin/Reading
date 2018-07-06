@@ -15,7 +15,7 @@ import com.hankkin.reading.utils.ToastUtils
  */
 class PersonListAdapter : BaseRecyclerViewAdapter<PersonListBean>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BaseRecyclerViewHolder<*> {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseRecyclerViewHolder<*> {
         return ViewHolder(parent,R.layout.adapter_person_list_item)
     }
 

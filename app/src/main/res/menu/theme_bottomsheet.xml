@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/yima"
+        android:icon="@mipmap/color_yima"
+        android:title="@string/theme_yima" />
+
+    <item
+        android:id="@+id/kuan"
+        android:icon="@mipmap/color_kuan"
+        android:title="@string/theme_kuan" />
+
+    <item
+        android:id="@+id/bili"
+        android:icon="@mipmap/color_bili"
+        android:title="@string/theme_bili" />
+
+    <item
+        android:id="@+id/yidi"
+        android:icon="@mipmap/color_yidi"
+        android:title="@string/theme_yidi" />
+
+    <item
+        android:id="@+id/shuiya"
+        android:icon="@mipmap/color_shuiya"
+        android:title="@string/theme_shuiya" />
+
+    <item
+        android:id="@+id/yiteng"
+        android:icon="@mipmap/color_yiteng"
+        android:title="@string/theme_yiteng" />
+
+    <item
+        android:id="@+id/jilao"
+        android:icon="@mipmap/color_jilao"
+        android:title="@string/theme_jilao" />
+
+    <item
+        android:id="@+id/zhihu"
+        android:icon="@mipmap/color_zhihu"
+        android:title="@string/theme_zhihu" />
+
+    <item
+        android:id="@+id/gutong"
+        android:icon="@mipmap/color_gutong"
+        android:title="@string/theme_gutong" />
+
+    <item
+        android:id="@+id/didiao"
+        android:icon="@mipmap/color_didiao"
+        android:title="@string/theme_didiao" />
+
+    <item
+        android:id="@+id/gaoduan"
+        android:icon="@mipmap/color_black"
+        android:title="@string/theme_gaoduan" />
+
+    <item
+        android:id="@+id/aping"
+        android:icon="@mipmap/color_aping"
+        android:title="@string/theme_aping" />
+</menu>

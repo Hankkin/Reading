@@ -3,15 +3,19 @@ package com.hankkin.reading.ui.home
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
+import com.bilibili.magicasakura.utils.ThemeUtils
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.HomeFragmentPagerAdapter
 import com.hankkin.reading.adapter.MainFragmentAdapter
 import com.hankkin.reading.base.BaseFragment
+import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.ui.home.blog.BlogFragment
 import com.hankkin.reading.ui.home.news.NewsFragment
 import com.hankkin.reading.ui.home.post.PostFragment
 import com.hankkin.reading.ui.person.PersonFragment
 import com.hankkin.reading.ui.translate.TranslateFragment
+import com.hankkin.reading.utils.RxBus
+import com.hankkin.reading.utils.ThemeHelper
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_post.*
 
@@ -57,6 +61,29 @@ class HomeFragment : BaseFragment() {
 
         })
         setCurrent(0)
+        setFabColor()
+
+        RxBus.getDefault().toObservable(EventMap.ChangeFabEvent::class.java)
+                .subscribe({
+                    setFabColor()
+                })
+    }
+
+    fun setFabColor(){
+        fab_menu_add.setMenuButtonColorNormalResId(ThemeHelper.getCurrentColor(context))
+        fab_fire.setColorNormalResId(ThemeHelper.getCurrentColor(context))
+        fab_refresh.setColorNormalResId(ThemeHelper.getCurrentColor(context))
+        fab_write.setColorNormalResId(ThemeHelper.getCurrentColor(context))
+
+        fab_menu_add.setMenuButtonColorPressedResId(ThemeHelper.getCurrentColor(context))
+        fab_fire.setColorPressedResId(ThemeHelper.getCurrentColor(context))
+        fab_refresh.setColorPressedResId(ThemeHelper.getCurrentColor(context))
+        fab_write.setColorPressedResId(ThemeHelper.getCurrentColor(context))
+
+        fab_menu_add.setMenuButtonColorRippleResId(ThemeHelper.getCurrentColor(context))
+        fab_fire.setColorRippleResId(ThemeHelper.getCurrentColor(context))
+        fab_refresh.setColorRippleResId(ThemeHelper.getCurrentColor(context))
+        fab_write.setColorRippleResId(ThemeHelper.getCurrentColor(context))
     }
 
     fun setCurrent(index: Int) {

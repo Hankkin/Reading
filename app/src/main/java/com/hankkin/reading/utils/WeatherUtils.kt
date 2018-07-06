@@ -7,9 +7,9 @@ import android.content.Context
  */
 object WeatherUtils{
 
-    public fun getWeatherImg(code: String?,context: Context): Int{
-        val rescoure = context.resources
-        return rescoure.getIdentifier("w"+code,"mipmap",context.packageName)
+    public fun getWeatherImg(code: String?,context: Context?): Int{
+        val rescoure = context!!.resources
+        return rescoure.getIdentifier("w"+code,"mipmap", context!!.packageName)
     }
 
 }

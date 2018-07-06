@@ -1,8 +1,13 @@
 package com.hankkin.reading.base
 
 import android.app.Activity
+import android.app.ActivityManager
+import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity
+import android.view.WindowManager
+import com.bilibili.magicasakura.utils.ThemeUtils
+import com.hankkin.reading.R
 
 /**
  * Created by huanghaijie on 2018/5/15.

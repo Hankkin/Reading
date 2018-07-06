@@ -11,9 +11,9 @@ object LoadingUtils{
 
     private var loading: MaterialDialog? = null
 
-    fun showLoading(context: Context){
+    fun showLoading(context: Context?){
         if (loading == null){
-            loading = MaterialDialog.Builder(context)
+            loading = MaterialDialog.Builder(context!!)
                     .content(context.resources.getString(R.string.loading_wait))
                     .progress(true,0)
                     .build()

@@ -23,10 +23,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <RelativeLayout
-                android:padding="@dimen/dp_10"
+                android:id="@+id/rl_setting_theme"
+                android:paddingBottom="@dimen/dp_12"
+                android:paddingTop="@dimen/dp_12"
                 android:background="@drawable/ripple_normal_selector"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -36,7 +39,8 @@
                     android:text="@string/setting_theme"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-                <TextView
+                <com.bilibili.magicasakura.widgets.TintTextView
+                    android:id="@+id/tv_setting_theme_value"
                     style="@style/themeTxt"
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
@@ -45,7 +49,6 @@
             </RelativeLayout>
 
             <View
-                android:layout_marginTop=""
                 android:background="@color/normal_bg"
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"/>
