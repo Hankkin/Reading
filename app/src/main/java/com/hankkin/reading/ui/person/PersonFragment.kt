@@ -10,6 +10,7 @@ import com.hankkin.reading.common.Constant
 import com.hankkin.reading.control.UserControl
 import com.hankkin.reading.domain.NoticeBean
 import com.hankkin.reading.domain.PersonListBean
+import com.hankkin.reading.ui.login.LoginActivity
 import com.hankkin.reading.ui.user.AuthorizeWebActivity
 import com.hankkin.reading.utils.Key4Intent
 import com.hankkin.reading.utils.LogUtils
@@ -50,12 +51,13 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
 
     fun llAvatarClick() {
         if (!UserControl.isLogin()) {
-            val authorizeUrl = Constant.OSChinaUrl.BASE_URL +
-                    "oauth2/authorize?response_type=code&client_id=${Constant.OSChinaUrl.CLIENT_ID}&redirect_uri=${Constant.OSChinaUrl.REDIRECT_URL}"
-            val intent = Intent(activity, AuthorizeWebActivity::class.java)
-            intent.putExtra(Key4Intent.KEY_WEB_URL, authorizeUrl)
-            intent.putExtra(Key4Intent.KEY_WEB_TITLE, resources.getString(R.string.person_authorize_login))
-            startActivity(intent)
+//            val authorizeUrl = Constant.OSChinaUrl.BASE_URL +
+//                    "oauth2/authorize?response_type=code&client_id=${Constant.OSChinaUrl.CLIENT_ID}&redirect_uri=${Constant.OSChinaUrl.REDIRECT_URL}"
+//            val intent = Intent(activity, AuthorizeWebActivity::class.java)
+//            intent.putExtra(Key4Intent.KEY_WEB_URL, authorizeUrl)
+//            intent.putExtra(Key4Intent.KEY_WEB_TITLE, resources.getString(R.string.person_authorize_login))
+//            startActivity(intent)
+            startActivity(Intent(context,LoginActivity::class.java))
         } else {
             startActivity(Intent(context, PersonInfoActivity::class.java))
         }

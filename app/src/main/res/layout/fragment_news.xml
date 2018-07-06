@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<android.support.v4.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/refresh_news_list"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_gravity="center"
-        android:text="新闻"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-</LinearLayout>
+
+    <com.hankkin.library.xrecycleview.XRecyclerView
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:scrollbarFadeDuration="1"
+        android:scrollbarSize="4dp"
+        android:scrollbars="vertical"
+        android:layout_margin="@dimen/dp_10"
+        android:id="@+id/xrv_news_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+</android.support.v4.widget.SwipeRefreshLayout>

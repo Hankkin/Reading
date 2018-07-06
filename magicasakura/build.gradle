@@ -1,0 +1,68 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.jfrog.bintray'
+
+version = "0.1.9-beta3"
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode 1
+        versionName version
+    }
+    sourceSets{
+        main.res.srcDirs 'res', 'res-public'
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            consumerProguardFiles 'proguard-rules.pro'
+        }
+    }
+}
+
+def siteUrl = "https://github.com/Bilibili/MagicaSakura"
+def gitUrl = "https://github.com/Bilibili/MagicaSakura.git"
+
+group = "com.bilibili"
+
+
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.sourceFiles
+    classifier = 'sources'
+}
+
+artifacts {
+    archives sourcesJar
+}
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+
+    configurations = ['archives']
+
+    pkg {
+        repo = "maven"
+        name = "MagicaSakura"
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = ["Apache-2.0"]
+        publish = true
+    }
+}
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation rootProject.ext.dependencies["design"]
+
+}

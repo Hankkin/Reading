@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2016 Bilibili
+  ~
+  ~  Licensed under the Apache License, Version 2.0 (the "License");
+  ~  you may not use this file except in compliance with the License.
+  ~  You may obtain a copy of the License at
+  ~
+  ~        http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~  Unless required by applicable law or agreed to in writing, software
+  ~  distributed under the License is distributed on an "AS IS" BASIS,
+  ~  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~  See the License for the specific language governing permissions and
+  ~  limitations under the License.
+  ~
+  -->
+
+<resources>
+    <!-- main theme color -->
+    <attr name="themeColorSecondary" format="color" />
+
+    <!-- ==================== helper style ==================== -->
+
+    <declare-styleable name="TintViewBackgroundHelper">
+        <!-- support tint background color -->
+        <attr name="android:background"/>
+        <attr name="backgroundTint" />
+        <attr name="backgroundTintMode" />
+
+    </declare-styleable>
+
+    <declare-styleable name="TintFabMenugroundHelper">
+        <!-- support tint background color -->
+        <attr name="android:background"/>
+        <attr name="backgroundTint" />
+        <attr name="backgroundTintMode" />
+        <attr name="normal" />
+
+    </declare-styleable>
+
+    <declare-styleable name="TintViewForegroundHelper">
+        <attr name="android:foreground"/>
+        <attr name="foregroundTint" format="color" />
+        <attr name="foregroundTintMode">
+            <enum name="src_over" value="3" />
+            <enum name="src_in" value="5" />
+            <enum name="src_atop" value="9" />
+            <enum name="multiply" value="14" />
+            <enum name="screen" value="15" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="TintCompoundButtonHelper">
+        <attr name="android:button"/>
+        <attr name="compoundButtonTint" format="color" />
+        <attr name="compoundButtonTintMode">
+            <enum name="src_over" value="3" />
+            <enum name="src_in" value="5" />
+            <enum name="src_atop" value="9" />
+            <enum name="multiply" value="14" />
+            <enum name="screen" value="15" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="TintImageHelper">
+        <attr name="android:src" />
+        <attr name="srcCompat" format="reference"/>
+        <attr name="imageTint" format="color" />
+        <attr name="menu_colorNormal" format="color"/>
+        <attr name="menu_colorPressed" format="color"/>
+        <attr name="menu_colorRipple" format="color"/>
+        <attr name="imageTintMode">
+            <enum name="src_over" value="3" />
+            <enum name="src_in" value="5" />
+            <enum name="src_atop" value="9" />
+            <enum name="multiply" value="14" />
+            <enum name="screen" value="15" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="TintCompoundDrawableHelper">
+        <attr name="android:drawableLeft" />
+        <attr name="drawableLeftTint" format="color" />
+        <attr name="drawableLeftTintMode">
+            <enum name="src_over" value="3" />
+            <enum name="src_in" value="5" />
+            <enum name="src_atop" value="9" />
+            <enum name="multiply" value="14" />
+            <enum name="screen" value="15" />
+        </attr>
+        <attr name="android:drawableTop" />
+        <attr name="drawableTopTint" format="color" />
+        <attr name="drawableTopTintMode">
+            <enum name="src_over" value="3" />
+            <enum name="src_in" value="5" />
+            <enum name="src_atop" value="9" />
+            <enum name="multiply" value="14" />
+            <enum name="screen" value="15" />
+        </attr>
+        <attr name="android:drawableRight" />
+        <attr name="drawableRightTint" format="color" />
+        <attr name="drawableRightTintMode">
+            <enum name="src_over" value="3" />
+            <enum name="src_in" value="5" />
+            <enum name="src_atop" value="9" />
+            <enum name="multiply" value="14" />
+            <enum name="screen" value="15" />
+        </attr>
+        <attr name="android:drawableBottom" />
+        <attr name="drawableBottomTint" format="color" />
+        <attr name="drawableBottomTintMode">
+            <enum name="src_over" value="3" />
+            <enum name="src_in" value="5" />
+            <enum name="src_atop" value="9" />
+            <enum name="multiply" value="14" />
+            <enum name="screen" value="15" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="TintProgressBarHelper">
+        <attr name="progressTint" format="color" />
+        <attr name="progressIndeterminateTint" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="TintTextHelper">
+        <attr name="android:textColor"/>
+        <attr name="android:textColorLink"/>
+        <attr name="android:textAppearance"/>
+    </declare-styleable>
+
+    <declare-styleable name="TintSwitchThumb">
+        <attr name="android:thumb" />
+        <attr name="thumbTint" />
+        <attr name="thumbTintMode" />
+    </declare-styleable>
+
+    <declare-styleable name="TintSwitchTrack">
+        <attr name="track" />
+        <attr name="trackTint" />
+        <attr name="trackTintMode" />
+    </declare-styleable>
+
+    <declare-styleable name="TintDrawableHelper">
+        <attr name="drawableTint" format="color" />
+        <attr name="drawableTintMode">
+            <enum name="src_over" value="3" />
+            <enum name="src_in" value="5" />
+            <enum name="src_atop" value="9" />
+            <enum name="multiply" value="14" />
+            <enum name="screen" value="15" />
+        </attr>
+    </declare-styleable>
+
+    <!-- ==================== widget style ==================== -->
+
+    <declare-styleable name="TintTextView">
+        <attr name="backgroundTint" />
+        <attr name="backgroundTintMode" />
+        <attr name="drawableLeftTint" />
+        <attr name="drawableLeftTintMode" />
+        <attr name="drawableRightTint" />
+        <attr name="drawableRightTintMode" />
+        <attr name="drawableTopTint" />
+        <attr name="drawableTopTintMode" />
+        <attr name="drawableBottomTint" />
+        <attr name="drawableBottomTintMode" />
+    </declare-styleable>
+
+    <declare-styleable name="TintButton">
+        <attr name="backgroundTint" />
+        <attr name="backgroundTintMode" />
+    </declare-styleable>
+
+    <declare-styleable name="TintEditText">
+        <attr name="backgroundTint" />
+        <attr name="backgroundTintMode" />
+        <attr name="drawableLeftTint" />
+        <attr name="drawableLeftTintMode" />
+        <attr name="drawableRightTint" />
+        <attr name="drawableRightTintMode" />
+        <attr name="drawableTopTint" />
+        <attr name="drawableTopTintMode" />
+        <attr name="drawableBottomTint" />
+        <attr name="drawableBottomTintMode" />
+    </declare-styleable>
+
+    <declare-styleable name="TintImageView">
+        <attr name="srcCompat"/>
+        <attr name="backgroundTint" />
+        <attr name="backgroundTintMode" />
+        <attr name="imageTint" />
+        <attr name="imageTintMode" />
+    </declare-styleable>
+
+    <declare-styleable name="TintCheckBox">
+        <attr name="backgroundTint" />
+        <attr name="backgroundTintMode" />
+        <attr name="compoundButtonTint" />
+        <attr name="compoundButtonTintMode" />
+    </declare-styleable>
+
+    <declare-styleable name="TintRadioButton">
+        <attr name="backgroundTint" />
+        <attr name="backgroundTintMode" />
+        <attr name="compoundButtonTint" />
+        <attr name="compoundButtonTintMode" />
+    </declare-styleable>
+
+    <declare-styleable name="TintFrameLayout">
+        <attr name="backgroundTint" />
+        <attr name="backgroundTintMode" />
+        <attr name="foregroundTint" />
+        <attr name="foregroundTintMode" />
+    </declare-styleable>
+
+    <declare-styleable name="TintRelativeLayout">
+        <attr name="backgroundTint" />
+        <attr name="backgroundTintMode" />
+    </declare-styleable>
+
+    <declare-styleable name="TintLinearLayout">
+        <attr name="backgroundTint" />
+        <attr name="backgroundTintMode" />
+    </declare-styleable>
+
+    <declare-styleable name="TintGridLayout">
+        <attr name="backgroundTint" />
+        <attr name="backgroundTintMode" />
+    </declare-styleable>
+
+    <declare-styleable name="TintToolbar">
+        <attr name="backgroundTint" />
+        <attr name="backgroundTintMode" />
+    </declare-styleable>
+
+    <declare-styleable name="TintAppBarLayout">
+        <attr name="backgroundTint" />
+        <attr name="backgroundTintMode" />
+    </declare-styleable>
+
+    <declare-styleable name="TintProgressBar">
+        <attr name="progressTint" />
+        <attr name="progressIndeterminateTint" />
+    </declare-styleable>
+
+    <declare-styleable name="TintView">
+        <attr name="backgroundTint" />
+        <attr name="backgroundTintMode" />
+    </declare-styleable>
+
+    <declare-styleable name="TintAutoCompleteTextView">
+        <attr name="backgroundTint" />
+        <attr name="backgroundTintMode" />
+        <attr name="drawableLeftTint" />
+        <attr name="drawableLeftTintMode" />
+        <attr name="drawableRightTint" />
+        <attr name="drawableRightTintMode" />
+        <attr name="drawableTopTint" />
+        <attr name="drawableTopTintMode" />
+        <attr name="drawableBottomTint" />
+        <attr name="drawableBottomTintMode" />
+    </declare-styleable>
+
+    <declare-styleable name="TintCheckedTextView">
+        <attr name="drawableLeftTint" />
+    </declare-styleable>
+
+</resources>
