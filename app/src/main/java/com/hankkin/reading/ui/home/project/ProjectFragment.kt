@@ -1,4 +1,4 @@
-package com.hankkin.reading.ui.home.post
+package com.hankkin.reading.ui.home.project
 
 import android.os.Bundle
 import android.support.design.widget.TabLayout.MODE_FIXED
@@ -7,30 +7,25 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseFragment
+import com.hankkin.reading.ui.home.project.projectlist.ProjectListFragment
 import kotlinx.android.synthetic.main.fragment_post.*
-import android.widget.LinearLayout
-import android.opengl.ETC1.getWidth
-import android.widget.TextView
-import java.lang.reflect.AccessibleObject.setAccessible
-import android.support.design.widget.TabLayout
-import com.hankkin.library.utils.DisplayUtil
 import com.kekstudio.dachshundtablayout.indicators.PointMoveIndicator
 
 
 /**
  * Created by huanghaijie on 2018/5/15.
  */
-class PostFragment : BaseFragment() {
+class ProjectFragment : BaseFragment() {
 
-     companion object {
-         val tags = listOf<String>(
-                 "问答",
-                 "分享",
-                 "IT杂烩",
-                 "站务",
-                 "职业生涯"
-         )
-     }
+    companion object {
+        val tags = listOf<String>(
+                "问答",
+                "分享",
+                "IT杂烩",
+                "站务",
+                "职业生涯"
+        )
+    }
 
     override fun initViews() {
         val adapter = MainFragmentAdapter(childFragmentManager)
@@ -43,7 +38,7 @@ class PostFragment : BaseFragment() {
     }
 
     public fun newInstance(index: Int){
-        val fragment = PostFragment()
+        val fragment = ProjectFragment()
         val args = Bundle()
         args.putInt("index",index)
         fragment.arguments = args
@@ -60,7 +55,11 @@ class PostFragment : BaseFragment() {
     class MainFragmentAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
 
         override fun getItem(i: Int): Fragment {
-            return PostListFragment()
+            val bundle = Bundle()
+            val fg = ProjectListFragment()
+            bundle.putInt("index",i)
+            fg.arguments = bundle
+            return fg
         }
 
         override fun getCount(): Int {

@@ -12,18 +12,16 @@
         android:paddingBottom="10dp"
         android:paddingTop="10dp">
 
-        <ImageView
-            android:id="@+id/iv_progress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/yun_anim" />
-
-        <TextView
+        <com.bilibili.magicasakura.widgets.TintProgressBar
+            android:id="@+id/progress"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+        <com.bilibili.magicasakura.widgets.TintTextView
             android:id="@+id/msg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:textColor="@color/theme_color_primary"
+            android:layout_marginLeft="5dp"
             android:text="@string/listview_loading"
-            android:textColor="#333333" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 </LinearLayout>

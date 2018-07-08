@@ -49,13 +49,15 @@
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
-                <com.sunfusheng.glideimageview.GlideImageView
+                <com.hankkin.reading.view.widget.SWImageView
+                    app:borderColor="@color/white"
+                    app:borderWidth="1dp"
                     android:id="@+id/iv_person_avatar"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
+                    app:type="circle"
                     android:src="@mipmap/icon_person_avatar"
-                    app:siv_border_color="@color/white"
-                    app:siv_border_width="2dp" />
+                     />
 
                 <TextView
                     android:id="@+id/tv_person_name"

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SWImageView"><attr format="dimension" name="borderRadius"/><attr name="type">
+        <enum name="normal" value="-1"/>
+        <enum name="circle" value="0"/>
+        <enum name="round" value="1"/>
+    </attr><attr format="dimension" name="borderWidth"/><attr format="integer" name="borderColor"/></declare-styleable>
+</resources>
+

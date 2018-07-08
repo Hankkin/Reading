@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.bilibili.magicasakura.widgets.TintTextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tv_layout_adapter_tags"
+    android:paddingLeft="@dimen/dp_4"
+    android:paddingRight="@dimen/dp_4"
+    android:paddingTop="1dp"
+    android:textColor="@color/theme_color_primary"
+    android:paddingBottom="1dp"
+    android:background="@drawable/bg_border_theme_round"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"/>
+

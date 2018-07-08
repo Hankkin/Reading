@@ -22,6 +22,10 @@ object Constant{
         const val BASE_URL = "https://www.oschina.net/action/"
     }
 
+    object WanAndroidUrl{
+        const val BASE_URL = "http://www.wanandroid.com/"
+    }
+
     object CONSTANT_KEY{
         const val CODE = "code"
     }

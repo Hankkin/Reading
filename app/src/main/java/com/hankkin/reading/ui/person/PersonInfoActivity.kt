@@ -6,6 +6,7 @@ import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseMvpActivity
 import com.hankkin.reading.control.UserControl
 import com.hankkin.reading.domain.UserInfoBean
+import com.hankkin.reading.utils.GlideUtils
 import com.hankkin.reading.utils.SnackbarUtils
 import kotlinx.android.synthetic.main.activity_person_info.*
 import kotlinx.android.synthetic.main.layout_title_bar_back.*
@@ -67,7 +68,7 @@ class PersonInfoActivity : BaseMvpActivity<PersonInfoPresenter>(), PersonInfoCon
                 }
             }
             if (userInfoBean.portrait.isNotEmpty())
-                iv_person_info_avatar.loadCircleImage(userInfoBean.portrait,R.mipmap.icon_person_avatar)
+                GlideUtils.loadImageView(this,userInfoBean.portrait,iv_person_info_avatar)
         }
     }
 

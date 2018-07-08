@@ -37,13 +37,15 @@
                     android:focusable="true"
                     tools:ignore="UselessParent">
 
-                    <com.sunfusheng.glideimageview.GlideImageView
+                    <com.hankkin.reading.view.widget.SWImageView
                         android:id="@+id/iv_person_info_avatar"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:src="@mipmap/icon_person_avatar"
-                        app:siv_border_color="@color/grey"
-                        app:siv_border_width="2dp" />
+                        app:borderColor="@color/grey"
+                        app:borderWidth="1dp"
+                        app:type="circle"
+                        />
 
                     <LinearLayout
                         android:id="@+id/ll_person_info_header_info"

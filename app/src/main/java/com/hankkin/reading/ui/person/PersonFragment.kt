@@ -12,6 +12,7 @@ import com.hankkin.reading.domain.NoticeBean
 import com.hankkin.reading.domain.PersonListBean
 import com.hankkin.reading.ui.login.LoginActivity
 import com.hankkin.reading.ui.user.AuthorizeWebActivity
+import com.hankkin.reading.utils.GlideUtils
 import com.hankkin.reading.utils.Key4Intent
 import com.hankkin.reading.utils.LogUtils
 import kotlinx.android.synthetic.main.fragment_person.*
@@ -74,7 +75,7 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
             tv_person_name.text = user!!.name
             if (user.avatar.isNotEmpty())
                 LogUtils.d(javaClass.simpleName + ">>>>" + user.avatar)
-            iv_person_avatar.loadCircleImage(user.avatar, R.mipmap.icon_person_avatar)
+            GlideUtils.loadImageView(context,user.avatar, iv_person_avatar)
             getPresenter().getUserNotice(SPUtils.getString(UserControl.TOKEN))
         } else {
             tv_person_name.text = resources.getString(R.string.person_no_login)

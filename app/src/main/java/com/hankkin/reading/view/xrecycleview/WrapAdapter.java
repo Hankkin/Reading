@@ -1,4 +1,4 @@
-package com.hankkin.library.xrecycleview;
+package com.hankkin.reading.view.xrecycleview;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;

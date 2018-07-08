@@ -1,4 +1,4 @@
-package com.hankkin.library.xrecycleview.baseadapter;
+package com.hankkin.reading.view.xrecycleview.baseadapter;
 
 /**
  * Created by jingbin on 2016/3/2.

@@ -3,21 +3,16 @@ package com.hankkin.reading.ui.home
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
-import com.bilibili.magicasakura.utils.ThemeUtils
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.HomeFragmentPagerAdapter
-import com.hankkin.reading.adapter.MainFragmentAdapter
 import com.hankkin.reading.base.BaseFragment
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.ui.home.blog.BlogFragment
-import com.hankkin.reading.ui.home.news.NewsFragment
-import com.hankkin.reading.ui.home.post.PostFragment
-import com.hankkin.reading.ui.person.PersonFragment
-import com.hankkin.reading.ui.translate.TranslateFragment
+import com.hankkin.reading.ui.home.android.AndroidFragment
+import com.hankkin.reading.ui.home.project.ProjectFragment
 import com.hankkin.reading.utils.RxBus
 import com.hankkin.reading.utils.ThemeHelper
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.fragment_post.*
 
 /**
  * Created by huanghaijie on 2018/5/15.
@@ -25,8 +20,8 @@ import kotlinx.android.synthetic.main.fragment_post.*
 class HomeFragment : BaseFragment() {
 
     private val mFgList = listOf<Fragment>(
-            NewsFragment(),
-            PostFragment(),
+            AndroidFragment(),
+            ProjectFragment(),
             BlogFragment()
     )
 

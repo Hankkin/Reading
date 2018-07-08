@@ -47,16 +47,18 @@ dependencies {
     implementation('com.github.afollestad.material-dialogs:core:0.8.5.8@aar') {
         transitive = true
     }
-    //glide图片封装
-    implementation 'com.sunfusheng:glideimageview:1.2.0'
     //首页tab
     implementation 'com.github.Andy671:Dachshund-Tab-Layout:v0.3.0'
     //悬浮按钮
     implementation 'com.github.clans:fab:1.6.4'
+    implementation 'com.xhb:xbanner:1.4.0'
     //主题换肤
     //    implementation 'com.bilibili:magicasakura:0.1.8@aar'
     //底部弹出dialog
     implementation 'com.cocosw:bottomsheet:1.3.1@aar'
+    implementation ('com.github.saiff35:livingtabs:0.1.0') {
+        exclude module: 'design'
+    }
     implementation project(':library')
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     implementation project(':magicasakura')

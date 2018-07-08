@@ -17,7 +17,7 @@
             custom:tabGravity="fill"
             custom:tabMode="fixed"
             custom:tabSelectedTextColor="@color/white"
-            custom:tabTextColor="@color/grey1"
+            custom:tabTextColor="@color/grey2"
             custom:tabIndicatorColor="@color/white"
             />
     </com.bilibili.magicasakura.widgets.TintLinearLayout>

@@ -5,8 +5,6 @@ import android.content.Context;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.GlideBuilder;
-import com.bumptech.glide.Registry;
-import com.bumptech.glide.integration.okhttp3.OkHttpUrlLoader;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.module.GlideModule;
   
@@ -24,7 +22,15 @@ import okhttp3.OkHttpClient;
 public class OkHttpGlideModule implements GlideModule {  
     @Override  
     public void applyOptions(Context context, GlideBuilder builder) {
-    }  
+    }
+
+    @Override
+    public void registerComponents(Context context, Glide glide) {
+        OkHttpClient mHttpClient = new OkHttpClient().newBuilder()
+                .sslSocketFactory(createSSLSocketFactory())
+                .build();
+        glide.register(GlideUrl.class,InputStream.class, new OkHttpUrlLoader.Factory(mHttpClient));
+    }
 
 
     private  SSLSocketFactory createSSLSocketFactory() {
@@ -37,14 +43,6 @@ public class OkHttpGlideModule implements GlideModule {
             e.printStackTrace();
         }
         return ssfFactory;
-    }
-
-    @Override
-    public void registerComponents(Context context, Glide glide, Registry registry) {
-        OkHttpClient mHttpClient = new OkHttpClient().newBuilder()
-                .sslSocketFactory(createSSLSocketFactory())
-                .build();
-        registry.replace(GlideUrl.class, InputStream.class, new OkHttpUrlLoader.Factory(mHttpClient));
     }
 
     @SuppressLint("TrustAllX509TrustManager")

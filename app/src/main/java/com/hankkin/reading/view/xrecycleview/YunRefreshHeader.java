@@ -1,4 +1,4 @@
-package com.hankkin.library.xrecycleview;
+package com.hankkin.reading.view.xrecycleview;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -12,7 +12,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.hankkin.library.R;
+import com.hankkin.reading.R;
+
 
 /**
  * Created by yangcai on 2016/1/27.

@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.sunfusheng.glideimageview.GlideImageView
+    <com.hankkin.reading.view.widget.SWImageView
+        app:borderColor="@color/grey"
+        app:borderWidth="1dp"
         android:src="@mipmap/icon_person_avatar"
         android:id="@+id/iv_adapter_friend_avatar"
-        app:siv_border_color="@color/theme_color_primary"
-        app:siv_shape_type="circle"
-        app:siv_border_width="2dp"
+        app:type="circle"
         android:layout_width="70dp"
         android:layout_height="70dp" />
 

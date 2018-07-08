@@ -34,14 +34,14 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:background="?attr/selectableItemBackgroundBorderless"
-                        android:src="@drawable/home_news_selector" />
+                        android:src="@drawable/home_android_selector" />
 
                     <ImageView
                         android:id="@+id/iv_title_two"
                         android:layout_width="65dp"
                         android:layout_height="match_parent"
                         android:background="?attr/selectableItemBackgroundBorderless"
-                        android:src="@drawable/home_post_selector" />
+                        android:src="@drawable/home_project_selector" />
 
                     <ImageView
                         android:id="@+id/iv_title_three"

@@ -49,6 +49,15 @@ object HttpClient {
                 .build()
     }
 
+    private val wanAndroidRetrofit by lazy {
+        Retrofit.Builder()
+                .client(mHttpClient)
+                .baseUrl(Constant.WanAndroidUrl.BASE_URL)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+    }
+
     private val weatherRetrofit by lazy {
         Retrofit.Builder()
                 .client(mHttpClient)
@@ -74,6 +83,7 @@ object HttpClient {
 
     fun getnorRetrofit() = jsonRetrofit
     fun getWeaRetrofit() = weatherRetrofit
+    fun getwanAndroidRetrofit() = wanAndroidRetrofit
 
     private fun createSSLSocketFactory(): SSLSocketFactory {
         val sc = SSLContext.getInstance("SSL")
