@@ -6,14 +6,11 @@ import com.hankkin.library.utils.SPUtils
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.PersonListAdapter
 import com.hankkin.reading.base.BaseMvpFragment
-import com.hankkin.reading.common.Constant
 import com.hankkin.reading.control.UserControl
 import com.hankkin.reading.domain.NoticeBean
 import com.hankkin.reading.domain.PersonListBean
 import com.hankkin.reading.ui.login.LoginActivity
-import com.hankkin.reading.ui.user.AuthorizeWebActivity
 import com.hankkin.reading.utils.GlideUtils
-import com.hankkin.reading.utils.Key4Intent
 import com.hankkin.reading.utils.LogUtils
 import kotlinx.android.synthetic.main.fragment_person.*
 

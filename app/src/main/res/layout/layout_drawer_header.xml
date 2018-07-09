@@ -37,7 +37,7 @@
                 android:paddingTop="@dimen/activity_vertical_margin">
 
                 <com.hankkin.reading.view.widget.SWImageView
-                    app:type="round"
+                    app:type="circle"
                     android:src="@mipmap/icon_person_avatar"
                     android:id="@+id/iv_avatar"
                     android:layout_width="60dp"
@@ -96,7 +96,8 @@
             android:paddingLeft="16dp"
             android:paddingRight="16dp">
 
-            <ImageView
+            <com.bilibili.magicasakura.widgets.TintImageView
+                app:imageTint="@color/theme_color_primary"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@mipmap/drawer_collect" />
@@ -125,7 +126,8 @@
             android:paddingLeft="16dp"
             android:paddingRight="16dp">
 
-            <ImageView
+            <com.bilibili.magicasakura.widgets.TintImageView
+                app:imageTint="@color/theme_color_primary"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@mipmap/drawer_note" />
@@ -151,7 +153,8 @@
             android:paddingLeft="16dp"
             android:paddingRight="16dp">
 
-            <ImageView
+            <com.bilibili.magicasakura.widgets.TintImageView
+                app:imageTint="@color/theme_color_primary"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@mipmap/drawer_pwd" />
@@ -166,13 +169,8 @@
 
         </com.bilibili.magicasakura.widgets.TintLinearLayout>
 
-        <View
-            android:id="@+id/line"
-            android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:background="@color/grey1" />
         <com.bilibili.magicasakura.widgets.TintLinearLayout
-            android:id="@+id/ll_nav_scan_download"
+            android:id="@+id/ll_nav_theme"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:background="?attr/selectableItemBackground"
@@ -182,7 +180,40 @@
             android:paddingLeft="16dp"
             android:paddingRight="16dp">
 
-            <ImageView
+            <com.bilibili.magicasakura.widgets.TintImageView
+                app:imageTint="@color/theme_color_primary"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@mipmap/drawer_theme" />
+
+            <com.bilibili.magicasakura.widgets.TintTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:text="@string/setting_theme"
+                android:textColor="@color/theme_color_primary"
+                android:textSize="15sp" />
+
+        </com.bilibili.magicasakura.widgets.TintLinearLayout>
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="@color/grey1" />
+        <com.bilibili.magicasakura.widgets.TintLinearLayout
+            android:id="@+id/ll_nav_setting"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <com.bilibili.magicasakura.widgets.TintImageView
+                app:imageTint="@color/theme_color_primary"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@mipmap/drawer_setting" />
@@ -207,7 +238,8 @@
             android:paddingLeft="16dp"
             android:paddingRight="16dp">
 
-            <ImageView
+            <com.bilibili.magicasakura.widgets.TintImageView
+                app:imageTint="@color/theme_color_primary"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@mipmap/drawer_about" />

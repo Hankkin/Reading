@@ -1,14 +1,18 @@
 package com.hankkin.reading.ui.home.android
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.AndroidAdapter
+import com.hankkin.reading.adapter.base.OnItemClickListener
 import com.hankkin.reading.adapter.base.XRecyclerView
 import com.hankkin.reading.base.BaseMvpFragment
 import com.hankkin.reading.domain.ArticleBean
+import com.hankkin.reading.domain.ArticleDetailBean
 import com.hankkin.reading.event.EventMap
+import com.hankkin.reading.ui.home.articledetail.ArticleDetailActivity
 import com.hankkin.reading.utils.RxBus
 import com.hankkin.reading.utils.ThemeHelper
 import com.hankkin.reading.utils.ToastUtils

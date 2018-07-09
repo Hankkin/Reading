@@ -2,13 +2,14 @@ package com.hankkin.reading.mvp.view
 
 import android.app.Activity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import com.hankkin.reading.mvp.contract.IBaseViewContract
 import com.hankkin.reading.mvp.contract.IPresenterContract
 
 /**
  * Created by huanghaijie on 2018/5/16.
  */
- abstract class MvpActivity<out T : IPresenterContract> : Activity() ,IBaseView<T>, IBaseViewContract {
+ abstract class MvpActivity<out T : IPresenterContract> : AppCompatActivity() ,IBaseView<T>, IBaseViewContract {
 
     private val mPresenter: T by lazy {
         val clazz = registerPresenter()

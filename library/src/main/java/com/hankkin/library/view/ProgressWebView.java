@@ -16,7 +16,20 @@ import com.hankkin.library.R;
  */
 
 public class ProgressWebView extends WebView {
-    private static ProgressBar mProgressBar;
+
+    private  ProgressBar mProgressBar;
+
+    public void hideProgress() {
+        mProgressBar.setVisibility(GONE);
+    }
+
+
+    public static final String TAG = ProgressWebView.class.getSimpleName();
+
+
+    public ProgressWebView(Context context) {
+        super(context);
+    }
 
     public ProgressWebView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -30,7 +43,7 @@ public class ProgressWebView extends WebView {
                 R.drawable.web_progress_bar_states);
         mProgressBar.setProgressDrawable(drawable);
         addView(mProgressBar);
-        setWebChromeClient(new WebChromeClient());
+        setWebChromeClient(new WebChromeClient(mProgressBar));
         setLayerType(View.LAYER_TYPE_SOFTWARE, null);
     }
 
@@ -41,14 +54,21 @@ public class ProgressWebView extends WebView {
     }
 
     public static class WebChromeClient extends android.webkit.WebChromeClient {
+
+        private ProgressBar progressBar;
+
+        public WebChromeClient(ProgressBar progressBar) {
+            this.progressBar = progressBar;
+        }
+
         @Override
         public void onProgressChanged(WebView view, int newProgress) {
             if (newProgress == 100) {
-                mProgressBar.setVisibility(GONE);
+                progressBar.setVisibility(GONE);
             } else {
-                if (mProgressBar.getVisibility() == GONE)
-                    mProgressBar.setVisibility(VISIBLE);
-                mProgressBar.setProgress(newProgress);
+                if (progressBar.getVisibility() == GONE)
+                    progressBar.setVisibility(VISIBLE);
+                progressBar.setProgress(newProgress);
             }
             super.onProgressChanged(view, newProgress);
         }
@@ -63,7 +83,4 @@ public class ProgressWebView extends WebView {
         super.onScrollChanged(l, t, oldl, oldt);
     }
 
-    public void hideProgress() {
-        mProgressBar.setVisibility(GONE);
-    }
 }

@@ -1,5 +1,6 @@
 package com.hankkin.reading.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import com.hankkin.reading.R
 import com.hankkin.reading.adapter.base.BaseRecyclerViewAdapter
 import com.hankkin.reading.adapter.base.BaseRecyclerViewHolder
 import com.hankkin.reading.domain.ArticleDetailBean
+import com.hankkin.reading.ui.home.articledetail.ArticleDetailActivity
 import com.hankkin.reading.utils.GlideUtils
 
 /**
@@ -60,6 +62,12 @@ class AndroidAdapter : BaseRecyclerViewAdapter<ArticleDetailBean>() {
                 val tv = LayoutInflater.from(llTags.context).inflate(R.layout.layout_adapter_android_tag,null) as TintTextView
                 tv.text = "新"
                 llTags.addView(tv)
+            }
+            itemView.setOnClickListener {
+                val intent = Intent(itemView.context, ArticleDetailActivity::class.java)
+                intent.putExtra("url",bean.link)
+                intent.putExtra("title",bean.title)
+                itemView.context.startActivity(intent)
             }
         }
 
