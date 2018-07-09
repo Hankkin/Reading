@@ -1,4 +1,4 @@
-package com.hankkin.reading.view.xrecycleview;
+package com.hankkin.reading.adapter.base;
 
 
 import android.content.Context;
@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.MotionEvent;
 import android.view.View;
@@ -262,7 +263,7 @@ public class XRecyclerView extends RecyclerView {
         }
     }
 
-    private final AdapterDataObserver mDataObserver = new AdapterDataObserver() {
+    private final RecyclerView.AdapterDataObserver mDataObserver = new RecyclerView.AdapterDataObserver() {
         @Override
         public void onChanged() {
             mWrapAdapter.notifyDataSetChanged();

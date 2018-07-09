@@ -5,10 +5,10 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.hankkin.reading.R
+import com.hankkin.reading.adapter.base.BaseRecyclerViewAdapter
+import com.hankkin.reading.adapter.base.BaseRecyclerViewHolder
 import com.hankkin.reading.domain.PersonListBean
 import com.hankkin.reading.utils.ToastUtils
-import com.hankkin.reading.view.xrecycleview.baseadapter.BaseRecyclerViewAdapter
-import com.hankkin.reading.view.xrecycleview.baseadapter.BaseRecyclerViewHolder
 
 /**
  * Created by huanghaijie on 2018/6/28.

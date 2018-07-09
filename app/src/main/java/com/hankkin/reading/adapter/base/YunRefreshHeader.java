@@ -1,4 +1,4 @@
-package com.hankkin.reading.view.xrecycleview;
+package com.hankkin.reading.adapter.base;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -13,7 +13,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hankkin.reading.R;
-
 
 /**
  * Created by yangcai on 2016/1/27.
@@ -41,18 +40,18 @@ public class YunRefreshHeader extends LinearLayout implements BaseRefreshHeader 
     }
 
     private void initView() {
-        LayoutInflater.from(mContext).inflate(R.layout.kaws_refresh_header, this);
-        ImageView img = (ImageView) findViewById(R.id.img);
+        LayoutInflater.from(mContext).inflate( R.layout.kaws_refresh_header, this);
+        ImageView img = (ImageView) findViewById( R.id.img);
 
         animationDrawable = (AnimationDrawable) img.getDrawable();
         if (animationDrawable.isRunning()) {
             animationDrawable.stop();
         }
-        msg = (TextView) findViewById(R.id.msg);
+        msg = (TextView) findViewById( R.id.msg);
         measure(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         mMeasuredHeight = getMeasuredHeight();
         setGravity(Gravity.CENTER_HORIZONTAL);
-        mContainer = (LinearLayout) findViewById(R.id.container);
+        mContainer = (LinearLayout) findViewById( R.id.container);
         mContainer.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, 0));
         this.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
     }
@@ -79,21 +78,21 @@ public class YunRefreshHeader extends LinearLayout implements BaseRefreshHeader 
                 if (animationDrawable.isRunning()) {
                     animationDrawable.stop();
                 }
-                msg.setText(R.string.listview_header_hint_normal);
+                msg.setText( R.string.listview_header_hint_normal);
                 break;
             case STATE_RELEASE_TO_REFRESH:
                 if (mState != STATE_RELEASE_TO_REFRESH) {
                     if (!animationDrawable.isRunning()) {
                         animationDrawable.start();
                     }
-                    msg.setText(R.string.listview_header_hint_release);
+                    msg.setText( R.string.listview_header_hint_release);
                 }
                 break;
             case STATE_REFRESHING:
-                msg.setText(R.string.refreshing);
+                msg.setText( R.string.refreshing);
                 break;
             case STATE_DONE:
-                msg.setText(R.string.refresh_done);
+                msg.setText( R.string.refresh_done);
                 break;
             default:
         }

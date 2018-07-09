@@ -12,7 +12,9 @@ import com.hankkin.reading.ui.home.android.AndroidFragment
 import com.hankkin.reading.ui.home.project.ProjectFragment
 import com.hankkin.reading.utils.RxBus
 import com.hankkin.reading.utils.ThemeHelper
+import com.hankkin.reading.utils.ToastUtils
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_home.view.*
 
 /**
  * Created by huanghaijie on 2018/5/15.
@@ -57,6 +59,7 @@ class HomeFragment : BaseFragment() {
         })
         setCurrent(0)
         setFabColor()
+        setFabClickListener()
 
         RxBus.getDefault().toObservable(EventMap.ChangeFabEvent::class.java)
                 .subscribe({
@@ -64,19 +67,35 @@ class HomeFragment : BaseFragment() {
                 })
     }
 
+    fun setFabClickListener(){
+        fab_menu_add.setClosedOnTouchOutside(true)
+        fab_up.setOnClickListener {
+            RxBus.getDefault().post(EventMap.ToUpEvent())
+            fab_menu_add.close(true)
+        }
+        fab_refresh.setOnClickListener {
+            RxBus.getDefault().post(EventMap.HomeRefreshEvent())
+            fab_menu_add.close(true)
+        }
+        fab_write.setOnClickListener {
+            ToastUtils.showToast(context,"敬请期待...")
+            fab_menu_add.close(true)
+        }
+    }
+
     fun setFabColor(){
         fab_menu_add.setMenuButtonColorNormalResId(ThemeHelper.getCurrentColor(context))
-        fab_fire.setColorNormalResId(ThemeHelper.getCurrentColor(context))
+        fab_up.setColorNormalResId(ThemeHelper.getCurrentColor(context))
         fab_refresh.setColorNormalResId(ThemeHelper.getCurrentColor(context))
         fab_write.setColorNormalResId(ThemeHelper.getCurrentColor(context))
 
         fab_menu_add.setMenuButtonColorPressedResId(ThemeHelper.getCurrentColor(context))
-        fab_fire.setColorPressedResId(ThemeHelper.getCurrentColor(context))
+        fab_up.setColorPressedResId(ThemeHelper.getCurrentColor(context))
         fab_refresh.setColorPressedResId(ThemeHelper.getCurrentColor(context))
         fab_write.setColorPressedResId(ThemeHelper.getCurrentColor(context))
 
         fab_menu_add.setMenuButtonColorRippleResId(ThemeHelper.getCurrentColor(context))
-        fab_fire.setColorRippleResId(ThemeHelper.getCurrentColor(context))
+        fab_up.setColorRippleResId(ThemeHelper.getCurrentColor(context))
         fab_refresh.setColorRippleResId(ThemeHelper.getCurrentColor(context))
         fab_write.setColorRippleResId(ThemeHelper.getCurrentColor(context))
     }

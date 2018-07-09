@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <LinearLayout
@@ -13,15 +14,19 @@
         android:paddingTop="10dp">
 
         <com.bilibili.magicasakura.widgets.TintProgressBar
+            app:progressIndeterminateTint="@color/theme_color_primary"
             android:id="@+id/progress"
-            android:layout_width="30dp"
-            android:layout_height="30dp" />
+            android:indeterminate="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/yun_anim" />
+
         <com.bilibili.magicasakura.widgets.TintTextView
             android:id="@+id/msg"
-            android:textColor="@color/theme_color_primary"
-            android:layout_marginLeft="5dp"
-            android:text="@string/listview_loading"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="@string/listview_loading"
+            android:textColor="#333333" />
     </LinearLayout>
 </LinearLayout>

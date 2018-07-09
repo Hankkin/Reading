@@ -73,5 +73,7 @@ object EventMap {
 
     class ChangeThemeEvent : BaseEvent()
     class ChangeFabEvent : BaseEvent()
+    class ToUpEvent : BaseEvent()
+    class HomeRefreshEvent : BaseEvent()
 
 }

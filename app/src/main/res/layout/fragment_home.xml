@@ -11,10 +11,10 @@
         android:theme="@style/AppTheme.AppBarOverlay"
         android:background="@color/theme_color_primary"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="?attr/actionBarSize">
         <com.bilibili.magicasakura.widgets.TintToolbar
+            app:layout_scrollFlags="enterAlways|enterAlwaysCollapsed"
             android:background="@color/theme_color_primary"
-            app:layout_scrollFlags="scroll|enterAlways"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <HorizontalScrollView
@@ -87,13 +87,13 @@
             fab:menu_colorNormal="@color/theme_color_primary"
             fab:menu_colorPressed="@color/theme_color_primary"
             fab:menu_colorRipple="@color/theme_color_primary"
-            android:id="@+id/fab_fire"
+            android:id="@+id/fab_up"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/fab_active"
+            android:src="@mipmap/fab_up"
             style="@style/menu_labels_style"
             fab:fab_size="mini"
-            fab:fab_label="@string/home_active" />
+            fab:fab_label="@string/home_fab_up" />
 
         <com.github.clans.fab.FloatingActionButton
             fab:menu_colorNormal="@color/theme_color_primary"
@@ -102,23 +102,23 @@
             android:id="@+id/fab_refresh"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/fab_blog"
+            android:src="@mipmap/fab_refresh"
             style="@style/menu_labels_style"
             fab:fab_size="mini"
-            fab:fab_label="@string/home_blog" />
+            fab:fab_label="@string/home_fab_refresh" />
 
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab_write"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/fab_post"
+            android:src="@mipmap/fab_write"
             fab:fab_size="mini"
             style="@style/menu_labels_style"
             fab:menu_colorNormal="@color/theme_color_primary"
             fab:menu_colorPressed="@color/theme_color_primary"
             fab:menu_colorRipple="@color/theme_color_primary_dark"
-            fab:fab_label="@string/home_post" />
+            fab:fab_label="@string/home_fab_write" />
 
     </com.github.clans.fab.FloatingActionMenu>
 

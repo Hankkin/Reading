@@ -9,6 +9,7 @@
     tools:context="com.hankkin.reading.ui.main.MainActivity">
 
     <com.hankkin.reading.view.NoScrollViewPager
+        android:descendantFocusability="blocksDescendants"
         android:id="@+id/vp_home"
         android:layout_weight="1"
         android:layout_width="match_parent"

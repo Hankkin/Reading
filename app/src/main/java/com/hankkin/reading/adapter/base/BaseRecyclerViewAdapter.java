@@ -1,4 +1,4 @@
-package com.hankkin.reading.view.xrecycleview.baseadapter;
+package com.hankkin.reading.adapter.base;
 
 import android.support.v7.widget.RecyclerView;
 

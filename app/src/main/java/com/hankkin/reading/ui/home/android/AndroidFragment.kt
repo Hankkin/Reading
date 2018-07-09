@@ -5,11 +5,13 @@ import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.AndroidAdapter
+import com.hankkin.reading.adapter.base.XRecyclerView
 import com.hankkin.reading.base.BaseMvpFragment
 import com.hankkin.reading.domain.ArticleBean
+import com.hankkin.reading.event.EventMap
+import com.hankkin.reading.utils.RxBus
 import com.hankkin.reading.utils.ThemeHelper
 import com.hankkin.reading.utils.ToastUtils
-import com.hankkin.reading.view.xrecycleview.XRecyclerView
 import kotlinx.android.synthetic.main.fragment_news.*
 
 /**
@@ -38,9 +40,27 @@ class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IVie
     }
 
     override fun initData() {
+        initXrv()
+        loadData(mPage)
+        RxBus.getDefault().toObservable(EventMap.BaseEvent::class.java)
+                .subscribe({
+                    if (it is EventMap.ToUpEvent){
+                        xrv_android.scrollToPosition(0)
+                    }else if (it is EventMap.HomeRefreshEvent){
+                        onRefresh()
+                    }
+                })
+    }
+
+    fun initXrv() {
         mAdapter = AndroidAdapter()
-        xrv_android.layoutManager = LinearLayoutManager(context)
+        val linearLayoutManager = LinearLayoutManager(context)
+        xrv_android.layoutManager = linearLayoutManager
         xrv_android.setPullRefreshEnabled(false)
+        xrv_android.clearHeader()
+        xrv_android.adapter = mAdapter
+        refresh_android.setOnRefreshListener(this)
+        refresh_android.isRefreshing = true
         xrv_android.setLoadingListener(object : XRecyclerView.LoadingListener {
             override fun onLoadMore() {
                 loadData(mPage)
@@ -50,12 +70,7 @@ class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IVie
             }
 
         })
-        xrv_android.adapter = mAdapter
-        refresh_android.setOnRefreshListener(this)
-        refresh_android.isRefreshing = true
-        loadData(mPage)
     }
-
 
     override fun setFail() {
         refresh_android.isRefreshing = false
@@ -68,6 +83,8 @@ class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IVie
     }
 
     override fun onRefresh() {
+        xrv_android.reset()
+        refresh_android.isRefreshing = true
         mPage = 0
         loadData(mPage)
     }
@@ -77,6 +94,7 @@ class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IVie
     override fun setArticle(articleBean: ArticleBean) {
         mPage = articleBean.curPage
         if (mPage < 2) {
+            xrv_android.scrollToPosition(0)
             mAdapter.clear()
         }
         mAdapter.addAll(articleBean.datas)
@@ -85,7 +103,7 @@ class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IVie
             xrv_android.noMoreLoading()
         }
         xrv_android.refreshComplete()
-        if (refresh_android.isRefreshing){
+        if (refresh_android.isRefreshing) {
             refresh_android.isRefreshing = false
         }
     }

@@ -7,32 +7,31 @@
     android:layout_height="match_parent"
     app:ignore="NamespaceTypo">
 
-    <RelativeLayout
-        android:visibility="gone"
-        android:id="@+id/rl_project_banner"
+    <android.support.v4.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/refresh_project"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <com.bilibili.magicasakura.widgets.TintView
-            android:background="@color/theme_color_primary"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="80dp"/>
+            android:layout_height="match_parent">
 
-        <com.stx.xhb.xbanner.XBanner
-            android:paddingLeft="@dimen/dp_10"
-            android:paddingRight="@dimen/dp_10"
-            android:id="@+id/banner_project"
-            app:AutoPlayTime="3000"
-            app1:pointsContainerBackground="@color/deep_transparent"
-            app1:pointsPosition="RIGHT"
-            app1:tipTextSize="@dimen/sp_13"
-            app1:pointsVisibility="true"
-            app1:pointNormal="@drawable/shape_noraml"
-            app1:pointSelect="@drawable/shape_selected"
-            app:isShowNumberIndicator="true"
-            app:isShowIndicatorOnlyOne="true"
-            app:pageChangeDuration="800"
-            android:layout_width="match_parent"
-            android:layout_height="160dp"/>
-    </RelativeLayout>
+
+            <com.hankkin.reading.adapter.base.XRecyclerView
+                android:layout_marginTop="-1dp"
+                android:scrollbarAlwaysDrawVerticalTrack="true"
+                android:scrollbarFadeDuration="1"
+                android:scrollbarSize="4dp"
+                android:scrollbars="vertical"
+                android:id="@+id/xrv_project"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+
+        </LinearLayout>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
 
 </LinearLayout>

@@ -8,10 +8,10 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.bilibili.magicasakura.widgets.TintTextView
 import com.hankkin.reading.R
+import com.hankkin.reading.adapter.base.BaseRecyclerViewAdapter
+import com.hankkin.reading.adapter.base.BaseRecyclerViewHolder
 import com.hankkin.reading.domain.ArticleDetailBean
 import com.hankkin.reading.utils.GlideUtils
-import com.hankkin.reading.view.xrecycleview.baseadapter.BaseRecyclerViewAdapter
-import com.hankkin.reading.view.xrecycleview.baseadapter.BaseRecyclerViewHolder
 
 /**
  * Created by huanghaijie on 2018/7/8.

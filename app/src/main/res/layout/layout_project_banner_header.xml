@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:visibility="visible"
+    android:id="@+id/rl_project_banner"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app1="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/tools"
+    app:ignore="NamespaceTypo">
+    <com.bilibili.magicasakura.widgets.TintView
+        android:background="@color/theme_color_primary"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"/>
+
+    <com.stx.xhb.xbanner.XBanner
+        app1:pointContainerLeftRightPadding="@dimen/dp_20"
+        android:id="@+id/banner_project"
+        app:AutoPlayTime="3000"
+        app1:pointsPosition="RIGHT"
+        app1:tipTextSize="@dimen/sp_13"
+        app1:pointsVisibility="true"
+        app1:pointsContainerBackground="#55ffffff"
+        app1:pointNormal="@drawable/shape_noraml"
+        app1:pointSelect="@drawable/shape_selected"
+        app:isShowNumberIndicator="true"
+        app:isShowIndicatorOnlyOne="true"
+        app:pageChangeDuration="800"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"/>
+</RelativeLayout>
