@@ -83,8 +83,7 @@ class MainActivity : BaseActivity() {
 
     override fun initViews(savedInstanceState: Bundle?) {
 
-        StatusBarUtil.setColorNoTranslucentForDrawerLayout(this@MainActivity, drawer_layout,
-                resources.getColor(ThemeHelper.getCurrentColor(this)))
+        setStatuBar()
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         val mainAdapter = MainFragmentAdapter(supportFragmentManager, fgList)
@@ -101,6 +100,11 @@ class MainActivity : BaseActivity() {
 
     fun openDrawer(){
         drawer_layout.openDrawer(Gravity.LEFT)
+    }
+
+    fun setStatuBar(){
+        StatusBarUtil.setColorNoTranslucentForDrawerLayout(this@MainActivity, drawer_layout,
+                resources.getColor(ThemeHelper.getCurrentColor(this)))
     }
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
@@ -156,6 +160,7 @@ class MainActivity : BaseActivity() {
     }
 
     fun changeTheme() {
+        setStatuBar()
         ThemeUtils.refreshUI(this, object : ThemeUtils.ExtraRefreshable {
             override fun refreshSpecificView(view: View?) {
             }

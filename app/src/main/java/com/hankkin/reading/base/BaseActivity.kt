@@ -1,10 +1,9 @@
 package com.hankkin.reading.base
 
 import android.app.Activity
-import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.view.WindowManager
+import android.view.View
 import com.hankkin.library.utils.StatusBarUtil
 import com.hankkin.reading.utils.ThemeHelper
 
@@ -24,9 +23,7 @@ abstract class BaseActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         activity = this
         if (getLayoutId() != 0) setContentView(getLayoutId())
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            window.attributes.flags = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
-        }
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
 
         StatusBarUtil.MIUISetStatusBarLightMode(this.getWindow(), true)
         StatusBarUtil.FlymeSetStatusBarLightMode(this.getWindow(), true)
