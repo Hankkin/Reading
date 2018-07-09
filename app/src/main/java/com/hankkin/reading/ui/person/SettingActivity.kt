@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import com.bilibili.magicasakura.utils.ThemeUtils
 import com.cocosw.bottomsheet.BottomSheet
+import com.hankkin.library.utils.StatusBarUtil
 import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseActivity
 import com.hankkin.reading.event.EventMap
@@ -28,6 +29,9 @@ class SettingActivity : BaseActivity() {
     }
 
     override fun initViews(savedInstanceState: Bundle?) {
+
+        StatusBarUtil.setColor(this, resources.getColor(R.color.white), 0)
+
         mCurrentTheme = ThemeHelper.getTheme(this)
         tv_setting_theme_value.text = ThemeHelper.getName(this,mCurrentTheme)
         initThemeBuilder()

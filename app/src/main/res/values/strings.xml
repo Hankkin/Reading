@@ -10,6 +10,10 @@
     <string name="home_fab_up">返回顶部</string>
     <string name="home_fab_refresh">刷新</string>
     <string name="home_fab_write">分享</string>
+    <string name="drawer_collect">我的收藏</string>
+    <string name="drawer_note">单词本</string>
+    <string name="drawer_pwd">账号本子</string>
+    <string name="drawer_about">关于Reading</string>
 
     <string name="translate_search_hint">在此输入单词或句子</string>
     <string name="format_weather">%1$s  %2$s℃</string>
@@ -74,4 +78,7 @@
         <item>拍照</item>
         <item>相册</item>
     </string-array>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>

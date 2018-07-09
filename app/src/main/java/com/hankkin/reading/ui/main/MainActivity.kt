@@ -11,9 +11,12 @@ import android.support.design.internal.BottomNavigationItemView
 import android.support.design.internal.BottomNavigationMenuView
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
+import android.support.v7.app.ActionBarDrawerToggle
+import android.view.Gravity
 import android.view.View
 import android.widget.Toast
 import com.bilibili.magicasakura.utils.ThemeUtils
+import com.hankkin.library.utils.StatusBarUtil
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.MainFragmentAdapter
 import com.hankkin.reading.base.BaseActivity
@@ -31,6 +34,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 @RequiresApi(Build.VERSION_CODES.M)
 class MainActivity : BaseActivity() {
 
+    private var toggle: ActionBarDrawerToggle? = null
 
     companion object {
         private const val DEFAULT_FG_SIZE = 3
@@ -78,13 +82,26 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initViews(savedInstanceState: Bundle?) {
+
+        StatusBarUtil.setColorNoTranslucentForDrawerLayout(this@MainActivity, drawer_layout,
+                resources.getColor(ThemeHelper.getCurrentColor(this)))
+
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         val mainAdapter = MainFragmentAdapter(supportFragmentManager, fgList)
         vp_home.adapter = mainAdapter
         vp_home.offscreenPageLimit = DEFAULT_FG_SIZE
         setTabColor(0)
+        toggle = ActionBarDrawerToggle(this,drawer_layout,R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        toggle!!.syncState()
+        drawer_layout.addDrawerListener(toggle!!)
+
+        nav_view.inflateHeaderView(R.layout.layout_drawer_header)
     }
 
+
+    fun openDrawer(){
+        drawer_layout.openDrawer(Gravity.LEFT)
+    }
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         clearTabColor()

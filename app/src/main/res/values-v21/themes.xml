@@ -12,6 +12,11 @@
         <item name="android:colorControlActivated">@color/theme_color_primary</item>
         <item name="android:colorControlNormal">@android:color/white</item>
         <item name="android:textColorPrimary">@color/normal_txt</item>
+        <item name="android:screenOrientation">portrait</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
 
     </style>
 

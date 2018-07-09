@@ -1,20 +1,23 @@
 package com.hankkin.reading.ui.home
 
+import android.os.Build
 import android.os.Bundle
+import android.support.annotation.RequiresApi
 import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
+import android.view.View
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.HomeFragmentPagerAdapter
 import com.hankkin.reading.base.BaseFragment
 import com.hankkin.reading.event.EventMap
-import com.hankkin.reading.ui.home.blog.BlogFragment
 import com.hankkin.reading.ui.home.android.AndroidFragment
+import com.hankkin.reading.ui.home.blog.BlogFragment
 import com.hankkin.reading.ui.home.project.ProjectFragment
+import com.hankkin.reading.ui.main.MainActivity
 import com.hankkin.reading.utils.RxBus
 import com.hankkin.reading.utils.ThemeHelper
 import com.hankkin.reading.utils.ToastUtils
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.fragment_home.view.*
 
 /**
  * Created by huanghaijie on 2018/5/15.
@@ -27,7 +30,12 @@ class HomeFragment : BaseFragment() {
             BlogFragment()
     )
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun initViews() {
+        iv_title_menu.setOnClickListener { (activity as MainActivity).openDrawer() }
+        iv_title_one.setOnClickListener { setCurrent(0) }
+        iv_title_two.setOnClickListener { setCurrent(1) }
+        iv_title_three.setOnClickListener { setCurrent(2) }
     }
 
     public fun newInstance(index: Int) {
@@ -107,12 +115,15 @@ class HomeFragment : BaseFragment() {
         when (index) {
             0 -> {
                 isOne = true
+                fab_menu_add.visibility = View.VISIBLE
             }
             1 -> {
                 isTwo = true
+                fab_menu_add.visibility = View.GONE
             }
             2 -> {
                 isThree = true
+                fab_menu_add.visibility = View.GONE
             }
         }
         vp_home.currentItem = index

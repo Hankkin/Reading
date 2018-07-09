@@ -13,10 +13,19 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize">
         <com.bilibili.magicasakura.widgets.TintToolbar
+            android:id="@+id/toobar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:layout_scrollFlags="enterAlways|enterAlwaysCollapsed"
             android:background="@color/theme_color_primary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/iv_title_menu"
+                android:layout_width="23dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:src="@mipmap/titlebar_menu" />
             <HorizontalScrollView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
