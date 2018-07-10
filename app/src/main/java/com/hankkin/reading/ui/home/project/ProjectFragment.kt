@@ -8,8 +8,8 @@ import android.support.v4.app.FragmentStatePagerAdapter
 import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseFragment
 import com.hankkin.reading.ui.home.project.projectlist.ProjectListFragment
-import kotlinx.android.synthetic.main.fragment_post.*
 import com.kekstudio.dachshundtablayout.indicators.PointMoveIndicator
+import kotlinx.android.synthetic.main.fragment_post.*
 
 
 /**

@@ -13,7 +13,7 @@ import com.hankkin.reading.utils.RxBus
 import com.hankkin.reading.utils.ThemeHelper
 import com.hankkin.reading.utils.ToastUtils
 import com.hankkin.reading.utils.ViewHelper
-import kotlinx.android.synthetic.main.fragment_news.*
+import kotlinx.android.synthetic.main.fragment_android.*
 
 /**
  * Created by huanghaijie on 2018/5/15.
@@ -37,7 +37,7 @@ class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IVie
     }
 
     override fun getLayoutId(): Int {
-        return R.layout.fragment_news
+        return R.layout.fragment_android
     }
 
     override fun initData() {

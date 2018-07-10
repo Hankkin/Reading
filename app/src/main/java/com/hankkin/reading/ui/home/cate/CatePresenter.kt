@@ -1,4 +1,4 @@
-package com.hankkin.reading.ui.home.android
+package com.hankkin.reading.ui.home.cate
 
 import com.hankkin.reading.http.HttpClient
 import com.hankkin.reading.http.api.HomeApi
@@ -9,17 +9,16 @@ import io.reactivex.schedulers.Schedulers
 /**
  * Created by huanghaijie on 2018/7/8.
  */
-class AndroidPresenter : RxLifePresenter<AndroidContact.IView>(), AndroidContact.IPresenter {
-    override fun getArticle(page: Int) {
+class CatePresenter : RxLifePresenter<CateContact.IView>(), CateContact.IPresenter {
+    override fun getCatesHttp() {
         HttpClient.getwanAndroidRetrofit().create(HomeApi::class.java)
-                .getArticle(page)
+                .getCates()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeNx ({
-                    getMvpView().setArticle(it.data)
-                },{
-                    getMvpView().setFail()
+                .subscribeNx({
+                    getMvpView().setCates(it.data)
                 }).bindRxLifeEx(RxLife.ON_DESTROY)
+
     }
 
 

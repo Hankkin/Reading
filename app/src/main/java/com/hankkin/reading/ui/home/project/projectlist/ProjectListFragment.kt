@@ -1,20 +1,14 @@
 package com.hankkin.reading.ui.home.project.projectlist
 
-import android.os.Build
-import android.support.annotation.RequiresApi
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
-import android.view.View
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.ProjectListAdapter
 import com.hankkin.reading.adapter.base.XRecyclerView
 import com.hankkin.reading.base.BaseMvpFragment
 import com.hankkin.reading.domain.BannerBean
-import com.hankkin.reading.ui.home.HomeFragment
-import com.hankkin.reading.utils.GlideUtils
-import com.hankkin.reading.view.widget.SWImageView
 import com.stx.xhb.xbanner.XBanner
-import kotlinx.android.synthetic.main.fragment_post_list.*
+import kotlinx.android.synthetic.main.fragment_project_list.*
 
 /**
  * Created by huanghaijie on 2018/5/15.
@@ -27,32 +21,12 @@ class ProjectListFragment : BaseMvpFragment<ProjectListPresenter>(),ProjectListC
 
 
     override fun getLayoutId(): Int {
-        return R.layout.fragment_post_list
+        return R.layout.fragment_project_list
     }
 
     override fun initData() {
-        getPresenter().getBannerHttp()
     }
 
-    fun initBannerHeader(){
-        val layoutBanner = layoutInflater.inflate(R.layout.layout_project_banner_header,null)
-        banner_project = layoutBanner.findViewById<XBanner>(R.id.banner_project)
-        val urlList = mutableListOf<String>()
-        val contentList = mutableListOf<String>()
-        for (bannerBean in bannerData){
-            urlList.add(bannerBean.imagePath)
-            contentList.add(bannerBean.title)
-        }
-        banner_project!!.setData(R.layout.layout_banner_imageview,urlList,contentList)
-        banner_project!!.viewPager.pageMargin = 20
-        banner_project!!.loadImage(object : XBanner.XBannerAdapter{
-            override fun loadBanner(banner: XBanner?, model: Any?, view: View, position: Int) {
-                val iv = view.findViewById<SWImageView>(R.id.iv_banner_item)
-                GlideUtils.loadImageView(context, model as String?, iv)
-            }
-        })
-        xrv_project.addHeaderView(layoutBanner)
-    }
 
     fun setAdapter(){
         val data = mutableListOf<String>()
@@ -85,14 +59,6 @@ class ProjectListFragment : BaseMvpFragment<ProjectListPresenter>(),ProjectListC
         refresh_project.isRefreshing = false
     }
 
-    override fun setBanner(banner: MutableList<BannerBean>) {
-        setAdapter()
-        bannerData.addAll(banner)
-        val index = arguments!!.get("index")
-        if (index == 0){
-            initBannerHeader()
-        }
-    }
 
     override fun onRefresh() {
 

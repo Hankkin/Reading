@@ -3,7 +3,6 @@ package com.hankkin.reading.ui.home
 import android.os.Build
 import android.os.Bundle
 import android.support.annotation.RequiresApi
-import android.support.design.widget.AppBarLayout
 import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
 import android.view.View
@@ -12,7 +11,7 @@ import com.hankkin.reading.adapter.HomeFragmentPagerAdapter
 import com.hankkin.reading.base.BaseFragment
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.ui.home.android.AndroidFragment
-import com.hankkin.reading.ui.home.blog.BlogFragment
+import com.hankkin.reading.ui.home.cate.CateFragment
 import com.hankkin.reading.ui.home.project.ProjectFragment
 import com.hankkin.reading.ui.main.MainActivity
 import com.hankkin.reading.utils.RxBus
@@ -27,8 +26,8 @@ class HomeFragment : BaseFragment() {
 
     private val mFgList = listOf<Fragment>(
             AndroidFragment(),
-            ProjectFragment(),
-            BlogFragment()
+            CateFragment(),
+            ProjectFragment()
     )
 
     @RequiresApi(Build.VERSION_CODES.M)
