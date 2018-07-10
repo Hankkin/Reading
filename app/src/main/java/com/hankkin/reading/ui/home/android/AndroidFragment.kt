@@ -1,21 +1,18 @@
 package com.hankkin.reading.ui.home.android
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.AndroidAdapter
-import com.hankkin.reading.adapter.base.OnItemClickListener
 import com.hankkin.reading.adapter.base.XRecyclerView
 import com.hankkin.reading.base.BaseMvpFragment
 import com.hankkin.reading.domain.ArticleBean
-import com.hankkin.reading.domain.ArticleDetailBean
 import com.hankkin.reading.event.EventMap
-import com.hankkin.reading.ui.home.articledetail.ArticleDetailActivity
 import com.hankkin.reading.utils.RxBus
 import com.hankkin.reading.utils.ThemeHelper
 import com.hankkin.reading.utils.ToastUtils
+import com.hankkin.reading.utils.ViewHelper
 import kotlinx.android.synthetic.main.fragment_news.*
 
 /**
@@ -53,18 +50,20 @@ class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IVie
                     }else if (it is EventMap.HomeRefreshEvent){
                         onRefresh()
                     }
+                    else if (it is EventMap.ChangeThemeEvent){
+                        ViewHelper.changeRefreshColor(refresh_android,context)
+                    }
                 })
     }
 
     fun initXrv() {
+        ViewHelper.setRefreshLayout(context,true,refresh_android,this)
         mAdapter = AndroidAdapter()
         val linearLayoutManager = LinearLayoutManager(context)
         xrv_android.layoutManager = linearLayoutManager
         xrv_android.setPullRefreshEnabled(false)
         xrv_android.clearHeader()
         xrv_android.adapter = mAdapter
-        refresh_android.setOnRefreshListener(this)
-        refresh_android.isRefreshing = true
         xrv_android.setLoadingListener(object : XRecyclerView.LoadingListener {
             override fun onLoadMore() {
                 loadData(mPage)

@@ -9,7 +9,7 @@
 
     <include layout="@layout/layout_title_bar_back"/>
 
-    <com.hankkin.library.view.ProgressWebView
+    <com.hankkin.reading.view.ProgressWebView
         android:id="@+id/wb_common"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

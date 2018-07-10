@@ -15,6 +15,9 @@
     <string name="drawer_pwd">账号本子</string>
     <string name="drawer_about">关于Reading</string>
 
+    <string name="article_detail_share">分享</string>
+    <string name="article_detail_open">浏览器打开</string>
+
     <string name="translate_search_hint">在此输入单词或句子</string>
     <string name="format_weather">%1$s  %2$s℃</string>
 

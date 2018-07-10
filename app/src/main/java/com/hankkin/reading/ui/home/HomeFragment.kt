@@ -3,6 +3,7 @@ package com.hankkin.reading.ui.home
 import android.os.Build
 import android.os.Bundle
 import android.support.annotation.RequiresApi
+import android.support.design.widget.AppBarLayout
 import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
 import android.view.View
@@ -108,6 +109,7 @@ class HomeFragment : BaseFragment() {
         fab_write.setColorRippleResId(ThemeHelper.getCurrentColor(context))
     }
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     fun setCurrent(index: Int) {
         var isOne = false
         var isTwo = false
@@ -116,14 +118,17 @@ class HomeFragment : BaseFragment() {
             0 -> {
                 isOne = true
                 fab_menu_add.visibility = View.VISIBLE
+                appbar.elevation = 1f
             }
             1 -> {
                 isTwo = true
                 fab_menu_add.visibility = View.GONE
+                appbar.elevation = 0f
             }
             2 -> {
                 isThree = true
                 fab_menu_add.visibility = View.GONE
+                appbar.elevation = 1f
             }
         }
         vp_home.currentItem = index

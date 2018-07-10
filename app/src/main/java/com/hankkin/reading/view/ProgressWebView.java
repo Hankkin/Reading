@@ -1,4 +1,4 @@
-package com.hankkin.library.view;
+package com.hankkin.reading.view;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -8,7 +8,7 @@ import android.webkit.WebView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
-import com.hankkin.library.R;
+import com.hankkin.reading.R;
 
 
 /**

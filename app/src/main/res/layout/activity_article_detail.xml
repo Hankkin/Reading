@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,42 +8,35 @@
     android:orientation="vertical"
     tools:context="com.hankkin.reading.ui.home.articledetail.ArticleDetailActivity">
 
-    <android.support.design.widget.AppBarLayout
+    <com.bilibili.magicasakura.widgets.TintToolbar
+        android:id="@+id/toobar_article_detail"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/theme_color_primary"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:contentInsetStartWithNavigation="0dp"
+        app:layout_scrollFlags="enterAlways|scroll"
+        app:navigationContentDescription="返回"
+        app:navigationIcon="@mipmap/icon_white_back"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-        <com.bilibili.magicasakura.widgets.TintToolbar
-            android:id="@+id/toobar_article_detail"
+        <TextView
+            android:id="@+id/tv_article_detail_title"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/theme_color_primary"
-            android:theme="@style/AppTheme.AppBarOverlay"
-            app:contentInsetStartWithNavigation="0dp"
-            app:layout_scrollFlags="enterAlways|scroll"
-            app:navigationContentDescription="返回"
-            app:navigationIcon="@mipmap/icon_white_back"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:visibility="visible" />
 
-            <TextView
-                android:id="@+id/tv_article_detail_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="marquee"
-                android:singleLine="true"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                android:visibility="visible" />
+    </com.bilibili.magicasakura.widgets.TintToolbar>
 
-        </com.bilibili.magicasakura.widgets.TintToolbar>
-    </android.support.design.widget.AppBarLayout>
-
-    <com.hankkin.library.view.ProgressWebView
+    <com.hankkin.reading.view.ProgressWebView
         android:id="@+id/web_article"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 
-</android.support.design.widget.CoordinatorLayout>
+</LinearLayout>

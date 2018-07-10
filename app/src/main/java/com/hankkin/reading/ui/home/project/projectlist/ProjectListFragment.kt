@@ -1,5 +1,7 @@
 package com.hankkin.reading.ui.home.project.projectlist
 
+import android.os.Build
+import android.support.annotation.RequiresApi
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
@@ -8,6 +10,7 @@ import com.hankkin.reading.adapter.ProjectListAdapter
 import com.hankkin.reading.adapter.base.XRecyclerView
 import com.hankkin.reading.base.BaseMvpFragment
 import com.hankkin.reading.domain.BannerBean
+import com.hankkin.reading.ui.home.HomeFragment
 import com.hankkin.reading.utils.GlideUtils
 import com.hankkin.reading.view.widget.SWImageView
 import com.stx.xhb.xbanner.XBanner
@@ -22,8 +25,6 @@ class ProjectListFragment : BaseMvpFragment<ProjectListPresenter>(),ProjectListC
     private lateinit var mAdapter: ProjectListAdapter
     private var banner_project: XBanner? = null
 
-    override fun initView() {
-    }
 
     override fun getLayoutId(): Int {
         return R.layout.fragment_post_list

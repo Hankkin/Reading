@@ -3,29 +3,30 @@ package com.hankkin.reading.ui.home.articledetail
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
-import android.os.Bundle
-import android.support.v4.content.ContextCompat
-import android.view.View
+import android.view.Menu
+import android.view.MenuItem
 import android.webkit.WebSettings
+import android.widget.ImageView
+import android.widget.Toolbar
 import com.hankkin.library.utils.StatusBarUtil
 import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseMvpActivity
+import com.hankkin.reading.utils.CommonUtils
 import com.hankkin.reading.utils.ThemeHelper
 import kotlinx.android.synthetic.main.activity_article_detail.*
 
-class ArticleDetailActivity : BaseMvpActivity<ArticleDetailPresenter>(),ArticleDetailContract.IView {
+class ArticleDetailActivity : BaseMvpActivity<ArticleDetailPresenter>(), ArticleDetailContract.IView {
 
     private lateinit var mUrl: String
     private lateinit var mTitle: String
 
 
-    fun loadUrl(url: String, title: String){
-        val intent = Intent(this,ArticleDetailActivity::class.java)
-        intent.putExtra("url",url)
-        intent.putExtra("title",title)
+    fun loadUrl(url: String, title: String) {
+        val intent = Intent(this, ArticleDetailActivity::class.java)
+        intent.putExtra("url", url)
+        intent.putExtra("title", title)
         startActivity(intent)
     }
-
 
 
     override fun getLayoutId(): Int {
@@ -42,6 +43,7 @@ class ArticleDetailActivity : BaseMvpActivity<ArticleDetailPresenter>(),ArticleD
         getIntentData()
         initWebView()
         initToolBar()
+        menuClick()
         web_article.loadUrl(mUrl)
     }
 
@@ -63,6 +65,7 @@ class ArticleDetailActivity : BaseMvpActivity<ArticleDetailPresenter>(),ArticleD
         }
 
         tv_article_detail_title.text = mTitle
+        tv_article_detail_title.postDelayed({ tv_article_detail_title.isSelected = true }, 2000)
         supportActionBar!!.openOptionsMenu()
     }
 
@@ -102,6 +105,32 @@ class ArticleDetailActivity : BaseMvpActivity<ArticleDetailPresenter>(),ArticleD
         }
         /** 设置字体默认缩放大小(改变网页字体大小,setTextSize  api14被弃用) */
         ws.setTextZoom(100)
+    }
+
+
+    fun menuClick() {
+        toobar_article_detail.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.menu_share -> CommonUtils.share(this@ArticleDetailActivity, mUrl)
+                R.id.menu_open -> CommonUtils.openBroswer(this@ArticleDetailActivity, mUrl)
+                else -> {
+                    false
+                }
+            }
+            true
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.article_detail_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home){
+            finish()
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 }
