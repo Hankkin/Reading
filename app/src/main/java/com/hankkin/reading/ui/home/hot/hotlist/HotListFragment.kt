@@ -1,4 +1,4 @@
-package com.hankkin.reading.ui.home.cate.catelist
+package com.hankkin.reading.ui.home.hot.hotlist
 
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
@@ -9,58 +9,62 @@ import com.hankkin.reading.adapter.base.XRecyclerView
 import com.hankkin.reading.base.BaseMvpFragment
 import com.hankkin.reading.domain.ArticleBean
 import com.hankkin.reading.domain.BannerBean
-import com.hankkin.reading.domain.CateBean
+import com.hankkin.reading.domain.HotBean
+import com.hankkin.reading.ui.home.articledetail.ArticleDetailActivity
 import com.hankkin.reading.utils.GlideUtils
 import com.hankkin.reading.utils.ViewHelper
 import com.hankkin.reading.view.widget.SWImageView
 import com.stx.xhb.xbanner.XBanner
-import kotlinx.android.synthetic.main.fragment_cate_list.*
+import kotlinx.android.synthetic.main.fragment_android.*
+import kotlinx.android.synthetic.main.fragment_hot_list.*
 
 /**
  * Created by huanghaijie on 2018/5/15.
  */
-class CateListFragment : BaseMvpFragment<CateListPresenter>(), CateListContact.IView,SwipeRefreshLayout.OnRefreshListener {
+class HotListFragment : BaseMvpFragment<HotListPresenter>(), HotListContact.IView,SwipeRefreshLayout.OnRefreshListener {
+
 
     private var bannerData = mutableListOf<BannerBean>()
     private lateinit var mAdapter: AndroidAdapter
     private var banner_project: XBanner? = null
 
-    private lateinit var cateBean: CateBean
+    private lateinit var hotBean: HotBean
     private var mPage: Int = 0
 
 
     override fun getLayoutId(): Int {
-        return R.layout.fragment_cate_list
+        return R.layout.fragment_hot_list
     }
 
 
     override fun initView() {
-        ViewHelper.setRefreshLayout(context,true,refresh_cate,this)
+        ViewHelper.setRefreshLayout(context,true,refresh_hot,this)
         initXrv()
     }
     
     override fun initData() {
-        cateBean = (arguments!!.getSerializable("bean")) as CateBean
+        hotBean = (arguments!!.getSerializable("bean")) as HotBean
         getPresenter().getBannerHttp()
     }
     
     fun initXrv(){
-        ViewHelper.setRefreshLayout(context,true,refresh_cate,this)
+        ViewHelper.setRefreshLayout(context,true,refresh_hot,this)
         mAdapter = AndroidAdapter()
         val linearLayoutManager = LinearLayoutManager(context)
-        xrv_cate.layoutManager = linearLayoutManager
-        xrv_cate.setPullRefreshEnabled(false)
-        xrv_cate.clearHeader()
-        xrv_cate.adapter = mAdapter
-        xrv_cate.setLoadingListener(object : XRecyclerView.LoadingListener {
+        xrv_hot.layoutManager = linearLayoutManager
+        xrv_hot.setPullRefreshEnabled(false)
+        xrv_hot.clearHeader()
+        xrv_hot.adapter = mAdapter
+        xrv_hot.setLoadingListener(object : XRecyclerView.LoadingListener {
             override fun onLoadMore() {
-                getPresenter().getCateList(mPage,cateBean.id)
+                getPresenter().queryKey(mPage,hotBean.name)
             }
 
             override fun onRefresh() {
             }
 
         })
+
     }
 
     fun initBannerHeader(){
@@ -80,23 +84,24 @@ class CateListFragment : BaseMvpFragment<CateListPresenter>(), CateListContact.I
                 GlideUtils.loadImageView(context, model as String?, iv)
             }
         })
-        xrv_cate.addHeaderView(layoutBanner)
+        banner_project!!.setOnItemClickListener { banner, model, position -> context?.let { ArticleDetailActivity.loadUrl(it,bannerData[position].url,bannerData[position].title) } }
+        xrv_hot.addHeaderView(layoutBanner)
     }
 
     fun setAdapter(data: ArticleBean){
         mPage = data.curPage
         if (mPage < 2) {
-            xrv_cate.scrollToPosition(0)
+            xrv_hot.scrollToPosition(0)
             mAdapter.clear()
         }
         mAdapter.addAll(data.datas)
         mAdapter.notifyDataSetChanged()
         if (data.datas.size < 20) {
-            xrv_cate.noMoreLoading()
+            xrv_hot.noMoreLoading()
         }
-        xrv_cate.refreshComplete()
-        if (refresh_cate.isRefreshing) {
-            refresh_cate.isRefreshing = false
+        xrv_hot.refreshComplete()
+        if (refresh_hot.isRefreshing) {
+            refresh_hot.isRefreshing = false
         }
     }
 
@@ -106,18 +111,23 @@ class CateListFragment : BaseMvpFragment<CateListPresenter>(), CateListContact.I
         if (index == 0){
             initBannerHeader()
         }
-        getPresenter().getCateList(mPage,cateBean.id)
+        val hotSearch = layoutInflater.inflate(R.layout.layout_header_hot_more,null)
+        xrv_hot.addHeaderView(hotSearch)
+        getPresenter().queryKey(mPage,hotBean.name)
     }
 
-    override fun setCateList(data: ArticleBean) {
+    override fun setData(data: ArticleBean) {
         setAdapter(data)
     }
 
     override fun onRefresh() {
-
+        xrv_hot.reset()
+        refresh_hot.isRefreshing = true
+        mPage = 0
+        getPresenter().queryKey(mPage,hotBean.name)
     }
 
-    override fun registerPresenter() = CateListPresenter::class.java
+    override fun registerPresenter() = HotListPresenter::class.java
 
 
 

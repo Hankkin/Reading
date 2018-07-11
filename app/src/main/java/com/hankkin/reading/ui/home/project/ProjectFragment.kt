@@ -1,76 +1,74 @@
 package com.hankkin.reading.ui.home.project
 
 import android.os.Bundle
-import android.support.design.widget.TabLayout.MODE_FIXED
+import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import com.hankkin.reading.R
-import com.hankkin.reading.base.BaseFragment
+import com.hankkin.reading.base.BaseMvpFragment
+import com.hankkin.reading.domain.CateBean
 import com.hankkin.reading.ui.home.project.projectlist.ProjectListFragment
 import com.kekstudio.dachshundtablayout.indicators.PointMoveIndicator
-import kotlinx.android.synthetic.main.fragment_post.*
-
+import kotlinx.android.synthetic.main.fragment_project.*
 
 /**
  * Created by huanghaijie on 2018/5/15.
  */
-class ProjectFragment : BaseFragment() {
+class ProjectFragment : BaseMvpFragment<ProjectPresenter>(), ProjectContact.IView {
 
-    companion object {
-        val tags = listOf<String>(
-                "问答",
-                "分享",
-                "IT杂烩",
-                "站务",
-                "职业生涯"
-        )
-    }
-
-    override fun initViews() {
-        val adapter = MainFragmentAdapter(childFragmentManager)
-        vp_post.adapter = adapter
-        tab.setupWithViewPager(vp_post)
-        tab.tabMode = MODE_FIXED
-        val indicator =  PointMoveIndicator(tab)
-        tab.animatedIndicator = indicator
-        vp_post.offscreenPageLimit = tags.size
-    }
-
-    public fun newInstance(index: Int){
+    public fun newInstance(index: Int) {
         val fragment = ProjectFragment()
         val args = Bundle()
-        args.putInt("index",index)
+        args.putInt("index", index)
         fragment.arguments = args
     }
 
     override fun getLayoutId(): Int {
-        return R.layout.fragment_post
+        return R.layout.fragment_project
     }
 
     override fun initData() {
+        getPresenter().getCatesHttp()
+    }
+
+
+    override fun registerPresenter() = ProjectPresenter::class.java
+
+    override fun setCates(data: MutableList<CateBean>) {
+        val adapter = PageAdapter(childFragmentManager, data)
+        vp_project.adapter = adapter
+        tab_project.setupWithViewPager(vp_project)
+        tab_project.tabMode = TabLayout.MODE_SCROLLABLE
+        val indicator = PointMoveIndicator(tab_project)
+        tab_project.animatedIndicator = indicator
+        vp_project.offscreenPageLimit = data.size
+    }
+
+    override fun initView() {
 
     }
 
-    class MainFragmentAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
+
+    class PageAdapter(fm: FragmentManager, val data: MutableList<CateBean>) : FragmentStatePagerAdapter(fm) {
 
         override fun getItem(i: Int): Fragment {
             val bundle = Bundle()
             val fg = ProjectListFragment()
-            bundle.putInt("index",i)
+            bundle.putInt("index", i)
+            bundle.putSerializable("bean",data.get(i))
             fg.arguments = bundle
             return fg
         }
 
         override fun getCount(): Int {
-            return tags.size
+            return data.size
         }
 
         override fun getPageTitle(position: Int): CharSequence {
-            return tags[position]
+            return data[position].name
         }
 
     }
-
 
 }

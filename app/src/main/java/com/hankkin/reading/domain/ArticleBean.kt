@@ -1,5 +1,7 @@
 package com.hankkin.reading.domain
 
+import java.io.Serializable
+
 /**
  * Created by huanghaijie on 2018/7/8.
  */
@@ -33,7 +35,8 @@ data class ArticleDetailBean(val apkLink: String,
                              val type: Int,
                              val userId: Int,
                              val visible: Int,
-                             val zan: Int)
+                             val zan: Int,
+                             val name: String) : Serializable
 
 data class TagBean(val name: String,
                    val url: String)

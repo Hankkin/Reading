@@ -1,4 +1,4 @@
-package com.hankkin.reading.ui.home.cate
+package com.hankkin.reading.ui.home.project
 
 import com.hankkin.reading.http.HttpClient
 import com.hankkin.reading.http.api.HomeApi
@@ -9,10 +9,10 @@ import io.reactivex.schedulers.Schedulers
 /**
  * Created by huanghaijie on 2018/7/8.
  */
-class CatePresenter : RxLifePresenter<CateContact.IView>(), CateContact.IPresenter {
+class ProjectPresenter : RxLifePresenter<ProjectContact.IView>(), ProjectContact.IPresenter {
     override fun getCatesHttp() {
         HttpClient.getwanAndroidRetrofit().create(HomeApi::class.java)
-                .getCates()
+                .getProject()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeNx({

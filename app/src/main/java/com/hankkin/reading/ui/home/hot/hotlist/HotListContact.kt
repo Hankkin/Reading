@@ -1,4 +1,4 @@
-package com.hankkin.reading.ui.home.cate.catelist
+package com.hankkin.reading.ui.home.hot.hotlist
 
 import com.hankkin.reading.domain.ArticleBean
 import com.hankkin.reading.domain.BannerBean
@@ -9,14 +9,14 @@ import com.hankkin.reading.mvp.contract.IPresenterContract
 /**
  * Created by huanghaijie on 2018/7/8.
  */
-interface CateListContact {
+interface HotListContact {
     interface IView : IBaseViewContract {
         fun setBanner(banner: MutableList<BannerBean>)
-        fun setCateList(data: ArticleBean)
+        fun setData(data: ArticleBean)
     }
 
     interface IPresenter : IPresenterContract {
-        fun getCateList(page: Int,cid: Int)
+        fun queryKey(page: Int,key: String)
         fun getBannerHttp()
     }
 }

@@ -1,4 +1,4 @@
-package com.hankkin.reading.ui.home.cate.catelist
+package com.hankkin.reading.ui.home.hot.hotlist
 
 import com.hankkin.reading.http.HttpClient
 import com.hankkin.reading.http.api.HomeApi
@@ -9,7 +9,17 @@ import io.reactivex.schedulers.Schedulers
 /**
  * Created by huanghaijie on 2018/7/8.
  */
-class CateListPresenter : RxLifePresenter<CateListContact.IView>(), CateListContact.IPresenter{
+class HotListPresenter : RxLifePresenter<HotListContact.IView>(), HotListContact.IPresenter{
+    override fun queryKey(page: Int, key: String) {
+        HttpClient.getwanAndroidRetrofit().create(HomeApi::class.java)
+                .query(page,key)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeNx ({
+                    getMvpView().setData(it.data)
+                }).bindRxLifeEx(RxLife.ON_DESTROY)
+    }
+
     override fun getBannerHttp() {
         HttpClient.getwanAndroidRetrofit().create(HomeApi::class.java)
                 .getHomeBanner()
@@ -17,16 +27,6 @@ class CateListPresenter : RxLifePresenter<CateListContact.IView>(), CateListCont
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeNx ({
                     getMvpView().setBanner(it.data)
-                }).bindRxLifeEx(RxLife.ON_DESTROY)
-    }
-
-    override fun getCateList(page: Int,cid: Int) {
-        HttpClient.getwanAndroidRetrofit().create(HomeApi::class.java)
-                .getArticleCid(page,cid)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeNx ({
-                    getMvpView().setCateList(it.data)
                 }).bindRxLifeEx(RxLife.ON_DESTROY)
     }
 

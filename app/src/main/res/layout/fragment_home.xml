@@ -9,7 +9,6 @@
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
-        android:elevation="0dp"
         android:background="@color/theme_color_primary"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize">
@@ -52,14 +51,14 @@
                         android:layout_width="65dp"
                         android:layout_height="match_parent"
                         android:background="?attr/selectableItemBackgroundBorderless"
-                        android:src="@drawable/home_cate_selector" />
+                        android:src="@drawable/home_hot_selector" />
 
                     <ImageView
                         android:id="@+id/iv_title_three"
                         android:layout_width="65dp"
                         android:layout_height="match_parent"
                         android:background="?attr/selectableItemBackgroundBorderless"
-                        android:src="@drawable/home_project_selector" />
+                        android:src="@drawable/home_cate_selector" />
 
 
 

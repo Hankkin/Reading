@@ -11,7 +11,7 @@ import com.hankkin.reading.adapter.HomeFragmentPagerAdapter
 import com.hankkin.reading.base.BaseFragment
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.ui.home.android.AndroidFragment
-import com.hankkin.reading.ui.home.cate.CateFragment
+import com.hankkin.reading.ui.home.hot.HotFragment
 import com.hankkin.reading.ui.home.project.ProjectFragment
 import com.hankkin.reading.ui.main.MainActivity
 import com.hankkin.reading.utils.RxBus
@@ -26,7 +26,7 @@ class HomeFragment : BaseFragment() {
 
     private val mFgList = listOf<Fragment>(
             AndroidFragment(),
-            CateFragment(),
+            HotFragment(),
             ProjectFragment()
     )
 

@@ -1,4 +1,4 @@
-package com.hankkin.reading.ui.home.project.projectlist
+package com.hankkin.reading.ui.home.hot
 
 import com.hankkin.reading.http.HttpClient
 import com.hankkin.reading.http.api.HomeApi
@@ -9,17 +9,15 @@ import io.reactivex.schedulers.Schedulers
 /**
  * Created by huanghaijie on 2018/7/8.
  */
-class ProjectListPresenter : RxLifePresenter<ProjectListContact.IView>(), ProjectListContact.IPresenter{
-
-    override fun getCateList(page: Int,cid: Int) {
+class HotPresenter : RxLifePresenter<HotContact.IView>(), HotContact.IPresenter {
+    override fun getHot() {
         HttpClient.getwanAndroidRetrofit().create(HomeApi::class.java)
-                .getArticleCid(page,cid)
+                .getHot()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeNx ({
-                    getMvpView().setCateList(it.data)
+                .subscribeNx({
+                    getMvpView().setHot(it.data)
                 }).bindRxLifeEx(RxLife.ON_DESTROY)
     }
-
 
 }

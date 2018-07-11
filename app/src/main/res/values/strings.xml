@@ -10,6 +10,10 @@
     <string name="home_fab_up">返回顶部</string>
     <string name="home_fab_refresh">刷新</string>
     <string name="home_fab_write">分享</string>
+
+    <string name="home_search_hot">热门搜索</string>
+    <string name="home_search_hot_more">查看更多</string>
+
     <string name="drawer_collect">我的收藏</string>
     <string name="drawer_note">单词本</string>
     <string name="drawer_pwd">账号本子</string>

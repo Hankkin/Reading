@@ -9,7 +9,7 @@
 
     <android.support.v4.widget.SwipeRefreshLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/refresh_cate"
+        android:id="@+id/refresh_hot"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
@@ -24,7 +24,7 @@
                 android:scrollbarFadeDuration="1"
                 android:scrollbarSize="4dp"
                 android:scrollbars="vertical"
-                android:id="@+id/xrv_cate"
+                android:id="@+id/xrv_hot"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
