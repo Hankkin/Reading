@@ -64,10 +64,7 @@ class AndroidAdapter : BaseRecyclerViewAdapter<ArticleDetailBean>() {
                 llTags.addView(tv)
             }
             itemView.setOnClickListener {
-                val intent = Intent(itemView.context, ArticleDetailActivity::class.java)
-                intent.putExtra("url",bean.link)
-                intent.putExtra("title",bean.title)
-                itemView.context.startActivity(intent)
+                ArticleDetailActivity.loadUrl(itemView.context,bean.link,bean.title)
             }
         }
 

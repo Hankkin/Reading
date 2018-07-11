@@ -9,8 +9,7 @@ import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseMvpFragment
 import com.hankkin.reading.domain.CateBean
 import com.hankkin.reading.ui.home.project.ProjectFragment
-import com.hankkin.reading.ui.home.project.projectlist.CateListFragment
-import com.hankkin.reading.utils.LoadingUtils
+import com.hankkin.reading.ui.home.cate.catelist.CateListFragment
 import com.kekstudio.dachshundtablayout.indicators.PointMoveIndicator
 import kotlinx.android.synthetic.main.fragment_cates.*
 
@@ -44,6 +43,7 @@ class CateFragment : BaseMvpFragment<CatePresenter>(), CateContact.IView {
         tab_cates.tabMode = TabLayout.MODE_FIXED
         val indicator = PointMoveIndicator(tab_cates)
         tab_cates.animatedIndicator = indicator
+        tab_cates
         vp_cates.offscreenPageLimit = ProjectFragment.tags.size
     }
 

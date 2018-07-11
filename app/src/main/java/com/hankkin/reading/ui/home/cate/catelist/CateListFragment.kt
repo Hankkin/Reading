@@ -1,18 +1,15 @@
-package com.hankkin.reading.ui.home.project.projectlist
+package com.hankkin.reading.ui.home.cate.catelist
 
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.AndroidAdapter
-import com.hankkin.reading.adapter.ProjectListAdapter
 import com.hankkin.reading.adapter.base.XRecyclerView
 import com.hankkin.reading.base.BaseMvpFragment
 import com.hankkin.reading.domain.ArticleBean
 import com.hankkin.reading.domain.BannerBean
 import com.hankkin.reading.domain.CateBean
-import com.hankkin.reading.ui.home.cate.catelist.CateListContact
-import com.hankkin.reading.ui.home.cate.catelist.CateListPresenter
 import com.hankkin.reading.utils.GlideUtils
 import com.hankkin.reading.utils.ViewHelper
 import com.hankkin.reading.view.widget.SWImageView

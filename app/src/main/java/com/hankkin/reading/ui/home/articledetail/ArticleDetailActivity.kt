@@ -1,8 +1,10 @@
 package com.hankkin.reading.ui.home.articledetail
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Build
+import android.support.v4.content.ContextCompat.startActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.webkit.WebSettings
@@ -21,11 +23,13 @@ class ArticleDetailActivity : BaseMvpActivity<ArticleDetailPresenter>(), Article
     private lateinit var mTitle: String
 
 
-    fun loadUrl(url: String, title: String) {
-        val intent = Intent(this, ArticleDetailActivity::class.java)
-        intent.putExtra("url", url)
-        intent.putExtra("title", title)
-        startActivity(intent)
+    companion object {
+        fun loadUrl(context: Context,url: String, title: String) {
+            val intent = Intent(context, ArticleDetailActivity::class.java)
+            intent.putExtra("url", url)
+            intent.putExtra("title", title)
+            context.startActivity(intent)
+        }
     }
 
 
