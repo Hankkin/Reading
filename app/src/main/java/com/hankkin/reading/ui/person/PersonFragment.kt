@@ -69,11 +69,7 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
     fun setUserHeader() {
         if (UserControl.isLogin()) {
             val user = UserControl.getCurrentUser()
-            tv_person_name.text = user!!.name
-            if (user.avatar.isNotEmpty())
-                LogUtils.d(javaClass.simpleName + ">>>>" + user.avatar)
-            GlideUtils.loadImageView(context,user.avatar, iv_person_avatar)
-            getPresenter().getUserNotice(SPUtils.getString(UserControl.TOKEN))
+            tv_person_name.text = user!!.username
         } else {
             tv_person_name.text = resources.getString(R.string.person_no_login)
         }

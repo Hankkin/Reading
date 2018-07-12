@@ -1,25 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/normal_bg"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:background="@color/white"
     tools:context="com.hankkin.reading.ui.login.LoginActivity">
 
-
-    <LinearLayout
-        android:layout_weight="1"
-        android:background="@color/white"
-        android:orientation="vertical"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <com.bilibili.magicasakura.widgets.TintLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/theme_color_primary"/>
+
+        <TextView
+            android:id="@+id/tv_login_logo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_40"
+            android:gravity="center_horizontal"
+            android:text="@string/app_name"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
         <android.support.v4.view.ViewPager
+            android:layout_below="@+id/tv_login_logo"
             android:id="@+id/vp_login"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </LinearLayout>
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
 
-</LinearLayout>
+</RelativeLayout>

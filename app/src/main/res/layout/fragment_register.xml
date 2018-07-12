@@ -1,119 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:gravity="center_horizontal"
-    android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/normal_bg"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="@color/transparent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
 
-    <RelativeLayout
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <com.bilibili.magicasakura.widgets.TintLinearLayout
-            android:background="@color/theme_color_primary"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_login_logo"
+        android:layout_margin="@dimen/dp_40"
+        android:background="@color/white"
+        app:cardCornerRadius="@dimen/dp_8">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp">
-        </com.bilibili.magicasakura.widgets.TintLinearLayout>
-        <TextView
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:gravity="center_horizontal"
-            android:textSize="30sp"
-            android:text="@string/app_name"
-            android:layout_centerHorizontal="true"
-            android:id="@+id/iv_login_logo"
-            android:layout_marginTop="@dimen/dp_40"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <android.support.v7.widget.CardView
-            android:background="@color/white"
-            app:cardCornerRadius="@dimen/dp_8"
-            android:layout_margin="@dimen/dp_40"
-            android:layout_below="@+id/iv_login_logo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <LinearLayout
-                android:padding="@dimen/dp_12"
-                android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/dp_12">
+
+            <com.bilibili.magicasakura.widgets.TintTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/login_register"
+                android:textColor="@color/theme_color_primary"
+                android:textSize="@dimen/sp_24"
+                android:textStyle="italic" />
+
+            <com.bilibili.magicasakura.widgets.KeyEditText
+                android:id="@+id/et_reg_email"
+                style="@style/normalTxt"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                android:background="@drawable/ic_edit_text_default"
+                android:drawableLeft="@mipmap/icon_email"
+                android:drawablePadding="@dimen/dp_8"
+                android:hint="@string/login_email"
+                android:maxLines="1"
+                android:padding="@dimen/dp_8"
+                android:textCursorDrawable="@drawable/edittext_cursor"
+                app:backgroundTint="@color/selector_focus"
+                app:drawableLeftTint="@color/selector_focus" />
+
+            <com.bilibili.magicasakura.widgets.KeyEditText
+                android:inputType="textPassword"
+                android:id="@+id/et_reg_pwd"
+                style="@style/normalTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                android:background="@drawable/ic_edit_text_default"
+                android:drawableLeft="@mipmap/icon_pwd"
+                android:drawablePadding="@dimen/dp_8"
+                android:hint="@string/login_pwd"
+                android:maxLines="1"
+                android:padding="@dimen/dp_8"
+                android:textCursorDrawable="@drawable/edittext_cursor"
+                app:backgroundTint="@color/selector_focus"
+                app:drawableLeftTint="@color/selector_focus" />
+
+            <com.bilibili.magicasakura.widgets.KeyEditText
+                android:inputType="textPassword"
+                android:id="@+id/et_reg_pwd_repeat"
+                style="@style/normalTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                android:background="@drawable/ic_edit_text_default"
+                android:drawableLeft="@mipmap/icon_pwd"
+                android:drawablePadding="@dimen/dp_8"
+                android:hint="@string/login_pwd_repeat"
+                android:maxLines="1"
+                android:padding="@dimen/dp_8"
+                android:textCursorDrawable="@drawable/edittext_cursor"
+                app:backgroundTint="@color/selector_focus"
+                app:drawableLeftTint="@color/selector_focus" />
+
+            <com.bilibili.magicasakura.widgets.TintButton
+                android:id="@+id/reg_btn"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/bg_theme_circle"
+                android:enabled="false"
+                android:gravity="center"
+                android:text="@string/login_register"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="italic" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_20"
+                android:gravity="center_horizontal">
+
                 <com.bilibili.magicasakura.widgets.TintTextView
-                    android:textSize="@dimen/sp_24"
-                    android:textColor="@color/theme_color_primary"
-                    android:layout_gravity="center_horizontal"
-                    android:textStyle="italic"
-                    android:text="@string/login_register"
+                    android:id="@+id/tv_reg_back"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <com.bilibili.magicasakura.widgets.KeyEditText
-                    android:padding="@dimen/dp_8"
-                    android:hint="@string/login_email"
-                    android:drawablePadding="@dimen/dp_8"
-                    android:maxLines="1"
-                    android:textCursorDrawable="@drawable/edittext_cursor"
-                    style="@style/normalTxt"
-                    app:backgroundTint="@color/selector_focus"
-                    app:drawableLeftTint="@color/selector_focus"
-                    android:background="@drawable/ic_edit_text_default"
-                    android:drawableLeft="@mipmap/icon_email"
-                    android:layout_marginTop="@dimen/dp_20"
-                    android:id="@+id/et_reg_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <com.bilibili.magicasakura.widgets.KeyEditText
-                    android:padding="@dimen/dp_8"
-                    android:hint="@string/login_pwd"
-                    android:drawablePadding="@dimen/dp_8"
-                    android:maxLines="1"
-                    style="@style/normalTxt"
-                    android:textCursorDrawable="@drawable/edittext_cursor"
-                    app:backgroundTint="@color/selector_focus"
-                    app:drawableLeftTint="@color/selector_focus"
-                    android:background="@drawable/ic_edit_text_default"
-                    android:drawableLeft="@mipmap/icon_pwd"
-                    android:layout_marginTop="@dimen/dp_20"
-                    android:id="@+id/et_reg_pwd"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <com.bilibili.magicasakura.widgets.TintButton
-                    android:id="@+id/reg_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="25dp"
-                    android:background="@drawable/bg_theme_circle"
-                    android:enabled="false"
-                    android:gravity="center"
-                    android:textStyle="italic"
-                    android:text="@string/login_register"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/sp_16" />
-
-                <LinearLayout
-                    android:layout_marginTop="@dimen/dp_20"
-                    android:layout_marginBottom="@dimen/dp_20"
-                    android:gravity="center_horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <com.bilibili.magicasakura.widgets.TintTextView
-                        android:id="@+id/tv_reg_back"
-                        android:textColor="@color/theme_color_primary"
-                        android:text="返回"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-
-
+                    android:layout_height="wrap_content"
+                    android:text="返回"
+                    android:textColor="@color/theme_color_primary" />
             </LinearLayout>
 
 
+        </LinearLayout>
 
-        </android.support.v7.widget.CardView>
-    </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
 
 
 </LinearLayout>

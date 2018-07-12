@@ -75,6 +75,7 @@ object EventMap {
     class ChangeFabEvent : BaseEvent()
     class ToUpEvent : BaseEvent()
     class HomeRefreshEvent : BaseEvent()
-    class LoginSetTabEvent(val index: Int) : BaseEvent()
+    class LoginSetTabEvent(val index: Int) : BaseEvent(){
+    }
 
 }

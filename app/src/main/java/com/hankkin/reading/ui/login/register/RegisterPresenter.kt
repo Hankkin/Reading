@@ -2,7 +2,6 @@ package com.hankkin.reading.ui.login.register
 
 import com.hankkin.reading.http.HttpClient
 import com.hankkin.reading.http.api.LoginApi
-import com.hankkin.reading.http.api.UserApi
 import com.hankkin.reading.mvp.presenter.RxLifePresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -13,18 +12,13 @@ import io.reactivex.schedulers.Schedulers
 class RegisterPresenter : RxLifePresenter<RegisterContract.IView>(), RegisterContract.IPresenter {
 
     companion object {
-        const val EMAIL = "email"
         const val NAME = "username"
-        const val PASSWORD = "password1"
-        const val RPASSWORD = "password2"
-        const val CAPTCHA_KEY = "captcha_0"
-        const val CAPTCHA_INPUT = "captcha_1"
+        const val PASSWORD = "password"
+        const val RPASSWORD = "repassword"
 
-        const val EMAIL_MSG = "请输入正确的邮箱地址"
         const val NAME_MSG = "请输入用户名至少2个字符"
-        const val PASSWORD_MSG = "请输入密码至少8个字符"
-        const val RPASSWORD_MSG = "请输入重复密码至少8个字符"
-        const val CODE_MSG = "请输入验证码4个字符"
+        const val PASSWORD_MSG = "请输入密码"
+        const val RPASSWORD_MSG = "请输入重复密码"
         const val PASSWORD_AND_MSG = "两次密码不一致"
 
         const val EMAIL_REG = "^([a-z0-9A-Z]+[-|\\.]?+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}\$)"
@@ -32,12 +26,8 @@ class RegisterPresenter : RxLifePresenter<RegisterContract.IView>(), RegisterCon
 
 
     override fun verifiyFormat(paramsMap: HashMap<String, String>) {
-        if (paramsMap[NAME].isNullOrEmpty()) {
+        if (paramsMap[NAME].isNullOrBlank()) {
             getMvpView().verifiyFormatResult(NAME_MSG)
-            return
-        }
-        if (paramsMap[EMAIL].isNullOrBlank()) {
-            getMvpView().verifiyFormatResult(EMAIL_MSG)
             return
         }
         if (paramsMap[PASSWORD].isNullOrEmpty()) {
@@ -48,56 +38,26 @@ class RegisterPresenter : RxLifePresenter<RegisterContract.IView>(), RegisterCon
             getMvpView().verifiyFormatResult(RPASSWORD_MSG)
             return
         }
-        if (paramsMap[CAPTCHA_INPUT].isNullOrEmpty()) {
-            getMvpView().verifiyFormatResult(CODE_MSG)
-            return
-        }
         if (!paramsMap[PASSWORD].equals(paramsMap[RPASSWORD])) {
             getMvpView().verifiyFormatResult(PASSWORD_AND_MSG)
             return
         }
-//        if (!Pattern.matches(EMAIL_REG, paramsMap[EMAIL])){
-//            getMvpView().verifiyFormatResult(EMAIL_MSG)
-//            return
-//        }
         regHttp(paramsMap)
     }
 
     override fun regHttp(map: HashMap<String, String>) {
         getMvpView().showLoading()
-        HttpClient.getnorRetrofit().create(LoginApi::class.java)
-                .getCsrfToken()
-                .flatMap {
-                    map.put("csrfmiddlewaretoken", it.data.csrfmiddlewaretoken)
-                    val a =HttpClient.getnorRetrofit().create(LoginApi::class.java).signUp(map)
-
-                 a
-                }
-                .flatMap {
-                    HttpClient.getnorRetrofit().create(UserApi::class.java).getUserProfile()
-                }
+        HttpClient.getwanAndroidRetrofit().create(LoginApi::class.java)
+                .signUp(map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeEx({
-//                    getMvpView().regResult(it)
+                    getMvpView().regResult(it)
                     getMvpView().hideLoading()
                 }, {
                     getMvpView().hideLoading()
                 })
     }
 
-    override fun getCapchaHttp() {
-        getMvpView().showLoading()
-        HttpClient.getnorRetrofit().create(LoginApi::class.java)
-                .getCaptcha()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeNx({
-                    getMvpView().getCapcha(it)
-                    getMvpView().hideLoading()
-                }, {
-                    getMvpView().hideLoading()
-                })
-    }
 
 }

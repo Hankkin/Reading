@@ -14,14 +14,9 @@ class LoginPresenter: RxLifePresenter<LoginContract.IView>(), LoginContract.IPre
 
     override fun loginHttp(map: HashMap<String, Any>) {
         getMvpView().showLoading()
-        HttpClient.getnorRetrofit().create(LoginApi::class.java)
-                .getCsrfToken()
-                .flatMap {
-                    map.put("csrfmiddlewaretoken",it.data.csrfmiddlewaretoken)
-                    HttpClient.getnorRetrofit().create(LoginApi::class.java).login(map)
-                }.flatMap {
-                    HttpClient.getnorRetrofit().create(UserApi::class.java).getUserProfile()
-                }.subscribeOn(Schedulers.io())
+        HttpClient.getwanAndroidRetrofit().create(LoginApi::class.java)
+                .login(map)
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeEx({
                     getMvpView().loginResult(it)
@@ -30,20 +25,6 @@ class LoginPresenter: RxLifePresenter<LoginContract.IView>(), LoginContract.IPre
                     getMvpView().hideLoading()
                 })
 
-    }
-
-    override fun getCapchaHttp() {
-        getMvpView().showLoading()
-        HttpClient.getnorRetrofit().create(LoginApi::class.java)
-                .getCaptcha()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeNx({
-                    getMvpView().getCapcha(it)
-                    getMvpView().hideLoading()
-                }, {
-                    getMvpView().hideLoading()
-                })
     }
 
 }

@@ -1,9 +1,6 @@
 package com.hankkin.reading.http.api
 
-import com.hankkin.reading.domain.BaseResponse
-import com.hankkin.reading.domain.CaptchaBean
-import com.hankkin.reading.domain.CsrfTokenBean
-import com.hankkin.reading.domain.SignUpBean
+import com.hankkin.reading.domain.*
 import io.reactivex.Observable
 import retrofit2.http.*
 
@@ -19,11 +16,11 @@ interface LoginApi {
     fun getCsrfToken(): Observable<BaseResponse<CsrfTokenBean>>
 
     @FormUrlEncoded
-    @POST("account/login")
-    fun login(@FieldMap map: HashMap<String,Any>): Observable<BaseResponse<String>>
+    @POST("user/login")
+    fun login(@FieldMap map: HashMap<String,Any>): Observable<BaseResponse<UserBean>>
 
     @FormUrlEncoded
-    @POST("account/signup")
-    fun signUp(@FieldMap map: HashMap<String,String>): Observable<BaseResponse<SignUpBean>>
+    @POST("user/register")
+    fun signUp(@FieldMap map: HashMap<String,String>): Observable<BaseResponse<UserBean>>
 }
 

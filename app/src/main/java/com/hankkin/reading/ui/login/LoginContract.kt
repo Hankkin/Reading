@@ -1,6 +1,5 @@
 package com.hankkin.reading.ui.login
 
-import com.hankkin.reading.domain.CaptchaBean
 import com.hankkin.reading.domain.UserBean
 import com.hankkin.reading.mvp.contract.IBaseLoading
 import com.hankkin.reading.mvp.contract.IPresenterContract
@@ -11,12 +10,10 @@ import com.hankkin.reading.mvp.contract.IPresenterContract
 interface LoginContract {
 
     interface IView : IBaseLoading {
-        fun getCapcha(captchaBean: CaptchaBean)
         fun loginResult(userBean: UserBean)
     }
 
     interface IPresenter : IPresenterContract {
-        fun getCapchaHttp()
         fun loginHttp(map: HashMap<String,Any>)
     }
 }

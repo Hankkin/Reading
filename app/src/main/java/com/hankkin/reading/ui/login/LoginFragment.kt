@@ -1,8 +1,12 @@
 package com.hankkin.reading.ui.login
 
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.KeyEvent
+import com.bilibili.magicasakura.widgets.KeyEditText
 import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseMvpFragment
-import com.hankkin.reading.domain.CaptchaBean
+import com.hankkin.reading.control.UserControl
 import com.hankkin.reading.domain.UserBean
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.utils.LoadingUtils
@@ -13,13 +17,7 @@ import kotlinx.android.synthetic.main.fragment_login.*
 /**
  * Created by huanghaijie on 2018/5/15.
  */
-class LoginFragment : BaseMvpFragment<LoginContract.IPresenter>(), LoginContract.IView {
-
-    private lateinit var code:String
-
-    override fun loginResult(userBean: UserBean) {
-        ToastUtils.showToast(context,"登录成功"+userBean.name)
-    }
+class LoginFragment : BaseMvpFragment<LoginContract.IPresenter>(), LoginContract.IView , KeyEditText.KeyPreImeListener{
 
 
     override fun registerPresenter() = LoginPresenter::class.java
@@ -34,10 +32,11 @@ class LoginFragment : BaseMvpFragment<LoginContract.IPresenter>(), LoginContract
     }
 
     override fun initView() {
-
+        et_login_name.setKeyPreImeListener(this)
+        et_login_pwd.setKeyPreImeListener(this)
+        et_login_pwd.addTextChangedListener(watcher)
+        et_login_name.addTextChangedListener(watcher)
     }
-
-
 
 
     override fun showLoading() {
@@ -48,12 +47,28 @@ class LoginFragment : BaseMvpFragment<LoginContract.IPresenter>(), LoginContract
         LoadingUtils.hideLoading()
     }
 
-    override fun getCapcha(captchaBean: CaptchaBean) {
-        code = captchaBean.key
-        if (captchaBean.image_url.isNotEmpty()){
-//            ImageLoader.load(context,captchaBean.image_url,iv_login_code)
+
+    private val watcher = object : TextWatcher {
+        override fun afterTextChanged(s: Editable?) {
+            login_btn.isEnabled = et_login_name.text.isNotEmpty() && et_login_pwd.text.isNotEmpty()
+        }
+
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+        }
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
         }
     }
 
+    override fun onKeyPreImeUp(keyCode: Int, event: KeyEvent?) {
+        et_login_name.clearFocus()
+        et_login_pwd.clearFocus()
+    }
+
+    override fun loginResult(userBean: UserBean) {
+        ToastUtils.showToast(context, "登录成功" + userBean.username)
+        UserControl.setCurrentUser(userBean)
+        activity!!.finish()
+    }
 
 }
