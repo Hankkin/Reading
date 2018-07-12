@@ -83,7 +83,7 @@ abstract class RxLifePresenter<out V : IBaseViewContract> : IBasePresenter<V>, I
         return this.subscribe({
             //编写订阅触发时的公共代码
 
-            if(it.errorCode != 200){
+            if(it.errorCode != 0){
                 ToastUtils.showToast(EApplication.instance(),it.errorMsg)
                 onError.invoke(kotlin.Throwable())
             }

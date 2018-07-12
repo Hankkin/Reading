@@ -9,6 +9,7 @@ import com.hankkin.reading.base.BaseMvpFragment
 import com.hankkin.reading.control.UserControl
 import com.hankkin.reading.domain.UserBean
 import com.hankkin.reading.event.EventMap
+import com.hankkin.reading.ui.login.register.RegisterPresenter
 import com.hankkin.reading.utils.LoadingUtils
 import com.hankkin.reading.utils.RxBus
 import com.hankkin.reading.utils.ToastUtils
@@ -29,6 +30,12 @@ class LoginFragment : BaseMvpFragment<LoginContract.IPresenter>(), LoginContract
 
     override fun initData() {
         tv_login_go_reg.setOnClickListener { RxBus.getDefault().post(EventMap.LoginSetTabEvent(1)) }
+        login_btn.setOnClickListener {
+            var map = HashMap<String,Any>()
+            map.put(RegisterPresenter.NAME,et_login_name.text.toString())
+            map.put(RegisterPresenter.PASSWORD,et_login_pwd.text.toString())
+            getPresenter().loginHttp(map)
+        }
     }
 
     override fun initView() {
