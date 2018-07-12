@@ -4,7 +4,9 @@ import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseMvpFragment
 import com.hankkin.reading.domain.CaptchaBean
 import com.hankkin.reading.domain.UserBean
+import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.utils.LoadingUtils
+import com.hankkin.reading.utils.RxBus
 import com.hankkin.reading.utils.ToastUtils
 import kotlinx.android.synthetic.main.fragment_login.*
 
@@ -28,24 +30,15 @@ class LoginFragment : BaseMvpFragment<LoginContract.IPresenter>(), LoginContract
     }
 
     override fun initData() {
-        iv_login_code.setOnClickListener { getPresenter().getCapchaHttp() }
-        tv_login_btn.setOnClickListener { loginClick() }
+        tv_login_go_reg.setOnClickListener { RxBus.getDefault().post(EventMap.LoginSetTabEvent(1)) }
     }
 
     override fun initView() {
-        getPresenter().getCapchaHttp()
+
     }
 
 
 
-    fun loginClick(){
-        val map = HashMap<String,Any>()
-        map.put("username",et_login_name.text)
-        map.put("password",et_login_pwd.text)
-        map.put("captcha_1",et_login_code.text)
-        map.put("captcha_0",code)
-        getPresenter().loginHttp(map)
-    }
 
     override fun showLoading() {
         LoadingUtils.showLoading(context)

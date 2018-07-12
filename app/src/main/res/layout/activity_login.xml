@@ -1,65 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:gravity="center_horizontal"
-    android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/normal_bg"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context="com.hankkin.reading.ui.login.LoginActivity">
 
 
-    <RelativeLayout
+    <LinearLayout
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <com.bilibili.magicasakura.widgets.TintLinearLayout
-            android:background="@color/theme_color_primary"
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_login"
             android:layout_width="match_parent"
-            android:layout_height="200dp">
-        </com.bilibili.magicasakura.widgets.TintLinearLayout>
-        <com.bilibili.magicasakura.widgets.TintImageView
-            android:layout_centerHorizontal="true"
-            android:id="@+id/iv_login_logo"
-            android:layout_marginTop="@dimen/dp_24"
-            android:src="@mipmap/ic_launcher"
-            android:layout_width="80dp"
-            android:layout_height="80dp" />
-        <android.support.v7.widget.CardView
-            android:background="@color/white"
-            app:cardCornerRadius="@dimen/dp_8"
-            android:layout_margin="@dimen/dp_40"
-            android:layout_below="@+id/iv_login_logo"
-            android:layout_width="match_parent"
-            android:layout_height="100dp">
-            <LinearLayout
-                android:padding="@dimen/dp_12"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <com.bilibili.magicasakura.widgets.TintTextView
-                    android:textSize="@dimen/sp_20"
-                    android:textColor="@color/theme_color_primary"
-                    android:layout_gravity="center_horizontal"
-                    android:textStyle="bold"
-                    android:text="@string/login_login"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:textSize="@dimen/sp_13"
-                    android:textColor="@color/transanct"
-                    android:text="@string/login_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <com.bilibili.magicasakura.widgets.TintEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
-
-
-
-        </android.support.v7.widget.CardView>
-    </RelativeLayout>
-
+            android:layout_height="match_parent"/>
+    </LinearLayout>
 
 </LinearLayout>

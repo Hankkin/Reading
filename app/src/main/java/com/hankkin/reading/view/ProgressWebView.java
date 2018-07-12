@@ -1,10 +1,17 @@
 package com.hankkin.reading.view;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.net.http.SslError;
 import android.util.AttributeSet;
 import android.view.View;
+import android.webkit.SslErrorHandler;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
@@ -44,6 +51,13 @@ public class ProgressWebView extends WebView {
         mProgressBar.setProgressDrawable(drawable);
         addView(mProgressBar);
         setWebChromeClient(new WebChromeClient(mProgressBar));
+        setWebViewClient(new WebViewClient(){
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                loadUrl(url);
+                return true;
+            }
+        });
         setLayerType(View.LAYER_TYPE_SOFTWARE, null);
     }
 

@@ -68,6 +68,9 @@ class EApplication : Application() ,ThemeUtils.switchColor{
             COLOR_DIDIAO -> "didiao"
             COLOR_GAODUAN -> "gaoduan"
             COLOR_APING -> "aping"
+            COLOR_LIANGBAI -> "liangbai"
+            COLOR_ANLUOLAN -> "anluolan"
+            COLOR_XINGHONG -> "xinghong"
             else -> {
                 "yima"
             }
@@ -79,7 +82,8 @@ class EApplication : Application() ,ThemeUtils.switchColor{
     fun getThemeColorId(context: Context, colorId: Int, theme: String): Int {
         when (colorId) {
             R.color.theme_color_primary -> return context.resources.getIdentifier(theme, "color", packageName)
-            R.color.theme_color_primary_dark -> return context.resources.getIdentifier(theme, "color", packageName)
+            R.color.theme_color_primary_dark -> return context.resources.getIdentifier(theme+"_dark", "color", packageName)
+            R.color.colorAccent -> return context.resources.getIdentifier(theme+"_accent", "color", packageName)
         }
         return colorId
     }
@@ -87,8 +91,9 @@ class EApplication : Application() ,ThemeUtils.switchColor{
     @ColorRes
      fun getThemeColor(context: Context, color: Long, theme: String): Int {
         when (color) {
-            0xffdb4437 -> return context.resources.getIdentifier(theme, "color", packageName)
-            0xffdb4437 -> return context.resources.getIdentifier(theme, "color", packageName)
+            0xfff44336 -> return context.resources.getIdentifier(theme, "color", packageName)
+            0xfff44336 -> return context.resources.getIdentifier(theme+"_dark", "color", packageName)
+            0xfff44336 -> return context.resources.getIdentifier(theme+"_accent", "color", packageName)
         }
         return -1
     }

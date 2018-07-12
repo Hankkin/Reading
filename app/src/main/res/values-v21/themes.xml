@@ -8,7 +8,7 @@
         <!-- Customize your theme here. -->
         <item name="android:colorPrimary">@color/theme_color_primary</item>
         <item name="android:colorPrimaryDark">@color/theme_color_primary_dark</item>
-        <item name="android:colorAccent">@color/theme_color_primary_dark</item>
+        <item name="android:colorAccent">@color/colorAccent</item>
         <item name="android:colorControlActivated">@color/theme_color_primary</item>
         <item name="android:colorControlNormal">@android:color/white</item>
         <item name="android:textColorPrimary">@color/normal_txt</item>
@@ -17,7 +17,7 @@
         <item name="android:windowActionBar">false</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-
+        <item name="android:colorEdgeEffect">@color/grey</item>
     </style>
 
 </resources>

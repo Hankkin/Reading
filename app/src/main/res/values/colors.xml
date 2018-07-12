@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="theme_color_primary">#db4437</color>
-    <color name="theme_color_primary_dark">#db4437</color>
-    <color name="colorAccent">#db4437</color>
+    <color name="theme_color_primary">#f44336</color>
+    <color name="theme_color_primary_dark">#d32f2f</color>
+    <color name="colorAccent">#f44336</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
     <color name="blue">#0E6EB8</color>
@@ -19,16 +19,63 @@
     <color name="normal_bg">#F0EFF5</color>
     <color name="transanct">#88FFFFFF</color>
 
-    <color name="yima">#db4437</color>
-    <color name="kuan">#0e9d59</color>
+    <color name="yima">#f44336</color>
+    <color name="yima_dark">#f44336</color>
+    <color name="yima_accent">#f44336</color>
+
+    <color name="kuan">#4caf50</color>
+    <color name="kuan_dark">#4caf50</color>
+    <color name="kuan_accent">#4caf50</color>
+
     <color name="bili">#fb7299</color>
+    <color name="bili_dark">#fb7299</color>
+    <color name="bili_accent">#fb7299</color>
+
     <color name="yidi">#3f51b5</color>
-    <color name="zhihu">#2195f3</color>
+    <color name="yidi_dark">#3f51b5</color>
+    <color name="yidi_accent">#3f51b5</color>
+
+    <color name="zhihu">#2196f3</color>
+    <color name="zhihu_dark">#2196f3</color>
+    <color name="zhihu_accent">#2196f3</color>
+
     <color name="jilao">#673ab7</color>
-    <color name="yiteng">#ff9800</color>
+    <color name="jilao_dark">#673ab7</color>
+    <color name="jilao_accent">#673ab7</color>
+
+    <color name="yiteng">#ff5722</color>
+    <color name="yiteng_dark">#ff5722</color>
+    <color name="yiteng_accent">#ff5722</color>
+
     <color name="shuiya">#009688</color>
-    <color name="didiao">#617d8c</color>
-    <color name="aping">#212121</color>
+    <color name="shuiya_dark">#009688</color>
+    <color name="shuiya_accent">#009688</color>
+
+    <color name="didiao">#607d8b</color>
+    <color name="didiao_dark">#607d8b</color>
+    <color name="didiao_accent">#607d8b</color>
+
+    <color name="aping">#313638</color>
+    <color name="aping_dark">#313638</color>
+    <color name="aping_accent">#313638</color>
+
     <color name="gutong">#795549</color>
+    <color name="gutong_dark">#795549</color>
+    <color name="gutong_accent">#795549</color>
+
     <color name="gaoduan">#000000</color>
+    <color name="gaoduan_dark">#000000</color>
+    <color name="gaoduan_accent">#000000</color>
+
+    <color name="liangbai">#e8e6e5</color>
+    <color name="liangbai_dark">#e8e6e5</color>
+    <color name="liangbai_accent">#e8e6e5</color>
+
+    <color name="xinghong">#e91e63</color>
+    <color name="xinghong_dark">#e91e63</color>
+    <color name="xinghong_accent">#e91e63</color>
+
+    <color name="anluolan">#9c27b0</color>
+    <color name="anluolan_dark">#9c27b0</color>
+    <color name="anluolan_accent">#9c27b0</color>
 </resources>

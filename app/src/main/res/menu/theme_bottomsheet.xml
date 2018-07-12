@@ -5,6 +5,10 @@
         android:id="@+id/yima"
         android:icon="@mipmap/color_yima"
         android:title="@string/theme_yima" />
+    <item
+        android:id="@+id/xinghong"
+        android:icon="@mipmap/color_xinghong"
+        android:title="@string/theme_xinghong" />
 
     <item
         android:id="@+id/kuan"
@@ -37,6 +41,11 @@
         android:title="@string/theme_jilao" />
 
     <item
+        android:id="@+id/anluolan"
+        android:icon="@mipmap/color_anluolan"
+        android:title="@string/theme_anluolan" />
+
+    <item
         android:id="@+id/zhihu"
         android:icon="@mipmap/color_zhihu"
         android:title="@string/theme_zhihu" />
@@ -60,4 +69,8 @@
         android:id="@+id/aping"
         android:icon="@mipmap/color_aping"
         android:title="@string/theme_aping" />
+    <item
+        android:id="@+id/liangbai"
+        android:icon="@mipmap/color_liangbai"
+        android:title="@string/theme_liangbai" />
 </menu>

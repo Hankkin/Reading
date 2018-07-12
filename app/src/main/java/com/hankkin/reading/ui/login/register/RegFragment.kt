@@ -5,6 +5,8 @@ import com.hankkin.reading.base.BaseMvpFragment
 import com.hankkin.reading.control.UserControl
 import com.hankkin.reading.domain.CaptchaBean
 import com.hankkin.reading.domain.UserBean
+import com.hankkin.reading.event.EventMap
+import com.hankkin.reading.ui.login.LoginActivity
 import com.hankkin.reading.ui.login.register.RegisterPresenter.Companion.CAPTCHA_INPUT
 import com.hankkin.reading.ui.login.register.RegisterPresenter.Companion.CAPTCHA_KEY
 import com.hankkin.reading.ui.login.register.RegisterPresenter.Companion.EMAIL
@@ -12,13 +14,14 @@ import com.hankkin.reading.ui.login.register.RegisterPresenter.Companion.NAME
 import com.hankkin.reading.ui.login.register.RegisterPresenter.Companion.PASSWORD
 import com.hankkin.reading.ui.login.register.RegisterPresenter.Companion.RPASSWORD
 import com.hankkin.reading.utils.LoadingUtils
+import com.hankkin.reading.utils.RxBus
 import com.hankkin.reading.utils.ToastUtils
 import kotlinx.android.synthetic.main.fragment_register.*
 
 /**
  * Created by huanghaijie on 2018/5/15.
  */
-class RegBaseMvpFragment : BaseMvpFragment<RegisterContract.IPresenter>(), RegisterContract.IView {
+class RegFragment : BaseMvpFragment<RegisterContract.IPresenter>(), RegisterContract.IView {
     override fun registerPresenter() = RegisterPresenter::class.java
 
 
@@ -29,8 +32,7 @@ class RegBaseMvpFragment : BaseMvpFragment<RegisterContract.IPresenter>(), Regis
     }
 
     override fun regResult(userBean: UserBean) {
-        UserControl.setCurrentUser(userBean)
-        activity!!.finish()
+
     }
 
 
@@ -43,8 +45,7 @@ class RegBaseMvpFragment : BaseMvpFragment<RegisterContract.IPresenter>(), Regis
     }
 
     override fun initData() {
-        iv_reg_code.setOnClickListener { getPresenter().getCapchaHttp() }
-        tv_reg_reg.setOnClickListener { regClick() }
+        tv_reg_back.setOnClickListener { RxBus.getDefault().post(EventMap.LoginSetTabEvent(0)) }
     }
 
     override fun initView() {
@@ -52,16 +53,6 @@ class RegBaseMvpFragment : BaseMvpFragment<RegisterContract.IPresenter>(), Regis
     }
 
 
-    fun regClick(){
-        val map = HashMap<String,String>()
-        map.put(EMAIL,et_reg_email.text.toString())
-        map.put(NAME,et_reg_name.text.toString())
-        map.put(PASSWORD,et_reg_pwd.text.toString())
-        map.put(RPASSWORD,et_reg_pwd_repeat.text.toString())
-        map.put(CAPTCHA_INPUT,et_reg_code.text.toString())
-        map.put(CAPTCHA_KEY,captchaBean.key)
-        getPresenter().verifiyFormat(map)
-    }
 
 
     override fun showLoading() {
@@ -73,9 +64,7 @@ class RegBaseMvpFragment : BaseMvpFragment<RegisterContract.IPresenter>(), Regis
     }
 
     override fun getCapcha(captchaBean: CaptchaBean) {
-        this.captchaBean = captchaBean
-        if (captchaBean.image_url.isNotEmpty()) {
-        }
+
     }
 
 

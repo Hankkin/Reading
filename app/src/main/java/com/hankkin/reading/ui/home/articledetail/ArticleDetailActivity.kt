@@ -3,24 +3,28 @@ package com.hankkin.reading.ui.home.articledetail
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.net.http.SslError
 import android.os.Build
-import android.support.v4.content.ContextCompat.startActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.webkit.SslErrorHandler
 import android.webkit.WebSettings
-import android.widget.ImageView
-import android.widget.Toolbar
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import com.hankkin.library.utils.StatusBarUtil
 import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseMvpActivity
 import com.hankkin.reading.utils.CommonUtils
 import com.hankkin.reading.utils.ThemeHelper
 import kotlinx.android.synthetic.main.activity_article_detail.*
+import kotlinx.android.synthetic.main.activity_common_web.*
 
 class ArticleDetailActivity : BaseMvpActivity<ArticleDetailPresenter>(), ArticleDetailContract.IView {
 
     private lateinit var mUrl: String
     private lateinit var mTitle: String
+    private lateinit var ws: WebSettings
 
 
     companion object {
@@ -74,7 +78,7 @@ class ArticleDetailActivity : BaseMvpActivity<ArticleDetailPresenter>(), Article
     }
 
     private fun initWebView() {
-        val ws = web_article.getSettings()
+        ws = web_article.getSettings()
         // 网页内容的宽度是否可大于WebView控件的宽度
         ws.setLoadWithOverviewMode(false)
         // 保存表单数据
@@ -136,5 +140,6 @@ class ArticleDetailActivity : BaseMvpActivity<ArticleDetailPresenter>(), Article
         }
         return super.onOptionsItemSelected(item)
     }
+
 
 }

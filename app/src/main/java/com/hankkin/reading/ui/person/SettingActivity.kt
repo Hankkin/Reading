@@ -2,6 +2,7 @@ package com.hankkin.reading.ui.person
 
 import android.app.Activity
 import android.app.ActivityManager
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -11,6 +12,7 @@ import com.hankkin.library.utils.StatusBarUtil
 import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseActivity
 import com.hankkin.reading.event.EventMap
+import com.hankkin.reading.ui.main.MainActivity
 import com.hankkin.reading.utils.RxBus
 import com.hankkin.reading.utils.ThemeHelper
 import kotlinx.android.synthetic.main.activity_setting.*
@@ -64,6 +66,9 @@ class SettingActivity : BaseActivity() {
             R.id.didiao -> ThemeHelper.COLOR_DIDIAO
             R.id.gaoduan -> ThemeHelper.COLOR_GAODUAN
             R.id.aping -> ThemeHelper.COLOR_APING
+            R.id.liangbai -> ThemeHelper.COLOR_LIANGBAI
+            R.id.anluolan -> ThemeHelper.COLOR_ANLUOLAN
+            R.id.xinghong -> ThemeHelper.COLOR_XINGHONG
             else -> {
                 ThemeHelper.COLOR_YIMA
             }

@@ -46,6 +46,9 @@ public class ThemeHelper {
     public static final int COLOR_DIDIAO = 0x11;
     public static final int COLOR_GAODUAN = 0x12;
     public static final int COLOR_APING = 0x13;
+    public static final int COLOR_LIANGBAI = 0x14;
+    public static final int COLOR_ANLUOLAN = 0x15;
+    public static final int COLOR_XINGHONG = 0x16;
 
     public static SharedPreferences getSharePreference(Context context) {
         return context.getSharedPreferences("multiple_theme", Context.MODE_PRIVATE);
@@ -65,7 +68,7 @@ public class ThemeHelper {
         return getTheme(context) == COLOR_YIMA;
     }
 
-    public static String getName(Context context,int currentTheme) {
+    public static String getName(Context context, int currentTheme) {
         switch (currentTheme) {
             case COLOR_YIMA:
                 return context.getResources().getString(R.string.theme_yima);
@@ -91,12 +94,18 @@ public class ThemeHelper {
                 return context.getResources().getString(R.string.theme_gaoduan);
             case COLOR_APING:
                 return context.getResources().getString(R.string.theme_aping);
+            case COLOR_LIANGBAI:
+                return context.getResources().getString(R.string.theme_liangbai);
+            case COLOR_ANLUOLAN:
+                return context.getResources().getString(R.string.theme_anluolan);
+            case COLOR_XINGHONG:
+                return context.getResources().getString(R.string.theme_xinghong);
         }
         return context.getResources().getString(R.string.theme_yima);
     }
 
-    public static int getCurrentColor(Context context){
-        switch (ThemeHelper.getTheme(context)){
+    public static int getCurrentColor(Context context) {
+        switch (ThemeHelper.getTheme(context)) {
             case COLOR_YIMA:
                 return R.color.yima;
             case COLOR_KUAN:
@@ -121,6 +130,12 @@ public class ThemeHelper {
                 return R.color.gaoduan;
             case COLOR_APING:
                 return R.color.aping;
+            case COLOR_LIANGBAI:
+                return R.color.liangbai;
+            case COLOR_ANLUOLAN:
+                return R.color.anluolan;
+            case COLOR_XINGHONG:
+                return R.color.xinghong;
         }
         return R.color.yima;
     }

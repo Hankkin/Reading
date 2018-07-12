@@ -15,10 +15,10 @@
         <clip>
             <shape>
                 <gradient
-                    android:centerColor="@color/theme_color_primary"
+                    android:centerColor="@color/grey"
                     android:centerY="0.75"
-                    android:endColor="@color/theme_color_primary"
-                    android:startColor="@color/theme_color_primary"/>
+                    android:endColor="@color/grey"
+                    android:startColor="@color/grey"/>
             </shape>
         </clip>
     </item>
@@ -27,10 +27,10 @@
         <clip>
             <shape>
                 <gradient
-                    android:centerColor="@color/theme_color_primary"
+                    android:centerColor="@color/grey"
                     android:centerY="0.75"
-                    android:endColor="@color/theme_color_primary"
-                    android:startColor="@color/theme_color_primary"/>
+                    android:endColor="@color/grey"
+                    android:startColor="@color/grey"/>
             </shape>
         </clip>
     </item>

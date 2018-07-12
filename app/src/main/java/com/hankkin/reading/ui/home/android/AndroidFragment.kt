@@ -41,6 +41,7 @@ class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IVie
     }
 
     override fun initData() {
+        xrv_android.overScrollMode
         initXrv()
         loadData(mPage)
         RxBus.getDefault().toObservable(EventMap.BaseEvent::class.java)

@@ -33,8 +33,8 @@
     <string name="login_pwd">密码</string>
     <string name="login_pwd_repeat">重复密码</string>
     <string name="login_code">验证码</string>
-    <string name="login_login">登录</string>
-    <string name="login_register">注册</string>
+    <string name="login_login">登 录</string>
+    <string name="login_register">注 册</string>
     <string name="login_no_register">还没有帐号？</string>
     <string name="login_registered">已有帐号？</string>
     <string name="login_forget">忘记密码</string>
@@ -64,7 +64,7 @@
     <string name="person_info_logout">注销</string>
 
     <string name="setting">设置</string>
-    <string name="setting_theme">主题设置</string>
+    <string name="setting_theme">个性换肤</string>
 
 
     <string name="theme_default">默认</string>
@@ -74,12 +74,15 @@
     <string name="theme_yidi">颐堤蓝</string>
     <string name="theme_yiteng">伊藤橙</string>
     <string name="theme_jilao">基佬紫</string>
+    <string name="theme_anluolan">暗罗兰</string>
+    <string name="theme_xinghong">猩红</string>
     <string name="theme_shuiya">水鸭青</string>
     <string name="theme_zhihu">知乎蓝</string>
     <string name="theme_gutong">古铜棕</string>
     <string name="theme_didiao">低调灰</string>
     <string name="theme_gaoduan">高端黑</string>
     <string name="theme_aping">A屏黑</string>
+    <string name="theme_liangbai">亮白</string>
 
     <string-array name="select_img_items">
         <item>拍照</item>
