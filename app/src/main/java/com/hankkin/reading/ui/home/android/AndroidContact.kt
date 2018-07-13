@@ -12,9 +12,11 @@ interface AndroidContact {
     interface IView : IBaseViewContract {
         fun setArticle(articleBean: ArticleBean)
         fun setFail()
+        fun collectResult()
     }
 
     interface IPresenter : IPresenterContract {
         fun getArticle(page: Int)
+        fun collectHttp(id: Int)
     }
 }

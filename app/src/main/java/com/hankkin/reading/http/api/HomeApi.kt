@@ -33,4 +33,9 @@ interface HomeApi {
     @FormUrlEncoded
     @POST("article/query/{page}/json")
     fun query(@Path("page") page: Int,@Field("k") key: String): Observable<BaseResponse<ArticleBean>>
+
+    @FormUrlEncoded
+    @POST("lg/collect/{id}/json")
+    fun collectArticle(@Path("id") id: Int): Observable<BaseResponse<String>>
+
 }

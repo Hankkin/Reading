@@ -28,6 +28,7 @@ object ViewHelper{
                 .positiveText(context.resources.getString(R.string.ok))
                 .negativeText(context.resources.getString(R.string.cancel))
                 .onPositive(callback)
+                .show()
 
     }
 

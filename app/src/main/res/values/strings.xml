@@ -39,7 +39,7 @@
     <string name="login_registered">已有帐号？</string>
     <string name="login_forget">忘记密码</string>
     <string name="login_email">邮箱地址</string>
-    <string name="reg_suc_toast">注册成功...</string>
+    <string name="reg_suc_toast">注册成功...为了保证可持续化登录，需要您再次登录O(∩_∩)O~</string>
 
     <string name="loading_wait">加载中...</string>
 

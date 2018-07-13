@@ -3,6 +3,8 @@ package com.hankkin.reading.ui.login.register
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.KeyEvent
+import com.afollestad.materialdialogs.DialogAction
+import com.afollestad.materialdialogs.MaterialDialog
 import com.bilibili.magicasakura.widgets.KeyEditText
 import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseMvpFragment
@@ -12,6 +14,7 @@ import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.utils.LoadingUtils
 import com.hankkin.reading.utils.RxBus
 import com.hankkin.reading.utils.ToastUtils
+import com.hankkin.reading.utils.ViewHelper
 import kotlinx.android.synthetic.main.fragment_register.*
 
 /**
@@ -74,8 +77,11 @@ class RegFragment : BaseMvpFragment<RegisterContract.IPresenter>(), RegisterCont
 
     override fun regResult(userBean: UserBean) {
         UserControl.setCurrentUser(userBean)
-//        ViewHelper.showConfirmDialog(context?,context!!.resources.getString(R.string.reg_suc_toast), MaterialDialog.SingleButtonCallback())
-        RxBus.getDefault().post(EventMap.LoginSetTabEvent(0))
+        ViewHelper.showConfirmDialog(context!!,
+                context!!.resources.getString(R.string.reg_suc_toast),
+                MaterialDialog.SingleButtonCallback { dialog, which ->
+                    RxBus.getDefault().post(EventMap.LoginSetTabEvent(0,et_reg_email.text.toString(),et_reg_pwd.text.toString()))
+                })
     }
 
     override fun onKeyPreImeUp(keyCode: Int, event: KeyEvent?) {

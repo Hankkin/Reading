@@ -19,6 +19,9 @@ import kotlinx.android.synthetic.main.fragment_android.*
  * Created by huanghaijie on 2018/5/15.
  */
 class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IView, SwipeRefreshLayout.OnRefreshListener {
+    override fun collectResult() {
+
+    }
 
 
     private var mPage: Int = 0

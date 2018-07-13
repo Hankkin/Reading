@@ -36,6 +36,11 @@ class LoginFragment : BaseMvpFragment<LoginContract.IPresenter>(), LoginContract
             map.put(RegisterPresenter.PASSWORD,et_login_pwd.text.toString())
             getPresenter().loginHttp(map)
         }
+        RxBus.getDefault().toObservable(EventMap.LoginSetTabEvent::class.java)
+                .subscribe {
+                    et_login_name.setText(it.name)
+                    et_login_pwd.setText(it.pwd)
+                }
     }
 
     override fun initView() {

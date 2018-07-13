@@ -75,7 +75,18 @@ object EventMap {
     class ChangeFabEvent : BaseEvent()
     class ToUpEvent : BaseEvent()
     class HomeRefreshEvent : BaseEvent()
-    class LoginSetTabEvent(val index: Int) : BaseEvent(){
+    class LoginSetTabEvent() : BaseEvent(){
+         var name: String = ""
+         var pwd: String = ""
+        var index: Int = 0
+        constructor( index: Int,name: String, pwd: String) : this(){
+            this.name = name
+            this.pwd = pwd
+            this.index = index
+        }
+        constructor( index: Int) : this(){
+            this.index = index
+        }
     }
 
 }

@@ -7,10 +7,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.bilibili.magicasakura.widgets.TintImageView
 import com.bilibili.magicasakura.widgets.TintTextView
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.base.BaseRecyclerViewAdapter
 import com.hankkin.reading.adapter.base.BaseRecyclerViewHolder
+import com.hankkin.reading.control.UserControl
 import com.hankkin.reading.domain.ArticleDetailBean
 import com.hankkin.reading.ui.home.articledetail.ArticleDetailActivity
 import com.hankkin.reading.utils.GlideUtils
@@ -34,6 +36,8 @@ class AndroidAdapter : BaseRecyclerViewAdapter<ArticleDetailBean>() {
         val tvTime by lazy { itemView.findViewById<TextView>(R.id.tv_adapter_android_time) }
         val ivPic by lazy { itemView.findViewById<ImageView>(R.id.iv_adapter_android_pic) }
         val llTags by lazy { itemView.findViewById<LinearLayout>(R.id.ll_adapter_android_tags) }
+        val ivCollect by lazy { itemView.findViewById<ImageView>(R.id.iv_adapter_android_collect_normal) }
+        val ivCollected by lazy { itemView.findViewById<TintImageView>(R.id.iv_adapter_android_collected) }
 
         override fun onBindViewHolder(bean: ArticleDetailBean, position: Int) {
             tvAuthor.text = bean.author
@@ -66,6 +70,21 @@ class AndroidAdapter : BaseRecyclerViewAdapter<ArticleDetailBean>() {
             itemView.setOnClickListener {
                 ArticleDetailActivity.loadUrl(itemView.context,bean.link,bean.title)
             }
+            if (!UserControl.isLogin()){
+                ivCollect.visibility = View.VISIBLE
+                ivCollected.visibility = View.GONE
+            }
+            else{
+                if (UserControl.getCurrentUser()!!.collectIds.contains(bean.id.toString())){
+                    ivCollect.visibility = View.VISIBLE
+                    ivCollected.visibility = View.GONE
+                }
+                else{
+                    ivCollect.visibility = View.GONE
+                    ivCollected.visibility = View.VISIBLE
+                }
+            }
+            ivCollect.setOnClickListener {  }
         }
 
     }
