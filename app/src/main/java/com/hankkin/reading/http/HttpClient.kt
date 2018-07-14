@@ -2,11 +2,9 @@ package com.hankkin.reading.http
 
 import com.hankkin.reading.EApplication
 import com.hankkin.reading.common.Constant
-import com.hankkin.reading.http.cookie.AddCookiesInterceptor
-import com.hankkin.reading.http.cookie.ReceivedCookiesInterceptor
+import com.hankkin.reading.http.cookie.CookiesManager
 import com.hankkin.reading.http.interceptor.NetLogInterceptor
 import com.hankkin.reading.utils.LogUtils
-import io.reactivex.Observable
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
@@ -32,11 +30,10 @@ object HttpClient {
         OkHttpClient.Builder()
                 .sslSocketFactory(createSSLSocketFactory())
                 .hostnameVerifier { _, _ -> true }
-                .addInterceptor(ReceivedCookiesInterceptor(EApplication.instance()))
-                .addInterceptor(AddCookiesInterceptor(EApplication.instance()))
                 .addInterceptor({ chain -> addHeader(chain) })
                 .addInterceptor(NetLogInterceptor(NetLogInterceptor.Level.BODY) { LogUtils.d(it) })
                 .connectTimeout(DEFAULT_TIME_OUT, TimeUnit.MILLISECONDS)
+                .cookieJar(CookiesManager())
                 .build()
     }
 

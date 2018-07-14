@@ -3,6 +3,7 @@ package com.hankkin.reading.http.api
 import com.hankkin.reading.domain.*
 import io.reactivex.Observable
 import retrofit2.http.*
+import java.util.*
 
 /**
  * Created by huanghaijie on 2018/7/6.
@@ -35,7 +36,7 @@ interface HomeApi {
     fun query(@Path("page") page: Int,@Field("k") key: String): Observable<BaseResponse<ArticleBean>>
 
     @GET("lg/collect/list/{id}/json")
-    fun collectArticle(@Path("id") id: Int): Observable<BaseResponse<String>>
+    fun collectArticle(@Path("id") id: Int): Observable<BaseResponse<Any>>
 
     @FormUrlEncoded
     @POST("lg/uncollect_originId/{id}/json")

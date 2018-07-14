@@ -78,12 +78,12 @@ class AndroidAdapter : BaseRecyclerViewAdapter<ArticleDetailBean>() {
             }
             else{
                 if (UserControl.getCurrentUser()!!.collectIds.contains(bean.id.toString())){
-                    ivCollect.visibility = View.VISIBLE
-                    ivCollected.visibility = View.GONE
+                    ivCollected.visibility = View.VISIBLE
+                    ivCollect.visibility = View.GONE
                 }
                 else{
-                    ivCollect.visibility = View.GONE
-                    ivCollected.visibility = View.VISIBLE
+                    ivCollect.visibility = View.VISIBLE
+                    ivCollected.visibility = View.GONE
                 }
             }
             ivCollect.setOnClickListener {

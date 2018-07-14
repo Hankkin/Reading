@@ -10,5 +10,4 @@ class AddCookiesInterceptor : Interceptor {
         //TODO  add Http Cookies
         return chain.proceed(builder.build())
     }
-
 }
