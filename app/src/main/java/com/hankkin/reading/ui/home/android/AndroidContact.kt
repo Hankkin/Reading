@@ -13,10 +13,12 @@ interface AndroidContact {
         fun setArticle(articleBean: ArticleBean)
         fun setFail()
         fun collectResult()
+        fun cancelCollectResult()
     }
 
     interface IPresenter : IPresenterContract {
         fun getArticle(page: Int)
         fun collectHttp(id: Int)
+        fun cancelCollectHttp(id: Int)
     }
 }

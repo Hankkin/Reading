@@ -10,6 +10,18 @@ import io.reactivex.schedulers.Schedulers
  * Created by huanghaijie on 2018/7/8.
  */
 class AndroidPresenter : RxLifePresenter<AndroidContact.IView>(), AndroidContact.IPresenter {
+    override fun cancelCollectHttp(id: Int) {
+        HttpClient.getwanAndroidRetrofit().create(HomeApi::class.java)
+                .cancelCollectArticle(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeNx ({
+                    getMvpView().collectResult()
+                },{
+                    getMvpView().setFail()
+                }).bindRxLifeEx(RxLife.ON_DESTROY)
+    }
+
     override fun collectHttp(id: Int) {
         HttpClient.getwanAndroidRetrofit().create(HomeApi::class.java)
                 .collectArticle(id)

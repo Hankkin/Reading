@@ -14,8 +14,10 @@ import com.hankkin.reading.adapter.base.BaseRecyclerViewAdapter
 import com.hankkin.reading.adapter.base.BaseRecyclerViewHolder
 import com.hankkin.reading.control.UserControl
 import com.hankkin.reading.domain.ArticleDetailBean
+import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.ui.home.articledetail.ArticleDetailActivity
 import com.hankkin.reading.utils.GlideUtils
+import com.hankkin.reading.utils.RxBus
 
 /**
  * Created by huanghaijie on 2018/7/8.
@@ -84,7 +86,14 @@ class AndroidAdapter : BaseRecyclerViewAdapter<ArticleDetailBean>() {
                     ivCollected.visibility = View.VISIBLE
                 }
             }
-            ivCollect.setOnClickListener {  }
+            ivCollect.setOnClickListener {
+                ivCollect.visibility = View.GONE
+                ivCollected.visibility = View.VISIBLE
+                RxBus.getDefault().post(EventMap.CollectEvent(EventMap.CollectEvent.COLLECT,bean.id)) }
+            ivCollected.setOnClickListener {
+                ivCollect.visibility = View.VISIBLE
+                ivCollected.visibility = View.GONE
+                RxBus.getDefault().post(EventMap.CollectEvent(EventMap.CollectEvent.UNCOLLECT,bean.id)) }
         }
 
     }

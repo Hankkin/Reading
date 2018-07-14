@@ -19,9 +19,7 @@ import kotlinx.android.synthetic.main.fragment_android.*
  * Created by huanghaijie on 2018/5/15.
  */
 class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IView, SwipeRefreshLayout.OnRefreshListener {
-    override fun collectResult() {
 
-    }
 
 
     private var mPage: Int = 0
@@ -56,6 +54,13 @@ class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IVie
                     }
                     else if (it is EventMap.ChangeThemeEvent){
                         ViewHelper.changeRefreshColor(refresh_android,context)
+                    }else if (it is EventMap.CollectEvent){
+                        if (it.flag == EventMap.CollectEvent.COLLECT){
+                            getPresenter().collectHttp(it.id)
+                        }
+                        else{
+                            getPresenter().cancelCollectHttp(it.id)
+                        }
                     }
                 })
     }
@@ -113,6 +118,14 @@ class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IVie
         if (refresh_android.isRefreshing) {
             refresh_android.isRefreshing = false
         }
+    }
+
+    override fun cancelCollectResult() {
+        ToastUtils.showToast(context,"取消收藏")
+    }
+
+    override fun collectResult() {
+        ToastUtils.showToast(context,"收藏成功")
     }
 
 }

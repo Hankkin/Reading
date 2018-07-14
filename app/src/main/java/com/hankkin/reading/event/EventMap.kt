@@ -89,4 +89,11 @@ object EventMap {
         }
     }
 
+    class CollectEvent(val flag: Int,val id: Int) : BaseEvent(){
+        companion object {
+            val COLLECT: Int = 0x1
+            val UNCOLLECT: Int = 0x2
+        }
+    }
+
 }
