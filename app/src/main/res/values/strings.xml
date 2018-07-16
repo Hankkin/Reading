@@ -18,6 +18,17 @@
     <string name="drawer_note">单词本</string>
     <string name="drawer_pwd">账号本子</string>
     <string name="drawer_about">关于Reading</string>
+    <string name="drawer_exit">退出</string>
+
+    <string name="about_version">版本号</string>
+    <string name="about_use">Reading用途</string>
+    <string name="about_license">License</string>
+    <string name="about_follow">关注我</string>
+    <string name="about_close">关闭</string>
+    <string name="about_rate">评分</string>
+    <string name="about_license_content">Copyright 2018 Hankkin \n </string>
+    <string name="about_use_content">Reading是一款基于WanAndroid OpenApi开发的阅读类工具，如果你是一个热衷于Android开发者，那么这款软件能帮助你阅读精品Android文章。
+    同时Reading中还包含"英文单词"、"账号本子"、"天气"等小工具。项目基于'Kotlin+MVP'架构开发，风格大概也许属于Material Desgin原质化风格，</string>
 
     <string name="article_detail_share">分享</string>
     <string name="article_detail_open">浏览器打开</string>

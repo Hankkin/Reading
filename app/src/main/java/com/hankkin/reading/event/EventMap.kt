@@ -74,6 +74,7 @@ object EventMap {
     class ChangeThemeEvent : BaseEvent()
     class ChangeFabEvent : BaseEvent()
     class ToUpEvent : BaseEvent()
+    class LoginEvent : BaseEvent()
     class HomeRefreshEvent : BaseEvent()
     class LoginSetTabEvent() : BaseEvent(){
          var name: String = ""

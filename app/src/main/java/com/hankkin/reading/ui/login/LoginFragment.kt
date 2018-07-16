@@ -80,6 +80,7 @@ class LoginFragment : BaseMvpFragment<LoginContract.IPresenter>(), LoginContract
     override fun loginResult(userBean: UserBean) {
         ToastUtils.showToast(context, "登录成功" + userBean.username)
         UserControl.setCurrentUser(userBean)
+        RxBus.getDefault().post(EventMap.LoginEvent())
         activity!!.finish()
     }
 

@@ -51,6 +51,7 @@
                     android:paddingTop="@dimen/dp_16">
 
                     <TextView
+                        android:textStyle="italic"
                         android:id="@+id/tv_username"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -85,6 +86,7 @@
         <!--android:background="@drawable/ripple_one_item_bg"-->
 
         <RelativeLayout
+            android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -147,7 +149,6 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/ll_nav_about"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:background="?attr/selectableItemBackground"
@@ -228,7 +229,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/ll_nav_login"
+                    android:id="@+id/ll_nav_about"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:background="?attr/selectableItemBackground"
@@ -252,23 +253,72 @@
                         android:text="@string/drawer_about" />
 
                 </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/ll_nav_exit"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@mipmap/drawer_exit"
+                        />
+
+                    <TextView
+                        style="@style/normalTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:text="@string/drawer_exit" />
+
+                </LinearLayout>
             </LinearLayout>
-
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:padding="@dimen/dp_16">
-
-                <ImageView
-                    android:layout_centerVertical="true"
-                    android:id="@+id/imageView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/icon_drawer_setting" />
-            </RelativeLayout>
         </RelativeLayout>
 
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:padding="@dimen/dp_16">-->
+
+            <!--<ImageView-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:id="@+id/iv_setting"-->
+                <!--android:layout_width="20dp"-->
+                <!--android:layout_height="20dp"-->
+                <!--android:src="@mipmap/icon_drawer_setting" />-->
+            <!--<TextView-->
+                <!--android:textColor="@color/normal_txt"-->
+                <!--android:layout_marginLeft="@dimen/dp_8"-->
+                <!--android:layout_toRightOf="@+id/iv_setting"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:text="@string/setting"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+
+            <!--<ImageView-->
+                <!--android:layout_marginRight="@dimen/dp_8"-->
+                <!--android:layout_toLeftOf="@+id/tv_exit"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:id="@+id/iv_exit"-->
+                <!--android:layout_width="20dp"-->
+                <!--android:layout_height="20dp"-->
+                <!--android:src="@mipmap/icon_drawer_exit" />-->
+            <!--<TextView-->
+                <!--android:id="@+id/tv_exit"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:text="@string/drawer_exit"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+
+
+        <!--</RelativeLayout>-->
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

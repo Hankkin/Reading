@@ -15,6 +15,8 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.ActionBarDrawerToggle
 import android.view.Gravity
 import android.view.View
+import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import com.bilibili.magicasakura.utils.ThemeUtils
 import com.bilibili.magicasakura.widgets.TintLinearLayout
@@ -22,18 +24,17 @@ import com.hankkin.library.utils.StatusBarUtil
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.MainFragmentAdapter
 import com.hankkin.reading.base.BaseActivity
+import com.hankkin.reading.control.UserControl
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.ui.home.HomeFragment
 import com.hankkin.reading.ui.person.PersonFragment
 import com.hankkin.reading.ui.person.SettingActivity
 import com.hankkin.reading.ui.translate.TranslateFragment
-import com.hankkin.reading.utils.DoubleClickListener
-import com.hankkin.reading.utils.LogUtils
-import com.hankkin.reading.utils.RxBus
-import com.hankkin.reading.utils.ThemeHelper
+import com.hankkin.reading.utils.*
 import com.tbruyelle.rxpermissions2.RxPermissions
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.layout_drawer_header.*
 
 @SuppressLint("RestrictedApi")
 @RequiresApi(Build.VERSION_CODES.M)
@@ -83,6 +84,9 @@ class MainActivity : BaseActivity() {
             }
         }
 
+        if (UserControl.isLogin()){
+            setNavHeader()
+        }
 
     }
 
@@ -104,8 +108,10 @@ class MainActivity : BaseActivity() {
     fun initNavView() {
         nav_view.inflateHeaderView(R.layout.layout_drawer_header)
         val navView = nav_view.getHeaderView(0)
-        navView.findViewById<TintLinearLayout>(R.id.ll_nav_theme).setOnClickListener(doubleClick)
-        navView.findViewById<TintLinearLayout>(R.id.ll_nav_setting).setOnClickListener(doubleClick)
+        navView.findViewById<LinearLayout>(R.id.ll_nav_theme).setOnClickListener(doubleClick)
+        navView.findViewById<LinearLayout>(R.id.ll_nav_setting).setOnClickListener(doubleClick)
+        navView.findViewById<LinearLayout>(R.id.ll_nav_exit).setOnClickListener(doubleClick)
+        navView.findViewById<LinearLayout>(R.id.ll_nav_about).setOnClickListener(doubleClick)
     }
 
     fun openDrawer() {
@@ -162,7 +168,17 @@ class MainActivity : BaseActivity() {
                     if (it is EventMap.ChangeThemeEvent) {
                         changeTheme()
                     }
+                    else if (it is EventMap.LoginEvent){
+                        setNavHeader()
+                    }
                 })
+    }
+
+
+    fun setNavHeader(){
+        val navView = nav_view.getHeaderView(0)
+        val tvName = navView.findViewById<TextView>(R.id.tv_username)
+        tvName.text = UserControl.getCurrentUser()!!.username
     }
 
     fun changeTheme() {
@@ -194,6 +210,8 @@ class MainActivity : BaseActivity() {
                 when (v.id) {
                     R.id.ll_nav_theme -> startActivity(Intent(this@MainActivity, SettingActivity::class.java))
                     R.id.ll_nav_setting -> startActivity(Intent(this@MainActivity, SettingActivity::class.java))
+                    R.id.ll_nav_about -> ViewHelper.showAboutDialog(this@MainActivity)
+                    R.id.ll_nav_exit -> finish()
                 }
             }, 200)
         }

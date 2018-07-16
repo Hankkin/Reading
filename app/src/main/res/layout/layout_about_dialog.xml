@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="500dp"
+    app:layout_behavior="@string/bottom_sheet_behavior"
+    android:layout_height="match_parent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        android:padding="@dimen/dp_16">
+
+        <TextView
+            style="@style/blackTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/drawer_about"
+            android:textSize="@dimen/sp_17"
+            android:textStyle="bold" />
+
+        <TextView
+            style="@style/blackTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+            android:text="@string/about_version"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_about_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:text="1.0.0"
+            android:textColor="@color/normal_txt"
+            android:textSize="@dimen/sp_14" />
+
+        <TextView
+            style="@style/blackTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+            android:text="@string/about_use"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_about_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:text="@string/about_use_content"
+            android:textColor="@color/normal_txt"
+            android:textSize="@dimen/sp_14" />
+
+        <TextView
+            style="@style/blackTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+            android:text="@string/about_license"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:text="@string/about_license_content"
+            android:textColor="@color/normal_txt"
+            android:textSize="@dimen/sp_14" />
+
+        <TextView
+            style="@style/blackTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+            android:text="@string/about_follow"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp_24"
+                android:src="@mipmap/about_github" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp_24"
+                android:src="@mipmap/about_juejin" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp_24"
+                android:src="@mipmap/about_jianshu" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp_24"
+                android:src="@mipmap/about_csdn" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+            android:paddingBottom="@dimen/dp_24">
+
+            <com.bilibili.magicasakura.widgets.TintTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp_40"
+                android:layout_toLeftOf="@+id/tv_about_rate"
+                android:text="@string/about_close"
+                android:textColor="@color/theme_color_primary" />
+
+            <com.bilibili.magicasakura.widgets.TintTextView
+                android:id="@+id/tv_about_rate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="@string/about_rate"
+                android:textColor="@color/theme_color_primary" />
+        </RelativeLayout>
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>
