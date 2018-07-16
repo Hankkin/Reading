@@ -16,7 +16,7 @@ class AndroidPresenter : RxLifePresenter<AndroidContact.IView>(), AndroidContact
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeNx ({
-                    getMvpView().collectResult()
+                    getMvpView().cancelCollectResult(id)
                 },{
                     getMvpView().setFail()
                 }).bindRxLifeEx(RxLife.ON_DESTROY)
@@ -28,7 +28,7 @@ class AndroidPresenter : RxLifePresenter<AndroidContact.IView>(), AndroidContact
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeNx ({
-                    getMvpView().collectResult()
+                    getMvpView().collectResult(id)
                 },{
                     getMvpView().setFail()
                 }).bindRxLifeEx(RxLife.ON_DESTROY)

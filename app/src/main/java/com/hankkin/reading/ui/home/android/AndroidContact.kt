@@ -12,8 +12,8 @@ interface AndroidContact {
     interface IView : IBaseViewContract {
         fun setArticle(articleBean: ArticleBean)
         fun setFail()
-        fun collectResult()
-        fun cancelCollectResult()
+        fun collectResult(id: Int)
+        fun cancelCollectResult(id: Int)
     }
 
     interface IPresenter : IPresenterContract {

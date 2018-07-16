@@ -7,6 +7,7 @@ import com.hankkin.reading.R
 import com.hankkin.reading.adapter.AndroidAdapter
 import com.hankkin.reading.adapter.base.XRecyclerView
 import com.hankkin.reading.base.BaseMvpFragment
+import com.hankkin.reading.control.UserControl
 import com.hankkin.reading.domain.ArticleBean
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.utils.RxBus
@@ -120,12 +121,14 @@ class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IVie
         }
     }
 
-    override fun cancelCollectResult() {
-        ToastUtils.showToast(context,"取消收藏")
+    override fun cancelCollectResult(id: Int) {
+        UserControl.getCurrentUser()!!.collectIds.remove(id.toString())
+        ToastUtils.showToast(activity,"取消收藏")
     }
 
-    override fun collectResult() {
-        ToastUtils.showToast(context,"收藏成功")
+    override fun collectResult(id: Int) {
+        UserControl.getCurrentUser()!!.collectIds.add(id.toString())
+        ToastUtils.showToast(activity,"收藏成功")
     }
 
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:fitsSystemWindows="true"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,11 +19,11 @@
             android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
             <ImageView
-                android:src="@mipmap/bg_drawer_header"
                 android:id="@+id/iv_drawer_header_bg"
-                android:scaleType="fitXY"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@mipmap/bg_drawer_header" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -37,12 +37,12 @@
                 android:paddingTop="@dimen/activity_vertical_margin">
 
                 <com.hankkin.reading.view.widget.SWImageView
-                    app:type="circle"
-                    android:src="@mipmap/icon_person_avatar"
                     android:id="@+id/iv_avatar"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:scaleType="centerCrop" />
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/icon_person_avatar"
+                    app:type="circle" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -84,176 +84,191 @@
 
         <!--android:background="@drawable/ripple_one_item_bg"-->
 
-        <com.bilibili.magicasakura.widgets.TintLinearLayout
-            android:id="@+id/ll_nav_homepage"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="8dp"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp">
+            android:layout_height="match_parent">
 
-            <com.bilibili.magicasakura.widgets.TintImageView
-                app:imageTint="@color/theme_color_primary"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@mipmap/drawer_collect" />
-
-            <com.bilibili.magicasakura.widgets.TintTextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:text="@string/drawer_collect"
-                android:textColor="@color/theme_color_primary"
-                android:textSize="15sp" />
+                android:orientation="vertical">
 
-        </com.bilibili.magicasakura.widgets.TintLinearLayout>
+                <LinearLayout
+                    android:id="@+id/ll_nav_homepage"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@mipmap/drawer_collect"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:text="@string/drawer_collect"
+                        style="@style/normalTxt" />
+
+                </LinearLayout>
 
 
+                <LinearLayout
+                    android:id="@+id/ll_nav_deedback"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
 
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@mipmap/drawer_note" />
 
-        <LinearLayout
-            android:id="@+id/ll_nav_deedback"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp">
+                    <TextView
+                        style="@style/normalTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:text="@string/drawer_note" />
 
-            <com.bilibili.magicasakura.widgets.TintImageView
-                app:imageTint="@color/theme_color_primary"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@mipmap/drawer_note" />
+                </LinearLayout>
 
-            <com.bilibili.magicasakura.widgets.TintTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:text="@string/drawer_note"
-                android:textColor="@color/theme_color_primary"
-                android:textSize="15sp" />
+                <LinearLayout
+                    android:id="@+id/ll_nav_about"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
 
-        </LinearLayout>
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@mipmap/drawer_pwd" />
 
-        <com.bilibili.magicasakura.widgets.TintLinearLayout
-            android:id="@+id/ll_nav_about"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp">
+                    <TextView
+                        style="@style/normalTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:text="@string/drawer_pwd" />
 
-            <com.bilibili.magicasakura.widgets.TintImageView
-                app:imageTint="@color/theme_color_primary"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@mipmap/drawer_pwd" />
+                </LinearLayout>
 
-            <com.bilibili.magicasakura.widgets.TintTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:text="@string/drawer_pwd"
-                android:textColor="@color/theme_color_primary"
-                android:textSize="15sp" />
+                <LinearLayout
+                    android:id="@+id/ll_nav_theme"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
 
-        </com.bilibili.magicasakura.widgets.TintLinearLayout>
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@mipmap/drawer_theme" />
 
-        <com.bilibili.magicasakura.widgets.TintLinearLayout
-            android:id="@+id/ll_nav_theme"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp">
-
-            <com.bilibili.magicasakura.widgets.TintImageView
-                app:imageTint="@color/theme_color_primary"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@mipmap/drawer_theme" />
-
-            <com.bilibili.magicasakura.widgets.TintTextView
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:text="@string/setting_theme"
-                android:textColor="@color/theme_color_primary"
-                android:textSize="15sp" />
+                style="@style/normalTxt"/>
 
-        </com.bilibili.magicasakura.widgets.TintLinearLayout>
+        </LinearLayout>
 
-        <View
-            android:id="@+id/line"
-            android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:background="@color/grey1" />
-        <com.bilibili.magicasakura.widgets.TintLinearLayout
-            android:id="@+id/ll_nav_setting"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp">
+                <View
+                    android:id="@+id/line"
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:background="@color/grey1" />
 
-            <com.bilibili.magicasakura.widgets.TintImageView
-                app:imageTint="@color/theme_color_primary"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@mipmap/drawer_setting" />
+                <LinearLayout
+                    android:id="@+id/ll_nav_setting"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
 
-            <com.bilibili.magicasakura.widgets.TintTextView
-                android:layout_width="wrap_content"
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@mipmap/drawer_setting" />
+
+                    <TextView
+                        style="@style/normalTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:text="@string/setting" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_nav_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@mipmap/drawer_about"
+                         />
+
+                    <TextView
+                        style="@style/normalTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:text="@string/drawer_about" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:text="@string/setting"
-                android:textColor="@color/theme_color_primary"
-                android:textSize="15sp" />
+                android:layout_alignParentBottom="true"
+                android:padding="@dimen/dp_16">
 
-        </com.bilibili.magicasakura.widgets.TintLinearLayout>
-        <com.bilibili.magicasakura.widgets.TintLinearLayout
-            android:id="@+id/ll_nav_login"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp">
-
-            <com.bilibili.magicasakura.widgets.TintImageView
-                app:imageTint="@color/theme_color_primary"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@mipmap/drawer_about" />
-
-            <com.bilibili.magicasakura.widgets.TintTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:text="@string/drawer_about"
-                android:textColor="@color/theme_color_primary"
-                android:textSize="15sp" />
-
-        </com.bilibili.magicasakura.widgets.TintLinearLayout>
-
+                <ImageView
+                    android:layout_centerVertical="true"
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_drawer_setting" />
+            </RelativeLayout>
+        </RelativeLayout>
 
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>
