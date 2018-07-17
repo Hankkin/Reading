@@ -1,7 +1,7 @@
 package com.hankkin.reading.ui.home.hot.hotlist
 
 import com.hankkin.reading.http.HttpClient
-import com.hankkin.reading.http.api.HomeApi
+import com.hankkin.reading.http.api.WanAndroidApi
 import com.hankkin.reading.mvp.presenter.RxLifePresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -11,7 +11,7 @@ import io.reactivex.schedulers.Schedulers
  */
 class HotListPresenter : RxLifePresenter<HotListContact.IView>(), HotListContact.IPresenter{
     override fun queryKey(page: Int, key: String) {
-        HttpClient.getwanAndroidRetrofit().create(HomeApi::class.java)
+        HttpClient.getwanAndroidRetrofit().create(WanAndroidApi::class.java)
                 .query(page,key)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -21,7 +21,7 @@ class HotListPresenter : RxLifePresenter<HotListContact.IView>(), HotListContact
     }
 
     override fun getBannerHttp() {
-        HttpClient.getwanAndroidRetrofit().create(HomeApi::class.java)
+        HttpClient.getwanAndroidRetrofit().create(WanAndroidApi::class.java)
                 .getHomeBanner()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

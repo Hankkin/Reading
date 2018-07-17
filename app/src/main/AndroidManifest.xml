@@ -36,9 +36,9 @@
             android:value="GlideModule" />
 
         <activity
-            android:launchMode="singleTask"
             android:name=".ui.main.MainActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -50,7 +50,8 @@
         <activity android:name=".ui.person.PersonInfoActivity" />
         <activity android:name=".ui.person.friend.FriendListActivity" />
         <activity android:name=".ui.person.SettingActivity" />
-        <activity android:name=".ui.home.articledetail.ArticleDetailActivity"></activity>
+        <activity android:name=".ui.home.articledetail.CommonWebActivity" />
+        <activity android:name=".ui.user.collect.MyCollectActivity"></activity>
     </application>
 
 </manifest>

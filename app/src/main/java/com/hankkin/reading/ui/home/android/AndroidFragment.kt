@@ -28,7 +28,7 @@ class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IVie
 
 
     override fun initView() {
-        refresh_android.setColorSchemeResources(ThemeHelper.getCurrentColor(context))
+        ViewHelper.setRefreshLayout(context,true,refresh_android,this)
     }
 
     public fun newInstance(index: Int) {
@@ -43,7 +43,6 @@ class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IVie
     }
 
     override fun initData() {
-        xrv_android.overScrollMode
         initXrv()
         loadData(mPage)
         RxBus.getDefault().toObservable(EventMap.BaseEvent::class.java)
@@ -67,7 +66,6 @@ class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IVie
     }
 
     fun initXrv() {
-        ViewHelper.setRefreshLayout(context,true,refresh_android,this)
         mAdapter = AndroidAdapter()
         val linearLayoutManager = LinearLayoutManager(context)
         xrv_android.layoutManager = linearLayoutManager

@@ -14,8 +14,10 @@ import com.hankkin.reading.adapter.base.BaseRecyclerViewAdapter
 import com.hankkin.reading.adapter.base.BaseRecyclerViewHolder
 import com.hankkin.reading.control.UserControl
 import com.hankkin.reading.domain.ArticleDetailBean
+import com.hankkin.reading.domain.TagBean
 import com.hankkin.reading.event.EventMap
-import com.hankkin.reading.ui.home.articledetail.ArticleDetailActivity
+import com.hankkin.reading.ui.home.articledetail.CommonWebActivity
+import com.hankkin.reading.ui.login.LoginActivity
 import com.hankkin.reading.utils.GlideUtils
 import com.hankkin.reading.utils.RxBus
 
@@ -43,57 +45,69 @@ class AndroidAdapter : BaseRecyclerViewAdapter<ArticleDetailBean>() {
 
         override fun onBindViewHolder(bean: ArticleDetailBean, position: Int) {
             tvAuthor.text = bean.author
-            tvChapter.text = bean.superChapterName + " / " + bean.chapterName
-            if (bean.desc.isEmpty()){
+
+            tvChapter.text = if (bean.superChapterName == null) bean.chapterName else bean.superChapterName + " / " + bean.chapterName
+            if (bean.desc.isEmpty()) {
                 tvDesc.text = bean.title
-            }
-            else{
+            } else {
                 tvDesc.text = bean.desc
             }
             tvTime.text = bean.niceDate
-            if (bean.envelopePic.isEmpty()){
+            if (bean.envelopePic.isEmpty()) {
                 ivPic.visibility = View.GONE
-            }
-            else{
+            } else {
                 ivPic.visibility = View.VISIBLE
-                GlideUtils.loadImageView(ivPic.context,bean.envelopePic,ivPic)
+                GlideUtils.loadImageView(ivPic.context, bean.envelopePic, ivPic)
             }
             llTags.removeAllViews()
-            for (s in bean.tags){
-                val tv = LayoutInflater.from(llTags.context).inflate(R.layout.layout_adapter_android_tag,null) as TintTextView
-                tv.text = s.name
-                llTags.addView(tv)
+            if (bean.tags != null) {
+                for (s in bean.tags!!) {
+                    val tv = LayoutInflater.from(llTags.context).inflate(R.layout.layout_adapter_android_tag, null) as TintTextView
+                    tv.text = s.name
+                    llTags.addView(tv)
+                }
+                if (bean.fresh) {
+                    val tv = LayoutInflater.from(llTags.context).inflate(R.layout.layout_adapter_android_tag, null) as TintTextView
+                    tv.text = "新"
+                    llTags.addView(tv)
+                }
             }
-            if (bean.fresh){
-                val tv = LayoutInflater.from(llTags.context).inflate(R.layout.layout_adapter_android_tag,null) as TintTextView
-                tv.text = "新"
-                llTags.addView(tv)
-            }
+
             itemView.setOnClickListener {
-                ArticleDetailActivity.loadUrl(itemView.context,bean.link,bean.title)
+                CommonWebActivity.loadUrl(itemView.context, bean.link, bean.title)
             }
-            if (!UserControl.isLogin()){
+            if (!UserControl.isLogin()) {
                 ivCollect.visibility = View.VISIBLE
                 ivCollected.visibility = View.GONE
-            }
-            else{
-                if (UserControl.getCurrentUser()!!.collectIds.contains(bean.id.toString())){
+            } else {
+                if (UserControl.getCurrentUser()!!.collectIds.contains(bean.id.toString())||UserControl.getCurrentUser()!!.collectIds.contains(bean.originId.toString())) {
                     ivCollected.visibility = View.VISIBLE
                     ivCollect.visibility = View.GONE
-                }
-                else{
+                } else {
                     ivCollect.visibility = View.VISIBLE
                     ivCollected.visibility = View.GONE
                 }
             }
             ivCollect.setOnClickListener {
-                ivCollect.visibility = View.GONE
-                ivCollected.visibility = View.VISIBLE
-                RxBus.getDefault().post(EventMap.CollectEvent(EventMap.CollectEvent.COLLECT,bean.id)) }
+                if (!UserControl.isLogin()) {
+                    ivCollect.context.startActivity(Intent(ivCollect.context, LoginActivity::class.java))
+                } else {
+                    ivCollect.visibility = View.GONE
+                    ivCollected.visibility = View.VISIBLE
+                    val id = bean.id ?: bean.originId
+                    RxBus.getDefault().post(EventMap.CollectEvent(EventMap.CollectEvent.COLLECT, id))
+                }
+            }
             ivCollected.setOnClickListener {
-                ivCollect.visibility = View.VISIBLE
-                ivCollected.visibility = View.GONE
-                RxBus.getDefault().post(EventMap.CollectEvent(EventMap.CollectEvent.UNCOLLECT,bean.id)) }
+                if (!UserControl.isLogin()) {
+                    ivCollect.context.startActivity(Intent(ivCollect.context, LoginActivity::class.java))
+                } else {
+                    ivCollect.visibility = View.VISIBLE
+                    ivCollected.visibility = View.GONE
+                    val id = bean.id ?: bean.originId
+                    RxBus.getDefault().post(EventMap.CollectEvent(EventMap.CollectEvent.UNCOLLECT, id))
+                }
+            }
         }
 
     }

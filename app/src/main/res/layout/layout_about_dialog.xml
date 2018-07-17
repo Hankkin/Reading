@@ -2,7 +2,6 @@
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:layout_behavior="@string/bottom_sheet_behavior"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -85,26 +84,29 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/iv_about_github"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/dp_24"
                 android:src="@mipmap/about_github" />
 
             <ImageView
+                android:id="@+id/iv_about_juejin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/dp_24"
                 android:src="@mipmap/about_juejin" />
 
             <ImageView
+                android:id="@+id/iv_about_jianshu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/dp_24"
                 android:src="@mipmap/about_jianshu" />
 
             <ImageView
+                android:id="@+id/iv_about_csdn"
                 android:layout_width="wrap_content"
-
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/dp_24"
                 android:src="@mipmap/about_csdn" />

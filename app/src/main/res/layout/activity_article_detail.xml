@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context="com.hankkin.reading.ui.home.articledetail.ArticleDetailActivity">
+    tools:context="com.hankkin.reading.ui.home.articledetail.CommonWebActivity">
 
     <com.bilibili.magicasakura.widgets.TintToolbar
         android:id="@+id/toobar_article_detail"

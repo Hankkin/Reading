@@ -1,4 +1,4 @@
-package com.hankkin.reading.ui.home.android
+package com.hankkin.reading.ui.user.collect
 
 import com.hankkin.reading.http.HttpClient
 import com.hankkin.reading.http.api.WanAndroidApi
@@ -6,20 +6,18 @@ import com.hankkin.reading.mvp.presenter.RxLifePresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-/**
- * Created by huanghaijie on 2018/7/8.
- */
-class AndroidPresenter : RxLifePresenter<AndroidContact.IView>(), AndroidContact.IPresenter {
-    override fun cancelCollectHttp(id: Int) {
+class MyCollectPresenter : RxLifePresenter<MyCollectContract.IView>(), MyCollectContract.IPresenter {
+
+    override fun getCollectHttp(page: Int) {
         HttpClient.getwanAndroidRetrofit().create(WanAndroidApi::class.java)
-                .cancelCollectArticle(id)
+                .getMyCollect(page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeNx ({
-                    getMvpView().cancelCollectResult(id)
-                },{
+                .subscribeEx({
+                    getMvpView().getCollectData(it)
+                }, {
                     getMvpView().setFail()
-                }).bindRxLifeEx(RxLife.ON_DESTROY)
+                })
     }
 
     override fun collectHttp(id: Int) {
@@ -34,17 +32,15 @@ class AndroidPresenter : RxLifePresenter<AndroidContact.IView>(), AndroidContact
                 }).bindRxLifeEx(RxLife.ON_DESTROY)
     }
 
-    override fun getArticle(page: Int) {
+    override fun cancelCollectHttp(id: Int) {
         HttpClient.getwanAndroidRetrofit().create(WanAndroidApi::class.java)
-                .getArticle(page)
+                .cancelCollectArticle(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeNx ({
-                    getMvpView().setArticle(it.data)
+                    getMvpView().cancelCollectResult(id)
                 },{
                     getMvpView().setFail()
                 }).bindRxLifeEx(RxLife.ON_DESTROY)
     }
-
-
 }

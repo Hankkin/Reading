@@ -27,9 +27,11 @@ import com.hankkin.reading.base.BaseActivity
 import com.hankkin.reading.control.UserControl
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.ui.home.HomeFragment
+import com.hankkin.reading.ui.login.LoginActivity
 import com.hankkin.reading.ui.person.PersonFragment
 import com.hankkin.reading.ui.person.SettingActivity
 import com.hankkin.reading.ui.translate.TranslateFragment
+import com.hankkin.reading.ui.user.collect.MyCollectActivity
 import com.hankkin.reading.utils.*
 import com.tbruyelle.rxpermissions2.RxPermissions
 import kotlinx.android.synthetic.main.activity_main.*
@@ -84,7 +86,7 @@ class MainActivity : BaseActivity() {
             }
         }
 
-        if (UserControl.isLogin()){
+        if (UserControl.isLogin()) {
             setNavHeader()
         }
 
@@ -112,6 +114,7 @@ class MainActivity : BaseActivity() {
         navView.findViewById<LinearLayout>(R.id.ll_nav_setting).setOnClickListener(doubleClick)
         navView.findViewById<LinearLayout>(R.id.ll_nav_exit).setOnClickListener(doubleClick)
         navView.findViewById<LinearLayout>(R.id.ll_nav_about).setOnClickListener(doubleClick)
+        navView.findViewById<LinearLayout>(R.id.ll_nav_collect).setOnClickListener(doubleClick)
     }
 
     fun openDrawer() {
@@ -167,15 +170,14 @@ class MainActivity : BaseActivity() {
                 .subscribe({
                     if (it is EventMap.ChangeThemeEvent) {
                         changeTheme()
-                    }
-                    else if (it is EventMap.LoginEvent){
+                    } else if (it is EventMap.LoginEvent) {
                         setNavHeader()
                     }
                 })
     }
 
 
-    fun setNavHeader(){
+    fun setNavHeader() {
         val navView = nav_view.getHeaderView(0)
         val tvName = navView.findViewById<TextView>(R.id.tv_username)
         tvName.text = UserControl.getCurrentUser()!!.username
@@ -211,6 +213,13 @@ class MainActivity : BaseActivity() {
                     R.id.ll_nav_theme -> startActivity(Intent(this@MainActivity, SettingActivity::class.java))
                     R.id.ll_nav_setting -> startActivity(Intent(this@MainActivity, SettingActivity::class.java))
                     R.id.ll_nav_about -> ViewHelper.showAboutDialog(this@MainActivity)
+                    R.id.ll_nav_collect -> {
+                        if (!UserControl.isLogin()) {
+                            startActivity(Intent(this@MainActivity, LoginActivity::class.java))
+                        } else {
+                            startActivity(Intent(this@MainActivity, MyCollectActivity::class.java))
+                        }
+                    }
                     R.id.ll_nav_exit -> finish()
                 }
             }, 200)

@@ -10,12 +10,11 @@ import com.hankkin.reading.base.BaseMvpFragment
 import com.hankkin.reading.domain.ArticleBean
 import com.hankkin.reading.domain.BannerBean
 import com.hankkin.reading.domain.HotBean
-import com.hankkin.reading.ui.home.articledetail.ArticleDetailActivity
+import com.hankkin.reading.ui.home.articledetail.CommonWebActivity
 import com.hankkin.reading.utils.GlideUtils
 import com.hankkin.reading.utils.ViewHelper
 import com.hankkin.reading.view.widget.SWImageView
 import com.stx.xhb.xbanner.XBanner
-import kotlinx.android.synthetic.main.fragment_android.*
 import kotlinx.android.synthetic.main.fragment_hot_list.*
 
 /**
@@ -84,7 +83,7 @@ class HotListFragment : BaseMvpFragment<HotListPresenter>(), HotListContact.IVie
                 GlideUtils.loadImageView(context, model as String?, iv)
             }
         })
-        banner_project!!.setOnItemClickListener { banner, model, position -> context?.let { ArticleDetailActivity.loadUrl(it,bannerData[position].url,bannerData[position].title) } }
+        banner_project!!.setOnItemClickListener { banner, model, position -> context?.let { CommonWebActivity.loadUrl(it,bannerData[position].url,bannerData[position].title) } }
         xrv_hot.addHeaderView(layoutBanner)
     }
 

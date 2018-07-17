@@ -3,24 +3,18 @@ package com.hankkin.reading.ui.home.articledetail
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
-import android.net.http.SslError
 import android.os.Build
 import android.view.Menu
 import android.view.MenuItem
-import android.webkit.SslErrorHandler
 import android.webkit.WebSettings
-import android.webkit.WebView
-import android.webkit.WebViewClient
 import com.hankkin.library.utils.StatusBarUtil
 import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseMvpActivity
 import com.hankkin.reading.utils.CommonUtils
 import com.hankkin.reading.utils.ThemeHelper
 import kotlinx.android.synthetic.main.activity_article_detail.*
-import kotlinx.android.synthetic.main.activity_common_web.*
 
-class ArticleDetailActivity : BaseMvpActivity<ArticleDetailPresenter>(), ArticleDetailContract.IView {
+class CommonWebActivity : BaseMvpActivity<ArticleDetailPresenter>(), ArticleDetailContract.IView {
 
     private lateinit var mUrl: String
     private lateinit var mTitle: String
@@ -29,7 +23,7 @@ class ArticleDetailActivity : BaseMvpActivity<ArticleDetailPresenter>(), Article
 
     companion object {
         fun loadUrl(context: Context,url: String, title: String) {
-            val intent = Intent(context, ArticleDetailActivity::class.java)
+            val intent = Intent(context, CommonWebActivity::class.java)
             intent.putExtra("url", url)
             intent.putExtra("title", title)
             context.startActivity(intent)
@@ -119,8 +113,8 @@ class ArticleDetailActivity : BaseMvpActivity<ArticleDetailPresenter>(), Article
     fun menuClick() {
         toobar_article_detail.setOnMenuItemClickListener { item ->
             when (item.itemId) {
-                R.id.menu_share -> CommonUtils.share(this@ArticleDetailActivity, mUrl)
-                R.id.menu_open -> CommonUtils.openBroswer(this@ArticleDetailActivity, mUrl)
+                R.id.menu_share -> CommonUtils.share(this@CommonWebActivity, mUrl)
+                R.id.menu_open -> CommonUtils.openBroswer(this@CommonWebActivity, mUrl)
                 else -> {
                     false
                 }

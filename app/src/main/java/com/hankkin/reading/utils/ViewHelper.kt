@@ -8,8 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewTreeObserver
 import android.widget.FrameLayout
+import android.widget.ImageView
 import com.afollestad.materialdialogs.MaterialDialog
 import com.hankkin.reading.R
+import com.hankkin.reading.common.Constant
+import com.hankkin.reading.ui.home.articledetail.CommonWebActivity
 
 /**
  * Created by huanghaijie on 2018/7/10.
@@ -40,6 +43,10 @@ object ViewHelper {
 
     fun showAboutDialog(context: Context) {
         val view = LayoutInflater.from(context).inflate(R.layout.layout_about_dialog,null)
+        view.findViewById<ImageView>(R.id.iv_about_github).setOnClickListener { CommonWebActivity.loadUrl(context,Constant.AboutUrl.GITHUB,Constant.AboutUrl.GITHUB_TITLE) }
+        view.findViewById<ImageView>(R.id.iv_about_juejin).setOnClickListener { CommonWebActivity.loadUrl(context,Constant.AboutUrl.JUEJIN,Constant.AboutUrl.JUEJIN_TITLE) }
+        view.findViewById<ImageView>(R.id.iv_about_jianshu).setOnClickListener { CommonWebActivity.loadUrl(context,Constant.AboutUrl.JIANSHU,Constant.AboutUrl.JIANSHU_TITLE) }
+        view.findViewById<ImageView>(R.id.iv_about_csdn).setOnClickListener { CommonWebActivity.loadUrl(context,Constant.AboutUrl.CSDN,Constant.AboutUrl.CSDN_TITLE) }
         val bottomSheet = BottomSheetDialog(context,R.style.BottomSheetDialog)
         bottomSheet.setContentView(view)
         bottomSheet.show()
