@@ -8,7 +8,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "com.hankkin.easyword"
+        applicationId "com.hankkin.reading"
         versionCode 1
         versionName "1.0"
         minSdkVersion rootProject.ext.android.minSdkVersion

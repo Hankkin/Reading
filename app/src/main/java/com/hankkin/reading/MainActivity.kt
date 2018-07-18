@@ -230,6 +230,7 @@ class MainActivity : BaseActivity() {
 
     fun changeLogo(){
         enableCompont(ThemeHelper.getNameStr(this))
+        disableComponent(packageName+".MainActivity")
         for (str in ThemeHelper.themeList){
             if (str != ThemeHelper.getNameStr(this)){
                 disableComponent(str)
@@ -238,12 +239,12 @@ class MainActivity : BaseActivity() {
     }
 
     fun enableCompont(compontName: String){
-        packageManager.setComponentEnabledSetting(ComponentName(baseContext,"com.hankkin.easyword."+compontName),
+        packageManager.setComponentEnabledSetting(ComponentName(baseContext,packageName+"."+compontName),
                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP)
     }
 
     fun disableComponent(compontName: String){
-        packageManager.setComponentEnabledSetting(ComponentName(baseContext,AppUtils.getPackageName(this)+"."+compontName),
+        packageManager.setComponentEnabledSetting(ComponentName(baseContext,packageName+"."+compontName),
                 PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP)
     }
 }

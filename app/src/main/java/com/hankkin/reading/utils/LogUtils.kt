@@ -9,7 +9,7 @@ import com.hankkin.reading.BuildConfig
 object LogUtils {
 
     /** 日志输出时的TAG  */
-    private const val mTag = "EasyWord"
+    private const val mTag = "Reading"
 
     /** 日志输出级别All */
     const val LEVEL_ALL = 10
