@@ -13,7 +13,7 @@ import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.ui.home.android.AndroidFragment
 import com.hankkin.reading.ui.home.hot.HotFragment
 import com.hankkin.reading.ui.home.project.ProjectFragment
-import com.hankkin.reading.ui.main.MainActivity
+import com.hankkin.reading.MainActivity
 import com.hankkin.reading.utils.RxBus
 import com.hankkin.reading.utils.ThemeHelper
 import com.hankkin.reading.utils.ToastUtils

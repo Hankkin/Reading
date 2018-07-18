@@ -26,6 +26,9 @@ import android.view.View;
 import com.bilibili.magicasakura.utils.ThemeUtils;
 import com.hankkin.reading.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * @author xyczero
@@ -49,6 +52,9 @@ public class ThemeHelper {
     public static final int COLOR_LIANGBAI = 0x14;
     public static final int COLOR_ANLUOLAN = 0x15;
     public static final int COLOR_XINGHONG = 0x16;
+
+    public static String[] themeList = {"yima","kuan","bili","yidi","shuiya","yiteng","jilao","zhihu","gutong","didiao","gaoduan","aping","liangbai","anluolan","xinghong"}
+    ;
 
     public static SharedPreferences getSharePreference(Context context) {
         return context.getSharedPreferences("multiple_theme", Context.MODE_PRIVATE);
@@ -102,6 +108,60 @@ public class ThemeHelper {
                 return context.getResources().getString(R.string.theme_xinghong);
         }
         return context.getResources().getString(R.string.theme_yima);
+    }
+
+
+    public static String getNameStr(Context context) {
+        String str = "";
+        switch (getTheme(context)) {
+            case COLOR_YIMA:
+                str =  "yima";
+                break;
+            case COLOR_KUAN:
+                str = "kuan";
+                break;
+            case COLOR_BILI:
+                str = "bili";
+                break;
+            case COLOR_YIDI:
+                str = "yidi";
+                break;
+            case COLOR_SHUIYA:
+                str = "shuiya";
+                break;
+            case COLOR_YITENG:
+                str = "yiteng";
+                break;
+            case COLOR_JILAO:
+                str = "jilao";
+                break;
+            case COLOR_ZHIHU:
+                str = "zhihu";
+                break;
+            case COLOR_GUTONG:
+                str = "gutong";
+                break;
+            case COLOR_DIDIAO:
+                str = "didiao";
+                break;
+            case COLOR_GAODUAN:
+                str = "gaoduan";
+                break;
+            case COLOR_APING:
+                str = "aping";
+                break;
+            case COLOR_LIANGBAI:
+                str = "liangbai";
+                break;
+            case COLOR_ANLUOLAN:
+                str = "anluolan";
+                break;
+            case COLOR_XINGHONG:
+                str = "xinghong";
+                break;
+
+        }
+        return str;
     }
 
     public static int getCurrentColor(Context context) {

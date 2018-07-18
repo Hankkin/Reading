@@ -2,7 +2,6 @@ package com.hankkin.reading.ui.person
 
 import android.app.Activity
 import android.app.ActivityManager
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -12,7 +11,6 @@ import com.hankkin.library.utils.StatusBarUtil
 import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseActivity
 import com.hankkin.reading.event.EventMap
-import com.hankkin.reading.ui.main.MainActivity
 import com.hankkin.reading.utils.RxBus
 import com.hankkin.reading.utils.ThemeHelper
 import kotlinx.android.synthetic.main.activity_setting.*
