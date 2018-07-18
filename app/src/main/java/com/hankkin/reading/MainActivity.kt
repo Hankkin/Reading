@@ -230,7 +230,7 @@ class MainActivity : BaseActivity() {
 
     fun changeLogo(){
         enableCompont(ThemeHelper.getNameStr(this))
-        disableComponent(".MainActivity")
+        disableComponent("MainActivity")
         for (str in ThemeHelper.themeList){
             if (str != ThemeHelper.getNameStr(this)){
                 disableComponent(str)
