@@ -3,6 +3,7 @@ package com.hankkin.reading.ui.person
 import android.content.Intent
 import android.support.design.widget.AppBarLayout
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View
 import com.hankkin.library.utils.SPUtils
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.PersonListAdapter
@@ -87,11 +88,16 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
             if (scale == 1f) {
                 refresh_person.setEnabled(true)
                 tv_person_name.text = "未登录"
+                tv_me_set.text = "设置"
             } else {
+                iv_person_set.visibility = View.GONE
                 refresh_person.setEnabled(false)
+                tv_me_set.text = "设置"
             }
             if (scale == 0f){
+                iv_person_set.visibility = View.VISIBLE
                 tv_person_name.text = "我的"
+                tv_me_set.text = ""
             }
         })
     }
