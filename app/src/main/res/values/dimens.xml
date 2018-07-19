@@ -3,6 +3,8 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="title_bar_height">48dp</dimen>
+    <dimen name="toolbar_height">48dp</dimen>
+    <dimen name="subscription_head">150dp</dimen>
 
     <dimen name="dp_4">4dp</dimen>
     <dimen name="dp_6">6dp</dimen>
@@ -25,4 +27,5 @@
     <dimen name="sp_18">18sp</dimen>
     <dimen name="sp_20">20sp</dimen>
     <dimen name="sp_24">24sp</dimen>
+
 </resources>

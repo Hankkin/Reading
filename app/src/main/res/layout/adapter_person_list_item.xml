@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<com.hankkin.library.view.RippleView
+    rv_centered="true"
     android:id="@+id/rl_adapter_person"
-    android:background="@drawable/ripple_normal_selector"
     android:paddingLeft="@dimen/dp_12"
     android:paddingTop="@dimen/dp_12"
     android:paddingRight="@dimen/dp_12"
@@ -43,4 +43,4 @@
         android:layout_height="1px"
         android:layout_marginTop="@dimen/dp_12"
         android:background="@color/normal_bg" />
-</RelativeLayout>
+</com.hankkin.library.view.RippleView>

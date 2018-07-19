@@ -1,6 +1,7 @@
 package com.hankkin.reading.ui.person
 
 import android.content.Intent
+import android.support.design.widget.AppBarLayout
 import android.support.v7.widget.LinearLayoutManager
 import com.hankkin.library.utils.SPUtils
 import com.hankkin.reading.R
@@ -9,9 +10,11 @@ import com.hankkin.reading.base.BaseMvpFragment
 import com.hankkin.reading.control.UserControl
 import com.hankkin.reading.domain.NoticeBean
 import com.hankkin.reading.domain.PersonListBean
+import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.ui.login.LoginActivity
-import com.hankkin.reading.utils.GlideUtils
-import com.hankkin.reading.utils.LogUtils
+import com.hankkin.reading.utils.RxBus
+import com.hankkin.reading.utils.ViewHelper
+import kotlinx.android.synthetic.main.fragment_android.*
 import kotlinx.android.synthetic.main.fragment_person.*
 
 /**
@@ -22,6 +25,11 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
     private lateinit var mAdapter: PersonListAdapter
 
     override fun registerPresenter() = PersonPresenter::class.java
+    private var mSelfHeight = 0f//用以判断是否得到正确的宽高值
+    private var mTitleScale: Float = 0.toFloat()
+    private var tv_me_setScale: Float = 0.toFloat()
+    private var tv_me_setScaleX: Float = 0.toFloat()
+    private var mHeadImgScale: Float = 0.toFloat()
 
     override fun getLayoutId(): Int {
         return R.layout.fragment_person
@@ -35,18 +43,59 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
         mAdapter.data.add(PersonListBean(R.mipmap.icon_person_look,resources.getString(R.string.person_look)))
         xrv_person_lisy.layoutManager = LinearLayoutManager(context)
         xrv_person_lisy.adapter = mAdapter
+
+        RxBus.getDefault().toObservable(EventMap.BaseEvent::class.java)
+                .subscribe({
+                    if (it is EventMap.ChangeThemeEvent){
+                        ViewHelper.changeRefreshColor(refresh_person,context)
+                    }
+                })
+
     }
 
     override fun initView() {
+        initHeaderAnim()
         refresh_person.setColorSchemeResources(R.color.theme_color_primary)
         refresh_person.setOnRefreshListener { getPresenter().getUserNotice(SPUtils.getString(UserControl.TOKEN)) }
         iv_person_avatar.setOnClickListener { llAvatarClick() }
-        iv_person_setting.setOnClickListener { startActivity(Intent(context,SettingActivity::class.java)) }
+        tv_me_set.setOnClickListener { startActivity(Intent(context,SettingActivity::class.java)) }
     }
-
-    fun changTheme(){
+    
+    fun initHeaderAnim(){
+        val screenW = resources.displayMetrics.widthPixels
+        val toolbarHeight = resources.getDimension(R.dimen.toolbar_height)
+        val initHeight = resources.getDimension(R.dimen.subscription_head)
+        app_bar.addOnOffsetChangedListener({ appBarLayout, verticalOffset ->
+            if (mSelfHeight == 0f) {
+                mSelfHeight = tv_person_name.getHeight().toFloat()
+                val distanceTitle = tv_person_name.getTop() + (mSelfHeight - toolbarHeight) / 2.0f
+                val distanceSubscribe = tv_me_set.getY() + (tv_me_set.getHeight() - toolbarHeight) / 2.0f
+                val distanceHeadImg = iv_person_avatar.getY() + (iv_person_avatar.getHeight() - toolbarHeight) / 2.0f
+                val distanceSubscribeX = screenW / 2.0f - (tv_me_set.getWidth() / 2.0f + resources.getDimension(R.dimen.dp_10))
+                mTitleScale = distanceTitle / (initHeight - toolbarHeight)
+                tv_me_setScale = distanceSubscribe / (initHeight - toolbarHeight)
+                mHeadImgScale = distanceHeadImg / (initHeight - toolbarHeight)
+                tv_me_setScaleX = distanceSubscribeX / (initHeight - toolbarHeight)
+            }
+            val scale = 1.0f - -verticalOffset / (initHeight - toolbarHeight)
+            iv_person_avatar.setScaleX(scale)
+            iv_person_avatar.setScaleY(scale)
+            iv_person_avatar.setTranslationY(mHeadImgScale * verticalOffset)
+            tv_person_name.setTranslationY(mTitleScale * verticalOffset)
+            tv_me_set.setTranslationY(tv_me_setScale * verticalOffset)
+            tv_me_set.setTranslationX(-tv_me_setScaleX * verticalOffset)
+            if (scale == 1f) {
+                refresh_person.setEnabled(true)
+                tv_person_name.text = "未登录"
+            } else {
+                refresh_person.setEnabled(false)
+            }
+            if (scale == 0f){
+                tv_person_name.text = "我的"
+            }
+        })
     }
-
+    
     fun llAvatarClick() {
         if (!UserControl.isLogin()) {
 //            val authorizeUrl = Constant.OSChinaUrl.BASE_URL +

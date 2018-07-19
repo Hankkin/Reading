@@ -4,6 +4,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
+import com.hankkin.library.view.RippleView
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.base.BaseRecyclerViewAdapter
 import com.hankkin.reading.adapter.base.BaseRecyclerViewHolder
@@ -23,12 +24,12 @@ class PersonListAdapter : BaseRecyclerViewAdapter<PersonListBean>() {
 
         val tvText by lazy { itemView.findViewById<TextView>(R.id.tv_adapter_person_text) }
         val ivIcon by lazy { itemView.findViewById<ImageView>(R.id.iv_adapter_person_icon) }
-        val rlItem by lazy { itemView.findViewById<RelativeLayout>(R.id.rl_adapter_person) }
+        val rlItem by lazy { itemView.findViewById<RippleView>(R.id.rl_adapter_person) }
 
         override fun onBindViewHolder(bean: PersonListBean?, position: Int) {
             tvText.text = bean!!.text
             ivIcon.setImageResource(bean.icon)
-            rlItem.setOnClickListener{ ToastUtils.showToast(ivIcon.context,bean.text) }
+            rlItem.setOnRippleCompleteListener{ ToastUtils.showToast(ivIcon.context,bean.text) }
         }
 
     }

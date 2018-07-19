@@ -5,190 +5,222 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/normal_bg"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-
-        <com.bilibili.magicasakura.widgets.TintLinearLayout
+        <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/theme_color_primary"
-            android:orientation="vertical"
-            android:paddingBottom="@dimen/dp_10">
+            android:layout_height="match_parent"
+            tools:context="com.wswy.chechengwang.view.activity.SubscriptionDetailActivity">
 
-            <RelativeLayout
+            <com.bilibili.magicasakura.widgets.TintAppBarLayout
+                android:id="@+id/app_bar"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/title_bar_height">
+                android:layout_height="@dimen/subscription_head"
+                android:background="@color/theme_color_primary">
 
-                <TextView
-                    style="@style/whiteTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:text="@string/person_title" />
-
-                <com.hankkin.reading.view.ClickImageView
-                    android:id="@+id/iv_person_setting"
-                    android:layout_width="wrap_content"
+                <android.support.design.widget.CollapsingToolbarLayout
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:paddingLeft="@dimen/dp_10"
-                    android:paddingRight="@dimen/dp_10"
-                    android:src="@mipmap/icon_person_set" />
-            </RelativeLayout>
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
 
-            <LinearLayout
-                android:id="@+id/ll_person_avatar"
+                    <android.support.v7.widget.Toolbar
+                        android:id="@+id/my_toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/toolbar_height"
+                        app:layout_collapseMode="pin">
+
+
+                    </android.support.v7.widget.Toolbar>
+
+                </android.support.design.widget.CollapsingToolbarLayout>
+
+
+            </com.bilibili.magicasakura.widgets.TintAppBarLayout>
+
+
+            <android.support.v4.widget.NestedScrollView
+                android:id="@+id/scrollView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:layout_height="match_parent"
+                android:background="@color/normal_bg"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-                <com.hankkin.reading.view.widget.SWImageView
-                    app:borderColor="@color/white"
-                    app:borderWidth="1dp"
-                    android:id="@+id/iv_person_avatar"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    app:type="circle"
-                    android:src="@mipmap/icon_person_avatar"
-                     />
-
-                <TextView
-                    android:id="@+id/tv_person_name"
-                    style="@style/whiteTxt"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_6"
-                    android:text="@string/person_no_login" />
-            </LinearLayout>
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:orientation="vertical">
 
-        </com.bilibili.magicasakura.widgets.TintLinearLayout>
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dp_10"
+                        android:background="?attr/selectableItemBackground"
+                        app:cardCornerRadius="@dimen/dp_6">
 
-        <android.support.v7.widget.CardView
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/dp_10">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/tv_person_comments"
+                                    style="@style/normalTxt"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="0"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/dp_4"
+                                    android:text="@string/person_comment" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/tv_person_msg"
+                                    style="@style/normalTxt"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="0"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/dp_4"
+                                    android:text="@string/person_msg" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/tv_person_at"
+                                    style="@style/normalTxt"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="0"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/dp_4"
+                                    android:text="@string/person_at" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/tv_person_fans"
+                                    style="@style/normalTxt"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="0"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/dp_4"
+                                    android:text="@string/person_fans" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dp_10"
+                        android:background="?attr/selectableItemBackground"
+                        app:cardCornerRadius="@dimen/dp_6">
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/xrv_person_lisy"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:scrollbarAlwaysDrawVerticalTrack="true"
+                            android:scrollbarFadeDuration="1"
+                            android:scrollbarSize="4dp"
+                            android:scrollbars="vertical" />
+                    </android.support.v7.widget.CardView>
+
+                </LinearLayout>
+
+
+            </android.support.v4.widget.NestedScrollView>
+
+
+        </android.support.design.widget.CoordinatorLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dp_10"
-            app:cardCornerRadius="@dimen/dp_6"
-            android:background="?attr/selectableItemBackground">
+            android:layout_height="@dimen/subscription_head"
+            android:gravity="center"
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+
+            <com.hankkin.reading.view.widget.SWImageView
+                android:id="@+id/iv_person_avatar"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@mipmap/icon_person_avatar"
+                app:borderColor="@color/white"
+                app:borderWidth="1dp"
+                app:type="circle" />
+
+            <TextView
+                android:id="@+id/tv_person_name"
+                style="@style/whiteTxt"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/dp_10">
+                android:layout_marginTop="@dimen/dp_6"
+                android:text="@string/person_no_login" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
+            <TextView
+                android:id="@+id/tv_me_set"
+                android:layout_width="75dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="8dp"
+                android:button="@null"
+                android:checked="false"
+                android:gravity="center"
+                android:text="@string/setting"
+                android:textColor="@color/white" />
 
-                    <TextView
-                        android:id="@+id/tv_person_comments"
-                        style="@style/normalTxt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0"
-                        android:textStyle="bold" />
+        </LinearLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp_4"
-                        android:text="@string/person_comment" />
-                </LinearLayout>
+    </FrameLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tv_person_msg"
-                        style="@style/normalTxt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp_4"
-                        android:text="@string/person_msg" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tv_person_at"
-                        style="@style/normalTxt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp_4"
-                        android:text="@string/person_at" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tv_person_fans"
-                        style="@style/normalTxt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp_4"
-                        android:text="@string/person_fans" />
-                </LinearLayout>
-
-            </LinearLayout>
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dp_10"
-            app:cardCornerRadius="@dimen/dp_6"
-            android:background="?attr/selectableItemBackground">
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/xrv_person_lisy"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scrollbarAlwaysDrawVerticalTrack="true"
-                android:scrollbarFadeDuration="1"
-                android:scrollbarSize="4dp"
-                android:scrollbars="vertical" />
-        </android.support.v7.widget.CardView>
-
-    </LinearLayout>
 </android.support.v4.widget.SwipeRefreshLayout>

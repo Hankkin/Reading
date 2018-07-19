@@ -15,4 +15,5 @@
     <color name="teal">#008080</color>
     <color name="normal_txt">#4D4D4D</color>
     <color name="normal_bg">#dcdcdc</color>
+    <color name="home_tag">#9FB6CD</color>
 </resources>
