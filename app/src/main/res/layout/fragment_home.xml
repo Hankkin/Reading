@@ -8,23 +8,25 @@
     android:orientation="vertical">
 
     <android.support.design.widget.AppBarLayout
+        android:elevation="0dp"
+        app:elevation="0dp"
         android:id="@+id/appbar"
         android:background="@color/theme_color_primary"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize">
-        <com.bilibili.magicasakura.widgets.TintToolbar
+        <com.bilibili.magicasakura.widgets.TintFrameLayout
+            android:layout_gravity="center_vertical"
             android:id="@+id/toobar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:layout_scrollFlags="enterAlways|enterAlwaysCollapsed"
             android:background="@color/theme_color_primary"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
             <ImageView
+                android:layout_marginLeft="@dimen/dp_10"
                 android:id="@+id/iv_title_menu"
                 android:layout_width="23dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
+                android:layout_gravity="left|center_vertical"
                 android:src="@mipmap/titlebar_menu" />
             <HorizontalScrollView
                 android:layout_width="wrap_content"
@@ -47,16 +49,18 @@
 
 
                     <ImageView
+                        android:layout_gravity="center_vertical"
                         android:id="@+id/iv_title_two"
                         android:layout_width="65dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:src="@drawable/home_hot_selector" />
 
                     <ImageView
+                        android:layout_gravity="center_vertical"
                         android:id="@+id/iv_title_three"
                         android:layout_width="65dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:src="@drawable/home_cate_selector" />
 
@@ -66,7 +70,7 @@
 
             </HorizontalScrollView>
 
-        </com.bilibili.magicasakura.widgets.TintToolbar>
+        </com.bilibili.magicasakura.widgets.TintFrameLayout>
     </android.support.design.widget.AppBarLayout>
 
 

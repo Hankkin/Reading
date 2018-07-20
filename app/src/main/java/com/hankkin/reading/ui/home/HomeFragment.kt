@@ -65,7 +65,7 @@ class HomeFragment : BaseFragment() {
             }
 
         })
-        setCurrent(0)
+        setCurrent(1)
         setFabColor()
         setFabClickListener()
 
@@ -127,7 +127,7 @@ class HomeFragment : BaseFragment() {
             2 -> {
                 isThree = true
                 fab_menu_add.visibility = View.GONE
-                appbar.elevation = 1f
+                appbar.elevation = 0f
             }
         }
         vp_home.currentItem = index
