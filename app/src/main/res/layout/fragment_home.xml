@@ -63,12 +63,16 @@
                         android:layout_height="wrap_content"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:src="@drawable/home_cate_selector" />
-
-
-
                 </LinearLayout>
 
             </HorizontalScrollView>
+            <ImageView
+                android:id="@+id/iv_search"
+                android:padding="@dimen/dp_10"
+                android:layout_gravity="right|center_vertical"
+                android:src="@mipmap/icon_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </com.bilibili.magicasakura.widgets.TintFrameLayout>
     </android.support.design.widget.AppBarLayout>

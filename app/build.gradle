@@ -56,9 +56,8 @@ dependencies {
     //    implementation 'com.bilibili:magicasakura:0.1.8@aar'
     //底部弹出dialog
     implementation 'com.cocosw:bottomsheet:1.3.1@aar'
-    implementation('com.github.saiff35:livingtabs:0.1.0') {
-        exclude module: 'design'
-    }
+    //google流式布局
+    implementation 'com.google.android:flexbox:1.0.0'
     implementation project(':library')
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     implementation project(':magicasakura')

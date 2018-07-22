@@ -50,6 +50,9 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
                     if (it is EventMap.ChangeThemeEvent){
                         ViewHelper.changeRefreshColor(refresh_person,context)
                     }
+                    else if (it is EventMap.LoginEvent){
+                        setUserHeader()
+                    }
                 })
 
     }
@@ -116,10 +119,6 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        setUserHeader()
-    }
 
     fun setUserHeader() {
         if (UserControl.isLogin()) {

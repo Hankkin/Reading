@@ -25,6 +25,7 @@
         android:layout_height="wrap_content" />
 
     <TextView
+        android:id="@+id/tv_hot_more"
         android:layout_centerVertical="true"
         android:textSize="@dimen/sp_12"
         android:textColor="@color/normal_txt"

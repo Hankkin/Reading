@@ -1,5 +1,6 @@
 package com.hankkin.reading.ui.home
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.support.annotation.RequiresApi
@@ -14,6 +15,7 @@ import com.hankkin.reading.ui.home.android.AndroidFragment
 import com.hankkin.reading.ui.home.hot.HotFragment
 import com.hankkin.reading.ui.home.project.ProjectFragment
 import com.hankkin.reading.MainActivity
+import com.hankkin.reading.ui.home.search.SearchActivity
 import com.hankkin.reading.utils.RxBus
 import com.hankkin.reading.utils.ThemeHelper
 import com.hankkin.reading.utils.ToastUtils
@@ -36,6 +38,7 @@ class HomeFragment : BaseFragment() {
         iv_title_one.setOnClickListener { setCurrent(0) }
         iv_title_two.setOnClickListener { setCurrent(1) }
         iv_title_three.setOnClickListener { setCurrent(2) }
+        iv_search.setOnClickListener { startActivity(Intent(activity,SearchActivity::class.java)) }
     }
 
     public fun newInstance(index: Int) {

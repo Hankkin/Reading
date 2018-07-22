@@ -40,7 +40,6 @@ class ProjectListFragment : BaseMvpFragment<ProjectListPresenter>(), ProjectList
         cateBean = (arguments!!.getSerializable("bean")) as CateBean
         getPresenter().getCateList(mPage,cateBean.id)
     }
-    
     fun initXrv(){
         ViewHelper.setRefreshLayout(context,true,refresh_project,this)
         mAdapter = AndroidAdapter()

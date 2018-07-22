@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".ui.home.search.SearchActivity">
+
+    <com.bilibili.magicasakura.widgets.TintLinearLayout
+        android:orientation="horizontal"
+        android:padding="@dimen/dp_10"
+        android:background="@color/theme_color_primary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:padding="@dimen/dp_10"
+            android:gravity="center_vertical"
+            android:background="@drawable/bg_white_circle"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@mipmap/icon_normal_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <com.bilibili.magicasakura.widgets.TintEditText
+                android:layout_marginLeft="@dimen/dp_10"
+                android:background="@null"
+                android:layout_weight="1"
+                style="@style/normalTxt"
+                android:hint="@string/search_hint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+
+    </com.bilibili.magicasakura.widgets.TintLinearLayout>
+
+    <RelativeLayout
+        android:padding="@dimen/dp_12"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.bilibili.magicasakura.widgets.TintView
+            android:layout_alignBottom="@+id/tv_hot_search_title"
+            android:layout_alignTop="@+id/tv_hot_search_title"
+            android:id="@+id/view_small_line"
+            android:background="@drawable/shape_line_small"
+            android:layout_width="5dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_centerVertical="true"
+            android:id="@+id/tv_hot_search_title"
+            android:layout_marginLeft="@dimen/dp_8"
+            android:layout_toRightOf="@+id/view_small_line"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:text="@string/home_search_hot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+    <com.google.android.flexbox.FlexboxLayout
+        android:padding="@dimen/dp_10"
+        android:id="@+id/flex"
+        app:flexWrap="wrap"
+        app:alignContent="stretch"
+        app:alignItems="stretch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_search_history"
+        android:padding="@dimen/dp_12"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.bilibili.magicasakura.widgets.TintView
+            android:layout_alignBottom="@+id/tv_hot_search_history_title"
+            android:layout_alignTop="@+id/tv_hot_search_history_title"
+            android:id="@+id/view_small_line_history"
+            android:background="@drawable/shape_line_small"
+            android:layout_width="5dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_centerVertical="true"
+            android:id="@+id/tv_hot_search_history_title"
+            android:layout_marginLeft="@dimen/dp_8"
+            android:layout_toRightOf="@+id/view_small_line_history"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:text="@string/home_search_hot_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_search_history"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

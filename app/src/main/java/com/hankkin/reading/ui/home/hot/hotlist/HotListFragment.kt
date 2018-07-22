@@ -1,8 +1,10 @@
 package com.hankkin.reading.ui.home.hot.hotlist
 
+import android.content.Intent
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import android.widget.TextView
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.AndroidAdapter
 import com.hankkin.reading.adapter.base.XRecyclerView
@@ -11,6 +13,7 @@ import com.hankkin.reading.domain.ArticleBean
 import com.hankkin.reading.domain.BannerBean
 import com.hankkin.reading.domain.HotBean
 import com.hankkin.reading.ui.home.articledetail.CommonWebActivity
+import com.hankkin.reading.ui.home.search.SearchActivity
 import com.hankkin.reading.utils.GlideUtils
 import com.hankkin.reading.utils.ViewHelper
 import com.hankkin.reading.view.widget.SWImageView
@@ -111,6 +114,7 @@ class HotListFragment : BaseMvpFragment<HotListPresenter>(), HotListContact.IVie
             initBannerHeader()
         }
         val hotSearch = layoutInflater.inflate(R.layout.layout_header_hot_more,null)
+        hotSearch.findViewById<TextView>(R.id.tv_hot_more).setOnClickListener { startActivity(Intent(activity,SearchActivity::class.java)) }
         xrv_hot.addHeaderView(hotSearch)
         getPresenter().queryKey(mPage,hotBean.name)
     }
