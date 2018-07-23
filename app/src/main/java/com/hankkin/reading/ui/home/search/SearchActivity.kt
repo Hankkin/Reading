@@ -1,7 +1,6 @@
 package com.hankkin.reading.ui.home.search
 
 import android.view.LayoutInflater
-import android.widget.TextView
 import com.bilibili.magicasakura.widgets.TintTextView
 import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseMvpActivity
@@ -17,7 +16,7 @@ class SearchActivity : BaseMvpActivity<SearchPresenter>(),SearchContract.IView {
 
 
     override fun initView() {
-
+        iv_search_back.setOnClickListener { finish() }
     }
 
     override fun initData() {

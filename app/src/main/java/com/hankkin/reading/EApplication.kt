@@ -7,6 +7,8 @@ import android.support.annotation.ColorRes
 import com.bilibili.magicasakura.utils.ThemeUtils
 import com.hankkin.reading.utils.FileUtils
 import com.hankkin.library.utils.SPUtils
+import com.hankkin.reading.greendao.DaoMaster
+import com.hankkin.reading.greendao.DaoSession
 import com.hankkin.reading.utils.ThemeHelper
 import com.hankkin.reading.utils.ThemeHelper.*
 
@@ -14,6 +16,7 @@ import com.hankkin.reading.utils.ThemeHelper.*
  * Created by huanghaijie on 2018/5/18.
  */
 class EApplication : Application() ,ThemeUtils.switchColor{
+
 
     companion object {
         private var instance: EApplication? = null
@@ -27,6 +30,13 @@ class EApplication : Application() ,ThemeUtils.switchColor{
         FileUtils.initSd()
         SPUtils.init(this)
         ThemeUtils.setSwitchColor(this)
+        initDao()
+    }
+
+    fun initDao(){
+        val devOpenHelper = DaoMaster.DevOpenHelper(this,"reading.db",null)
+        val daoMaster = DaoMaster(devOpenHelper.writableDb)
+        val daoSession = daoMaster.newSession()
     }
 
     override fun replaceColorById(context: Context,  @ColorRes colorId: Int): Int {

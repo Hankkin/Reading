@@ -7,23 +7,12 @@ import com.hankkin.reading.R
 /**
  * Created by huanghaijie on 2018/5/19.
  */
-object LoadingUtils{
-
-    private var loading: MaterialDialog? = null
-
-    fun showLoading(context: Context?){
-        if (loading == null){
-            loading = MaterialDialog.Builder(context!!)
-                    .content(context.resources.getString(R.string.loading_wait))
-                    .progress(true,0)
-                    .build()
-        }
-        loading!!.show()
+object LoadingUtils {
+    
+    fun showLoading(context: Context?) { 
+        
     }
 
-    fun hideLoading(){
-        if(loading != null ){
-            loading!!.dismiss()
-        }
+    fun hideLoading() {
     }
 }

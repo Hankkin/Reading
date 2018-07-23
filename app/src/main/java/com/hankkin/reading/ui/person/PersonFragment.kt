@@ -13,6 +13,7 @@ import com.hankkin.reading.domain.NoticeBean
 import com.hankkin.reading.domain.PersonListBean
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.ui.login.LoginActivity
+import com.hankkin.reading.utils.LogUtils
 import com.hankkin.reading.utils.RxBus
 import com.hankkin.reading.utils.ViewHelper
 import kotlinx.android.synthetic.main.fragment_android.*
@@ -30,6 +31,8 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
     private var mTitleScale: Float = 0.toFloat()
     private var tv_me_setScale: Float = 0.toFloat()
     private var tv_me_setScaleX: Float = 0.toFloat()
+    private var iv_me_setScale: Float = 0.toFloat()
+    private var iv_me_setScaleX: Float = 0.toFloat()
     private var mHeadImgScale: Float = 0.toFloat()
 
     override fun getLayoutId(): Int {
@@ -38,19 +41,18 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
 
     override fun initData() {
         mAdapter = PersonListAdapter()
-        mAdapter.data.add(PersonListBean(R.mipmap.icon_person_star,resources.getString(R.string.person_star)))
-        mAdapter.data.add(PersonListBean(R.mipmap.icon_person_follow,resources.getString(R.string.person_follow)))
-        mAdapter.data.add(PersonListBean(R.mipmap.icon_person_active,resources.getString(R.string.person_active)))
-        mAdapter.data.add(PersonListBean(R.mipmap.icon_person_look,resources.getString(R.string.person_look)))
+        mAdapter.data.add(PersonListBean(R.mipmap.icon_person_star, resources.getString(R.string.person_star)))
+        mAdapter.data.add(PersonListBean(R.mipmap.icon_person_follow, resources.getString(R.string.person_follow)))
+        mAdapter.data.add(PersonListBean(R.mipmap.icon_person_active, resources.getString(R.string.person_active)))
+        mAdapter.data.add(PersonListBean(R.mipmap.icon_person_look, resources.getString(R.string.person_look)))
         xrv_person_lisy.layoutManager = LinearLayoutManager(context)
         xrv_person_lisy.adapter = mAdapter
 
         RxBus.getDefault().toObservable(EventMap.BaseEvent::class.java)
                 .subscribe({
-                    if (it is EventMap.ChangeThemeEvent){
-                        ViewHelper.changeRefreshColor(refresh_person,context)
-                    }
-                    else if (it is EventMap.LoginEvent){
+                    if (it is EventMap.ChangeThemeEvent) {
+                        ViewHelper.changeRefreshColor(refresh_person, context)
+                    } else if (it is EventMap.LoginEvent) {
                         setUserHeader()
                     }
                 })
@@ -62,10 +64,10 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
         refresh_person.setColorSchemeResources(R.color.theme_color_primary)
         refresh_person.setOnRefreshListener { getPresenter().getUserNotice(SPUtils.getString(UserControl.TOKEN)) }
         iv_person_avatar.setOnClickListener { llAvatarClick() }
-        tv_me_set.setOnClickListener { startActivity(Intent(context,SettingActivity::class.java)) }
+        tv_me_set.setOnClickListener { startActivity(Intent(context, SettingActivity::class.java)) }
     }
-    
-    fun initHeaderAnim(){
+
+    fun initHeaderAnim() {
         val screenW = resources.displayMetrics.widthPixels
         val toolbarHeight = resources.getDimension(R.dimen.toolbar_height)
         val initHeight = resources.getDimension(R.dimen.subscription_head)
@@ -76,18 +78,25 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
                 val distanceSubscribe = tv_me_set.getY() + (tv_me_set.getHeight() - toolbarHeight) / 2.0f
                 val distanceHeadImg = iv_person_avatar.getY() + (iv_person_avatar.getHeight() - toolbarHeight) / 2.0f
                 val distanceSubscribeX = screenW / 2.0f - (tv_me_set.getWidth() / 2.0f + resources.getDimension(R.dimen.dp_10))
+                val distanceIcon = iv_person_avatar.getY() + (iv_person_avatar.getHeight() - toolbarHeight) / 2.0f
+                val distanceIconX = screenW / 2.0f - (iv_person_avatar.getWidth() / 2.0f + resources.getDimension(R.dimen.dp_10))
                 mTitleScale = distanceTitle / (initHeight - toolbarHeight)
                 tv_me_setScale = distanceSubscribe / (initHeight - toolbarHeight)
                 mHeadImgScale = distanceHeadImg / (initHeight - toolbarHeight)
                 tv_me_setScaleX = distanceSubscribeX / (initHeight - toolbarHeight)
+                iv_me_setScale = distanceIcon / (initHeight - toolbarHeight)
+                iv_me_setScaleX = distanceIconX / (initHeight - toolbarHeight)
             }
-            val scale = 1.0f - -verticalOffset / (initHeight - toolbarHeight)
-            iv_person_avatar.setScaleX(scale)
-            iv_person_avatar.setScaleY(scale)
-            iv_person_avatar.setTranslationY(mHeadImgScale * verticalOffset)
-            tv_person_name.setTranslationY(mTitleScale * verticalOffset)
-            tv_me_set.setTranslationY(tv_me_setScale * verticalOffset)
-            tv_me_set.setTranslationX(-tv_me_setScaleX * verticalOffset)
+            val scale = 1.0f - (-verticalOffset / (initHeight - toolbarHeight))/2
+            LogUtils.e(">>>>>>scale"+scale.toString())
+            iv_person_avatar.scaleX = scale
+            iv_person_avatar.scaleY = scale
+            iv_person_avatar.translationY = mHeadImgScale * verticalOffset
+            tv_person_name.translationY = mTitleScale * verticalOffset
+            tv_me_set.translationY = tv_me_setScale * verticalOffset
+            tv_me_set.translationX = -tv_me_setScaleX * verticalOffset
+            iv_person_avatar.translationX = iv_me_setScaleX * verticalOffset
+            iv_person_avatar.translationY = iv_me_setScale * verticalOffset
             if (scale == 1f) {
                 refresh_person.setEnabled(true)
                 tv_person_name.text = "未登录"
@@ -97,14 +106,14 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
                 refresh_person.setEnabled(false)
                 tv_me_set.text = "设置"
             }
-            if (scale == 0f){
+            if (scale == 0f) {
                 iv_person_set.visibility = View.VISIBLE
                 tv_person_name.text = "我的"
                 tv_me_set.text = ""
             }
         })
     }
-    
+
     fun llAvatarClick() {
         if (!UserControl.isLogin()) {
 //            val authorizeUrl = Constant.OSChinaUrl.BASE_URL +
@@ -113,7 +122,7 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
 //            intent.putExtra(Key4Intent.KEY_WEB_URL, authorizeUrl)
 //            intent.putExtra(Key4Intent.KEY_WEB_TITLE, resources.getString(R.string.person_authorize_login))
 //            startActivity(intent)
-            startActivity(Intent(context,LoginActivity::class.java))
+            startActivity(Intent(context, LoginActivity::class.java))
         } else {
             startActivity(Intent(context, PersonInfoActivity::class.java))
         }

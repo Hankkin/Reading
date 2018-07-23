@@ -205,8 +205,6 @@
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:src="@mipmap/icon_person_avatar"
-                app:borderColor="@color/white"
-                app:borderWidth="1dp"
                 app:type="circle" />
 
             <TextView
