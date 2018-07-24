@@ -41,4 +41,8 @@ object Constant {
         const val CODE = "code"
     }
 
+    object DB{
+        const val DB_NAME = "reading.db"
+    }
+
 }

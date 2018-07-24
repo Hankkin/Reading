@@ -15,7 +15,7 @@ import com.hankkin.reading.domain.HotBean;
 /** 
  * DAO for table "HOT_BEAN".
 */
-public class HotBeanDao extends AbstractDao<HotBean, Integer> {
+public class HotBeanDao extends AbstractDao<HotBean, Long> {
 
     public static final String TABLENAME = "HOT_BEAN";
 
@@ -24,7 +24,7 @@ public class HotBeanDao extends AbstractDao<HotBean, Integer> {
      * Can be used for QueryBuilder and for referencing column names.
      */
     public static class Properties {
-        public final static Property Id = new Property(0, int.class, "id", true, "ID");
+        public final static Property Id = new Property(0, long.class, "id", true, "_id");
         public final static Property Name = new Property(1, String.class, "name", false, "NAME");
         public final static Property Link = new Property(2, String.class, "link", false, "LINK");
         public final static Property Order = new Property(3, int.class, "order", false, "ORDER");
@@ -44,7 +44,7 @@ public class HotBeanDao extends AbstractDao<HotBean, Integer> {
     public static void createTable(Database db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"HOT_BEAN\" (" + //
-                "\"ID\" INTEGER PRIMARY KEY NOT NULL ," + // 0: id
+                "\"_id\" INTEGER PRIMARY KEY NOT NULL ," + // 0: id
                 "\"NAME\" TEXT," + // 1: name
                 "\"LINK\" TEXT," + // 2: link
                 "\"ORDER\" INTEGER NOT NULL ," + // 3: order
@@ -94,14 +94,14 @@ public class HotBeanDao extends AbstractDao<HotBean, Integer> {
     }
 
     @Override
-    public Integer readKey(Cursor cursor, int offset) {
-        return cursor.getInt(offset + 0);
+    public Long readKey(Cursor cursor, int offset) {
+        return cursor.getLong(offset + 0);
     }    
 
     @Override
     public HotBean readEntity(Cursor cursor, int offset) {
         HotBean entity = new HotBean( //
-            cursor.getInt(offset + 0), // id
+            cursor.getLong(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // name
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // link
             cursor.getInt(offset + 3), // order
@@ -112,7 +112,7 @@ public class HotBeanDao extends AbstractDao<HotBean, Integer> {
      
     @Override
     public void readEntity(Cursor cursor, HotBean entity, int offset) {
-        entity.setId(cursor.getInt(offset + 0));
+        entity.setId(cursor.getLong(offset + 0));
         entity.setName(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
         entity.setLink(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
         entity.setOrder(cursor.getInt(offset + 3));
@@ -120,12 +120,13 @@ public class HotBeanDao extends AbstractDao<HotBean, Integer> {
      }
     
     @Override
-    protected final Integer updateKeyAfterInsert(HotBean entity, long rowId) {
-        return entity.getId();
+    protected final Long updateKeyAfterInsert(HotBean entity, long rowId) {
+        entity.setId(rowId);
+        return rowId;
     }
     
     @Override
-    public Integer getKey(HotBean entity) {
+    public Long getKey(HotBean entity) {
         if(entity != null) {
             return entity.getId();
         } else {

@@ -10,14 +10,14 @@ import java.io.Serializable;
 public class HotBean implements Serializable{
     private static final long serialVersionUID = 5492576431298717167L;
     @Id
-    private int id;
+    private long id;
     private String name;
     private String link;
     private int order;
     private int visible;
 
-    @Generated(hash = 1356434686)
-    public HotBean(int id, String name, String link, int order, int visible) {
+    @Generated(hash = 1116396725)
+    public HotBean(long id, String name, String link, int order, int visible) {
         this.id = id;
         this.name = name;
         this.link = link;
@@ -29,11 +29,11 @@ public class HotBean implements Serializable{
     public HotBean() {
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

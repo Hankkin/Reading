@@ -7,6 +7,7 @@ import android.support.annotation.ColorRes
 import com.bilibili.magicasakura.utils.ThemeUtils
 import com.hankkin.reading.utils.FileUtils
 import com.hankkin.library.utils.SPUtils
+import com.hankkin.reading.common.Constant
 import com.hankkin.reading.greendao.DaoMaster
 import com.hankkin.reading.greendao.DaoSession
 import com.hankkin.reading.utils.ThemeHelper
@@ -34,7 +35,7 @@ class EApplication : Application() ,ThemeUtils.switchColor{
     }
 
     fun initDao(){
-        val devOpenHelper = DaoMaster.DevOpenHelper(this,"reading.db",null)
+        val devOpenHelper = DaoMaster.DevOpenHelper(this,Constant.DB.DB_NAME,null)
         val daoMaster = DaoMaster(devOpenHelper.writableDb)
         val daoSession = daoMaster.newSession()
     }

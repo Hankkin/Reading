@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.hankkin.reading.mvp.contract.IBaseViewContract
 import com.hankkin.reading.mvp.contract.IPresenterContract
+import com.hankkin.reading.utils.LoadingUtils
 
 /**
  * Created by huanghaijie on 2018/5/16.
@@ -50,6 +51,7 @@ import com.hankkin.reading.mvp.contract.IPresenterContract
     override fun onDestroy() {
         super.onDestroy()
         mPresenter.onDestroy()
+        LoadingUtils.onDestory()
     }
 
 }

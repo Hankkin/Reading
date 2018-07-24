@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.hankkin.library.utils.StatusBarUtil
+import com.hankkin.reading.utils.LoadingUtils
 import com.hankkin.reading.utils.ThemeHelper
 
 /**
@@ -36,4 +37,9 @@ abstract class BaseActivity: AppCompatActivity() {
 
 
     protected abstract fun initViews(savedInstanceState: Bundle?)
+
+    override fun onDestroy() {
+        super.onDestroy()
+        LoadingUtils.onDestory()
+    }
 }
