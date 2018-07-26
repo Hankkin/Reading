@@ -143,5 +143,6 @@ public class HotBeanDao extends AbstractDao<HotBean, Long> {
     protected final boolean isEntityUpdateable() {
         return true;
     }
+
     
 }

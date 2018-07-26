@@ -11,7 +11,7 @@ import io.reactivex.schedulers.Schedulers
 
 class SearchPresenter : RxLifePresenter<SearchContract.IView>(), SearchContract.IPresenter {
 
-    private val searchModel by lazy { SearchModel(getContext()) }
+    private val searchModel by lazy { SearchDao(getContext()) }
 
     override fun insertDao(hotBean: HotBean) {
         searchModel.hotBeanDao.insert(hotBean)

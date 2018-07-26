@@ -6,7 +6,7 @@ import com.hankkin.reading.common.Constant
 import com.hankkin.reading.greendao.DaoMaster
 import com.hankkin.reading.greendao.DaoSession
 
-open class BaseModel(val context: Context){
+open class BaseDao(val context: Context){
     var devOpenHelper: DaoMaster.DevOpenHelper
     var sqLiteDatabase: SQLiteDatabase
     var daoMaster: DaoMaster
@@ -18,4 +18,6 @@ open class BaseModel(val context: Context){
         this.daoMaster = DaoMaster(sqLiteDatabase)
         this.daoSession = daoMaster.newSession()
     }
+
+
 }
