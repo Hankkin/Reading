@@ -12,6 +12,7 @@ import com.hankkin.reading.greendao.DaoMaster
 import com.hankkin.reading.greendao.DaoSession
 import com.hankkin.reading.utils.ThemeHelper
 import com.hankkin.reading.utils.ThemeHelper.*
+import com.squareup.leakcanary.LeakCanary
 
 /**
  * Created by huanghaijie on 2018/5/18.
@@ -31,7 +32,14 @@ class EApplication : Application() ,ThemeUtils.switchColor{
         FileUtils.initSd()
         SPUtils.init(this)
         ThemeUtils.setSwitchColor(this)
+        initLeakCanary()
         initDao()
+    }
+    fun initLeakCanary(){
+        if (LeakCanary.isInAnalyzerProcess(this)){
+            return
+        }
+        LeakCanary.install(this)
     }
 
     fun initDao(){

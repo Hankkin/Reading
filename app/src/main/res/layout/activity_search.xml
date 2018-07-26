@@ -27,6 +27,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <com.bilibili.magicasakura.widgets.TintEditText
+                android:id="@+id/et_search"
+                android:textCursorDrawable="@color/grey"
+                android:imeOptions="actionSearch"
+                android:singleLine="true"
                 android:layout_marginLeft="@dimen/dp_10"
                 android:background="@null"
                 android:layout_weight="1"

@@ -12,6 +12,7 @@ class SearchDao(context: Context) : BaseDao(context),SearchDaoContract{
     }
 
     override fun query() {
+
     }
 
     var hotBeanDao: HotBeanDao

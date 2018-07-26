@@ -10,12 +10,14 @@ interface SearchContract {
         fun getHotResult(data: MutableList<HotBean>)
         fun insertDao(id: Long)
         fun queryResult(hotBean: MutableList<HotBean>)
+        fun deleteResult()
     }
 
     interface IPresenter : IPresenterContract {
         fun getHotHttp()
         fun insertDao(hotBean: HotBean)
-        fun queryDao(id: Long)
+        fun queryDao()
+        fun delete(id: Long)
     }
 
 }

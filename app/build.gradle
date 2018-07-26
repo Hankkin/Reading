@@ -62,6 +62,7 @@ dependencies {
     implementation 'com.github.Andy671:Dachshund-Tab-Layout:v0.3.0'
     //悬浮按钮
     implementation 'com.github.clans:fab:1.6.4'
+    //banner
     implementation 'com.xhb:xbanner:1.4.0'
     //主题换肤
     //    implementation 'com.bilibili:magicasakura:0.1.8@aar'
@@ -69,7 +70,10 @@ dependencies {
     implementation 'com.cocosw:bottomsheet:1.3.1@aar'
     //google流式布局
     implementation 'com.google.android:flexbox:1.0.0'
-    implementation project(':library')
+    //内存泄露工具
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.1'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation project(':library')
     implementation project(':magicasakura')
 }

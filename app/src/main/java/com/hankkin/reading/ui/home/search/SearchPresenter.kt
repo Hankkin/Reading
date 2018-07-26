@@ -13,13 +13,19 @@ class SearchPresenter : RxLifePresenter<SearchContract.IView>(), SearchContract.
 
     private val searchModel by lazy { SearchDao(getContext()) }
 
+
+    override fun delete(id: Long) {
+        searchModel.hotBeanDao.deleteByKey(id)
+        getMvpView().deleteResult()
+    }
+
     override fun insertDao(hotBean: HotBean) {
-        searchModel.hotBeanDao.insert(hotBean)
+        searchModel.hotBeanDao.insertOrReplace(hotBean)
         getMvpView().insertDao(hotBean.id)
     }
 
-    override fun queryDao(id: Long) {
-        val hotBean = searchModel.hotBeanDao.queryBuilder().where(HotBeanDao.Properties.Id.eq(id)).list()
+    override fun queryDao() {
+        val hotBean = searchModel.hotBeanDao.queryBuilder().list()
         getMvpView().queryResult(hotBean)
     }
 

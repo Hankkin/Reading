@@ -7,8 +7,11 @@ import com.hankkin.reading.R
 import com.hankkin.reading.adapter.base.BaseRecyclerViewAdapter
 import com.hankkin.reading.adapter.base.BaseRecyclerViewHolder
 import com.hankkin.reading.domain.HotBean
+import com.hankkin.reading.event.EventMap
+import com.hankkin.reading.utils.RxBus
 
 class SearchHistoryAdapter : BaseRecyclerViewAdapter<HotBean>(){
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseRecyclerViewHolder<HotBean> {
         return ViewHolder(parent, R.layout.adapter_search_history_item)
@@ -23,10 +26,10 @@ class SearchHistoryAdapter : BaseRecyclerViewAdapter<HotBean>(){
 
             tvName.text = hotBean.name
 
-            ivDelete.setOnClickListener {  }
+            ivDelete.setOnClickListener { RxBus.getDefault().post(EventMap.SearchHistoryDeleteEvent(position)) }
 
         }
-
     }
+
 
 }

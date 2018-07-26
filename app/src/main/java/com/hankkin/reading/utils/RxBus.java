@@ -13,7 +13,7 @@ import io.reactivex.Observable;
 
 public class RxBus {
     private static volatile RxBus instance;
-    private final Relay<Object> mBus;
+    private Relay<Object> mBus;
 
     public RxBus() {
         this.mBus = PublishRelay.create().toSerialized();
@@ -23,7 +23,7 @@ public class RxBus {
         if (instance == null) {
             synchronized (RxBus.class) {
                 if (instance == null) {
-                    instance = Holder.BUS;
+                    instance = new RxBus();
                 }
             }
         }
@@ -45,7 +45,4 @@ public class RxBus {
         return mBus.hasObservers();
     }
 
-    private static class Holder {
-        private static final RxBus BUS = new RxBus();
-    }
 }
