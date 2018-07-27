@@ -15,29 +15,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ff741f8d-50b0-45be-9b6b-bd65c9bf19e4" name="Default" comment="``">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/hankkin/reading/ui/home/search/searchresult/SearchResultActivity.kt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_search_result.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/hankkin/reading/ui/translate/ToolsFragment.kt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/hankkin/reading/view/HLoading.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hankkin/reading/EApplication.kt" afterPath="$PROJECT_DIR$/app/src/main/java/com/hankkin/reading/EApplication.kt" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hankkin/reading/adapter/SearchHistoryAdapter.kt" afterPath="$PROJECT_DIR$/app/src/main/java/com/hankkin/reading/adapter/SearchHistoryAdapter.kt" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hankkin/reading/base/BaseMvpActivity.kt" afterPath="$PROJECT_DIR$/app/src/main/java/com/hankkin/reading/base/BaseMvpActivity.kt" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hankkin/reading/event/EventMap.kt" afterPath="$PROJECT_DIR$/app/src/main/java/com/hankkin/reading/event/EventMap.kt" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hankkin/reading/greendao/HotBeanDao.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/hankkin/reading/greendao/HotBeanDao.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hankkin/reading/ui/home/search/SearchActivity.kt" afterPath="$PROJECT_DIR$/app/src/main/java/com/hankkin/reading/ui/home/search/SearchActivity.kt" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hankkin/reading/ui/home/search/SearchContract.kt" afterPath="$PROJECT_DIR$/app/src/main/java/com/hankkin/reading/ui/home/search/SearchContract.kt" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hankkin/reading/ui/home/search/SearchDao.kt" afterPath="$PROJECT_DIR$/app/src/main/java/com/hankkin/reading/ui/home/search/SearchDao.kt" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hankkin/reading/ui/home/search/SearchPresenter.kt" afterPath="$PROJECT_DIR$/app/src/main/java/com/hankkin/reading/ui/home/search/SearchPresenter.kt" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hankkin/reading/utils/RxBus.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/hankkin/reading/utils/RxBus.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_search.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_search.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/adapter_search_history_item.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/adapter_search_history_item.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/icon_delete.png" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/icon_delete.png" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/icon_search_history.png" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/icon_search_history.png" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
-      <change beforePath="$PROJECT_DIR$/config.gradle" afterPath="$PROJECT_DIR$/config.gradle" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hankkin/reading/MainActivity.kt" afterPath="$PROJECT_DIR$/app/src/main/java/com/hankkin/reading/MainActivity.kt" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hankkin/reading/ui/translate/TranslateContract.kt" afterPath="$PROJECT_DIR$/app/src/main/java/com/hankkin/reading/ui/translate/ToolsContract.kt" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hankkin/reading/ui/translate/TranslateFragment.kt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hankkin/reading/ui/translate/TranslatePresenter.kt" afterPath="$PROJECT_DIR$/app/src/main/java/com/hankkin/reading/ui/translate/ToolsPresenter.kt" />
       <change beforePath="$PROJECT_DIR$/library/library.iml" afterPath="$PROJECT_DIR$/library/library.iml" />
       <change beforePath="$PROJECT_DIR$/magicasakura/magicasakura.iml" afterPath="$PROJECT_DIR$/magicasakura/magicasakura.iml" />
     </list>
@@ -99,14 +83,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BaseMvpActivity.kt" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BaseMvpActivity.kt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hankkin/reading/base/BaseMvpActivity.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+            <state relative-caret-position="208">
+              <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
               <folding>
                 <element signature="e#81#304#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ToolsFragment.kt" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hankkin/reading/ui/translate/ToolsFragment.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="364">
+              <caret line="38" column="41" lean-forward="false" selection-start-line="38" selection-start-column="41" selection-end-line="38" selection-end-column="41" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -126,19 +120,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-3014">
               <caret line="40" column="6" lean-forward="false" selection-start-line="40" selection-start-column="6" selection-end-line="40" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_search.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_search.xml">
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="29" column="42" lean-forward="false" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -4103,7 +4084,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/library/src/main/java/com/hankkin/library/view/EmptyLayout.java" />
         <option value="$PROJECT_DIR$/gradle.properties" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/hankkin/reading/ui/home/HomeFragment.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/hankkin/reading/view/EmptyLayout.java" />
@@ -4154,6 +4134,7 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/hankkin/reading/ui/home/search/SearchActivity.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/hankkin/reading/utils/RxBus.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/hankkin/reading/base/BaseMvpActivity.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/hankkin/reading/ui/translate/ToolsFragment.kt" />
       </list>
     </option>
   </component>
@@ -4347,6 +4328,17 @@
               <item name="home" type="462c0819:PsiDirectoryNode" />
               <item name="search" type="462c0819:PsiDirectoryNode" />
               <item name="searchresult" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Reading" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Reading" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="reading" type="462c0819:PsiDirectoryNode" />
+              <item name="ui" type="462c0819:PsiDirectoryNode" />
+              <item name="translate" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Reading" type="b2602c69:ProjectViewProjectNode" />
@@ -4855,7 +4847,14 @@
       <option name="project" value="LOCAL" />
       <updated>1532446452049</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="搜索历史开发&#10;添加内存泄露工具">
+      <created>1532621026980</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1532621026980</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -4947,7 +4946,8 @@
     <MESSAGE value="搜索界面开发" />
     <MESSAGE value="添加greendao数据库" />
     <MESSAGE value="greenDao引入" />
-    <option name="LAST_COMMIT_MESSAGE" value="greenDao引入" />
+    <MESSAGE value="搜索历史开发&#10;添加内存泄露工具" />
+    <option name="LAST_COMMIT_MESSAGE" value="搜索历史开发&#10;添加内存泄露工具" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -5085,13 +5085,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="16" column="75" lean-forward="false" selection-start-line="16" selection-start-column="75" selection-end-line="16" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-476">
@@ -5265,6 +5258,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="182">
           <caret line="11" column="6" lean-forward="false" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -5452,11 +5446,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hankkin/reading/base/BaseMvpActivity.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+        <state relative-caret-position="208">
+          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding>
             <element signature="e#81#304#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hankkin/reading/ui/translate/ToolsFragment.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="38" column="41" lean-forward="false" selection-start-line="38" selection-start-column="41" selection-end-line="38" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
     </entry>

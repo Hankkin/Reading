@@ -29,10 +29,10 @@ import java.io.File
 /**
  * Created by huanghaijie on 2018/5/15.
  */
-class TranslateFragment : BaseMvpFragment<TranslateContract.IPresenter>(), TranslateContract.IView {
+class ToolsFragment : BaseMvpFragment<ToolsContract.IPresenter>(), ToolsContract.IView {
 
 
-    override fun registerPresenter() = TranslatePresenter::class.java
+    override fun registerPresenter() = ToolsPresenter::class.java
 
 
     lateinit var word: WordBean
@@ -40,8 +40,8 @@ class TranslateFragment : BaseMvpFragment<TranslateContract.IPresenter>(), Trans
     var mediaPlayer: MediaPlayer = MediaPlayer()
 
 
-    public fun newInstance(index: Int): TranslateFragment {
-        var fragment = TranslateFragment()
+    public fun newInstance(index: Int): ToolsFragment {
+        var fragment = ToolsFragment()
         var args = Bundle()
         args.putInt("index", index)
         return fragment

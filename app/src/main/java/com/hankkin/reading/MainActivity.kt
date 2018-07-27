@@ -30,7 +30,7 @@ import com.hankkin.reading.ui.home.HomeFragment
 import com.hankkin.reading.ui.login.LoginActivity
 import com.hankkin.reading.ui.person.PersonFragment
 import com.hankkin.reading.ui.person.SettingActivity
-import com.hankkin.reading.ui.translate.TranslateFragment
+import com.hankkin.reading.ui.translate.ToolsFragment
 import com.hankkin.reading.ui.user.collect.MyCollectActivity
 import com.hankkin.reading.utils.*
 import com.tbruyelle.rxpermissions2.RxPermissions
@@ -52,7 +52,7 @@ class MainActivity : BaseActivity() {
 
     private val fgList = listOf<Fragment>(
             HomeFragment(),
-            TranslateFragment(),
+            ToolsFragment(),
             PersonFragment()
     )
 

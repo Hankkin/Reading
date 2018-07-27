@@ -9,7 +9,7 @@ import okhttp3.ResponseBody
 /**
  * Created by huanghaijie on 2018/5/16.
  */
-interface TranslateContract{
+interface ToolsContract{
 
     interface IView : IBaseLoading{
 

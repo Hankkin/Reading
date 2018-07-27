@@ -11,7 +11,7 @@ import io.reactivex.schedulers.Schedulers
 /**
  * Created by huanghaijie on 2018/5/16.
  */
-class TranslatePresenter : RxLifePresenter<TranslateContract.IView>(), TranslateContract.IPresenter {
+class ToolsPresenter : RxLifePresenter<ToolsContract.IView>(), ToolsContract.IPresenter {
 
 
     override fun downRank(name: String, url: String, type: String,int: Int) {
