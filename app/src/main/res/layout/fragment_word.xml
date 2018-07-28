@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
+    android:background="@color/normal_bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -10,14 +13,23 @@
         android:paddingLeft="@dimen/dp_10"
         android:background="@color/theme_color_primary"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/title_bar_height">
+        android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/tv_tools_title"
             android:textStyle="italic|bold"
             android:textSize="@dimen/sp_18"
             android:textColor="@android:color/white"
             android:layout_centerVertical="true"
-            android:text="@string/title_translate"
+            android:text="Hi,小猿猿"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="Welcome to Reading"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_below="@+id/tv_tools_title"
+            android:textSize="@dimen/sp_12"
+            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -39,27 +51,41 @@
 
     </com.bilibili.magicasakura.widgets.TintRelativeLayout>
 
-    <com.bilibili.magicasakura.widgets.TintRelativeLayout
+    <com.bilibili.magicasakura.widgets.TintFrameLayout
         android:background="@color/theme_color_primary"
         android:layout_width="match_parent"
+        android:layout_height="@dimen/title_bar_height">
+    </com.bilibili.magicasakura.widgets.TintFrameLayout>
+    <EditText
+        android:paddingLeft="@dimen/dp_10"
+        android:drawablePadding="@dimen/dp_8"
+        android:drawableStart="@mipmap/icon_search_grey"
+        android:singleLine="true"
+        android:layout_marginTop="-20dp"
+        android:layout_marginBottom="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:id="@+id/et_translate_search"
+        android:imeOptions="actionSearch"
+        android:textSize="@dimen/sp_14"
+        android:background="@drawable/bg_white_circle"
+        android:hint="@string/translate_search_hint"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_bar_height" />
+
+    <android.support.v7.widget.CardView
+        app:cardCornerRadius="@dimen/dp_6"
+        android:layout_margin="@dimen/dp_14"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <EditText
-            android:singleLine="true"
-            android:layout_marginBottom="@dimen/dp_10"
-            android:layout_marginRight="@dimen/dp_10"
-            android:layout_marginLeft="@dimen/dp_10"
-            android:id="@+id/et_translate_search"
-            android:imeOptions="actionSearch"
-            android:textSize="@dimen/sp_14"
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_tools"
             android:padding="@dimen/dp_10"
-            android:background="@drawable/bg_white_circle"
-            android:hint="@string/translate_search_hint"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.bilibili.magicasakura.widgets.TintRelativeLayout>
+            android:layout_height="wrap_content"/>
 
-    <include layout="@layout/layout_translate_content"/>
-
+    </android.support.v7.widget.CardView>
 
 
 </LinearLayout>

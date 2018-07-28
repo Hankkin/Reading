@@ -41,8 +41,23 @@ object Constant {
         const val CODE = "code"
     }
 
-    object DB{
+    object DB {
         const val DB_NAME = "reading.db"
     }
+
+    object TOOLS {
+        const val ID_KUAIDI = 1
+        const val ID_SAOYISAO = 2
+        const val ID_WORD = 3
+        const val ID_WORD_NOTE = 4
+        const val ID_MOVIE = 5
+        const val ID_MUSIC = 6
+        const val ID_PWD_NOTE = 7
+        const val ID_WEATHER = 8
+        const val ID_NEWS = 9
+        const val ID_JUEJIN = 10
+        const val ID_ABOUT = 10
+    }
+
 
 }

@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">好记单词</string>
+    <string name="app_name">Reading</string>
     <string name="title_home">首页</string>
-    <string name="title_translate">背单词</string>
+    <string name="title_translate">工作台</string>
     <string name="title_person">我的</string>
 
     <string name="home_active">动弹</string>
@@ -79,6 +79,18 @@
 
     <string name="setting">设置</string>
     <string name="setting_theme">个性换肤</string>
+
+    <string name="work_kuaidi">查快递</string>
+    <string name="work_pwd_note">账号本子</string>
+    <string name="work_word">查单词</string>
+    <string name="work_movie">看电影</string>
+    <string name="work_music">听音乐</string>
+    <string name="work_sao">扫一扫</string>
+    <string name="work_weather">天气</string>
+    <string name="work_word_note">单词本</string>
+    <string name="work_news">看资讯</string>
+    <string name="work_juejin">掘金</string>
+    <string name="work_about">关于</string>
 
 
     <string name="ok">确定</string>

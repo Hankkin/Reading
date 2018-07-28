@@ -9,6 +9,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.bilibili.magicasakura.widgets.TintImageView
 import com.bilibili.magicasakura.widgets.TintTextView
+import com.hankkin.library.view.RippleView
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.base.BaseRecyclerViewAdapter
 import com.hankkin.reading.adapter.base.BaseRecyclerViewHolder
@@ -42,6 +43,7 @@ class AndroidAdapter : BaseRecyclerViewAdapter<ArticleDetailBean>() {
         val llTags by lazy { itemView.findViewById<LinearLayout>(R.id.ll_adapter_android_tags) }
         val ivCollect by lazy { itemView.findViewById<ImageView>(R.id.iv_adapter_android_collect_normal) }
         val ivCollected by lazy { itemView.findViewById<TintImageView>(R.id.iv_adapter_android_collected) }
+        val rpItem by lazy { itemView.findViewById<RippleView>(R.id.rp_adapter_android_item) }
 
         override fun onBindViewHolder(bean: ArticleDetailBean, position: Int) {
             tvAuthor.text = bean.author
@@ -73,9 +75,8 @@ class AndroidAdapter : BaseRecyclerViewAdapter<ArticleDetailBean>() {
                 }
             }
 
-            itemView.setOnClickListener {
-                CommonWebActivity.loadUrl(itemView.context, bean.link, bean.title)
-            }
+            rpItem.setOnRippleCompleteListener { CommonWebActivity.loadUrl(itemView.context, bean.link, bean.title) }
+
             if (!UserControl.isLogin()) {
                 ivCollect.visibility = View.VISIBLE
                 ivCollected.visibility = View.GONE

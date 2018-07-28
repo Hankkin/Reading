@@ -1,43 +1,31 @@
 package com.hankkin.reading.ui.translate
 
-import android.graphics.drawable.AnimationDrawable
-import android.media.MediaPlayer
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.view.KeyEvent
-import android.view.LayoutInflater
-import android.view.View
 import android.view.inputmethod.EditorInfo
-import android.widget.ImageView
 import android.widget.TextView
-import com.chad.library.adapter.base.BaseQuickAdapter
 import com.hankkin.reading.R
-import com.hankkin.reading.adapter.PhoneticsAdapter
+import com.hankkin.reading.adapter.ToolsAdapter
 import com.hankkin.reading.base.BaseMvpFragment
+import com.hankkin.reading.domain.ToolsBean
 import com.hankkin.reading.domain.Weatherbean
 import com.hankkin.reading.domain.WordBean
-import com.hankkin.reading.utils.DownUtils
-import com.hankkin.reading.utils.FileUtils
 import com.hankkin.reading.utils.LoadingUtils
 import com.hankkin.reading.utils.WeatherUtils
-import com.hankkin.reading.view.GridSpacingItemDecoration
 import kotlinx.android.synthetic.main.fragment_word.*
-import kotlinx.android.synthetic.main.layout_translate_content.*
-import okhttp3.ResponseBody
-import java.io.File
 
 /**
  * Created by huanghaijie on 2018/5/15.
  */
 class ToolsFragment : BaseMvpFragment<ToolsContract.IPresenter>(), ToolsContract.IView {
 
+    private lateinit var mData: MutableList<ToolsBean>
+
+    private lateinit var mToolsAdapter: ToolsAdapter
+
 
     override fun registerPresenter() = ToolsPresenter::class.java
-
-
-    lateinit var word: WordBean
-    lateinit var phoneticsAdapter: PhoneticsAdapter
-    var mediaPlayer: MediaPlayer = MediaPlayer()
 
 
     public fun newInstance(index: Int): ToolsFragment {
@@ -53,7 +41,28 @@ class ToolsFragment : BaseMvpFragment<ToolsContract.IPresenter>(), ToolsContract
     }
 
     override fun initData() {
+        addData()
+        rv_tools.layoutManager = GridLayoutManager(context,4)
+        mToolsAdapter = ToolsAdapter()
+        mToolsAdapter.addAll(mData)
+        rv_tools.adapter = mToolsAdapter
         getPresenter().getWeather("beijing")
+    }
+
+    private fun addData(){
+        mData = mutableListOf<ToolsBean>(
+                ToolsBean(activity!!.resources.getString(R.string.work_kuaidi),R.mipmap.icon_kuaidi),
+                ToolsBean(activity!!.resources.getString(R.string.work_sao),R.mipmap.icon_saoyisao),
+                ToolsBean(activity!!.resources.getString(R.string.work_word),R.mipmap.icon_word),
+                ToolsBean(activity!!.resources.getString(R.string.work_word_note),R.mipmap.icon_wrod_note),
+                ToolsBean(activity!!.resources.getString(R.string.work_movie),R.mipmap.icon_dianying),
+                ToolsBean(activity!!.resources.getString(R.string.work_music),R.mipmap.icon_music),
+                ToolsBean(activity!!.resources.getString(R.string.work_weather),R.mipmap.icon_weather),
+                ToolsBean(activity!!.resources.getString(R.string.work_pwd_note),R.mipmap.icon_pwd_tools),
+                ToolsBean(activity!!.resources.getString(R.string.work_news),R.mipmap.icon_computer),
+                ToolsBean(activity!!.resources.getString(R.string.work_juejin),R.mipmap.icon_juejin),
+                ToolsBean(activity!!.resources.getString(R.string.work_about),R.mipmap.icon_about)
+        )
     }
 
     override fun initView() {
@@ -62,12 +71,10 @@ class ToolsFragment : BaseMvpFragment<ToolsContract.IPresenter>(), ToolsContract
             override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
                 when (actionId) {
                     EditorInfo.IME_ACTION_SEARCH -> {
-                        getPresenter().getWrod(et_translate_search.text.toString().trim())
                     }
                 }
                 return false
             }
-
         })
     }
 
@@ -83,59 +90,6 @@ class ToolsFragment : BaseMvpFragment<ToolsContract.IPresenter>(), ToolsContract
         tv_translate_weather.text = "获取天气失败"
     }
 
-    override fun searchWordResult(reponse: WordBean) {
-        if (reponse == null) return
-        this.word = reponse
-        tv_translate_word.text = word.title
-        ll_translate_para.removeAllViews()
-
-        phoneticsAdapter = PhoneticsAdapter()
-        rv_translate_speak.layoutManager = GridLayoutManager(context,word.paraphrases.size)
-        rv_translate_speak.addItemDecoration( GridSpacingItemDecoration(word.paraphrases.size, 30, false))
-        phoneticsAdapter.setNewData(word.phonetics)
-        rv_translate_speak.adapter = phoneticsAdapter
-
-
-        phoneticsAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
-            val phonetics = word.phonetics[position]
-            checkPhonetics(word.title, phonetics.name, phonetics.url,position)
-        }
-
-        if(word.ranks!!.size>0) {
-            tv_translate_ranks.visibility = View.VISIBLE
-        }
-
-        var rank = ""
-        for (s in word.ranks!!) {
-            rank = rank + "/" + s
-        }
-        tv_translate_ranks.text = rank
-
-        for (item in word.paraphrases) {
-            ll_translate_para.addView(addParaItemView(item.key))
-        }
-    }
-
-    fun addParaItemView(key: String): View {
-        val data = word.paraphrases
-        val view = LayoutInflater.from(context).inflate(R.layout.adapter_translate_paraphrases_item, null)
-        val tv = view.findViewById<TextView>(R.id.tv_translate_para_key)
-        val value = view.findViewById<TextView>(R.id.tv_translate_para_value)
-        tv.text = key
-        value.text = data.get(key).toString()
-        return view
-    }
-
-    override fun searchFail() {
-        hideLoading()
-    }
-
-
-    override fun downRankSuc(body: ResponseBody, name: String, type: String,index: Int) {
-        DownUtils.saveRank(name, type, body)
-        playPhonetice(name, type,index)
-    }
-
     override fun hideLoading() {
         LoadingUtils.hideLoading()
     }
@@ -143,43 +97,5 @@ class ToolsFragment : BaseMvpFragment<ToolsContract.IPresenter>(), ToolsContract
     override fun showLoading() {
         LoadingUtils.showLoading(context)
     }
-
-
-    fun checkPhonetics(name: String, type: String, url: String,index: Int) {
-        if (FileUtils.isDownloadedRank(name, type)) {
-            if (mediaPlayer.isPlaying) return
-            playPhonetice(name, type,index)
-        } else {
-            getPresenter().downRank(name, url, type,index)
-        }
-    }
-
-    fun playPhonetice(name: String, type: String,index: Int) {
-        val path = FileUtils.RANK_PATH + type + File.separator + name + ".mp3"
-        mediaPlayer.setDataSource(path)
-        mediaPlayer.prepare()
-        mediaPlayer.start()
-        val iv = phoneticsAdapter.getViewByPosition(rv_translate_speak,index,R.id.iv_translate_play) as ImageView
-        mediaPlayer.setOnCompletionListener{
-            mediaPlayer.reset()
-            ((iv.drawable)as AnimationDrawable).stop()
-            iv.setImageResource(R.mipmap.icon_translate_play2)
-        }
-        iv.setImageResource(R.drawable.phonetics_play_anim)
-        ((iv.drawable)as AnimationDrawable).start()
-    }
-
-
-    override fun onStop() {
-        super.onStop()
-        mediaPlayer.stop()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        mediaPlayer.pause()
-    }
-
-
 }
 

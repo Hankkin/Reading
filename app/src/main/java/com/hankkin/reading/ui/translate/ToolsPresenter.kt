@@ -13,33 +13,6 @@ import io.reactivex.schedulers.Schedulers
  */
 class ToolsPresenter : RxLifePresenter<ToolsContract.IView>(), ToolsContract.IPresenter {
 
-
-    override fun downRank(name: String, url: String, type: String,int: Int) {
-        HttpClient.getnorRetrofit().create(DownApi::class.java)
-                .downloadFile(url)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeNx({
-                    getMvpView().downRankSuc(it,name,type,int)
-                }).bindRxLifeEx(RxLife.ON_DESTROY)
-    }
-
-
-    override fun getWrod(word: String) {
-        getMvpView().showLoading()
-        HttpClient.getnorRetrofit().create(TranslateApi::class.java)
-                .searchWord(word)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeEx({
-                    getMvpView().searchWordResult(it)
-                    getMvpView().hideLoading()
-                }, {
-                    getMvpView().searchFail()
-                    getMvpView().hideLoading()
-                }).bindRxLifeEx(RxLife.ON_DESTROY)
-    }
-
     override fun getWeather(city: String) {
         val map = HashMap<String, Any>()
         map.put("key", Constant.WEATHER_KEY)
