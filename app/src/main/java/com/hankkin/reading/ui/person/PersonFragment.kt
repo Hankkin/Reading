@@ -11,6 +11,7 @@ import com.hankkin.reading.base.BaseMvpFragment
 import com.hankkin.reading.control.UserControl
 import com.hankkin.reading.domain.NoticeBean
 import com.hankkin.reading.domain.PersonListBean
+import com.hankkin.reading.domain.User
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.ui.login.LoginActivity
 import com.hankkin.reading.utils.LogUtils
@@ -68,6 +69,9 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
     }
 
     fun initHeaderAnim() {
+        val name = if (!UserControl.isLogin()) {
+            "未登录"
+        } else UserControl.getCurrentUser()!!.username
         val screenW = resources.displayMetrics.widthPixels
         val toolbarHeight = resources.getDimension(R.dimen.toolbar_height)
         val initHeight = resources.getDimension(R.dimen.subscription_head)
@@ -87,8 +91,8 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
                 iv_me_setScale = distanceIcon / (initHeight - toolbarHeight)
                 iv_me_setScaleX = distanceIconX / (initHeight - toolbarHeight)
             }
-            val scale = 1.0f - (-verticalOffset / (initHeight - toolbarHeight))/2
-            LogUtils.e(">>>>>>scale"+scale.toString())
+            val scale = 1.0f - (-verticalOffset / (initHeight - toolbarHeight)) / 2
+            LogUtils.e(">>>>>>scale" + scale.toString())
             iv_person_avatar.scaleX = scale
             iv_person_avatar.scaleY = scale
             iv_person_avatar.translationY = mHeadImgScale * verticalOffset
@@ -99,16 +103,16 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
             iv_person_avatar.translationY = iv_me_setScale * verticalOffset
             if (scale == 1f) {
                 refresh_person.setEnabled(true)
-                tv_person_name.text = "未登录"
+                tv_person_name.text = name
                 tv_me_set.text = "设置"
             } else {
                 iv_person_set.visibility = View.GONE
                 refresh_person.setEnabled(false)
                 tv_me_set.text = "设置"
             }
-            if (scale == 0f) {
+            if (scale == 0.5f) {
                 iv_person_set.visibility = View.VISIBLE
-                tv_person_name.text = "我的"
+                tv_person_name.text = name
                 tv_me_set.text = ""
             }
         })

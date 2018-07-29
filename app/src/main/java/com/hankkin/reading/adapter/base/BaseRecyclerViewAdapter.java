@@ -1,6 +1,9 @@
 package com.hankkin.reading.adapter.base;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+
+import com.stx.xhb.xbanner.OnDoubleClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,14 +21,15 @@ public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<Ba
     public void onBindViewHolder(BaseRecyclerViewHolder holder, final int position) {
         holder.onBaseBindViewHolder(data.get(position), position);
 
-//        holder.itemView.setOnClickListener(new PerfectClickListener() {
-//            @Override
-//            protected void onNoDoubleClick(View v) {
-//                if (listener!=null){
-//                    listener.onClick(data.get(position), position);
-//                }
-//            }
-//        });
+        holder.itemView.setOnClickListener(new OnDoubleClickListener() {
+
+            @Override
+            public void onNoDoubleClick(View v) {
+                if (listener!=null){
+                    listener.onClick(data.get(position), position);
+                }
+            }
+        });
 
     }
 
@@ -67,5 +71,13 @@ public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<Ba
 
     public void setOnItemLongClickListener(OnItemLongClickListener<T> onItemLongClickListener) {
         this.onItemLongClickListener = onItemLongClickListener;
+    }
+
+    public OnItemClickListener<T> getListener() {
+        return listener;
+    }
+
+    public OnItemLongClickListener<T> getOnItemLongClickListener() {
+        return onItemLongClickListener;
     }
 }

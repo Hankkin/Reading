@@ -18,6 +18,8 @@
     <color name="normal_txt">#4D4D4D</color>
     <color name="normal_bg">#F0EFF5</color>
     <color name="transanct">#88FFFFFF</color>
+    <color name="transparent">#00000000</color>
+
 
     <color name="yima">#f44336</color>
     <color name="yima_dark">#f44336</color>

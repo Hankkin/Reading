@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewTreeObserver
 import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.TextView
 import com.afollestad.materialdialogs.MaterialDialog
 import com.hankkin.reading.R
 import com.hankkin.reading.common.Constant
@@ -48,6 +49,8 @@ object ViewHelper {
         view.findViewById<ImageView>(R.id.iv_about_jianshu).setOnClickListener { CommonWebActivity.loadUrl(context,Constant.AboutUrl.JIANSHU,Constant.AboutUrl.JIANSHU_TITLE) }
         view.findViewById<ImageView>(R.id.iv_about_csdn).setOnClickListener { CommonWebActivity.loadUrl(context,Constant.AboutUrl.CSDN,Constant.AboutUrl.CSDN_TITLE) }
         val bottomSheet = BottomSheetDialog(context,R.style.BottomSheetDialog)
+        view.findViewById<TextView>(R.id.tv_about_close).setOnClickListener { bottomSheet.dismiss() }
+        view.findViewById<TextView>(R.id.tv_about_rate).setOnClickListener { ToastUtils.showToast(context,"敬请期待") }
         bottomSheet.setContentView(view)
         bottomSheet.show()
     }

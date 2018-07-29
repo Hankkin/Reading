@@ -5,7 +5,6 @@ android {
     compileSdkVersion 26
 
 
-
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 26
@@ -32,6 +31,8 @@ dependencies {
     implementation rootProject.ext.dependencies["appcompat-v7"]
     implementation rootProject.ext.dependencies["support-v4"]
     implementation rootProject.ext.dependencies["base-rvadapter"]
+    //Zxing核心包
+    implementation 'com.google.zxing:core:3.3.0'
 }
 repositories {
     mavenCentral()

@@ -236,7 +236,8 @@
         <activity android:name=".ui.home.articledetail.CommonWebActivity" />
         <activity android:name=".ui.user.collect.MyCollectActivity" />
         <activity android:name=".ui.home.search.SearchActivity" />
-        <activity android:name=".ui.home.search.searchresult.SearchResultActivity"></activity>
+        <activity android:name=".ui.home.search.searchresult.SearchResultActivity" />
+        <activity android:name=".ui.tools.scaner.ScanerCodeActivity" />
     </application>
 
 </manifest>

@@ -119,6 +119,7 @@
             android:paddingBottom="@dimen/dp_24">
 
             <com.bilibili.magicasakura.widgets.TintTextView
+                android:id="@+id/tv_about_close"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/dp_40"

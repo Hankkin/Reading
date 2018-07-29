@@ -56,7 +56,7 @@ object Constant {
         const val ID_WEATHER = 8
         const val ID_NEWS = 9
         const val ID_JUEJIN = 10
-        const val ID_ABOUT = 10
+        const val ID_ABOUT = 11
     }
 
 

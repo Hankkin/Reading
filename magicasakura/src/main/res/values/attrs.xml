@@ -30,14 +30,6 @@
 
     </declare-styleable>
 
-    <declare-styleable name="TintFabMenugroundHelper">
-        <!-- support tint background color -->
-        <attr name="android:background"/>
-        <attr name="backgroundTint" />
-        <attr name="backgroundTintMode" />
-        <attr name="normal" />
-
-    </declare-styleable>
 
     <declare-styleable name="TintViewForegroundHelper">
         <attr name="android:foreground"/>
