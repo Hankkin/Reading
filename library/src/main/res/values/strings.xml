@@ -8,4 +8,10 @@
     <string name="refreshing">正在刷新...</string>
     <string name="refresh_done">刷新完成...</string>
     <string name="listview_header_last_time">上次更新时间：</string>
+
+    <string name="msg_camera_framework_bug">相机被占用或没有相机权限，请检查</string>
+    <string name="button_ok">退出</string>
+    <string name="viewfinderview_status_text1">将二维码/条码放入取景框内</string>
+    <string name="viewfinderview_status_text2">即可自动扫描</string>
+
 </resources>

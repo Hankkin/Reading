@@ -1,10 +1,14 @@
 package com.hankkin.reading.ui.tools
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
+import com.hankkin.library.fuct.android.CaptureActivity
+import com.hankkin.library.fuct.bean.ZxingConfig
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.ToolsAdapter
 import com.hankkin.reading.base.BaseMvpFragment
@@ -13,6 +17,7 @@ import com.hankkin.reading.domain.ToolsBean
 import com.hankkin.reading.domain.Weatherbean
 import com.hankkin.reading.ui.home.articledetail.CommonWebActivity
 import com.hankkin.reading.utils.LoadingUtils
+import com.hankkin.reading.utils.ThemeHelper
 import com.hankkin.reading.utils.ViewHelper
 import com.hankkin.reading.utils.WeatherUtils
 import kotlinx.android.synthetic.main.fragment_word.*
@@ -21,6 +26,7 @@ import kotlinx.android.synthetic.main.fragment_word.*
  * Created by huanghaijie on 2018/5/15.
  */
 class ToolsFragment : BaseMvpFragment<ToolsContract.IPresenter>(), ToolsContract.IView {
+     val REQUEST_CODE_SCAN = 0x1
 
     private lateinit var mData: MutableList<ToolsBean>
 
@@ -52,6 +58,15 @@ class ToolsFragment : BaseMvpFragment<ToolsContract.IPresenter>(), ToolsContract
             when (t.id) {
                 Constant.TOOLS.ID_ABOUT -> context?.let { ViewHelper.showAboutDialog(it) }
                 Constant.TOOLS.ID_JUEJIN -> context?.let { CommonWebActivity.loadUrl(it,Constant.AboutUrl.JUEJIN,Constant.AboutUrl.JUEJIN_TITLE) }
+                Constant.TOOLS.ID_SAOYISAO -> {
+                    val intent = Intent(context,CaptureActivity::class.java)
+                    val bundle = Bundle()
+                    val config = ZxingConfig()
+                    config.reactColor = ThemeHelper.getCurrentColor(context)
+                    bundle.putSerializable(com.hankkin.library.fuct.common.Constant.INTENT_ZXING_CONFIG,config)
+                    intent.putExtras(bundle)
+                    startActivityForResult(intent,REQUEST_CODE_SCAN)
+                }
             }
         }
         getPresenter().getWeather("beijing")
@@ -104,6 +119,16 @@ class ToolsFragment : BaseMvpFragment<ToolsContract.IPresenter>(), ToolsContract
 
     override fun showLoading() {
         LoadingUtils.showLoading(context)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE_SCAN){
+            if (resultCode == Activity.RESULT_OK){
+                val  url = data!!.getStringExtra(com.hankkin.library.fuct.common.Constant.CODED_CONTENT)
+                context?.let { CommonWebActivity.loadUrl(it,url,"扫描结果") }
+            }
+        }
     }
 }
 

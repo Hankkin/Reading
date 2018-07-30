@@ -21,6 +21,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import com.bilibili.magicasakura.utils.ThemeUtils
+import com.hankkin.library.utils.RxLogTool
 import com.hankkin.library.utils.StatusBarUtil
 import com.hankkin.reading.adapter.MainFragmentAdapter
 import com.hankkin.reading.base.BaseActivity
@@ -32,7 +33,10 @@ import com.hankkin.reading.ui.person.PersonFragment
 import com.hankkin.reading.ui.person.SettingActivity
 import com.hankkin.reading.ui.tools.ToolsFragment
 import com.hankkin.reading.ui.user.collect.MyCollectActivity
-import com.hankkin.reading.utils.*
+import com.hankkin.reading.utils.DoubleClickListener
+import com.hankkin.reading.utils.RxBus
+import com.hankkin.reading.utils.ThemeHelper
+import com.hankkin.reading.utils.ViewHelper
 import com.tbruyelle.rxpermissions2.RxPermissions
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -76,7 +80,7 @@ class MainActivity : BaseActivity() {
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE).subscribe { p0 ->
             if (p0.granted) {
-                LogUtils.d(p0.name + " is granted")
+                RxLogTool.d(p0.name + " is granted")
             } else if (p0.shouldShowRequestPermissionRationale) {
                 Toast.makeText(activity, "请在设置-应用-权限管理中开启权限", Toast.LENGTH_SHORT).show()
             } else {

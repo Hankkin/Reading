@@ -14,17 +14,15 @@
  * limitations under the License.
  */
 
-package com.hankkin.library.fuct;
+package com.hankkin.library.fuct.android;
 
 import android.app.Activity;
 import android.content.DialogInterface;
 
 /**
- * Simple listener used to exit the app in a few cases.
- * @author vondear
+ * 在相机会手电筒可能被占用的情况下退出
  */
-public final class FinishListener
-        implements DialogInterface.OnClickListener, DialogInterface.OnCancelListener, Runnable {
+public final class FinishListener implements DialogInterface.OnClickListener, DialogInterface.OnCancelListener {
 
     private final Activity activityToFinish;
 
@@ -32,15 +30,17 @@ public final class FinishListener
         this.activityToFinish = activityToFinish;
     }
 
+    @Override
     public void onCancel(DialogInterface dialogInterface) {
         run();
     }
 
+    @Override
     public void onClick(DialogInterface dialogInterface, int i) {
         run();
     }
 
-    public void run() {
+    private void run() {
         activityToFinish.finish();
     }
 

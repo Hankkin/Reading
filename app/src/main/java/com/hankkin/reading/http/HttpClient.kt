@@ -1,10 +1,9 @@
 package com.hankkin.reading.http
 
-import com.hankkin.reading.EApplication
+import com.hankkin.library.utils.RxLogTool
 import com.hankkin.reading.common.Constant
 import com.hankkin.reading.http.cookie.CookiesManager
 import com.hankkin.reading.http.interceptor.NetLogInterceptor
-import com.hankkin.reading.utils.LogUtils
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
@@ -31,7 +30,7 @@ object HttpClient {
                 .sslSocketFactory(createSSLSocketFactory())
                 .hostnameVerifier { _, _ -> true }
                 .addInterceptor({ chain -> addHeader(chain) })
-                .addInterceptor(NetLogInterceptor(NetLogInterceptor.Level.BODY) { LogUtils.d(it) })
+                .addInterceptor(NetLogInterceptor(NetLogInterceptor.Level.BODY) { RxLogTool.d(it) })
                 .connectTimeout(DEFAULT_TIME_OUT, TimeUnit.MILLISECONDS)
                 .cookieJar(CookiesManager())
                 .build()

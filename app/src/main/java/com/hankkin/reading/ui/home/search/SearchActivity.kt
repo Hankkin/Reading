@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.inputmethod.EditorInfo
 import com.bilibili.magicasakura.widgets.TintTextView
+import com.hankkin.library.utils.RxLogTool
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.SearchHistoryAdapter
 import com.hankkin.reading.base.BaseMvpActivity
@@ -12,7 +13,6 @@ import com.hankkin.reading.domain.HotBean
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.ui.home.search.searchresult.SearchResultActivity
 import com.hankkin.reading.utils.LoadingUtils
-import com.hankkin.reading.utils.LogUtils
 import com.hankkin.reading.utils.RxBus
 import kotlinx.android.synthetic.main.activity_search.*
 
@@ -72,7 +72,7 @@ class SearchActivity : BaseMvpActivity<SearchPresenter>(),SearchContract.IView {
 
 
     override fun insertDao(id: Long) {
-        LogUtils.e(">>>>DB"+"插入数据库成功")
+        RxLogTool.e(">>>>DB"+"插入数据库成功")
     }
 
     override fun queryResult(hotBean: MutableList<HotBean>) {
@@ -84,7 +84,7 @@ class SearchActivity : BaseMvpActivity<SearchPresenter>(),SearchContract.IView {
 
 
     override fun deleteResult() {
-        LogUtils.e(">>>>DB"+"删除数据库成功")
+        RxLogTool.e(">>>>DB"+"删除数据库成功")
         getPresenter().queryDao()
     }
 

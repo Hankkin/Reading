@@ -1,13 +1,12 @@
-package com.hankkin.library.fuct;
+package com.hankkin.library.fuct.decode;
 
 import android.graphics.Bitmap;
 
 import com.google.zxing.LuminanceSource;
 
 /**
- * @author Vondear
- * @date 16/7/27
- * 自定义解析Bitmap LuminanceSource
+ *
+ * 解析Bitmap LuminanceSource
  */
 public class BitmapLuminanceSource extends LuminanceSource {
 

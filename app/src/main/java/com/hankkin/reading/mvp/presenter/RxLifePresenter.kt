@@ -1,10 +1,10 @@
 package com.hankkin.reading.mvp.presenter
 
+import com.hankkin.library.utils.RxLogTool
 import com.hankkin.reading.EApplication
 import com.hankkin.reading.domain.BaseResponse
-import com.hankkin.reading.mvp.contract.IPresenterContract
 import com.hankkin.reading.mvp.contract.IBaseViewContract
-import com.hankkin.reading.utils.LogUtils
+import com.hankkin.reading.mvp.contract.IPresenterContract
 import com.hankkin.reading.utils.RxUtils
 import com.hankkin.reading.utils.ToastUtils
 import io.reactivex.Observable
@@ -93,7 +93,7 @@ abstract class RxLifePresenter<out V : IBaseViewContract> : IBasePresenter<V>, I
 
         }, {
             //编写订阅失败的公共代码
-            LogUtils.e(it)
+            RxLogTool.e(it)
             onError.invoke(it)
         }, {
             //编写订阅完成后的公共代码
@@ -107,7 +107,7 @@ abstract class RxLifePresenter<out V : IBaseViewContract> : IBasePresenter<V>, I
             onNext.invoke(it)
         }, {
             //编写订阅失败的公共代码
-            LogUtils.e(it)
+            RxLogTool.e(it)
             onError.invoke(it)
         }, {
             //编写订阅完成后的公共代码

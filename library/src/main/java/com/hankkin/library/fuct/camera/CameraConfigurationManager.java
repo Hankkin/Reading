@@ -1,23 +1,35 @@
-package com.hankkin.library.fuct;
+/*
+ * Copyright (C) 2010 ZXing authors
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.hankkin.library.fuct.camera;
 
 import android.content.Context;
 import android.graphics.Point;
 import android.hardware.Camera;
-import android.os.Build;
 import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
 
 import java.util.regex.Pattern;
 
-/**
- * @author vondear
- */
 final class CameraConfigurationManager {
 
     private static final String TAG = CameraConfigurationManager.class.getSimpleName();
 
-    private static final int TEN_DESIRED_ZOOM = 27;
+    private static final int TEN_DESIRED_ZOOM = 5;
     private static final int DESIRED_SHARPNESS = 30;
 
     private static final Pattern COMMA_PATTERN = Pattern.compile(",");
@@ -25,12 +37,57 @@ final class CameraConfigurationManager {
     private final Context context;
     private Point screenResolution;
     private Point cameraResolution;
-    private int previewFormat;
-    private String previewFormatString;
+
+
 
     CameraConfigurationManager(Context context) {
         this.context = context;
     }
+
+    void initFromCameraParameters(Camera camera) {
+        Camera.Parameters parameters = camera.getParameters();
+
+        WindowManager manager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        Display display = manager.getDefaultDisplay();
+        screenResolution = new Point(display.getWidth(), display.getHeight());
+        Log.d(TAG, "Screen resolution: " + screenResolution);
+
+        Point screenResolutionForCamera = new Point();
+        screenResolutionForCamera.x = screenResolution.x;
+        screenResolutionForCamera.y = screenResolution.y;
+
+
+        if (screenResolution.x < screenResolution.y) {
+            screenResolutionForCamera.x = screenResolution.y;
+            screenResolutionForCamera.y = screenResolution.x;
+        }
+
+        cameraResolution = getCameraResolution(parameters, screenResolutionForCamera);
+
+
+    }
+
+
+    void setDesiredCameraParameters(Camera camera) {
+        Camera.Parameters parameters = camera.getParameters();
+        Log.d(TAG, "Setting preview size: " + cameraResolution);
+        parameters.setPreviewSize(cameraResolution.x, cameraResolution.y);
+
+        setZoom(parameters);
+        //setSharpness(parameters);
+        //modify here
+        camera.setDisplayOrientation(90);
+        camera.setParameters(parameters);
+    }
+
+    Point getCameraResolution() {
+        return cameraResolution;
+    }
+
+    Point getScreenResolution() {
+        return screenResolution;
+    }
+
 
     private static Point getCameraResolution(Camera.Parameters parameters, Point screenResolution) {
 
@@ -117,81 +174,7 @@ final class CameraConfigurationManager {
         return tenBestValue;
     }
 
-    public static int getDesiredSharpness() {
-        return DESIRED_SHARPNESS;
-    }
 
-    /**
-     * Reads, one time, values from the camera that are needed by the app.
-     */
-    void initFromCameraParameters(Camera camera) {
-        Camera.Parameters parameters = camera.getParameters();
-        previewFormat = parameters.getPreviewFormat();
-        previewFormatString = parameters.get("preview-format");
-        Log.d(TAG, "Default preview format: " + previewFormat + '/' + previewFormatString);
-        WindowManager manager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        Display display = manager.getDefaultDisplay();
-        screenResolution = new Point(display.getWidth(), display.getHeight());
-        Log.d(TAG, "Screen resolution: " + screenResolution);
-
-        Point screenResolutionForCamera = new Point();
-        screenResolutionForCamera.x = screenResolution.x;
-        screenResolutionForCamera.y = screenResolution.y;
-        // preview size is always something like 480*320, other 320*480
-        if (screenResolution.x < screenResolution.y) {
-            screenResolutionForCamera.x = screenResolution.y;
-            screenResolutionForCamera.y = screenResolution.x;
-        }
-        Log.i("#########", "screenX:" + screenResolutionForCamera.x + "   screenY:" + screenResolutionForCamera.y);
-        cameraResolution = getCameraResolution(parameters, screenResolutionForCamera);
-
-        // cameraResolution = getCameraResolution(parameters, screenResolution);
-        Log.d(TAG, "Camera resolution: " + screenResolution);
-    }
-
-    /**
-     * Sets the camera up to take preview images which are used for both preview and decoding.
-     * We detect the preview format here so that buildLuminanceSource() can build an appropriate
-     * LuminanceSource subclass. In the future we may want to force YUV420SP as it's the smallest,
-     * and the planar Y can be used for barcode scanning without a copy in some cases.
-     */
-    void setDesiredCameraParameters(Camera camera) {
-        Camera.Parameters parameters = camera.getParameters();
-        Log.d(TAG, "Setting preview size: " + cameraResolution);
-        parameters.setPreviewSize(cameraResolution.x, cameraResolution.y);
-        setFlash(parameters);
-        setZoom(parameters);
-        //setSharpness(parameters);
-        //modify here
-        camera.setDisplayOrientation(90);
-        camera.setParameters(parameters);
-    }
-
-    Point getCameraResolution() {
-        return cameraResolution;
-    }
-
-    Point getScreenResolution() {
-        return screenResolution;
-    }
-
-    int getPreviewFormat() {
-        return previewFormat;
-    }
-
-    String getPreviewFormatString() {
-        return previewFormatString;
-    }
-
-    private void setFlash(Camera.Parameters parameters) {
-        if (Build.MODEL.contains("Behold II") && CameraManager.SDK_INT == 3) { // 3 = Cupcake
-            parameters.set("flash-value", 1);
-        } else {
-            parameters.set("flash-value", 2);
-        }
-        // This is the standard setting to turn the flash off that all devices should honor.
-        parameters.set("flash-mode", "off");
-    }
 
     private void setZoom(Camera.Parameters parameters) {
 
@@ -199,6 +182,7 @@ final class CameraConfigurationManager {
         if (zoomSupportedString != null && !Boolean.parseBoolean(zoomSupportedString)) {
             return;
         }
+
 
         int tenDesiredZoom = TEN_DESIRED_ZOOM;
 
@@ -255,6 +239,10 @@ final class CameraConfigurationManager {
         if (takingPictureZoomMaxString != null) {
             parameters.set("taking-picture-zoom", tenDesiredZoom);
         }
+    }
+
+    public static int getDesiredSharpness() {
+        return DESIRED_SHARPNESS;
     }
 
 }

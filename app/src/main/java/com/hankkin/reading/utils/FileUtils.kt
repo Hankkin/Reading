@@ -1,7 +1,7 @@
 package com.hankkin.reading.utils
 
-import android.content.Context
 import android.os.Environment
+import com.hankkin.library.utils.RxLogTool
 import java.io.File
 import java.io.IOException
 
@@ -18,7 +18,7 @@ object FileUtils {
     fun initSd() {
         val file = File(SAVE_RANK_PATH)
         if (!file.exists()) file.mkdirs()
-        LogUtils.d("$TAG 初始化文件夹成功 ${file.absolutePath}")
+        RxLogTool.d("$TAG 初始化文件夹成功 ${file.absolutePath}")
     }
 
     fun getNameFromUrl(url: String): String {
