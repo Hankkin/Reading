@@ -42,6 +42,13 @@ object ViewHelper {
 
     }
 
+    fun showListNoTitleDialog(context: Context,list: MutableList<String>,calback: MaterialDialog.ListCallback){
+        MaterialDialog.Builder(context)
+                .items(list)
+                .itemsCallback(calback)
+                .show()
+    }
+
     fun showAboutDialog(context: Context) {
         val view = LayoutInflater.from(context).inflate(R.layout.layout_about_dialog,null)
         view.findViewById<ImageView>(R.id.iv_about_github).setOnClickListener { CommonWebActivity.loadUrl(context,Constant.AboutUrl.GITHUB,Constant.AboutUrl.GITHUB_TITLE) }

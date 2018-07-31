@@ -92,6 +92,11 @@
     <string name="work_juejin">掘金</string>
     <string name="work_about">关于</string>
 
+    <string name="tools_kuaidi_number">请输入快递单号</string>
+    <string name="tools_kuaidi_company">请选择快递公司</string>
+    <string name="tools_kuaidi_title">查快递</string>
+    <string name="tools_kuaidi_hint">TIPS：本功能使用【快递100】开源API，请勿作为商业使用，如涉及隐私或构成侵权，请联系我修改或删除。\n 再次声明该功能一切数据解释权归【快递100】所有。</string>
+
 
     <string name="ok">确定</string>
     <string name="cancel">取消</string>

@@ -56,6 +56,7 @@ class ToolsFragment : BaseMvpFragment<ToolsContract.IPresenter>(), ToolsContract
         rv_tools.adapter = mToolsAdapter
         mToolsAdapter.setOnItemClickListener { t, position ->
             when (t.id) {
+                Constant.TOOLS.ID_KUAIDI -> startActivity(Intent(context,KuaiDiActivity::class.java))
                 Constant.TOOLS.ID_ABOUT -> context?.let { ViewHelper.showAboutDialog(it) }
                 Constant.TOOLS.ID_JUEJIN -> context?.let { CommonWebActivity.loadUrl(it,Constant.AboutUrl.JUEJIN,Constant.AboutUrl.JUEJIN_TITLE) }
                 Constant.TOOLS.ID_SAOYISAO -> {

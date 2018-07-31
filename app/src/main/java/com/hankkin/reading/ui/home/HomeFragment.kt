@@ -119,17 +119,17 @@ class HomeFragment : BaseFragment() {
         when (index) {
             0 -> {
                 isOne = true
-//                fab_menu_add.visibility = View.VISIBLE
+                fab_menu_add.visibility = View.VISIBLE
                 appbar.elevation = 1f
             }
             1 -> {
                 isTwo = true
-//                fab_menu_add.visibility = View.GONE
+                fab_menu_add.visibility = View.GONE
                 appbar.elevation = 0f
             }
             2 -> {
                 isThree = true
-//                fab_menu_add.visibility = View.GONE
+                fab_menu_add.visibility = View.GONE
                 appbar.elevation = 0f
             }
         }
