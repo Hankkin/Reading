@@ -33,10 +33,7 @@ import com.hankkin.reading.ui.person.PersonFragment
 import com.hankkin.reading.ui.person.SettingActivity
 import com.hankkin.reading.ui.tools.ToolsFragment
 import com.hankkin.reading.ui.user.collect.MyCollectActivity
-import com.hankkin.reading.utils.DoubleClickListener
-import com.hankkin.reading.utils.RxBus
-import com.hankkin.reading.utils.ThemeHelper
-import com.hankkin.reading.utils.ViewHelper
+import com.hankkin.reading.utils.*
 import com.tbruyelle.rxpermissions2.RxPermissions
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -206,7 +203,7 @@ class MainActivity : BaseActivity() {
         changeLogo()
 
         setTabColor(vp_main.currentItem)
-        RxBus.getDefault().post(EventMap.ChangeFabEvent())
+        RxBusTools.getDefault().post(EventMap.ChangeFabEvent())
     }
 
 

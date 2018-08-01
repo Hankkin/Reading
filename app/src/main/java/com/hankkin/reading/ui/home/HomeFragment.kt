@@ -52,6 +52,10 @@ class HomeFragment : BaseFragment() {
         return R.layout.fragment_home
     }
 
+    override fun isHasBus(): Boolean {
+        return true
+    }
+
     override fun initData() {
         val adapter = HomeFragmentPagerAdapter(childFragmentManager,mFgList )
         vp_home.adapter = adapter
@@ -71,11 +75,6 @@ class HomeFragment : BaseFragment() {
         setCurrent(1)
         setFabColor()
         setFabClickListener()
-
-        RxBus.getDefault().toObservable(EventMap.ChangeFabEvent::class.java)
-                .subscribe({
-                    setFabColor()
-                })
     }
 
     fun setFabClickListener(){
@@ -137,6 +136,12 @@ class HomeFragment : BaseFragment() {
         iv_title_one.isSelected = isOne
         iv_title_two.isSelected = isTwo
         iv_title_three.isSelected = isThree
+    }
+
+    override fun onEvent(event: EventMap.BaseEvent) {
+        if (event is EventMap.ChangeFabEvent){
+            setFabColor()
+        }
     }
 
 }

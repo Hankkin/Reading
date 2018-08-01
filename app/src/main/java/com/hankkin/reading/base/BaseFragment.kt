@@ -7,6 +7,11 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.hankkin.reading.event.EventMap
+import com.hankkin.reading.utils.RxBus
+import com.hankkin.reading.utils.RxBusTools
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.functions.Consumer
 
 /**
  * Created by huanghaijie on 2018/5/15.
@@ -24,6 +29,8 @@ abstract class BaseFragment : Fragment() {
 
     private var isFirstLoad = true
 
+     var disposables = CompositeDisposable()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +47,6 @@ abstract class BaseFragment : Fragment() {
         this.activity = activity
     }
 
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val convertView: View = inflater?.inflate(getLayoutId(), container, false)!!
         return convertView
@@ -49,11 +55,25 @@ abstract class BaseFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         initViews()
+        registerEvent()
         isInitView = true
         lazyLoadData()
     }
 
 
+    open fun isHasBus(): Boolean{
+        return false
+    }
+
+    protected fun registerEvent(){
+        if (isHasBus()){
+            val disposable = RxBusTools.getDefault().register(EventMap.BaseEvent::class.java, Consumer { onEvent(it) })
+            disposables.add(disposable)
+        }
+    }
+
+    open  fun onEvent(event: EventMap.BaseEvent){
+    }
 
     protected abstract fun getLayoutId(): Int
 
@@ -80,5 +100,9 @@ abstract class BaseFragment : Fragment() {
         super.onDestroyView()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        disposables.clear()
+    }
 
 }
