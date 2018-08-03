@@ -6,8 +6,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.mvp.contract.IPresenterContract
 import com.hankkin.reading.mvp.view.MvpFragment
+import com.hankkin.reading.utils.RxBusTools
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.functions.Consumer
 
 /**
  * Created by huanghaijie on 2018/5/15.
@@ -23,6 +27,8 @@ abstract class BaseMvpFragment<out T : IPresenterContract> : MvpFragment<T>() {
     private var isInitView = false
 
     private var isFirstLoad = true
+    var disposables = CompositeDisposable()
+
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -43,6 +49,7 @@ abstract class BaseMvpFragment<out T : IPresenterContract> : MvpFragment<T>() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         initView()
+        registerEvent()
         isInitView = true
         lazyLoadData()
     }
@@ -61,8 +68,27 @@ abstract class BaseMvpFragment<out T : IPresenterContract> : MvpFragment<T>() {
         isFirstLoad = false
     }
 
+    open fun isHasBus(): Boolean {
+        return false
+    }
+
+    protected fun registerEvent() {
+        if (isHasBus()) {
+            val disposable = RxBusTools.getDefault().register(EventMap.BaseEvent::class.java, Consumer { onEvent(it) })
+            disposables.add(disposable)
+        }
+    }
+
+    open fun onEvent(event: EventMap.BaseEvent) {
+    }
+
     open fun init(savedInstanceState: Bundle?) {}
     abstract fun getLayoutId(): Int
     open fun initView() {}
     open fun initData() {}
+
+    override fun onDestroy() {
+        super.onDestroy()
+        disposables.clear()
+    }
 }

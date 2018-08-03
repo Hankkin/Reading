@@ -11,10 +11,7 @@ import com.hankkin.reading.base.BaseMvpFragment
 import com.hankkin.reading.control.UserControl
 import com.hankkin.reading.domain.UserBean
 import com.hankkin.reading.event.EventMap
-import com.hankkin.reading.utils.LoadingUtils
-import com.hankkin.reading.utils.RxBus
-import com.hankkin.reading.utils.ToastUtils
-import com.hankkin.reading.utils.ViewHelper
+import com.hankkin.reading.utils.*
 import kotlinx.android.synthetic.main.fragment_register.*
 
 /**
@@ -28,7 +25,7 @@ class RegFragment : BaseMvpFragment<RegisterContract.IPresenter>(), RegisterCont
     }
 
     override fun initData() {
-        tv_reg_back.setOnClickListener { RxBus.getDefault().post(EventMap.LoginSetTabEvent(0)) }
+        tv_reg_back.setOnClickListener { RxBusTools.getDefault().post(EventMap.LoginSetTabEvent(0)) }
         reg_btn.setOnClickListener {
             var map = HashMap<String,String>()
             map.put(RegisterPresenter.NAME,et_reg_email.text.toString())
@@ -80,7 +77,7 @@ class RegFragment : BaseMvpFragment<RegisterContract.IPresenter>(), RegisterCont
         ViewHelper.showConfirmDialog(context!!,
                 context!!.resources.getString(R.string.reg_suc_toast),
                 MaterialDialog.SingleButtonCallback { dialog, which ->
-                    RxBus.getDefault().post(EventMap.LoginSetTabEvent(0,et_reg_email.text.toString(),et_reg_pwd.text.toString()))
+                    RxBusTools.getDefault().post(EventMap.LoginSetTabEvent(0,et_reg_email.text.toString(),et_reg_pwd.text.toString()))
                 })
     }
 

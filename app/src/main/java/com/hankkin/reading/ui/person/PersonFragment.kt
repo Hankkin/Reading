@@ -13,7 +13,6 @@ import com.hankkin.reading.domain.NoticeBean
 import com.hankkin.reading.domain.PersonListBean
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.ui.login.LoginActivity
-import com.hankkin.reading.utils.RxBus
 import com.hankkin.reading.utils.ViewHelper
 import kotlinx.android.synthetic.main.fragment_person.*
 
@@ -37,6 +36,10 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
         return R.layout.fragment_person
     }
 
+    override fun isHasBus(): Boolean {
+        return true
+    }
+
     override fun initData() {
         mAdapter = PersonListAdapter()
         mAdapter.data.add(PersonListBean(R.mipmap.icon_person_star, resources.getString(R.string.person_star)))
@@ -45,15 +48,6 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
         mAdapter.data.add(PersonListBean(R.mipmap.icon_person_look, resources.getString(R.string.person_look)))
         xrv_person_lisy.layoutManager = LinearLayoutManager(context)
         xrv_person_lisy.adapter = mAdapter
-
-        RxBus.getDefault().toObservable(EventMap.BaseEvent::class.java)
-                .subscribe({
-                    if (it is EventMap.ChangeThemeEvent) {
-                        ViewHelper.changeRefreshColor(refresh_person, context)
-                    } else if (it is EventMap.LoginEvent) {
-                        setUserHeader()
-                    }
-                })
 
     }
 
@@ -152,6 +146,14 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
         tv_person_fans.text = noticeBean.fansCount.toString()
         tv_person_msg.text = noticeBean.msgCount.toString()
         tv_person_fans.text = noticeBean.fansCount.toString()
+    }
+
+    override fun onEvent(event: EventMap.BaseEvent) {
+        if (event is EventMap.ChangeThemeEvent) {
+            ViewHelper.changeRefreshColor(refresh_person, context)
+        } else if (event is EventMap.LoginEvent) {
+            setUserHeader()
+        }
     }
 
 }

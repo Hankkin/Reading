@@ -13,7 +13,6 @@ import com.hankkin.reading.domain.HotBean
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.ui.home.search.searchresult.SearchResultActivity
 import com.hankkin.reading.utils.LoadingUtils
-import com.hankkin.reading.utils.RxBus
 import kotlinx.android.synthetic.main.activity_search.*
 
 class SearchActivity : BaseMvpActivity<SearchPresenter>(),SearchContract.IView {
@@ -24,6 +23,9 @@ class SearchActivity : BaseMvpActivity<SearchPresenter>(),SearchContract.IView {
         return R.layout.activity_search
     }
 
+    override fun isHasBus(): Boolean {
+        return true
+    }
 
     override fun initView() {
         iv_search_back.setOnClickListener { finish() }
@@ -40,16 +42,12 @@ class SearchActivity : BaseMvpActivity<SearchPresenter>(),SearchContract.IView {
     }
 
     override fun initData() {
-        RxBus.getDefault().toObservable()
-                .subscribe {
-                    val hotBean = mHistoryAdapter.data[(it as EventMap.SearchHistoryDeleteEvent).position]
-                    getPresenter().delete(hotBean.id)
-                }
         getPresenter().getHotHttp()
         getPresenter().queryDao()
     }
 
     override fun registerPresenter() = SearchPresenter::class.java
+
 
     override fun getHotResult(data: MutableList<HotBean>) {
         for (hot in data){
@@ -94,5 +92,10 @@ class SearchActivity : BaseMvpActivity<SearchPresenter>(),SearchContract.IView {
 
     override fun hideLoading() {
         LoadingUtils.hideLoading()
+    }
+
+    override fun onEvent(event: EventMap.BaseEvent) {
+        val hotBean = mHistoryAdapter.data[(event as EventMap.SearchHistoryDeleteEvent).position]
+        getPresenter().delete(hotBean.id)
     }
 }

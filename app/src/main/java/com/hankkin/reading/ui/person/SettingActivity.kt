@@ -11,7 +11,7 @@ import com.hankkin.library.utils.StatusBarUtil
 import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseActivity
 import com.hankkin.reading.event.EventMap
-import com.hankkin.reading.utils.RxBus
+import com.hankkin.reading.utils.RxBusTools
 import com.hankkin.reading.utils.ThemeHelper
 import kotlinx.android.synthetic.main.activity_setting.*
 
@@ -89,7 +89,7 @@ class SettingActivity : BaseActivity() {
                 }
 
             })
-            RxBus.getDefault().post(EventMap.ChangeThemeEvent())
+            RxBusTools.getDefault().post(EventMap.ChangeThemeEvent())
         }
     }
 

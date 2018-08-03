@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.hankkin.reading.event.EventMap
-import com.hankkin.reading.utils.RxBus
 import com.hankkin.reading.utils.RxBusTools
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.Consumer

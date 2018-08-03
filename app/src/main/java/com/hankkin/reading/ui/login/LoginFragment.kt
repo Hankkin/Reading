@@ -11,14 +11,14 @@ import com.hankkin.reading.domain.UserBean
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.ui.login.register.RegisterPresenter
 import com.hankkin.reading.utils.LoadingUtils
-import com.hankkin.reading.utils.RxBus
+import com.hankkin.reading.utils.RxBusTools
 import com.hankkin.reading.utils.ToastUtils
 import kotlinx.android.synthetic.main.fragment_login.*
 
 /**
  * Created by huanghaijie on 2018/5/15.
  */
-class LoginFragment : BaseMvpFragment<LoginContract.IPresenter>(), LoginContract.IView , KeyEditText.KeyPreImeListener{
+class LoginFragment : BaseMvpFragment<LoginContract.IPresenter>(), LoginContract.IView, KeyEditText.KeyPreImeListener {
 
 
     override fun registerPresenter() = LoginPresenter::class.java
@@ -28,19 +28,18 @@ class LoginFragment : BaseMvpFragment<LoginContract.IPresenter>(), LoginContract
         return R.layout.fragment_login
     }
 
+    override fun isHasBus(): Boolean {
+        return true
+    }
+
     override fun initData() {
-        tv_login_go_reg.setOnClickListener { RxBus.getDefault().post(EventMap.LoginSetTabEvent(1)) }
+        tv_login_go_reg.setOnClickListener { RxBusTools.getDefault().post(EventMap.LoginSetTabEvent(1)) }
         login_btn.setOnClickListener {
-            var map = HashMap<String,Any>()
-            map.put(RegisterPresenter.NAME,et_login_name.text.toString())
-            map.put(RegisterPresenter.PASSWORD,et_login_pwd.text.toString())
+            var map = HashMap<String, Any>()
+            map.put(RegisterPresenter.NAME, et_login_name.text.toString())
+            map.put(RegisterPresenter.PASSWORD, et_login_pwd.text.toString())
             getPresenter().loginHttp(map)
         }
-        RxBus.getDefault().toObservable(EventMap.LoginSetTabEvent::class.java)
-                .subscribe {
-                    et_login_name.setText(it.name)
-                    et_login_pwd.setText(it.pwd)
-                }
     }
 
     override fun initView() {
@@ -80,8 +79,15 @@ class LoginFragment : BaseMvpFragment<LoginContract.IPresenter>(), LoginContract
     override fun loginResult(userBean: UserBean) {
         ToastUtils.showToast(context, "登录成功" + userBean.username)
         UserControl.setCurrentUser(userBean)
-        RxBus.getDefault().post(EventMap.LoginEvent())
+        RxBusTools.getDefault().post(EventMap.LoginEvent())
         activity!!.finish()
+    }
+
+    override fun onEvent(event: EventMap.BaseEvent) {
+        if (event is EventMap.LoginSetTabEvent) {
+            et_login_name.setText(event.name)
+            et_login_pwd.setText(event.pwd)
+        }
     }
 
 }

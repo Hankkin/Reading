@@ -9,11 +9,9 @@ import com.hankkin.reading.base.BaseMvpActivity
 import com.hankkin.reading.control.UserControl
 import com.hankkin.reading.domain.ArticleBean
 import com.hankkin.reading.event.EventMap
-import com.hankkin.reading.utils.RxBus
 import com.hankkin.reading.utils.ToastUtils
 import com.hankkin.reading.utils.ViewHelper
 import kotlinx.android.synthetic.main.activity_my_collect.*
-import kotlinx.android.synthetic.main.fragment_android.*
 import kotlinx.android.synthetic.main.layout_title_bar_back.*
 
 class MyCollectActivity : BaseMvpActivity<MyCollectPresenter>(),MyCollectContract.IView,SwipeRefreshLayout.OnRefreshListener {
@@ -28,6 +26,9 @@ class MyCollectActivity : BaseMvpActivity<MyCollectPresenter>(),MyCollectContrac
 
     override fun registerPresenter() = MyCollectPresenter::class.java
 
+    override fun isHasBus(): Boolean {
+        return true
+    }
 
     override fun initView() {
         tv_normal_title.text = resources.getString(R.string.drawer_collect)
@@ -52,17 +53,6 @@ class MyCollectActivity : BaseMvpActivity<MyCollectPresenter>(),MyCollectContrac
         })
         loadData(mPage)
 
-        RxBus.getDefault().toObservable(EventMap.BaseEvent::class.java)
-                .subscribe({
-                    if (it is EventMap.CollectEvent){
-                        if (it.flag == EventMap.CollectEvent.COLLECT){
-                            getPresenter().collectHttp(it.id)
-                        }
-                        else{
-                            getPresenter().cancelCollectHttp(it.id)
-                        }
-                    }
-                })
     }
 
 
@@ -106,6 +96,17 @@ class MyCollectActivity : BaseMvpActivity<MyCollectPresenter>(),MyCollectContrac
     override fun collectResult(id: Int) {
         UserControl.getCurrentUser()!!.collectIds.add(id.toString())
         ToastUtils.showToast(this,"收藏成功")
+    }
+
+    override fun onEvent(event: EventMap.BaseEvent) {
+        if (event is EventMap.CollectEvent){
+            if (event.flag == EventMap.CollectEvent.COLLECT){
+                getPresenter().collectHttp(event.id)
+            }
+            else{
+                getPresenter().cancelCollectHttp(event.id)
+            }
+        }
     }
 
 }

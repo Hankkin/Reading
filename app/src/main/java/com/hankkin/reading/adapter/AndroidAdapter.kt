@@ -15,12 +15,11 @@ import com.hankkin.reading.adapter.base.BaseRecyclerViewAdapter
 import com.hankkin.reading.adapter.base.BaseRecyclerViewHolder
 import com.hankkin.reading.control.UserControl
 import com.hankkin.reading.domain.ArticleDetailBean
-import com.hankkin.reading.domain.TagBean
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.ui.home.articledetail.CommonWebActivity
 import com.hankkin.reading.ui.login.LoginActivity
 import com.hankkin.reading.utils.GlideUtils
-import com.hankkin.reading.utils.RxBus
+import com.hankkin.reading.utils.RxBusTools
 
 /**
  * Created by huanghaijie on 2018/7/8.
@@ -96,7 +95,7 @@ class AndroidAdapter : BaseRecyclerViewAdapter<ArticleDetailBean>() {
                     ivCollect.visibility = View.GONE
                     ivCollected.visibility = View.VISIBLE
                     val id = bean.id ?: bean.originId
-                    RxBus.getDefault().post(EventMap.CollectEvent(EventMap.CollectEvent.COLLECT, id))
+                    RxBusTools.getDefault().post(EventMap.CollectEvent(EventMap.CollectEvent.COLLECT, id))
                 }
             }
             ivCollected.setOnClickListener {
@@ -106,7 +105,7 @@ class AndroidAdapter : BaseRecyclerViewAdapter<ArticleDetailBean>() {
                     ivCollect.visibility = View.VISIBLE
                     ivCollected.visibility = View.GONE
                     val id = bean.id ?: bean.originId
-                    RxBus.getDefault().post(EventMap.CollectEvent(EventMap.CollectEvent.UNCOLLECT, id))
+                    RxBusTools.getDefault().post(EventMap.CollectEvent(EventMap.CollectEvent.UNCOLLECT, id))
                 }
             }
         }

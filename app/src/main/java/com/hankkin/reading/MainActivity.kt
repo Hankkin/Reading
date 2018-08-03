@@ -61,8 +61,11 @@ class MainActivity : BaseActivity() {
         return R.layout.activity_main
     }
 
+    override fun isHasBus(): Boolean {
+        return true
+    }
+
     override fun initData() {
-        operateBus()
         RxPermissions(this).requestEach(Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.READ_CALENDAR,
@@ -164,16 +167,6 @@ class MainActivity : BaseActivity() {
         }
     }
 
-    fun operateBus() {
-        RxBus.getDefault().toObservable(EventMap.BaseEvent::class.java)
-                .subscribe({
-                    if (it is EventMap.ChangeThemeEvent) {
-                        changeTheme()
-                    } else if (it is EventMap.LoginEvent) {
-                        setNavHeader()
-                    }
-                })
-    }
 
 
     fun setNavHeader() {
@@ -247,5 +240,13 @@ class MainActivity : BaseActivity() {
     fun disableComponent(compontName: String){
         packageManager.setComponentEnabledSetting(ComponentName(baseContext,packageName+"."+compontName),
                 PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP)
+    }
+
+    override fun onEvent(event: EventMap.BaseEvent) {
+        if (event is EventMap.ChangeThemeEvent) {
+            changeTheme()
+        } else if (event is EventMap.LoginEvent) {
+            setNavHeader()
+        }
     }
 }

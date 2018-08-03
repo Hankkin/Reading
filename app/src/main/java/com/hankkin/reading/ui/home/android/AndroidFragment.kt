@@ -10,7 +10,6 @@ import com.hankkin.reading.base.BaseMvpFragment
 import com.hankkin.reading.control.UserControl
 import com.hankkin.reading.domain.ArticleBean
 import com.hankkin.reading.event.EventMap
-import com.hankkin.reading.utils.RxBus
 import com.hankkin.reading.utils.ThemeHelper
 import com.hankkin.reading.utils.ToastUtils
 import com.hankkin.reading.utils.ViewHelper
@@ -22,13 +21,14 @@ import kotlinx.android.synthetic.main.fragment_android.*
 class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IView, SwipeRefreshLayout.OnRefreshListener {
 
 
-
     private var mPage: Int = 0
     private lateinit var mAdapter: AndroidAdapter
-
+    override fun isHasBus(): Boolean {
+        return true
+    }
 
     override fun initView() {
-        ViewHelper.setRefreshLayout(context,true,refresh_android,this)
+        ViewHelper.setRefreshLayout(context, true, refresh_android, this)
     }
 
     public fun newInstance(index: Int) {
@@ -45,24 +45,6 @@ class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IVie
     override fun initData() {
         initXrv()
         loadData(mPage)
-        RxBus.getDefault().toObservable(EventMap.BaseEvent::class.java)
-                .subscribe({
-                    if (it is EventMap.ToUpEvent){
-                        xrv_android.scrollToPosition(0)
-                    }else if (it is EventMap.HomeRefreshEvent){
-                        onRefresh()
-                    }
-                    else if (it is EventMap.ChangeThemeEvent){
-                        ViewHelper.changeRefreshColor(refresh_android,context)
-                    }else if (it is EventMap.CollectEvent){
-                        if (it.flag == EventMap.CollectEvent.COLLECT){
-                            getPresenter().collectHttp(it.id)
-                        }
-                        else{
-                            getPresenter().cancelCollectHttp(it.id)
-                        }
-                    }
-                })
     }
 
     fun initXrv() {
@@ -121,12 +103,28 @@ class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IVie
 
     override fun cancelCollectResult(id: Int) {
         UserControl.getCurrentUser()!!.collectIds.remove(id.toString())
-        ToastUtils.showToast(activity,"取消收藏")
+        ToastUtils.showToast(activity, "取消收藏")
     }
 
     override fun collectResult(id: Int) {
         UserControl.getCurrentUser()!!.collectIds.add(id.toString())
-        ToastUtils.showToast(activity,"收藏成功")
+        ToastUtils.showToast(activity, "收藏成功")
+    }
+
+    override fun onEvent(it: EventMap.BaseEvent) {
+        if (it is EventMap.ToUpEvent) {
+            xrv_android.scrollToPosition(0)
+        } else if (it is EventMap.HomeRefreshEvent) {
+            onRefresh()
+        } else if (it is EventMap.ChangeThemeEvent) {
+            ViewHelper.changeRefreshColor(refresh_android, context)
+        } else if (it is EventMap.CollectEvent) {
+            if (it.flag == EventMap.CollectEvent.COLLECT) {
+                getPresenter().collectHttp(it.id)
+            } else {
+                getPresenter().cancelCollectHttp(it.id)
+            }
+        }
     }
 
 }

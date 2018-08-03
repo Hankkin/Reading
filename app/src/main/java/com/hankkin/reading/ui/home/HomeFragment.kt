@@ -16,7 +16,7 @@ import com.hankkin.reading.ui.home.hot.HotFragment
 import com.hankkin.reading.ui.home.project.ProjectFragment
 import com.hankkin.reading.MainActivity
 import com.hankkin.reading.ui.home.search.SearchActivity
-import com.hankkin.reading.utils.RxBus
+import com.hankkin.reading.utils.RxBusTools
 import com.hankkin.reading.utils.ThemeHelper
 import com.hankkin.reading.utils.ToastUtils
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -80,11 +80,11 @@ class HomeFragment : BaseFragment() {
     fun setFabClickListener(){
         fab_menu_add.setClosedOnTouchOutside(true)
         fab_up.setOnClickListener {
-            RxBus.getDefault().post(EventMap.ToUpEvent())
+            RxBusTools.getDefault().post(EventMap.ToUpEvent())
             fab_menu_add.close(true)
         }
         fab_refresh.setOnClickListener {
-            RxBus.getDefault().post(EventMap.HomeRefreshEvent())
+            RxBusTools.getDefault().post(EventMap.HomeRefreshEvent())
             fab_menu_add.close(true)
         }
         fab_write.setOnClickListener {

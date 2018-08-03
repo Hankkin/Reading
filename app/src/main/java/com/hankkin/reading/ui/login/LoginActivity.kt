@@ -7,7 +7,6 @@ import com.hankkin.reading.adapter.MainFragmentAdapter
 import com.hankkin.reading.base.BaseActivity
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.ui.login.register.RegFragment
-import com.hankkin.reading.utils.RxBus
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : BaseActivity() {
@@ -24,12 +23,18 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun initData() {
-        RxBus.getDefault().toObservable(EventMap.LoginSetTabEvent::class.java)
-                .subscribe { vp_login.currentItem = it.index }
     }
 
     override fun initViews(savedInstanceState: Bundle?) {
         vp_login.adapter = adapter
     }
 
+    override fun isHasBus(): Boolean {
+        return super.isHasBus()
+    }
+
+    override fun onEvent(event: EventMap.BaseEvent) {
+        if (event is EventMap.LoginSetTabEvent)
+            vp_login.currentItem = event.index
+    }
 }
