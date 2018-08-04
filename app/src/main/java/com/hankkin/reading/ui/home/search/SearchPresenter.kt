@@ -1,9 +1,7 @@
 package com.hankkin.reading.ui.home.search
 
 import com.hankkin.reading.domain.HotBean
-import com.hankkin.reading.greendao.HotBeanDao
 import com.hankkin.reading.http.HttpClient
-import com.hankkin.reading.http.api.WanAndroidApi
 import com.hankkin.reading.mvp.presenter.RxLifePresenter
 import com.hankkin.reading.mvp.presenter.getContext
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -32,7 +30,7 @@ class SearchPresenter : RxLifePresenter<SearchContract.IView>(), SearchContract.
 
     override fun getHotHttp() {
         getMvpView().showLoading()
-        HttpClient.getwanAndroidRetrofit().create(WanAndroidApi::class.java)
+        HttpClient.Builder.getCommonHttp()
                 .getHot()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

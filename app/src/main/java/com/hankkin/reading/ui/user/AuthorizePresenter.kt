@@ -1,11 +1,10 @@
 package com.hankkin.reading.ui.user
 
+import com.hankkin.library.utils.SPUtils
 import com.hankkin.reading.common.Constant
 import com.hankkin.reading.control.UserControl
 import com.hankkin.reading.http.HttpClient
-import com.hankkin.reading.http.api.UserApi
 import com.hankkin.reading.mvp.presenter.RxLifePresenter
-import com.hankkin.library.utils.SPUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -24,14 +23,14 @@ class AuthorizePresenter: RxLifePresenter<AuthorizeContract.IView>(),AuthorizeCo
         map.put("redirect_uri",Constant.OSChinaUrl.REDIRECT_URL)
         map.put("code",code)
         map.put("dataType","json")
-        HttpClient.getnorRetrofit().create(UserApi::class.java)
+        HttpClient.Builder.getOsChinaHttp()
                 .getToken(map)
                 .flatMap {
                     val map = HashMap<String,Any>()
                     map.put("dataType","json")
                     map.put("access_token",it.access_token)
                     SPUtils.put(UserControl.TOKEN,it.access_token)
-                    HttpClient.getnorRetrofit().create(UserApi::class.java).getUser(map)
+                    HttpClient.Builder.getOsChinaHttp().getUser(map)
                 }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

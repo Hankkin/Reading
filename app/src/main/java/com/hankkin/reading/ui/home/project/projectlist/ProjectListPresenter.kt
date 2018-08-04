@@ -1,7 +1,6 @@
 package com.hankkin.reading.ui.home.project.projectlist
 
 import com.hankkin.reading.http.HttpClient
-import com.hankkin.reading.http.api.WanAndroidApi
 import com.hankkin.reading.mvp.presenter.RxLifePresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -12,7 +11,7 @@ import io.reactivex.schedulers.Schedulers
 class ProjectListPresenter : RxLifePresenter<ProjectListContact.IView>(), ProjectListContact.IPresenter{
 
     override fun getCateList(page: Int,cid: Int) {
-        HttpClient.getwanAndroidRetrofit().create(WanAndroidApi::class.java)
+        HttpClient.Builder.getCommonHttp()
                 .getArticleCid(page,cid)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

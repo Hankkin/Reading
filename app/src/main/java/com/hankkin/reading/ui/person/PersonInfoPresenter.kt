@@ -1,7 +1,6 @@
 package com.hankkin.reading.ui.person
 
 import com.hankkin.reading.http.HttpClient
-import com.hankkin.reading.http.api.UserApi
 import com.hankkin.reading.mvp.presenter.RxLifePresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -11,7 +10,7 @@ class PersonInfoPresenter : RxLifePresenter<PersonInfoContract.IView>(),PersonIn
         getMvpView().refresh()
         var map = HashMap<String,Any>()
         map.put("access_token",access_token)
-        HttpClient.getnorRetrofit().create(UserApi::class.java)
+        HttpClient.Builder.getOsChinaHttp()
                 .getUserInfo(map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

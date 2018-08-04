@@ -6,8 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 import retrofit2.http.QueryMap
 
-interface UserApi {
-
+interface OsChinaApi{
     @GET("account/profile")
     fun getUserProfile(): Observable<BaseResponse<UserBean>>
 

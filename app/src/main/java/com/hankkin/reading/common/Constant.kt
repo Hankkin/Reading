@@ -23,6 +23,14 @@ object Constant {
      * */
     object ConfigUrl {
         const val BASE_URL = "http://reading.ccyg.studio/"
+    }
+
+    object WeatherUrl{
+        const val WEATHER_URL = "https://api.seniverse.com/"
+    }
+
+    object ToolsUrl{
+        const val Base_URL = "https://fanyi-api.baidu.com/api/trans/vip/translate"
         const val WEATHER_URL = "https://api.seniverse.com/"
     }
 

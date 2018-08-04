@@ -1,7 +1,6 @@
 package com.hankkin.reading.ui.login.register
 
 import com.hankkin.reading.http.HttpClient
-import com.hankkin.reading.http.api.LoginApi
 import com.hankkin.reading.mvp.presenter.RxLifePresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -47,7 +46,7 @@ class RegisterPresenter : RxLifePresenter<RegisterContract.IView>(), RegisterCon
 
     override fun regHttp(map: HashMap<String, String>) {
         getMvpView().showLoading()
-        HttpClient.getwanAndroidRetrofit().create(LoginApi::class.java)
+        HttpClient.Builder.getCommonHttp()
                 .signUp(map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

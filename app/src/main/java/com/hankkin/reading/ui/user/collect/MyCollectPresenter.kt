@@ -1,7 +1,6 @@
 package com.hankkin.reading.ui.user.collect
 
 import com.hankkin.reading.http.HttpClient
-import com.hankkin.reading.http.api.WanAndroidApi
 import com.hankkin.reading.mvp.presenter.RxLifePresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -9,7 +8,7 @@ import io.reactivex.schedulers.Schedulers
 class MyCollectPresenter : RxLifePresenter<MyCollectContract.IView>(), MyCollectContract.IPresenter {
 
     override fun getCollectHttp(page: Int) {
-        HttpClient.getwanAndroidRetrofit().create(WanAndroidApi::class.java)
+        HttpClient.Builder.getCommonHttp()
                 .getMyCollect(page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -21,7 +20,7 @@ class MyCollectPresenter : RxLifePresenter<MyCollectContract.IView>(), MyCollect
     }
 
     override fun collectHttp(id: Int) {
-        HttpClient.getwanAndroidRetrofit().create(WanAndroidApi::class.java)
+        HttpClient.Builder.getCommonHttp()
                 .collectArticle(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -33,7 +32,7 @@ class MyCollectPresenter : RxLifePresenter<MyCollectContract.IView>(), MyCollect
     }
 
     override fun cancelCollectHttp(id: Int) {
-        HttpClient.getwanAndroidRetrofit().create(WanAndroidApi::class.java)
+        HttpClient.Builder.getCommonHttp()
                 .cancelCollectArticle(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

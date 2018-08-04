@@ -2,7 +2,6 @@ package com.hankkin.reading.ui.tools
 
 import com.hankkin.reading.common.Constant
 import com.hankkin.reading.http.HttpClient
-import com.hankkin.reading.http.api.TranslateApi
 import com.hankkin.reading.mvp.presenter.RxLifePresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -16,8 +15,7 @@ class ToolsPresenter : RxLifePresenter<ToolsContract.IView>(), ToolsContract.IPr
         val map = HashMap<String, Any>()
         map.put("key", Constant.WEATHER_KEY)
         map.put("location", city)
-        HttpClient.getWeaRetrofit().create(TranslateApi::class.java).
-                getWeather(map)
+        HttpClient.Builder.getToolsHttp().getWeather(map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeNx({

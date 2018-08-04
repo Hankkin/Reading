@@ -71,4 +71,12 @@ interface WanAndroidApi {
     @GET("lg/collect/list/{page}/json")
     fun getMyCollect(@Path("page") page: Int): Observable<BaseResponse<ArticleBean>>
 
+    @FormUrlEncoded
+    @POST("user/login")
+    fun login(@FieldMap map: HashMap<String,Any>): Observable<BaseResponse<UserBean>>
+
+    @FormUrlEncoded
+    @POST("user/register")
+    fun signUp(@FieldMap map: HashMap<String,String>): Observable<BaseResponse<UserBean>>
+
 }
