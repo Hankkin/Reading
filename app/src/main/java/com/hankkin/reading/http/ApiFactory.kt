@@ -12,7 +12,6 @@ class ApiFactory {
             instance = ApiFactory()
         }
     }
-
     private var commonApi: Any? = null
     private var toolsApi: Any? = null
     private var osChinaApi: Any? = null
