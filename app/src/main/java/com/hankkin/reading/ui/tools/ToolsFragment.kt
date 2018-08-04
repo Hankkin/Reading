@@ -7,6 +7,7 @@ import android.support.v7.widget.GridLayoutManager
 import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
+import com.hankkin.library.fuct.RxLogTool
 import com.hankkin.library.fuct.android.CaptureActivity
 import com.hankkin.library.fuct.bean.ZxingConfig
 import com.hankkin.reading.R
@@ -21,12 +22,19 @@ import com.hankkin.reading.utils.ThemeHelper
 import com.hankkin.reading.utils.ViewHelper
 import com.hankkin.reading.utils.WeatherUtils
 import kotlinx.android.synthetic.main.fragment_word.*
+import com.youdao.sdk.ydtranslate.TranslateErrorCode
+import com.youdao.sdk.ydtranslate.Translate
+import com.youdao.sdk.ydtranslate.TranslateListener
+import com.youdao.sdk.ydtranslate.TranslateParameters
+import com.youdao.sdk.app.LanguageUtils
+import com.youdao.sdk.ydonlinetranslate.Translator
+
 
 /**
  * Created by huanghaijie on 2018/5/15.
  */
 class ToolsFragment : BaseMvpFragment<ToolsContract.IPresenter>(), ToolsContract.IView {
-     val REQUEST_CODE_SCAN = 0x1
+    val REQUEST_CODE_SCAN = 0x1
 
     private lateinit var mData: MutableList<ToolsBean>
 
@@ -56,21 +64,55 @@ class ToolsFragment : BaseMvpFragment<ToolsContract.IPresenter>(), ToolsContract
         rv_tools.adapter = mToolsAdapter
         mToolsAdapter.setOnItemClickListener { t, position ->
             when (t.id) {
-                Constant.TOOLS.ID_KUAIDI -> startActivity(Intent(context,KuaiDiActivity::class.java))
+                Constant.TOOLS.ID_KUAIDI -> startActivity(Intent(context, KuaiDiActivity::class.java))
                 Constant.TOOLS.ID_ABOUT -> context?.let { ViewHelper.showAboutDialog(it) }
-                Constant.TOOLS.ID_JUEJIN -> context?.let { CommonWebActivity.loadUrl(it,Constant.AboutUrl.JUEJIN,Constant.AboutUrl.JUEJIN_TITLE) }
+                Constant.TOOLS.ID_JUEJIN -> context?.let { CommonWebActivity.loadUrl(it, Constant.AboutUrl.JUEJIN, Constant.AboutUrl.JUEJIN_TITLE) }
                 Constant.TOOLS.ID_SAOYISAO -> {
-                    val intent = Intent(context,CaptureActivity::class.java)
+                    val intent = Intent(context, CaptureActivity::class.java)
                     val bundle = Bundle()
                     val config = ZxingConfig()
                     config.reactColor = ThemeHelper.getCurrentColor(context)
-                    bundle.putSerializable(com.hankkin.library.fuct.common.Constant.INTENT_ZXING_CONFIG,config)
+                    bundle.putSerializable(com.hankkin.library.fuct.common.Constant.INTENT_ZXING_CONFIG, config)
                     intent.putExtras(bundle)
-                    startActivityForResult(intent,REQUEST_CODE_SCAN)
+                    startActivityForResult(intent, REQUEST_CODE_SCAN)
                 }
             }
         }
         getPresenter().getWeather("beijing")
+        et_translate_search.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                //查词对象初始化，请设置source参数为app对应的名称（英文字符串）
+                val langFrom = LanguageUtils.getLangByName("中文")
+//若设置为自动，则查询自动识别源语言，自动识别不能保证完全正确，最好传源语言类型
+//Language langFrom = LanguageUtils.getLangByName("自动");
+                val langTo = LanguageUtils.getLangByName("英文")
+
+                val tps = TranslateParameters.Builder()
+                        .source("ydtranslate-demo")
+                        .from(langFrom).to(langTo).build()
+
+                val translator = Translator.getInstance(tps)
+
+
+                //查询，返回两种情况，一种是成功，相关结果存储在result参数中，
+                // 另外一种是失败，失败信息放在TranslateErrorCode中，TranslateErrorCode是一个枚举类，整个查询是异步的，为了简化操作，回调都是在主线程发生。
+
+                translator.lookup(et_translate_search.text.toString(), "requestId", object : TranslateListener {
+                    override fun onResult(p0: Translate?, p1: String?, p2: String?) {
+                        RxLogTool.d(p1)
+                    }
+
+                    override fun onResult(p0: MutableList<Translate>?, p1: MutableList<String>?, p2: MutableList<TranslateErrorCode>?, p3: String?) {
+                        RxLogTool.d(p1)
+                    }
+
+                    override fun onError(p0: TranslateErrorCode?, p1: String?) {
+                        RxLogTool.d(p1)
+                    }
+                })
+            }
+            false
+        }
     }
 
     private fun addData() {
@@ -124,10 +166,10 @@ class ToolsFragment : BaseMvpFragment<ToolsContract.IPresenter>(), ToolsContract
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_CODE_SCAN){
-            if (resultCode == Activity.RESULT_OK){
-                val  url = data!!.getStringExtra(com.hankkin.library.fuct.common.Constant.CODED_CONTENT)
-                context?.let { CommonWebActivity.loadUrl(it,url,"扫描结果") }
+        if (requestCode == REQUEST_CODE_SCAN) {
+            if (resultCode == Activity.RESULT_OK) {
+                val url = data!!.getStringExtra(com.hankkin.library.fuct.common.Constant.CODED_CONTENT)
+                context?.let { CommonWebActivity.loadUrl(it, url, "扫描结果") }
             }
         }
     }

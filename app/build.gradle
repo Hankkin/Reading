@@ -8,6 +8,7 @@ apply plugin: 'org.greenrobot.greendao'
 
 
 android {
+    sourceSets.main.jniLibs.srcDirs = ['libs']
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.hankkin.reading"
