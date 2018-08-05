@@ -47,6 +47,7 @@ object Constant {
 
     object CONSTANT_KEY {
         const val CODE = "code"
+        const val KEY = "key"
     }
 
     object DB {

@@ -3,7 +3,10 @@ package com.hankkin.reading.ui.tools
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.support.v7.widget.GridLayoutManager
+import android.util.Log
 import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
@@ -17,10 +20,8 @@ import com.hankkin.reading.common.Constant
 import com.hankkin.reading.domain.ToolsBean
 import com.hankkin.reading.domain.Weatherbean
 import com.hankkin.reading.ui.home.articledetail.CommonWebActivity
-import com.hankkin.reading.utils.LoadingUtils
-import com.hankkin.reading.utils.ThemeHelper
-import com.hankkin.reading.utils.ViewHelper
-import com.hankkin.reading.utils.WeatherUtils
+import com.hankkin.reading.ui.tools.translate.TranslateActivity
+import com.hankkin.reading.utils.*
 import kotlinx.android.synthetic.main.fragment_word.*
 import com.youdao.sdk.ydtranslate.TranslateErrorCode
 import com.youdao.sdk.ydtranslate.Translate
@@ -79,40 +80,6 @@ class ToolsFragment : BaseMvpFragment<ToolsContract.IPresenter>(), ToolsContract
             }
         }
         getPresenter().getWeather("beijing")
-        et_translate_search.setOnEditorActionListener { v, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                //查词对象初始化，请设置source参数为app对应的名称（英文字符串）
-                val langFrom = LanguageUtils.getLangByName("中文")
-//若设置为自动，则查询自动识别源语言，自动识别不能保证完全正确，最好传源语言类型
-//Language langFrom = LanguageUtils.getLangByName("自动");
-                val langTo = LanguageUtils.getLangByName("英文")
-
-                val tps = TranslateParameters.Builder()
-                        .source("ydtranslate-demo")
-                        .from(langFrom).to(langTo).build()
-
-                val translator = Translator.getInstance(tps)
-
-
-                //查询，返回两种情况，一种是成功，相关结果存储在result参数中，
-                // 另外一种是失败，失败信息放在TranslateErrorCode中，TranslateErrorCode是一个枚举类，整个查询是异步的，为了简化操作，回调都是在主线程发生。
-
-                translator.lookup(et_translate_search.text.toString(), "requestId", object : TranslateListener {
-                    override fun onResult(p0: Translate?, p1: String?, p2: String?) {
-                        RxLogTool.d(p1)
-                    }
-
-                    override fun onResult(p0: MutableList<Translate>?, p1: MutableList<String>?, p2: MutableList<TranslateErrorCode>?, p3: String?) {
-                        RxLogTool.d(p1)
-                    }
-
-                    override fun onError(p0: TranslateErrorCode?, p1: String?) {
-                        RxLogTool.d(p1)
-                    }
-                })
-            }
-            false
-        }
     }
 
     private fun addData() {
@@ -133,10 +100,14 @@ class ToolsFragment : BaseMvpFragment<ToolsContract.IPresenter>(), ToolsContract
 
     override fun initView() {
         tv_translate_weather.text = "正在获取天气..."
-        et_translate_search.setOnEditorActionListener(object : TextView.OnEditorActionListener {
+        et_tools_search.setOnEditorActionListener(object : TextView.OnEditorActionListener {
             override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
                 when (actionId) {
                     EditorInfo.IME_ACTION_SEARCH -> {
+                        val intent = Intent(context,TranslateActivity::class.java)
+                        intent.putExtra(Constant.CONSTANT_KEY.KEY,et_tools_search.text.toString())
+                        startActivity(intent)
+                        et_tools_search.setText("")
                     }
                 }
                 return false
