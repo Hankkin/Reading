@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.bilibili.magicasakura.widgets.TintImageView
+        android:id="@+id/iv_translate_phonetics_item"
+        app:imageTint="@color/theme_color_primary"
+        android:src="@drawable/phonetics_play_anim"
+        android:layout_width="25dp"
+        android:layout_height="25dp" />
+    <TextView
+        android:text="@string/ok"
+        android:id="@+id/tv_translate_phonrtic_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>

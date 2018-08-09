@@ -68,6 +68,7 @@ class ToolsFragment : BaseMvpFragment<ToolsContract.IPresenter>(), ToolsContract
                 Constant.TOOLS.ID_KUAIDI -> startActivity(Intent(context, KuaiDiActivity::class.java))
                 Constant.TOOLS.ID_ABOUT -> context?.let { ViewHelper.showAboutDialog(it) }
                 Constant.TOOLS.ID_JUEJIN -> context?.let { CommonWebActivity.loadUrl(it, Constant.AboutUrl.JUEJIN, Constant.AboutUrl.JUEJIN_TITLE) }
+                Constant.TOOLS.ID_WORD -> startActivity(Intent(context, TranslateActivity::class.java))
                 Constant.TOOLS.ID_SAOYISAO -> {
                     val intent = Intent(context, CaptureActivity::class.java)
                     val bundle = Bundle()
@@ -104,8 +105,8 @@ class ToolsFragment : BaseMvpFragment<ToolsContract.IPresenter>(), ToolsContract
             override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
                 when (actionId) {
                     EditorInfo.IME_ACTION_SEARCH -> {
-                        val intent = Intent(context,TranslateActivity::class.java)
-                        intent.putExtra(Constant.CONSTANT_KEY.KEY,et_tools_search.text.toString())
+                        val intent = Intent(context, TranslateActivity::class.java)
+                        intent.putExtra(Constant.CONSTANT_KEY.KEY, et_tools_search.text.toString())
                         startActivity(intent)
                         et_tools_search.setText("")
                     }

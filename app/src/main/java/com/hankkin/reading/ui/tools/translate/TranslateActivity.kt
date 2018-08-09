@@ -48,21 +48,17 @@ class TranslateActivity : BaseActivity() {
     }
 
     override fun initViews(savedInstanceState: Bundle?) {
-        StatusBarUtil.setColor(this,resources.getColor(R.color.white))
-        iv_translate_phonetics1.setOnClickListener {
-            val animation = iv_translate_phonetics1.drawable as AnimationDrawable
-            animation.start()
-        }
+        StatusBarUtil.setColor(this, resources.getColor(R.color.white))
     }
 
-    fun searchWord(key: String){
+    fun searchWord(key: String) {
         //查询，返回两种情况，一种是成功，相关结果存储在result参数中，
         // 另外一种是失败，失败信息放在TranslateErrorCode中，TranslateErrorCode是一个枚举类，整个查询是异步的，为了简化操作，回调都是在主线程发生。
         translator.lookup(key, "requestId", object : TranslateListener {
             override fun onResult(p0: Translate?, p1: String?, p2: String?) {
                 Handler(Looper.getMainLooper()).post({
                     tv_translate_content.text = key
-                    RxLogTool.d(p0.toString())
+                    setWordLayout(p0)
                 })
             }
 
@@ -74,6 +70,13 @@ class TranslateActivity : BaseActivity() {
                 RxLogTool.d(p1)
             }
         })
+    }
+
+
+    private fun setWordLayout(translate: Translate?) {
+        if (translate == null) return
+        tv_translate_phonrtic_uk.text = "/"+translate.ukPhonetic+"/"
+
     }
 
 }

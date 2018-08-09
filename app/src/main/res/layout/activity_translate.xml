@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/title_bar_height">
             <com.bilibili.magicasakura.widgets.TintImageView
-                app:imageTint="@color/theme_color_primary"
+                app:imageTint="@color/normal_txt"
                 android:id="@+id/iv_translate_back"
                 android:layout_marginLeft="@dimen/dp_10"
                 android:layout_centerVertical="true"
@@ -42,7 +42,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
             <com.bilibili.magicasakura.widgets.TintImageView
-                app:imageTint="@color/theme_color_primary"
+                app:imageTint="@color/normal_txt"
                 android:paddingStart="@dimen/dp_10"
                 android:paddingEnd="@dimen/dp_10"
                 android:layout_alignParentEnd="true"
@@ -81,22 +81,38 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <com.bilibili.magicasakura.widgets.TintImageView
-                    android:id="@+id/iv_translate_phonetics1"
-                    app:imageTint="@color/theme_color_primary"
-                    android:src="@drawable/phonetics_play_anim"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <com.bilibili.magicasakura.widgets.TintImageView
-                    app:imageTint="@color/theme_color_primary"
-                    android:src="@drawable/phonetics_play_anim"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <com.bilibili.magicasakura.widgets.TintImageView
-                    app:imageTint="@color/theme_color_primary"
-                    android:src="@drawable/phonetics_play_anim"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                <LinearLayout android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    xmlns:app="http://schemas.android.com/apk/res-auto">
+                    <com.bilibili.magicasakura.widgets.TintImageView
+                        android:id="@+id/iv_translate_phonetics_uk"
+                        app:imageTint="@color/theme_color_primary"
+                        android:src="@drawable/phonetics_play_anim"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp" />
+                    <TextView
+                        android:id="@+id/tv_translate_phonrtic_uk"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    xmlns:app="http://schemas.android.com/apk/res-auto">
+                    <com.bilibili.magicasakura.widgets.TintImageView
+                        android:id="@+id/iv_translate_phonetics_us"
+                        app:imageTint="@color/theme_color_primary"
+                        android:src="@drawable/phonetics_play_anim"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp" />
+                    <TextView
+                        android:id="@+id/tv_translate_phonrtic_us"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
