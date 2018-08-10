@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.hankkin.reading.view.EmptyLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/normal_bg"
     android:orientation="vertical"
-    android:id="@+id/empty_translate"
     tools:context=".ui.tools.translate.TranslateActivity">
 
     <LinearLayout
@@ -42,7 +41,30 @@
                 android:id="@+id/et_translate_search"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
+
             <com.bilibili.magicasakura.widgets.TintImageView
+                android:visibility="gone"
+                android:id="@+id/iv_translate_clear"
+                app:imageTint="@color/normal_txt"
+                android:layout_marginRight="@dimen/dp_10"
+                android:layout_toStartOf="@+id/line_translate"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/ic_close_normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:visibility="gone"
+                android:id="@+id/line_translate"
+                android:layout_toStartOf="@+id/iv_translate_search"
+                android:layout_marginBottom="@dimen/dp_14"
+                android:layout_marginTop="@dimen/dp_14"
+                android:background="@color/grey"
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"/>
+
+            <com.bilibili.magicasakura.widgets.TintImageView
+                android:id="@+id/iv_translate_search"
                 app:imageTint="@color/normal_txt"
                 android:paddingStart="@dimen/dp_10"
                 android:paddingEnd="@dimen/dp_10"
@@ -55,20 +77,26 @@
     </LinearLayout>
 
 
-    <include
-        android:visibility="gone"
-        android:id="@+id/ll_search_result"
-        layout="@layout/layout_translate_top"
+    <com.hankkin.reading.view.EmptyLayout
+        android:id="@+id/empty_translate"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+        <include
+            android:visibility="gone"
+            android:id="@+id/ll_search_result"
+            layout="@layout/layout_translate_top"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
 
-    <include
-        android:visibility="gone"
-        android:id="@+id/ll_search_history"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        layout="@layout/layout_translate_history"/>
+        <include
+            android:visibility="gone"
+            android:id="@+id/ll_search_history"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            layout="@layout/layout_translate_history"/>
+
+    </com.hankkin.reading.view.EmptyLayout>
 
 
-</com.hankkin.reading.view.EmptyLayout>
+</LinearLayout>

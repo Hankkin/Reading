@@ -1,40 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ll_translate_history"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:visibility="gone">
+    android:layout_margin="@dimen/dp_6"
+    android:visibility="gone"
+    app:cardCornerRadius="@dimen/dp_4">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/rl_search_history"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/dp_12">
+        android:orientation="vertical">
 
-        <com.bilibili.magicasakura.widgets.TintView
-            android:id="@+id/view_small_line_history"
-            android:layout_width="5dp"
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/rl_search_history"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/tv_hot_search_history_title"
-            android:layout_alignTop="@+id/tv_hot_search_history_title"
-            android:background="@drawable/shape_line_small" />
+            android:padding="@dimen/dp_12">
 
-        <TextView
-            android:id="@+id/tv_hot_search_history_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/dp_8"
-            android:layout_toRightOf="@+id/view_small_line_history"
-            android:text="@string/home_search_hot_history"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
+            <com.bilibili.magicasakura.widgets.TintView
+                android:id="@+id/view_small_line_history"
+                android:layout_width="5dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/tv_hot_search_history_title"
+                android:layout_alignTop="@+id/tv_hot_search_history_title"
+                android:background="@drawable/shape_line_small" />
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/tv_hot_search_history_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dp_8"
+                android:layout_toRightOf="@+id/view_small_line_history"
+                android:text="@string/home_search_hot_history"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_translate_history"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-</LinearLayout>
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_translate_history"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+</android.support.v7.widget.CardView>

@@ -2,6 +2,7 @@ package com.hankkin.reading.ui.home.search
 
 import com.hankkin.reading.domain.HotBean
 import com.hankkin.reading.http.HttpClient
+import com.hankkin.reading.mvp.model.DaoFactory
 import com.hankkin.reading.mvp.presenter.RxLifePresenter
 import com.hankkin.reading.mvp.presenter.getContext
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -9,20 +10,18 @@ import io.reactivex.schedulers.Schedulers
 
 class SearchPresenter : RxLifePresenter<SearchContract.IView>(), SearchContract.IPresenter {
 
-    private val searchModel by lazy {  }
-
     override fun delete(id: Long) {
-        searchModel.hotBeanDao.deleteByKey(id)
+        DaoFactory.getDaoProtocol(SearchDaoContract::class.java).delete(id)
         getMvpView().deleteResult()
     }
 
     override fun insertDao(hotBean: HotBean) {
-        searchModel.hotBeanDao.insertOrReplace(hotBean)
+        DaoFactory.getDaoProtocol(SearchDaoContract::class.java).insertHot(hotBean)
         getMvpView().insertDao(hotBean.id)
     }
 
     override fun queryDao() {
-        val hotBean = searchModel.hotBeanDao.queryBuilder().list()
+        val hotBean = DaoFactory.getDaoProtocol(SearchDaoContract::class.java).query()
         getMvpView().queryResult(hotBean)
     }
 

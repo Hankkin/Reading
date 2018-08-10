@@ -37,6 +37,7 @@
     <string name="article_detail_open">浏览器打开</string>
 
     <string name="translate_search_hint">在此输入单词或句子</string>
+    <string name="translate_delete_hint">是否删除查询历史?</string>
     <string name="format_weather">%1$s  %2$s℃</string>
 
     <string name="person_title">我的</string>

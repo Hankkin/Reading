@@ -6,9 +6,18 @@ import com.hankkin.reading.mvp.model.BaseDao
 /**
  * Created by huanghaijie on 2018/8/10.
  */
-class TranslateDao : BaseDao(){
+class TranslateDao : BaseDao(),TranslateDaoContract{
 
-    fun saveSearchHistory(translateBean: TranslateBean){
-        daoSession.translateBeanDao.save(translateBean)
+    override fun insertTranslateHistory(translateBean: TranslateBean) {
+        daoSession.translateBeanDao.insertOrReplace(translateBean)
     }
+
+    override fun queryTranslateHistoty(): MutableList<TranslateBean> =
+            daoSession.translateBeanDao.queryBuilder().list()
+
+    override fun deleteTranslateHistory(id: Long) {
+        daoSession.translateBeanDao.deleteByKey(id)
+    }
+
+
 }
