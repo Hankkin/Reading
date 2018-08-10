@@ -8,7 +8,6 @@ import com.hankkin.reading.mvp.model.IBaseDaoContract
  */
 interface SearchDaoContract : IBaseDaoContract {
 
-
     fun insertHot(hotBean: HotBean)
 
     fun query()

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:background="@color/white"
+        android:padding="@dimen/dp_20"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_translate_content"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:text=""
+                android:textSize="@dimen/sp_24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <com.bilibili.magicasakura.widgets.TintImageView
+                app:imageTint="@color/theme_color_primary"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/icon_star_normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_marginTop="@dimen/dp_10"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                xmlns:app="http://schemas.android.com/apk/res-auto">
+                <com.bilibili.magicasakura.widgets.TintImageView
+                    android:id="@+id/iv_translate_phonetics_uk"
+                    app:imageTint="@color/theme_color_primary"
+                    android:src="@drawable/phonetics_play_anim"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp" />
+                <TextView
+                    android:layout_marginLeft="1dp"
+                    android:text=""
+                    android:id="@+id/tv_translate_phonrtic_uk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="@dimen/dp_16"
+                >
+                <com.bilibili.magicasakura.widgets.TintImageView
+                    android:id="@+id/iv_translate_phonetics_us"
+                    app:imageTint="@color/theme_color_primary"
+                    android:src="@drawable/phonetics_play_anim"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp" />
+                <TextView
+                    android:layout_marginLeft="1dp"
+                    android:id="@+id/tv_translate_phonrtic_us"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <android.support.v7.widget.CardView
+        app:cardCornerRadius="@dimen/dp_4"
+        android:layout_margin="@dimen/dp_4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:padding="@dimen/dp_16"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/ll_translate_explains"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/dp_14"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="@dimen/sp_12"
+                    android:textColor="@color/grey"
+                    android:text="[网络]"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:textColor="@color/normal_txt"
+                    android:id="@+id/tv_translate_web"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:textSize="@dimen/sp_12"
+                    android:text="[网络]"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

@@ -21,6 +21,8 @@ import com.youdao.sdk.app.YouDaoApplication
 class EApplication : Application() ,ThemeUtils.switchColor{
 
 
+    private lateinit var daoSession: DaoSession
+
     companion object {
         private var instance: EApplication? = null
 
@@ -47,7 +49,7 @@ class EApplication : Application() ,ThemeUtils.switchColor{
     fun initDao(){
         val devOpenHelper = DaoMaster.DevOpenHelper(this,Constant.DB.DB_NAME,null)
         val daoMaster = DaoMaster(devOpenHelper.writableDb)
-        val daoSession = daoMaster.newSession()
+        daoSession = daoMaster.newSession()
     }
 
     override fun replaceColorById(context: Context,  @ColorRes colorId: Int): Int {
@@ -117,5 +119,9 @@ class EApplication : Application() ,ThemeUtils.switchColor{
             0xfff44336 -> return context.resources.getIdentifier(theme+"_accent", "color", packageName)
         }
         return -1
+    }
+
+    fun getDaoSession(): DaoSession{
+        return daoSession
     }
 }

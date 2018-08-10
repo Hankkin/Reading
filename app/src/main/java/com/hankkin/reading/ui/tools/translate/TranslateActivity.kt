@@ -1,13 +1,16 @@
 package com.hankkin.reading.ui.tools.translate
 
-import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.View
+import android.widget.TextView
 import com.hankkin.library.fuct.RxLogTool
 import com.hankkin.library.utils.StatusBarUtil
 import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseActivity
+import com.hankkin.reading.domain.TranslateBean
+import com.hankkin.reading.utils.JsonUtils
 import com.youdao.sdk.app.Language
 import com.youdao.sdk.app.LanguageUtils
 import com.youdao.sdk.ydonlinetranslate.Translator
@@ -16,6 +19,8 @@ import com.youdao.sdk.ydtranslate.TranslateErrorCode
 import com.youdao.sdk.ydtranslate.TranslateListener
 import com.youdao.sdk.ydtranslate.TranslateParameters
 import kotlinx.android.synthetic.main.activity_translate.*
+import kotlinx.android.synthetic.main.layout_translate_top.*
+import java.util.*
 
 class TranslateActivity : BaseActivity() {
 
@@ -41,6 +46,7 @@ class TranslateActivity : BaseActivity() {
         translator = Translator.getInstance(tps)
 
         et_translate_search.setOnEditorActionListener { v, actionId, event ->
+            inflateSearch()
             searchWord(et_translate_search.text.toString())
             false
         }
@@ -51,14 +57,22 @@ class TranslateActivity : BaseActivity() {
         StatusBarUtil.setColor(this, resources.getColor(R.color.white))
     }
 
+
+    fun inflateSearch(){
+        ll_search_result.visibility = View.VISIBLE
+        ll_search_history.visibility = View.GONE
+    }
+
     fun searchWord(key: String) {
         //查询，返回两种情况，一种是成功，相关结果存储在result参数中，
         // 另外一种是失败，失败信息放在TranslateErrorCode中，TranslateErrorCode是一个枚举类，整个查询是异步的，为了简化操作，回调都是在主线程发生。
-        translator.lookup(key, "requestId", object : TranslateListener {
+        translator.lookup(key, UUID.randomUUID().toString(), object : TranslateListener {
             override fun onResult(p0: Translate?, p1: String?, p2: String?) {
                 Handler(Looper.getMainLooper()).post({
+                    var translate = JsonUtils.jsonToObject(p0?.let { JsonUtils.objToJson(it) }!!,TranslateBean::class.java) as TranslateBean
+                    translate.id = p1!!.toLong()
                     tv_translate_content.text = key
-                    setWordLayout(p0)
+                    setWordLayout(translate)
                 })
             }
 
@@ -73,10 +87,26 @@ class TranslateActivity : BaseActivity() {
     }
 
 
-    private fun setWordLayout(translate: Translate?) {
+    private fun setWordLayout(translate: TranslateBean?) {
         if (translate == null) return
-        tv_translate_phonrtic_uk.text = "/"+translate.ukPhonetic+"/"
+        tv_translate_phonrtic_uk.text = "英/"+translate.ukPhonetic+"/"
+        tv_translate_phonrtic_us.text = "美/"+translate.usPhonetic+"/"
+        ll_translate_explains.removeAllViews()
+        for (explais in translate.explains){
+            val tv = layoutInflater.inflate(R.layout.adapter_translate_paraphrases_item,null) as TextView
+            tv.text = explais
+            ll_translate_explains.addView(tv)
+        }
+        if (translate.webExplains != null){
+            val webEx = translate.webExplains.get(0)
+            tv_translate_web.text = webEx.means.toString()
+        }
+        saveHistory(translate)
+    }
 
+    private fun saveHistory(translate: TranslateBean?){
+        if (translate == null) return
+        TranslateDao().saveSearchHistory(translate)
     }
 
 }

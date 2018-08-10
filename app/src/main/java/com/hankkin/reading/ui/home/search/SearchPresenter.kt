@@ -9,8 +9,7 @@ import io.reactivex.schedulers.Schedulers
 
 class SearchPresenter : RxLifePresenter<SearchContract.IView>(), SearchContract.IPresenter {
 
-    private val searchModel by lazy { SearchDao(getContext()) }
-
+    private val searchModel by lazy {  }
 
     override fun delete(id: Long) {
         searchModel.hotBeanDao.deleteByKey(id)
