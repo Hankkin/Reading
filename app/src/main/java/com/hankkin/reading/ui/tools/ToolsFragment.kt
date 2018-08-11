@@ -3,14 +3,10 @@ package com.hankkin.reading.ui.tools
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.support.v7.widget.GridLayoutManager
-import android.util.Log
 import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
-import com.hankkin.library.fuct.RxLogTool
 import com.hankkin.library.fuct.android.CaptureActivity
 import com.hankkin.library.fuct.bean.ZxingConfig
 import com.hankkin.reading.R
@@ -21,14 +17,11 @@ import com.hankkin.reading.domain.ToolsBean
 import com.hankkin.reading.domain.Weatherbean
 import com.hankkin.reading.ui.home.articledetail.CommonWebActivity
 import com.hankkin.reading.ui.tools.translate.TranslateActivity
-import com.hankkin.reading.utils.*
+import com.hankkin.reading.utils.LoadingUtils
+import com.hankkin.reading.utils.ThemeHelper
+import com.hankkin.reading.utils.ViewHelper
+import com.hankkin.reading.utils.WeatherUtils
 import kotlinx.android.synthetic.main.fragment_word.*
-import com.youdao.sdk.ydtranslate.TranslateErrorCode
-import com.youdao.sdk.ydtranslate.Translate
-import com.youdao.sdk.ydtranslate.TranslateListener
-import com.youdao.sdk.ydtranslate.TranslateParameters
-import com.youdao.sdk.app.LanguageUtils
-import com.youdao.sdk.ydonlinetranslate.Translator
 
 
 /**

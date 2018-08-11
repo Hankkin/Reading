@@ -1,12 +1,15 @@
 package com.hankkin.reading.ui.tools.translate
 
+import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.support.v7.widget.LinearLayoutManager
 import android.text.Editable
+import android.text.TextUtils
 import android.text.TextWatcher
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import com.afollestad.materialdialogs.DialogAction
 import com.afollestad.materialdialogs.MaterialDialog
@@ -19,7 +22,9 @@ import com.hankkin.reading.common.Constant
 import com.hankkin.reading.domain.TranslateBean
 import com.hankkin.reading.mvp.model.DaoFactory
 import com.hankkin.reading.mvp.model.DaoFactoryUtils
+import com.hankkin.reading.ui.home.articledetail.CommonWebActivity
 import com.hankkin.reading.ui.home.search.SearchDaoContract
+import com.hankkin.reading.utils.AudioMgr
 import com.hankkin.reading.utils.JsonUtils
 import com.hankkin.reading.utils.ViewHelper
 import com.youdao.sdk.app.Language
@@ -40,6 +45,7 @@ class TranslateActivity : BaseActivity() {
     private lateinit var langTo: Language
     private lateinit var tps: TranslateParameters
     private lateinit var translator: Translator
+    private var translate: Translate? = null
 
     override fun getLayoutId(): Int {
         return R.layout.activity_translate
@@ -98,6 +104,18 @@ class TranslateActivity : BaseActivity() {
             et_translate_search.setText("")
             setHistoryAdapter()
         }
+        tv_translate_more.setOnClickListener {
+            if (translate != null){
+                if (!translate!!.openDict(this)){
+                    if (translate!!.deeplink.isNotEmpty()){
+                        CommonWebActivity.loadUrl(this, translate!!.dictWebUrl,translate!!.query)
+                    }
+                }
+                else{
+                    translate!!.openMore(this)
+                }
+            }
+        }
     }
 
 
@@ -129,6 +147,11 @@ class TranslateActivity : BaseActivity() {
                     }
                 })
             }
+            adapter.setOnItemClickListener { t, position ->
+                et_translate_search.setText(t.query)
+                et_translate_search.setSelection(t.query.length)
+                searchWord(t.query)
+            }
         }
     }
 
@@ -143,6 +166,7 @@ class TranslateActivity : BaseActivity() {
         translator.lookup(key, key.hashCode().toString(), object : TranslateListener {
             override fun onResult(p0: Translate?, p1: String?, p2: String?) {
                 Handler(Looper.getMainLooper()).post({
+                    translate = p0
                     var translate = JsonUtils.jsonToObject(p0?.let { JsonUtils.objToJson(it) }!!, TranslateBean::class.java) as TranslateBean
                     translate.id = p2!!.toLong()
                     tv_translate_content.text = key
@@ -164,8 +188,24 @@ class TranslateActivity : BaseActivity() {
     private fun setWordLayout(translate: TranslateBean?) {
         if (translate == null) return
         inflateSearch()
-        tv_translate_phonrtic_uk.text = "英/" + translate.ukPhonetic + "/"
-        tv_translate_phonrtic_us.text = "美/" + translate.usPhonetic + "/"
+        if (translate.ukPhonetic.isEmpty()) {
+            ll_translate_uk.visibility = View.GONE
+        } else {
+            ll_translate_uk.visibility = View.VISIBLE
+            tv_translate_phonrtic_uk.text = "英/" + translate.ukPhonetic + "/"
+            ll_translate_uk.setOnClickListener {
+                playVoice(translate.speakUrl, iv_translate_phonetics_uk)
+            }
+        }
+        if (translate.usPhonetic.isEmpty()) {
+            ll_translate_us.visibility = View.GONE
+        } else {
+            ll_translate_us.visibility = View.VISIBLE
+            tv_translate_phonrtic_us.text = "美/" + translate.usPhonetic + "/"
+            ll_translate_us.setOnClickListener {
+                playVoice(translate.resultSpeakUrl, iv_translate_phonetics_us)
+            }
+        }
         ll_translate_explains.removeAllViews()
         for (explain in translate.explains) {
             val tv = layoutInflater.inflate(R.layout.adapter_translate_paraphrases_item, null) as TextView
@@ -177,6 +217,23 @@ class TranslateActivity : BaseActivity() {
             tv_translate_web.text = webEx.means.toString()
         }
         saveHistory(translate)
+    }
+
+    @Synchronized
+    fun playVoice(speakUrl: String, iv: ImageView) {
+        RxLogTool.e(">>>>>" + speakUrl)
+        if (!TextUtils.isEmpty(speakUrl) && speakUrl.startsWith("http")) {
+            (iv.drawable as AnimationDrawable).start()
+            AudioMgr.startPlayVoice(speakUrl, object : AudioMgr.SuccessListener {
+                override fun success() {
+                    RxLogTool.e(">>>>>播放成功")
+                }
+
+                override fun playover() {
+                    (iv.drawable as AnimationDrawable).stop()
+                }
+            })
+        }
     }
 
     private fun saveHistory(translate: TranslateBean?) {

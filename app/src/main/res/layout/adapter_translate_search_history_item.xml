@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     android:padding="@dimen/dp_10"
+    android:clickable="true"
+    android:id="@+id/ll_adapter_translate"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
