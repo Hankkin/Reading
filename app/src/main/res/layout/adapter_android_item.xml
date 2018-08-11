@@ -6,102 +6,102 @@
     android:layout_margin="@dimen/dp_10"
     app:cardCornerRadius="@dimen/dp_6">
 
-    <com.hankkin.library.view.RippleView
-        android:id="@+id/rp_adapter_android_item"
-        rv_centered="true"
+    <LinearLayout
+        android:id="@+id/ll_adapter_android"
+        android:clickable="true"
+        android:background="?attr/selectableItemBackground"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:padding="@dimen/dp_10"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/dp_10">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_adapter_android_author"
+                style="@style/normalTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold" />
+
+            <com.bilibili.magicasakura.widgets.TintTextView
+                android:id="@+id/tv_adapter_android_chapter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/theme_color_primary"
+                android:textSize="@dimen/sp_14" />
+        </RelativeLayout>
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginTop="@dimen/dp_8"
+            android:orientation="horizontal">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:textStyle="bold"
-                    android:id="@+id/tv_adapter_android_author"
-                    style="@style/normalTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <com.bilibili.magicasakura.widgets.TintTextView
-                    android:id="@+id/tv_adapter_android_chapter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:textColor="@color/theme_color_primary"
-                    android:textSize="@dimen/sp_14" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_marginTop="@dimen/dp_8"
+            <TextView
+                android:id="@+id/tv_adapter_android_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/dp_8"
+                android:layout_toLeftOf="@+id/iv_adapter_android_pic"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="3" />
+
+            <com.hankkin.reading.view.widget.SWImageView
+                android:id="@+id/iv_adapter_android_pic"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:background="@drawable/bg_trancant_round"
+                app:type="round" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10">
+
+            <LinearLayout
+                android:id="@+id/ll_adapter_android_tags"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/tv_adapter_android_desc"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginTop="@dimen/dp_8"
-                    android:layout_toLeftOf="@+id/iv_adapter_android_pic"
-                    android:layout_weight="1"
-                    android:ellipsize="end"
-                    android:maxLines="3"
-                    />
 
-                <com.hankkin.reading.view.widget.SWImageView
-                    app:type="round"
-                    android:id="@+id/iv_adapter_android_pic"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginLeft="@dimen/dp_10"
-                    android:background="@drawable/bg_trancant_round" />
-            </RelativeLayout>
+            </LinearLayout>
 
+            <com.bilibili.magicasakura.widgets.TintImageView
+                android:id="@+id/iv_adapter_android_collected"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp_16"
+                android:layout_toLeftOf="@+id/tv_adapter_android_time"
+                android:src="@mipmap/icon_collect_normal"
+                android:visibility="gone"
+                app:imageTint="@color/theme_color_primary" />
 
-            <RelativeLayout
-                android:layout_marginTop="@dimen/dp_10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:id="@+id/ll_adapter_android_tags"
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/iv_adapter_android_collect_normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp_16"
+                android:layout_toLeftOf="@+id/tv_adapter_android_time"
+                android:src="@mipmap/icon_collect_normal" />
 
-                </LinearLayout>
-                <com.bilibili.magicasakura.widgets.TintImageView
-                    android:visibility="gone"
-                    android:id="@+id/iv_adapter_android_collected"
-                    app:imageTint="@color/theme_color_primary"
-                    android:layout_marginRight="@dimen/dp_16"
-                    android:layout_toLeftOf="@+id/tv_adapter_android_time"
-                    android:src="@mipmap/icon_collect_normal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <ImageView
-                    android:id="@+id/iv_adapter_android_collect_normal"
-                    android:layout_marginRight="@dimen/dp_16"
-                    android:layout_toLeftOf="@+id/tv_adapter_android_time"
-                    android:src="@mipmap/icon_collect_normal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:textSize="@dimen/sp_13"
-                    android:layout_alignParentRight="true"
-                    android:id="@+id/tv_adapter_android_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </RelativeLayout>
-        </LinearLayout>
-    </com.hankkin.library.view.RippleView>
-
+            <TextView
+                android:id="@+id/tv_adapter_android_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:textSize="@dimen/sp_13" />
+        </RelativeLayout>
+    </LinearLayout>
 
 
 </android.support.v7.widget.CardView>

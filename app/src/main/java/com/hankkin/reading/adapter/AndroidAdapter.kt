@@ -42,7 +42,7 @@ class AndroidAdapter : BaseRecyclerViewAdapter<ArticleDetailBean>() {
         val llTags by lazy { itemView.findViewById<LinearLayout>(R.id.ll_adapter_android_tags) }
         val ivCollect by lazy { itemView.findViewById<ImageView>(R.id.iv_adapter_android_collect_normal) }
         val ivCollected by lazy { itemView.findViewById<TintImageView>(R.id.iv_adapter_android_collected) }
-        val rpItem by lazy { itemView.findViewById<RippleView>(R.id.rp_adapter_android_item) }
+        val ll by lazy { itemView.findViewById<LinearLayout>(R.id.ll_adapter_android) }
 
         override fun onBindViewHolder(bean: ArticleDetailBean, position: Int) {
             tvAuthor.text = bean.author
@@ -74,13 +74,13 @@ class AndroidAdapter : BaseRecyclerViewAdapter<ArticleDetailBean>() {
                 }
             }
 
-            rpItem.setOnRippleCompleteListener { CommonWebActivity.loadUrl(itemView.context, bean.link, bean.title) }
+            ll.setOnClickListener { CommonWebActivity.loadUrl(itemView.context, bean.link, bean.title) }
 
             if (!UserControl.isLogin()) {
                 ivCollect.visibility = View.VISIBLE
                 ivCollected.visibility = View.GONE
             } else {
-                if (UserControl.getCurrentUser()!!.collectIds.contains(bean.id.toString())||UserControl.getCurrentUser()!!.collectIds.contains(bean.originId.toString())) {
+                if (UserControl.getCurrentUser()!!.collectIds.contains(bean.id.toString()) || UserControl.getCurrentUser()!!.collectIds.contains(bean.originId.toString())) {
                     ivCollected.visibility = View.VISIBLE
                     ivCollect.visibility = View.GONE
                 } else {

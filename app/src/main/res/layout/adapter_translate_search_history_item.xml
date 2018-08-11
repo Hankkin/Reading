@@ -2,6 +2,7 @@
 <LinearLayout
     android:padding="@dimen/dp_10"
     android:clickable="true"
+    android:background="?attr/selectableItemBackground"
     android:id="@+id/ll_adapter_translate"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
