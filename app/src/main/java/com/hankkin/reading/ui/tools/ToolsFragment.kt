@@ -17,6 +17,7 @@ import com.hankkin.reading.domain.ToolsBean
 import com.hankkin.reading.domain.Weatherbean
 import com.hankkin.reading.ui.home.articledetail.CommonWebActivity
 import com.hankkin.reading.ui.tools.translate.TranslateActivity
+import com.hankkin.reading.ui.tools.wordnote.WordNoteActivity
 import com.hankkin.reading.utils.LoadingUtils
 import com.hankkin.reading.utils.ThemeHelper
 import com.hankkin.reading.utils.ViewHelper
@@ -62,6 +63,7 @@ class ToolsFragment : BaseMvpFragment<ToolsContract.IPresenter>(), ToolsContract
                 Constant.TOOLS.ID_ABOUT -> context?.let { ViewHelper.showAboutDialog(it) }
                 Constant.TOOLS.ID_JUEJIN -> context?.let { CommonWebActivity.loadUrl(it, Constant.AboutUrl.JUEJIN, Constant.AboutUrl.JUEJIN_TITLE) }
                 Constant.TOOLS.ID_WORD -> startActivity(Intent(context, TranslateActivity::class.java))
+                Constant.TOOLS.ID_WORD_NOTE -> startActivity(Intent(context, WordNoteActivity::class.java))
                 Constant.TOOLS.ID_SAOYISAO -> {
                     val intent = Intent(context, CaptureActivity::class.java)
                     val bundle = Bundle()
@@ -98,9 +100,7 @@ class ToolsFragment : BaseMvpFragment<ToolsContract.IPresenter>(), ToolsContract
             override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
                 when (actionId) {
                     EditorInfo.IME_ACTION_SEARCH -> {
-                        val intent = Intent(context, TranslateActivity::class.java)
-                        intent.putExtra(Constant.CONSTANT_KEY.KEY, et_tools_search.text.toString())
-                        startActivity(intent)
+                        TranslateActivity.intentTo(context,et_tools_search.text.toString())
                         et_tools_search.setText("")
                     }
                 }

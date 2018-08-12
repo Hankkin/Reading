@@ -1,0 +1,39 @@
+package com.hankkin.reading.adapter
+
+import android.view.ViewGroup
+import android.widget.TextView
+import com.hankkin.reading.R
+import com.hankkin.reading.adapter.base.BaseRecyclerViewAdapter
+import com.hankkin.reading.adapter.base.BaseRecyclerViewHolder
+import com.hankkin.reading.domain.WordNoteBean
+import com.hankkin.reading.adapter.base.OnItemClickListener
+import com.hankkin.reading.adapter.base.OnItemLongClickListener
+
+/**
+ * @author Hankkin
+ * @date 2018/8/12
+ */
+class WordNoteAdapter : BaseRecyclerViewAdapter<WordNoteBean>() {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseRecyclerViewHolder<WordNoteBean> {
+        return ViewHolder(parent, R.layout.adapter_word_note, listener, onItemLongClickListener)
+    }
+
+    private class ViewHolder(parent: ViewGroup, layoutId: Int, val onItemClickListener: OnItemClickListener<WordNoteBean>, val onItemLongClickListener: OnItemLongClickListener<WordNoteBean>) : BaseRecyclerViewHolder<WordNoteBean>(parent, layoutId) {
+
+        private val tvKey by lazy { itemView.findViewById<TextView>(R.id.tv_adapter_word_note_key) }
+        private val tvContent by lazy { itemView.findViewById<TextView>(R.id.tv_adapter_word_note_content) }
+
+        override fun onBindViewHolder(bean: WordNoteBean, position: Int) {
+            tvKey.text = bean.translateBean.query
+            tvContent.text = bean.translateBean.explains.toString()
+            itemView.setOnClickListener { onItemClickListener.onClick(bean, position) }
+            itemView.setOnLongClickListener {
+                onItemLongClickListener.onLongClick(bean, position)
+                false
+            }
+        }
+
+    }
+
+}

@@ -23,6 +23,8 @@ abstract class BaseActivity : AppCompatActivity() {
 
     protected abstract fun getLayoutId(): Int
 
+    protected abstract fun initViews(savedInstanceState: Bundle?)
+
     protected abstract fun initData()
 
 
@@ -55,8 +57,6 @@ abstract class BaseActivity : AppCompatActivity() {
 
     open fun onEvent(event: EventMap.BaseEvent) {
     }
-
-    protected abstract fun initViews(savedInstanceState: Bundle?)
 
     override fun onDestroy() {
         super.onDestroy()

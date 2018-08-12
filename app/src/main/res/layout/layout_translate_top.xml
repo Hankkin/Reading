@@ -23,10 +23,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <com.bilibili.magicasakura.widgets.TintImageView
+                android:id="@+id/iv_translate_star"
                 app:imageTint="@color/theme_color_primary"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:src="@mipmap/icon_star_normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <com.bilibili.magicasakura.widgets.TintImageView
+                android:visibility="gone"
+                android:id="@+id/iv_translate_stared"
+                app:imageTint="@color/theme_color_primary"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/ic_stared"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </RelativeLayout>

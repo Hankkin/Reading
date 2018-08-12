@@ -41,6 +41,11 @@
     <string name="translate_look_more">查看更多释义...</string>
     <string name="format_weather">%1$s  %2$s℃</string>
 
+    <string name="word_note_title">我的单词本</string>
+    <string name="word_note_detail">去看看</string>
+    <string name="word_note_remove">移除单词本</string>
+    <string name="word_note_remove_success">成功移除单词</string>
+
     <string name="person_title">我的</string>
     <string name="person_no_login">未登录</string>
     <string name="person_authorize_login">授权登录</string>

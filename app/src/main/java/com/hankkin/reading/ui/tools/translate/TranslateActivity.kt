@@ -1,5 +1,7 @@
 package com.hankkin.reading.ui.tools.translate
 
+import android.content.Context
+import android.content.Intent
 import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.os.Handler
@@ -20,10 +22,12 @@ import com.hankkin.reading.adapter.TranHistoryAdapter
 import com.hankkin.reading.base.BaseActivity
 import com.hankkin.reading.common.Constant
 import com.hankkin.reading.domain.TranslateBean
+import com.hankkin.reading.domain.WordNoteBean
 import com.hankkin.reading.mvp.model.DaoFactory
 import com.hankkin.reading.mvp.model.DaoFactoryUtils
 import com.hankkin.reading.ui.home.articledetail.CommonWebActivity
 import com.hankkin.reading.ui.home.search.SearchDaoContract
+import com.hankkin.reading.ui.tools.wordnote.WordNoteDaoContract
 import com.hankkin.reading.utils.AudioMgr
 import com.hankkin.reading.utils.JsonUtils
 import com.hankkin.reading.utils.ViewHelper
@@ -46,6 +50,15 @@ class TranslateActivity : BaseActivity() {
     private lateinit var tps: TranslateParameters
     private lateinit var translator: Translator
     private var translate: Translate? = null
+    private var translateBean: TranslateBean? = null
+
+    companion object {
+        fun intentTo(context: Context?,key: String){
+            val intent = Intent(context,TranslateActivity::class.java)
+            intent.putExtra(Constant.CONSTANT_KEY.TRANSLATE,key)
+            context?.startActivity(intent)
+        }
+    }
 
     override fun getLayoutId(): Int {
         return R.layout.activity_translate
@@ -63,7 +76,7 @@ class TranslateActivity : BaseActivity() {
                 .from(langFrom).to(langTo).build()
         translator = Translator.getInstance(tps)
 
-        val key = intent.getStringExtra(Constant.CONSTANT_KEY.KEY)
+        val key = intent.getStringExtra(Constant.CONSTANT_KEY.TRANSLATE)
         if (key != null && key.isNotEmpty()) {
             et_translate_search.setText(key)
             et_translate_search.setSelection(key.length)
@@ -105,16 +118,23 @@ class TranslateActivity : BaseActivity() {
             setHistoryAdapter()
         }
         tv_translate_more.setOnClickListener {
-            if (translate != null){
-                if (!translate!!.openDict(this)){
-                    if (translate!!.deeplink.isNotEmpty()){
-                        CommonWebActivity.loadUrl(this, translate!!.dictWebUrl,translate!!.query)
+            if (translate != null) {
+                if (!translate!!.openDict(this)) {
+                    if (translate!!.deeplink.isNotEmpty()) {
+                        CommonWebActivity.loadUrl(this, translate!!.dictWebUrl, translate!!.query)
                     }
-                }
-                else{
+                } else {
                     translate!!.openMore(this)
                 }
             }
+        }
+        iv_translate_star.setOnClickListener {
+            if (translateBean == null) return@setOnClickListener
+            var wordNoteBean = WordNoteBean(translateBean!!.hashCode().toLong())
+            wordNoteBean.translateBean = translateBean
+            DaoFactoryUtils.getDao(WordNoteDaoContract::class.java).addWordToNote(wordNoteBean)
+            iv_translate_stared.visibility = View.VISIBLE
+            iv_translate_star.visibility = View.GONE
         }
     }
 
@@ -171,6 +191,7 @@ class TranslateActivity : BaseActivity() {
                     translate.id = p2!!.toLong()
                     tv_translate_content.text = key
                     setWordLayout(translate)
+                    saveHistory(translate)
                 })
             }
 
@@ -216,7 +237,15 @@ class TranslateActivity : BaseActivity() {
             val webEx = translate.webExplains.get(0)
             tv_translate_web.text = webEx.means.toString()
         }
-        saveHistory(translate)
+        val wordNotes = DaoFactoryUtils.getDao(WordNoteDaoContract::class.java).queryWordNotes()
+        if (wordNotes != null && wordNotes.size > 0) {
+            for (word in wordNotes){
+                if (word.translateBean.id == translate.id){
+                    iv_translate_stared.visibility = View.VISIBLE
+                    iv_translate_star.visibility = View.GONE
+                }
+            }
+        }
     }
 
     @Synchronized
@@ -238,6 +267,7 @@ class TranslateActivity : BaseActivity() {
 
     private fun saveHistory(translate: TranslateBean?) {
         if (translate == null) return
+        translateBean = translate
         DaoFactoryUtils.getDao(TranslateDaoContract::class.java).insertTranslateHistory(translate)
     }
 
