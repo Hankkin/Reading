@@ -1,6 +1,6 @@
 package com.hankkin.reading.control
 
-import com.hankkin.library.utils.RxLogTool
+import com.hankkin.library.utils.LogUtils
 import com.hankkin.library.utils.SPUtils
 import com.hankkin.reading.domain.UserBean
 
@@ -28,7 +28,7 @@ object UserControl {
 
     private fun saveUserSp(userBean: UserBean) {
         SPUtils.saveObject(USER, userBean)
-        RxLogTool.d(USER + userBean.id)
+        LogUtils.d(USER + userBean.id)
     }
 
     fun isLogin(): Boolean {

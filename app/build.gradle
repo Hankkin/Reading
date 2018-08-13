@@ -9,7 +9,7 @@ apply plugin: 'org.greenrobot.greendao'
 
 android {
     sourceSets.main.jniLibs.srcDirs = ['libs']
-    compileSdkVersion 26
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
     defaultConfig {
         applicationId "com.hankkin.reading"
         minSdkVersion rootProject.ext.android.minSdkVersion
@@ -26,7 +26,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    buildToolsVersion '26.0.2'
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
 }
 
 greendao {

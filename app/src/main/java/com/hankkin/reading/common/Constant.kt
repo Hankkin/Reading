@@ -18,6 +18,10 @@ object Constant {
 
     const val WEATHER_KEY = "lwfgtgl1hehjy4vd"
 
+    object COMMON{
+        const val SP_NAME = "Reading"
+    }
+
     /**
      *  HTTP URL
      * */

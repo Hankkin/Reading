@@ -1,4 +1,4 @@
-package com.hankkin.library.fuct;
+package com.hankkin.library.utils;
 
 import android.content.Context;
 import android.os.Environment;
@@ -17,7 +17,7 @@ import java.util.Date;
  * @author vondear
  * @date 2016/1/24
  */
-public class RxLogTool {
+public class LogUtils {
 
     private final static SimpleDateFormat LOG_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// 日志的输出格式
     private final static SimpleDateFormat FILE_SUFFIX = new SimpleDateFormat("yyyy-MM-dd");// 日志文件格式

@@ -2,18 +2,13 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 26
-
-
-
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
-
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.library.versionCode
+        versionName rootProject.ext.library.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
 
     buildTypes {
@@ -32,6 +27,7 @@ dependencies {
     implementation rootProject.ext.dependencies["appcompat-v7"]
     implementation rootProject.ext.dependencies["support-v4"]
     implementation rootProject.ext.dependencies["base-rvadapter"]
+    implementation rootProject.ext.dependencies["toasty"]
     //Zxing核心包
     implementation 'com.google.zxing:core:3.3.0'
 }

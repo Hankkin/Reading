@@ -1,6 +1,6 @@
 package com.hankkin.reading.utils
 
-import com.hankkin.library.utils.RxLogTool
+import com.hankkin.library.utils.LogUtils
 import okhttp3.ResponseBody
 import java.io.File
 import java.io.FileOutputStream
@@ -41,7 +41,7 @@ object DownUtils {
 
             fileSizeDownloaded += read
 
-            RxLogTool.d(TAG+"file download: " + fileSizeDownloaded + " of " + fileSize)
+            LogUtils.d(TAG+"file download: " + fileSizeDownloaded + " of " + fileSize)
         }
 
         outputStream.flush()

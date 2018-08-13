@@ -14,7 +14,6 @@ import com.google.gson.Gson
  * </pre>
  */
 object SPUtils {
-    private const val SP_NAME = "Reading"
     private lateinit var editor: SharedPreferences.Editor
     private lateinit var sp: SharedPreferences
 
@@ -24,8 +23,8 @@ object SPUtils {
      *
      * @param spName spName
      */
-    fun init(context: Context) {
-        sp = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)
+    fun init(context: Context,spName: String) {
+        sp = context.getSharedPreferences(spName, Context.MODE_PRIVATE)
         editor = sp.edit()
         editor.apply()
     }

@@ -21,7 +21,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import com.bilibili.magicasakura.utils.ThemeUtils
-import com.hankkin.library.utils.RxLogTool
+import com.hankkin.library.utils.LogUtils
 import com.hankkin.library.utils.StatusBarUtil
 import com.hankkin.reading.adapter.MainFragmentAdapter
 import com.hankkin.reading.base.BaseActivity
@@ -80,7 +80,7 @@ class MainActivity : BaseActivity() {
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE).subscribe { p0 ->
             if (p0.granted) {
-                RxLogTool.d(p0.name + " is granted")
+                LogUtils.d(p0.name + " is granted")
             } else if (p0.shouldShowRequestPermissionRationale) {
                 Toast.makeText(activity, "请在设置-应用-权限管理中开启权限", Toast.LENGTH_SHORT).show()
             } else {

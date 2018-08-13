@@ -3,7 +3,7 @@ package com.hankkin.reading.ui.person
 import android.content.Intent
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
-import com.hankkin.library.utils.RxLogTool
+import com.hankkin.library.utils.LogUtils
 import com.hankkin.library.utils.SPUtils
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.PersonListAdapter
@@ -83,7 +83,7 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
                 iv_me_setScaleX = distanceIconX / (initHeight - toolbarHeight)
             }
             val scale = 1.0f - (-verticalOffset / (initHeight - toolbarHeight)) / 2
-            RxLogTool.e(">>>>>>scale" + scale.toString())
+            LogUtils.e(">>>>>>scale" + scale.toString())
             iv_person_avatar.scaleX = scale
             iv_person_avatar.scaleY = scale
             iv_person_avatar.translationY = mHeadImgScale * verticalOffset

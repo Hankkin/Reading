@@ -76,7 +76,7 @@ class PersonInfoActivity : BaseMvpActivity<PersonInfoPresenter>(), PersonInfoCon
         MaterialDialog.Builder(this)
                 .items(R.array.select_img_items)
                 .itemsCallback { dialog, itemView, which, text ->
-                    SnackbarUtils.Short(ll_person_info_header_info,text.toString())
+//                    SnackbarUtils.Short(ll_person_info_header_info,text.toString())
                 }.show()
     }
 }

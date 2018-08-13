@@ -2,7 +2,6 @@ package com.hankkin.reading.ui.tools.translate
 
 import android.content.Context
 import android.content.Intent
-import android.database.Observable
 import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.os.Handler
@@ -15,7 +14,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.afollestad.materialdialogs.MaterialDialog
-import com.hankkin.library.fuct.RxLogTool
+import com.hankkin.library.utils.LogUtils
 import com.hankkin.library.utils.StatusBarUtil
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.TranHistoryAdapter
@@ -198,12 +197,12 @@ class TranslateActivity : BaseActivity() {
             }
 
             override fun onResult(p0: MutableList<Translate>?, p1: MutableList<String>?, p2: MutableList<TranslateErrorCode>?, p3: String?) {
-                RxLogTool.d(p1)
+                LogUtils.d(p1)
                 LoadingUtils.hideLoading()
             }
 
             override fun onError(p0: TranslateErrorCode?, p1: String?) {
-                RxLogTool.d(p1)
+                LogUtils.d(p1)
                 LoadingUtils.hideLoading()
             }
         })
@@ -254,12 +253,12 @@ class TranslateActivity : BaseActivity() {
 
     @Synchronized
     fun playVoice(speakUrl: String, iv: ImageView) {
-        RxLogTool.e(">>>>>" + speakUrl)
+        LogUtils.e(">>>>>" + speakUrl)
         if (!TextUtils.isEmpty(speakUrl) && speakUrl.startsWith("http")) {
             (iv.drawable as AnimationDrawable).start()
             AudioMgr.startPlayVoice(speakUrl, object : AudioMgr.SuccessListener {
                 override fun success() {
-                    RxLogTool.e(">>>>>播放成功")
+                    LogUtils.e(">>>>>播放成功")
                 }
 
                 override fun playover() {
