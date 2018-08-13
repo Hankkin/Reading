@@ -63,28 +63,6 @@ class TranslateActivity : BaseActivity() {
         return R.layout.activity_translate
     }
 
-    override fun initData() {
-        //查词对象初始化，请设置source参数为app对应的名称（英文字符串）
-        langFrom = LanguageUtils.getLangByName("中文")
-        //若设置为自动，则查询自动识别源语言，自动识别不能保证完全正确，最好传源语言类型
-        //Language langFrom = LanguageUtils.getLangByName("自动");
-        langTo = LanguageUtils.getLangByName("英文")
-
-        tps = TranslateParameters.Builder()
-                .source("ydtranslate-demo")
-                .from(langFrom).to(langTo).build()
-        translator = Translator.getInstance(tps)
-
-        val key = intent.getStringExtra(Constant.CONSTANT_KEY.TRANSLATE)
-        if (key != null && key.isNotEmpty()) {
-            et_translate_search.setText(key)
-            et_translate_search.setSelection(key.length)
-            searchWord(key)
-        } else {
-            setHistoryAdapter()
-        }
-    }
-
     override fun initViews(savedInstanceState: Bundle?) {
         StatusBarUtil.setColor(this, resources.getColor(R.color.white))
         iv_translate_back.setOnClickListener { finish() }
@@ -129,13 +107,36 @@ class TranslateActivity : BaseActivity() {
         }
         iv_translate_star.setOnClickListener {
             if (translateBean == null) return@setOnClickListener
-            var wordNoteBean = WordNoteBean(translateBean!!.hashCode().toLong())
+            var wordNoteBean = WordNoteBean(translateBean!!.hashCode().toLong(),false)
             wordNoteBean.translateBean = translateBean
             DaoFactory.getProtocol(WordNoteDaoContract::class.java).addWordToNote(wordNoteBean)
             iv_translate_stared.visibility = View.VISIBLE
             iv_translate_star.visibility = View.GONE
         }
     }
+
+    override fun initData() {
+        //查词对象初始化，请设置source参数为app对应的名称（英文字符串）
+        langFrom = LanguageUtils.getLangByName("中文")
+        //若设置为自动，则查询自动识别源语言，自动识别不能保证完全正确，最好传源语言类型
+        //Language langFrom = LanguageUtils.getLangByName("自动");
+        langTo = LanguageUtils.getLangByName("英文")
+
+        tps = TranslateParameters.Builder()
+                .source("ydtranslate-demo")
+                .from(langFrom).to(langTo).build()
+        translator = Translator.getInstance(tps)
+
+        val key = intent.getStringExtra(Constant.CONSTANT_KEY.TRANSLATE)
+        if (key != null && key.isNotEmpty()) {
+            et_translate_search.setText(key)
+            et_translate_search.setSelection(key.length)
+            searchWord(key)
+        } else {
+            setHistoryAdapter()
+        }
+    }
+
 
 
     fun inflateSearch() {

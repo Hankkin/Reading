@@ -2,6 +2,7 @@ package com.hankkin.reading.domain;
 
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.Property;
 import org.greenrobot.greendao.annotation.ToMany;
 
 import java.io.Serializable;
@@ -26,6 +27,8 @@ public class WordNoteBean implements Serializable {
     private long id;
     @ToOne(joinProperty = "id")
     private TranslateBean translateBean;
+    @Property(nameInDb = "isEmphasis")
+    private boolean isEmphasis;
     /** Used to resolve relations */
     @Generated(hash = 2040040024)
     private transient DaoSession daoSession;
@@ -34,9 +37,10 @@ public class WordNoteBean implements Serializable {
     private transient WordNoteBeanDao myDao;
     @Generated(hash = 1506017723)
     private transient Long translateBean__resolvedKey;
-    @Generated(hash = 1504708196)
-    public WordNoteBean(long id) {
+    @Generated(hash = 228743069)
+    public WordNoteBean(long id, boolean isEmphasis) {
         this.id = id;
+        this.isEmphasis = isEmphasis;
     }
     @Generated(hash = 1122185869)
     public WordNoteBean() {
@@ -116,5 +120,11 @@ public class WordNoteBean implements Serializable {
             id = translateBean.getId();
             translateBean__resolvedKey = id;
         }
+    }
+    public boolean getIsEmphasis() {
+        return this.isEmphasis;
+    }
+    public void setIsEmphasis(boolean isEmphasis) {
+        this.isEmphasis = isEmphasis;
     }
 }

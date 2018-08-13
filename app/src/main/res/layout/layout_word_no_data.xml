@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_marginBottom="@dimen/dp_10"
+    android:layout_marginTop="@dimen/dp_10"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView
+        android:layout_gravity="center"
+        android:textSize="@dimen/sp_15"
+        android:text="@string/word_no_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <com.bilibili.magicasakura.widgets.TintTextView
+        android:id="@+id/tv_word_go"
+        android:layout_marginEnd="@dimen/dp_10"
+        android:textColor="@color/theme_color_primary"
+        android:layout_marginTop="@dimen/dp_4"
+        android:layout_gravity="right"
+        android:textSize="@dimen/sp_13"
+        android:text="@string/word_go"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>

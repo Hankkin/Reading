@@ -4,13 +4,18 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
+import android.view.Gravity
+import android.view.View
 import com.afollestad.materialdialogs.MaterialDialog
+import com.bilibili.magicasakura.utils.ThemeUtils
 import com.hankkin.library.utils.ToastUtils
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.WordNoteAdapter
 import com.hankkin.reading.base.BaseActivity
 import com.hankkin.reading.mvp.model.DaoFactory
 import com.hankkin.reading.ui.tools.translate.TranslateActivity
+import com.hankkin.reading.utils.SnackbarUtils
+import com.hankkin.reading.utils.ThemeHelper
 import com.hankkin.reading.utils.ViewHelper
 import kotlinx.android.synthetic.main.activity_word_note.*
 import kotlinx.android.synthetic.main.layout_title_bar_back.*
@@ -28,6 +33,9 @@ class WordNoteActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
     @SuppressLint("StringFormatInvalid")
     override fun initViews(savedInstanceState: Bundle?) {
         tv_normal_title.text = resources.getString(R.string.word_note_title)
+        SnackbarUtils.Custom(ll,"长按可以进行更多操作奥",5000)
+                .backColor(resources.getColor(ThemeHelper.getCurrentColor(this)))
+                .gravityFrameLayout(Gravity.BOTTOM).messageCenter().show()
         ViewHelper.setRefreshLayout(this, true, refresh_word_note, this)
         rv_word_note.layoutManager = LinearLayoutManager(this)
         mAdapter = WordNoteAdapter()
@@ -35,7 +43,7 @@ class WordNoteActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
             TranslateActivity.intentTo(this, t.translateBean.query)
         }
         rv_word_note.adapter = mAdapter
-        val longClickItems = mutableListOf<String>(resources.getString(R.string.word_note_detail), resources.getString(R.string.word_note_remove))
+        val longClickItems = mutableListOf<String>(resources.getString(R.string.word_note_detail), resources.getString(R.string.word_note_remove), resources.getString(R.string.word_note_emphasis))
         mAdapter.setOnItemLongClickListener { t, position ->
             ViewHelper.showListNoTitleDialog(this, longClickItems, MaterialDialog.ListCallback { dialog, itemView, which, text ->
                 when (which) {
@@ -44,6 +52,10 @@ class WordNoteActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
                         DaoFactory.getProtocol(WordNoteDaoContract::class.java).removeWordNote(t)
                         setAdapter()
                         ToastUtils.showInfo(this, resources.getString(R.string.word_note_remove_success) + t.translateBean.query)
+                    }
+                    2 -> {
+                        t.isEmphasis = true
+                        DaoFactory.getProtocol(WordNoteDaoContract::class.java).updateWord(t)
                     }
                 }
             })

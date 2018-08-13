@@ -1,6 +1,7 @@
 package com.hankkin.reading.ui.tools.wordnote
 
 import com.hankkin.reading.domain.WordNoteBean
+import com.hankkin.reading.greendao.WordNoteBeanDao
 import com.hankkin.reading.mvp.model.BaseDao
 
 /**
@@ -8,6 +9,19 @@ import com.hankkin.reading.mvp.model.BaseDao
  * @date 2018/8/12
  */
 class WordNoteDao : BaseDao(),WordNoteDaoContract{
+    /**
+     * 插入更新单词
+     */
+    override fun updateWord(wordNoteBean: WordNoteBean) {
+        daoSession.wordNoteBeanDao.insertOrReplace(wordNoteBean)
+    }
+
+    /**
+     * 查询重点单词
+     */
+    override fun queryEmphasisWord(): MutableList<WordNoteBean>? {
+        return  daoSession.wordNoteBeanDao.queryBuilder().where(WordNoteBeanDao.Properties.IsEmphasis.eq(true)).build().list()
+    }
 
 
     /**

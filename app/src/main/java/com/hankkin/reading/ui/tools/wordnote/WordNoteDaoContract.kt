@@ -11,4 +11,6 @@ interface WordNoteDaoContract : BaseDaoContract{
     fun queryWordNotes(): MutableList<WordNoteBean>?
     fun addWordToNote(wordNoteBean: WordNoteBean)
     fun removeWordNote(wordNoteBean: WordNoteBean)
+    fun queryEmphasisWord(): MutableList<WordNoteBean>?
+    fun updateWord(wordNoteBean: WordNoteBean)
 }

@@ -5,10 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/ll"
     android:background="@color/normal_bg"
     tools:context=".ui.tools.wordnote.WordNoteActivity">
 
-    <include layout="@layout/layout_title_bar_back"/>
+    <include
+        android:id="@+id/layout_title"
+        layout="@layout/layout_title_bar_back"/>
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/refresh_word_note"

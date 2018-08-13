@@ -39,11 +39,18 @@
     <string name="translate_search_hint">在此输入单词或句子</string>
     <string name="translate_delete_hint">是否删除查询历史?</string>
     <string name="translate_look_more">查看更多释义...</string>
+
+    <string name="word_every">每日推荐</string>
+    <string name="word_next">下一个</string>
+    <string name="word_no_data">暂无单词推荐，快去添加单词本吧</string>
+    <string name="word_go">快去吧^_^</string>
+
     <string name="format_weather">%1$s  %2$s℃</string>
 
     <string name="word_note_title">我的单词本</string>
     <string name="word_note_detail">去看看</string>
     <string name="word_note_remove">移除单词本</string>
+    <string name="word_note_emphasis">标记为重点</string>
     <string name="word_note_remove_success">成功移除单词</string>
 
     <string name="person_title">我的</string>

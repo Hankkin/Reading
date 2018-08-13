@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.view.KeyEvent
+import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import com.hankkin.library.fuct.android.CaptureActivity
@@ -15,14 +16,20 @@ import com.hankkin.reading.base.BaseMvpFragment
 import com.hankkin.reading.common.Constant
 import com.hankkin.reading.domain.ToolsBean
 import com.hankkin.reading.domain.Weatherbean
+import com.hankkin.reading.domain.WordNoteBean
+import com.hankkin.reading.mvp.model.DaoFactory
 import com.hankkin.reading.ui.home.articledetail.CommonWebActivity
 import com.hankkin.reading.ui.tools.translate.TranslateActivity
 import com.hankkin.reading.ui.tools.wordnote.WordNoteActivity
+import com.hankkin.reading.ui.tools.wordnote.WordNoteDaoContract
 import com.hankkin.reading.utils.LoadingUtils
 import com.hankkin.reading.utils.ThemeHelper
 import com.hankkin.reading.utils.ViewHelper
 import com.hankkin.reading.utils.WeatherUtils
 import kotlinx.android.synthetic.main.fragment_word.*
+import kotlinx.android.synthetic.main.layout_word_every.*
+import kotlinx.android.synthetic.main.layout_word_no_data.*
+import java.util.*
 
 
 /**
@@ -34,6 +41,10 @@ class ToolsFragment : BaseMvpFragment<ToolsContract.IPresenter>(), ToolsContract
     private lateinit var mData: MutableList<ToolsBean>
 
     private lateinit var mToolsAdapter: ToolsAdapter
+
+    private val mWords: MutableList<WordNoteBean>? by lazy {
+        DaoFactory.getProtocol(WordNoteDaoContract::class.java).queryEmphasisWord()
+    }
 
 
     override fun registerPresenter() = ToolsPresenter::class.java
@@ -50,6 +61,28 @@ class ToolsFragment : BaseMvpFragment<ToolsContract.IPresenter>(), ToolsContract
     override fun getLayoutId(): Int {
         return R.layout.fragment_word
     }
+
+    override fun initView() {
+        tv_translate_weather.text = "正在获取天气..."
+        et_tools_search.setOnEditorActionListener(object : TextView.OnEditorActionListener {
+            override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
+                when (actionId) {
+                    EditorInfo.IME_ACTION_SEARCH -> {
+                        TranslateActivity.intentTo(context, et_tools_search.text.toString())
+                        et_tools_search.setText("")
+                    }
+                }
+                return false
+            }
+        })
+        tv_word_go.setOnClickListener { startActivity(Intent(context, TranslateActivity::class.java)) }
+        tv_word_note.setOnClickListener { startActivity(Intent(context, WordNoteActivity::class.java)) }
+        tv_word_next.setOnClickListener {
+            ViewHelper.startShakeAnim(layout_word_every)
+            setEveryWord()
+        }
+    }
+
 
     override fun initData() {
         addData()
@@ -75,6 +108,7 @@ class ToolsFragment : BaseMvpFragment<ToolsContract.IPresenter>(), ToolsContract
                 }
             }
         }
+        setEveryWord()
         getPresenter().getWeather("beijing")
     }
 
@@ -84,31 +118,30 @@ class ToolsFragment : BaseMvpFragment<ToolsContract.IPresenter>(), ToolsContract
                 ToolsBean(Constant.TOOLS.ID_SAOYISAO, activity!!.resources.getString(R.string.work_sao), R.mipmap.icon_saoyisao),
                 ToolsBean(Constant.TOOLS.ID_WORD, activity!!.resources.getString(R.string.work_word), R.mipmap.icon_word),
                 ToolsBean(Constant.TOOLS.ID_WORD_NOTE, activity!!.resources.getString(R.string.work_word_note), R.mipmap.icon_wrod_note),
-                ToolsBean(Constant.TOOLS.ID_MOVIE, activity!!.resources.getString(R.string.work_movie), R.mipmap.icon_dianying),
-                ToolsBean(Constant.TOOLS.ID_MUSIC, activity!!.resources.getString(R.string.work_music), R.mipmap.icon_music),
-                ToolsBean(Constant.TOOLS.ID_WEATHER, activity!!.resources.getString(R.string.work_weather), R.mipmap.icon_weather),
+//                ToolsBean(Constant.TOOLS.ID_MOVIE, activity!!.resources.getString(R.string.work_movie), R.mipmap.icon_dianying),
+//                ToolsBean(Constant.TOOLS.ID_MUSIC, activity!!.resources.getString(R.string.work_music), R.mipmap.icon_music),
+//                ToolsBean(Constant.TOOLS.ID_WEATHER, activity!!.resources.getString(R.string.work_weather), R.mipmap.icon_weather),
                 ToolsBean(Constant.TOOLS.ID_PWD_NOTE, activity!!.resources.getString(R.string.work_pwd_note), R.mipmap.icon_pwd_tools),
-                ToolsBean(Constant.TOOLS.ID_NEWS, activity!!.resources.getString(R.string.work_news), R.mipmap.icon_computer),
+//                ToolsBean(Constant.TOOLS.ID_NEWS, activity!!.resources.getString(R.string.work_news), R.mipmap.icon_computer),
                 ToolsBean(Constant.TOOLS.ID_JUEJIN, activity!!.resources.getString(R.string.work_juejin), R.mipmap.icon_juejin),
                 ToolsBean(Constant.TOOLS.ID_ABOUT, activity!!.resources.getString(R.string.work_about), R.mipmap.icon_about)
         )
     }
 
-    override fun initView() {
-        tv_translate_weather.text = "正在获取天气..."
-        et_tools_search.setOnEditorActionListener(object : TextView.OnEditorActionListener {
-            override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
-                when (actionId) {
-                    EditorInfo.IME_ACTION_SEARCH -> {
-                        TranslateActivity.intentTo(context,et_tools_search.text.toString())
-                        et_tools_search.setText("")
-                    }
-                }
-                return false
-            }
-        })
-    }
 
+    private fun setEveryWord() {
+        if (mWords != null && mWords!!.size > 0) {
+            layout_word_every.visibility = View.VISIBLE
+            layout_word_no_data.visibility = View.GONE
+            val word = mWords!!.get(Random().nextInt(mWords!!.size))
+            tv_word_key.text = word.translateBean.query
+            tv_word_content.text = word.translateBean.explains.toString()
+            tv_word_phoneic.text = "/${word.translateBean.phonetic}/"
+        } else {
+            layout_word_every.visibility = View.GONE
+            layout_word_no_data.visibility = View.VISIBLE
+        }
+    }
 
     override fun setWeather(weatherbean: Weatherbean) {
         val now = weatherbean.results[0].now

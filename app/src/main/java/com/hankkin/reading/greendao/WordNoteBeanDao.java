@@ -30,6 +30,7 @@ public class WordNoteBeanDao extends AbstractDao<WordNoteBean, Long> {
      */
     public static class Properties {
         public final static Property Id = new Property(0, long.class, "id", true, "_id");
+        public final static Property IsEmphasis = new Property(1, boolean.class, "isEmphasis", false, "isEmphasis");
     }
 
     private DaoSession daoSession;
@@ -48,7 +49,8 @@ public class WordNoteBeanDao extends AbstractDao<WordNoteBean, Long> {
     public static void createTable(Database db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"WORD_NOTE_BEAN\" (" + //
-                "\"_id\" INTEGER PRIMARY KEY NOT NULL );"); // 0: id
+                "\"_id\" INTEGER PRIMARY KEY NOT NULL ," + // 0: id
+                "\"isEmphasis\" INTEGER NOT NULL );"); // 1: isEmphasis
     }
 
     /** Drops the underlying database table. */
@@ -61,12 +63,14 @@ public class WordNoteBeanDao extends AbstractDao<WordNoteBean, Long> {
     protected final void bindValues(DatabaseStatement stmt, WordNoteBean entity) {
         stmt.clearBindings();
         stmt.bindLong(1, entity.getId());
+        stmt.bindLong(2, entity.getIsEmphasis() ? 1L: 0L);
     }
 
     @Override
     protected final void bindValues(SQLiteStatement stmt, WordNoteBean entity) {
         stmt.clearBindings();
         stmt.bindLong(1, entity.getId());
+        stmt.bindLong(2, entity.getIsEmphasis() ? 1L: 0L);
     }
 
     @Override
@@ -83,7 +87,8 @@ public class WordNoteBeanDao extends AbstractDao<WordNoteBean, Long> {
     @Override
     public WordNoteBean readEntity(Cursor cursor, int offset) {
         WordNoteBean entity = new WordNoteBean( //
-            cursor.getLong(offset + 0) // id
+            cursor.getLong(offset + 0), // id
+            cursor.getShort(offset + 1) != 0 // isEmphasis
         );
         return entity;
     }
@@ -91,6 +96,7 @@ public class WordNoteBeanDao extends AbstractDao<WordNoteBean, Long> {
     @Override
     public void readEntity(Cursor cursor, WordNoteBean entity, int offset) {
         entity.setId(cursor.getLong(offset + 0));
+        entity.setIsEmphasis(cursor.getShort(offset + 1) != 0);
      }
     
     @Override

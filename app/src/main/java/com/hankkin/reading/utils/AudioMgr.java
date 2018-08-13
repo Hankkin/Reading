@@ -11,6 +11,8 @@ import android.media.MediaPlayer.OnCompletionListener;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.hankkin.reading.domain.WordNoteBean;
+import com.hankkin.reading.ui.tools.wordnote.WordNoteDao;
 import com.youdao.sdk.common.util.AsyncTasks;
 
 /**
