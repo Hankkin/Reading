@@ -1,9 +1,8 @@
 package com.hankkin.library.utils
 
 import android.content.Context
-import android.widget.Toast
 import com.hankkin.library.R
-import es.dmoral.toasty.Toasty
+import com.hankkin.library.commpoent.toasty.Toasty
 
 /**
  * Created by huanghaijie on 2018/8/13.
