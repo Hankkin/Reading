@@ -78,7 +78,7 @@ class ToolsFragment : BaseMvpFragment<ToolsContract.IPresenter>(), ToolsContract
         tv_word_go.setOnClickListener { startActivity(Intent(context, TranslateActivity::class.java)) }
         tv_word_note.setOnClickListener { startActivity(Intent(context, WordNoteActivity::class.java)) }
         tv_word_next.setOnClickListener {
-            ViewHelper.startShakeAnim(layout_word_every)
+            ViewHelper.startShakeAnim(ll_word_every)
             setEveryWord()
         }
     }
