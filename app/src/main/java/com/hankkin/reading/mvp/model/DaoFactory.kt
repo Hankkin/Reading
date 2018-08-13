@@ -14,7 +14,7 @@ object DaoFactory {
         return protocol
     }
 
-    fun <T : BaseDaoContract> getDaoProtocol(clazz: Class<T>): T =
+    fun <T : BaseDaoContract> getProtocol(clazz: Class<T>): T =
             daoFactoryHolder.getProtocol(clazz) ?: addNewProtocol(clazz)
 
 }

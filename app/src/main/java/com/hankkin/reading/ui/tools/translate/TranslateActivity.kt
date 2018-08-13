@@ -2,6 +2,7 @@ package com.hankkin.reading.ui.tools.translate
 
 import android.content.Context
 import android.content.Intent
+import android.database.Observable
 import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.os.Handler
@@ -13,7 +14,6 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import com.afollestad.materialdialogs.DialogAction
 import com.afollestad.materialdialogs.MaterialDialog
 import com.hankkin.library.fuct.RxLogTool
 import com.hankkin.library.utils.StatusBarUtil
@@ -24,12 +24,11 @@ import com.hankkin.reading.common.Constant
 import com.hankkin.reading.domain.TranslateBean
 import com.hankkin.reading.domain.WordNoteBean
 import com.hankkin.reading.mvp.model.DaoFactory
-import com.hankkin.reading.mvp.model.DaoFactoryUtils
 import com.hankkin.reading.ui.home.articledetail.CommonWebActivity
-import com.hankkin.reading.ui.home.search.SearchDaoContract
 import com.hankkin.reading.ui.tools.wordnote.WordNoteDaoContract
 import com.hankkin.reading.utils.AudioMgr
 import com.hankkin.reading.utils.JsonUtils
+import com.hankkin.reading.utils.LoadingUtils
 import com.hankkin.reading.utils.ViewHelper
 import com.youdao.sdk.app.Language
 import com.youdao.sdk.app.LanguageUtils
@@ -38,10 +37,10 @@ import com.youdao.sdk.ydtranslate.Translate
 import com.youdao.sdk.ydtranslate.TranslateErrorCode
 import com.youdao.sdk.ydtranslate.TranslateListener
 import com.youdao.sdk.ydtranslate.TranslateParameters
+import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_translate.*
 import kotlinx.android.synthetic.main.layout_translate_history.*
 import kotlinx.android.synthetic.main.layout_translate_top.*
-import java.util.*
 
 class TranslateActivity : BaseActivity() {
 
@@ -51,6 +50,7 @@ class TranslateActivity : BaseActivity() {
     private lateinit var translator: Translator
     private var translate: Translate? = null
     private var translateBean: TranslateBean? = null
+    private lateinit var mSubscribe: Disposable
 
     companion object {
         fun intentTo(context: Context?,key: String){
@@ -132,7 +132,7 @@ class TranslateActivity : BaseActivity() {
             if (translateBean == null) return@setOnClickListener
             var wordNoteBean = WordNoteBean(translateBean!!.hashCode().toLong())
             wordNoteBean.translateBean = translateBean
-            DaoFactoryUtils.getDao(WordNoteDaoContract::class.java).addWordToNote(wordNoteBean)
+            DaoFactory.getProtocol(WordNoteDaoContract::class.java).addWordToNote(wordNoteBean)
             iv_translate_stared.visibility = View.VISIBLE
             iv_translate_star.visibility = View.GONE
         }
@@ -159,7 +159,7 @@ class TranslateActivity : BaseActivity() {
             rv_translate_history.adapter = adapter
             adapter.setOnItemLongClickListener { t, position ->
                 ViewHelper.showConfirmDialog(this, resources.getString(R.string.translate_delete_hint), MaterialDialog.SingleButtonCallback { dialog, which ->
-                    DaoFactoryUtils.getDao(TranslateDaoContract::class.java).deleteTranslateHistory(t.id)
+                    DaoFactory.getProtocol(TranslateDaoContract::class.java).deleteTranslateHistory(t.id)
                     if (getHistory() != null && getHistory()!!.size > 0) {
                         adapter.clear()
                         adapter.addAll(getHistory())
@@ -176,13 +176,14 @@ class TranslateActivity : BaseActivity() {
     }
 
     fun getHistory(): MutableList<TranslateBean>? {
-        return DaoFactoryUtils.getDao(TranslateDaoContract::class.java).queryTranslateHistoty()!!
+        return DaoFactory.getProtocol(TranslateDaoContract::class.java).queryTranslateHistoty()!!
     }
 
     fun searchWord(key: String) {
         if (key.isEmpty()) return
         //查询，返回两种情况，一种是成功，相关结果存储在result参数中，
         // 另外一种是失败，失败信息放在TranslateErrorCode中，TranslateErrorCode是一个枚举类，整个查询是异步的，为了简化操作，回调都是在主线程发生。
+        LoadingUtils.showLoading(this)
         translator.lookup(key, key.hashCode().toString(), object : TranslateListener {
             override fun onResult(p0: Translate?, p1: String?, p2: String?) {
                 Handler(Looper.getMainLooper()).post({
@@ -192,15 +193,18 @@ class TranslateActivity : BaseActivity() {
                     tv_translate_content.text = key
                     setWordLayout(translate)
                     saveHistory(translate)
+                    LoadingUtils.hideLoading()
                 })
             }
 
             override fun onResult(p0: MutableList<Translate>?, p1: MutableList<String>?, p2: MutableList<TranslateErrorCode>?, p3: String?) {
                 RxLogTool.d(p1)
+                LoadingUtils.hideLoading()
             }
 
             override fun onError(p0: TranslateErrorCode?, p1: String?) {
                 RxLogTool.d(p1)
+                LoadingUtils.hideLoading()
             }
         })
     }
@@ -237,7 +241,7 @@ class TranslateActivity : BaseActivity() {
             val webEx = translate.webExplains.get(0)
             tv_translate_web.text = webEx.means.toString()
         }
-        val wordNotes = DaoFactoryUtils.getDao(WordNoteDaoContract::class.java).queryWordNotes()
+        val wordNotes = DaoFactory.getProtocol(WordNoteDaoContract::class.java).queryWordNotes()
         if (wordNotes != null && wordNotes.size > 0) {
             for (word in wordNotes){
                 if (word.translateBean.id == translate.id){
@@ -268,7 +272,7 @@ class TranslateActivity : BaseActivity() {
     private fun saveHistory(translate: TranslateBean?) {
         if (translate == null) return
         translateBean = translate
-        DaoFactoryUtils.getDao(TranslateDaoContract::class.java).insertTranslateHistory(translate)
+        DaoFactory.getProtocol(TranslateDaoContract::class.java).insertTranslateHistory(translate)
     }
 
 }

@@ -11,17 +11,17 @@ import io.reactivex.schedulers.Schedulers
 class SearchPresenter : RxLifePresenter<SearchContract.IView>(), SearchContract.IPresenter {
 
     override fun delete(id: Long) {
-        DaoFactory.getDaoProtocol(SearchDaoContract::class.java).delete(id)
+        DaoFactory.getProtocol(SearchDaoContract::class.java).delete(id)
         getMvpView().deleteResult()
     }
 
     override fun insertDao(hotBean: HotBean) {
-        DaoFactory.getDaoProtocol(SearchDaoContract::class.java).insertHot(hotBean)
+        DaoFactory.getProtocol(SearchDaoContract::class.java).insertHot(hotBean)
         getMvpView().insertDao(hotBean.id)
     }
 
     override fun queryDao() {
-        val hotBean = DaoFactory.getDaoProtocol(SearchDaoContract::class.java).query()
+        val hotBean = DaoFactory.getProtocol(SearchDaoContract::class.java).query()
         getMvpView().queryResult(hotBean)
     }
 

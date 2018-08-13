@@ -4,12 +4,11 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
-import android.view.View
 import com.afollestad.materialdialogs.MaterialDialog
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.WordNoteAdapter
 import com.hankkin.reading.base.BaseActivity
-import com.hankkin.reading.mvp.model.DaoFactoryUtils
+import com.hankkin.reading.mvp.model.DaoFactory
 import com.hankkin.reading.ui.tools.translate.TranslateActivity
 import com.hankkin.reading.utils.ToastUtils
 import com.hankkin.reading.utils.ViewHelper
@@ -42,7 +41,7 @@ class WordNoteActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
                 when (which) {
                     0 -> TranslateActivity.intentTo(this, t.translateBean.query)
                     1 -> {
-                        DaoFactoryUtils.getDao(WordNoteDaoContract::class.java).removeWordNote(t)
+                        DaoFactory.getProtocol(WordNoteDaoContract::class.java).removeWordNote(t)
                         setAdapter()
                         ToastUtils.showToast(this, resources.getString(R.string.word_note_remove_success) + t.translateBean.query)
                     }
@@ -64,7 +63,7 @@ class WordNoteActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
 
     private fun setAdapter() {
         mAdapter.clear()
-        mAdapter.addAll(DaoFactoryUtils.getDao(WordNoteDaoContract::class.java).queryWordNotes())
+        mAdapter.addAll(DaoFactory.getProtocol(WordNoteDaoContract::class.java).queryWordNotes())
         mAdapter.notifyDataSetChanged()
         if (mAdapter.data.size == 0) {
             empty_word_note.showEmpty()
