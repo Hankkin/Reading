@@ -7,6 +7,7 @@ import android.support.annotation.RequiresApi
 import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
 import android.view.View
+import com.hankkin.library.utils.ToastUtils
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.HomeFragmentPagerAdapter
 import com.hankkin.reading.base.BaseFragment
@@ -18,7 +19,6 @@ import com.hankkin.reading.MainActivity
 import com.hankkin.reading.ui.home.search.SearchActivity
 import com.hankkin.reading.utils.RxBusTools
 import com.hankkin.reading.utils.ThemeHelper
-import com.hankkin.reading.utils.ToastUtils
 import kotlinx.android.synthetic.main.fragment_home.*
 
 /**
@@ -88,7 +88,7 @@ class HomeFragment : BaseFragment() {
             fab_menu_add.close(true)
         }
         fab_write.setOnClickListener {
-            ToastUtils.showToast(context,"敬请期待...")
+            context?.let { it1 -> ToastUtils.showInfo(it1,"敬请期待...") }
             fab_menu_add.close(true)
         }
     }

@@ -4,6 +4,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.KeyEvent
 import com.bilibili.magicasakura.widgets.KeyEditText
+import com.hankkin.library.utils.ToastUtils
 import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseMvpFragment
 import com.hankkin.reading.control.UserControl
@@ -12,7 +13,6 @@ import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.ui.login.register.RegisterPresenter
 import com.hankkin.reading.utils.LoadingUtils
 import com.hankkin.reading.utils.RxBusTools
-import com.hankkin.reading.utils.ToastUtils
 import kotlinx.android.synthetic.main.fragment_login.*
 
 /**
@@ -77,7 +77,7 @@ class LoginFragment : BaseMvpFragment<LoginContract.IPresenter>(), LoginContract
     }
 
     override fun loginResult(userBean: UserBean) {
-        ToastUtils.showToast(context, "登录成功" + userBean.username)
+        context?.let { ToastUtils.showSuccess(it, "登录成功" + userBean.username) }
         UserControl.setCurrentUser(userBean)
         RxBusTools.getDefault().post(EventMap.LoginEvent())
         activity!!.finish()

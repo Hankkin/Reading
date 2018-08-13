@@ -1,12 +1,12 @@
 package com.hankkin.reading.mvp.presenter
 
 import com.hankkin.library.utils.LogUtils
+import com.hankkin.library.utils.ToastUtils
 import com.hankkin.reading.EApplication
 import com.hankkin.reading.domain.BaseResponse
 import com.hankkin.reading.mvp.contract.IBaseViewContract
 import com.hankkin.reading.mvp.contract.IPresenterContract
 import com.hankkin.reading.utils.RxUtils
-import com.hankkin.reading.utils.ToastUtils
 import io.reactivex.Observable
 import io.reactivex.disposables.Disposable
 import java.util.*
@@ -84,7 +84,7 @@ abstract class RxLifePresenter<out V : IBaseViewContract> : IBasePresenter<V>, I
             //编写订阅触发时的公共代码
 
             if(it.errorCode != 0){
-                ToastUtils.showToast(EApplication.instance(),it.errorMsg)
+                ToastUtils.showError(EApplication.instance(),it.errorMsg)
                 onError.invoke(kotlin.Throwable())
             }
             else{

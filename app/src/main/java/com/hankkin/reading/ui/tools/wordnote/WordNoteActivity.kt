@@ -5,12 +5,12 @@ import android.os.Bundle
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
+import com.hankkin.library.utils.ToastUtils
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.WordNoteAdapter
 import com.hankkin.reading.base.BaseActivity
 import com.hankkin.reading.mvp.model.DaoFactory
 import com.hankkin.reading.ui.tools.translate.TranslateActivity
-import com.hankkin.reading.utils.ToastUtils
 import com.hankkin.reading.utils.ViewHelper
 import kotlinx.android.synthetic.main.activity_word_note.*
 import kotlinx.android.synthetic.main.layout_title_bar_back.*
@@ -43,7 +43,7 @@ class WordNoteActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
                     1 -> {
                         DaoFactory.getProtocol(WordNoteDaoContract::class.java).removeWordNote(t)
                         setAdapter()
-                        ToastUtils.showToast(this, resources.getString(R.string.word_note_remove_success) + t.translateBean.query)
+                        ToastUtils.showInfo(this, resources.getString(R.string.word_note_remove_success) + t.translateBean.query)
                     }
                 }
             })

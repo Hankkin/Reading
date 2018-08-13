@@ -6,6 +6,7 @@ import android.support.annotation.ColorInt
 import android.support.annotation.ColorRes
 import com.bilibili.magicasakura.utils.ThemeUtils
 import com.hankkin.library.utils.SPUtils
+import com.hankkin.library.utils.ToastUtils
 import com.hankkin.reading.common.Constant
 import com.hankkin.reading.greendao.DaoMaster
 import com.hankkin.reading.greendao.DaoSession
@@ -35,6 +36,7 @@ class EApplication : Application() ,ThemeUtils.switchColor{
 
         FileUtils.initSd()
         SPUtils.init(this,Constant.COMMON.SP_NAME)
+        ToastUtils.init(this)
 
         ThemeUtils.setSwitchColor(this)
         initLeakCanary()

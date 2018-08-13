@@ -3,6 +3,7 @@ package com.hankkin.reading.ui.home.android
 import android.os.Bundle
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
+import com.hankkin.library.utils.ToastUtils
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.AndroidAdapter
 import com.hankkin.reading.adapter.base.XRecyclerView
@@ -11,7 +12,6 @@ import com.hankkin.reading.control.UserControl
 import com.hankkin.reading.domain.ArticleBean
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.utils.ThemeHelper
-import com.hankkin.reading.utils.ToastUtils
 import com.hankkin.reading.utils.ViewHelper
 import kotlinx.android.synthetic.main.fragment_android.*
 
@@ -68,7 +68,7 @@ class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IVie
     override fun setFail() {
         refresh_android.isRefreshing = false
         xrv_android.refreshComplete()
-        ToastUtils.showToast(context, "网络异常...")
+        context?.let { ToastUtils.showError(it, "网络异常...") }
     }
 
     fun loadData(page: Int) {
@@ -103,12 +103,12 @@ class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IVie
 
     override fun cancelCollectResult(id: Int) {
         UserControl.getCurrentUser()!!.collectIds.remove(id.toString())
-        ToastUtils.showToast(activity, "取消收藏")
+        activity?.let { ToastUtils.showSuccess(it, "取消收藏") }
     }
 
     override fun collectResult(id: Int) {
         UserControl.getCurrentUser()!!.collectIds.add(id.toString())
-        ToastUtils.showToast(activity, "收藏成功")
+        activity?.let { ToastUtils.showSuccess(it, "收藏成功") }
     }
 
     override fun onEvent(it: EventMap.BaseEvent) {

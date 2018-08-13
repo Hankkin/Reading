@@ -6,6 +6,7 @@ import android.view.KeyEvent
 import com.afollestad.materialdialogs.DialogAction
 import com.afollestad.materialdialogs.MaterialDialog
 import com.bilibili.magicasakura.widgets.KeyEditText
+import com.hankkin.library.utils.ToastUtils
 import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseMvpFragment
 import com.hankkin.reading.control.UserControl
@@ -69,7 +70,7 @@ class RegFragment : BaseMvpFragment<RegisterContract.IPresenter>(), RegisterCont
 
 
     override fun verifiyFormatResult(msg: String) {
-        ToastUtils.showToast(context,msg)
+        context?.let { ToastUtils.showInfo(it,msg) }
     }
 
     override fun regResult(userBean: UserBean) {

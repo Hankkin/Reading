@@ -2,6 +2,7 @@ package com.hankkin.reading.ui.user.collect
 
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
+import com.hankkin.library.utils.ToastUtils
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.AndroidAdapter
 import com.hankkin.reading.adapter.base.XRecyclerView
@@ -9,7 +10,6 @@ import com.hankkin.reading.base.BaseMvpActivity
 import com.hankkin.reading.control.UserControl
 import com.hankkin.reading.domain.ArticleBean
 import com.hankkin.reading.event.EventMap
-import com.hankkin.reading.utils.ToastUtils
 import com.hankkin.reading.utils.ViewHelper
 import kotlinx.android.synthetic.main.activity_my_collect.*
 import kotlinx.android.synthetic.main.layout_title_bar_back.*
@@ -90,12 +90,12 @@ class MyCollectActivity : BaseMvpActivity<MyCollectPresenter>(),MyCollectContrac
 
     override fun cancelCollectResult(id: Int) {
         UserControl.getCurrentUser()!!.collectIds.remove(id.toString())
-        ToastUtils.showToast(this,"取消收藏")
+        ToastUtils.showInfo(this,"取消收藏")
     }
 
     override fun collectResult(id: Int) {
         UserControl.getCurrentUser()!!.collectIds.add(id.toString())
-        ToastUtils.showToast(this,"收藏成功")
+        ToastUtils.showSuccess(this,"收藏成功")
     }
 
     override fun onEvent(event: EventMap.BaseEvent) {
