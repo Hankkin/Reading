@@ -11,9 +11,9 @@ object ToastUtils{
 
     fun init(context: Context) {
         Toasty.Config.getInstance().setErrorColor(context.resources.getColor(R.color.md_color_red))
-                .setInfoColor(context.resources.getColor(R.color.md_color_blue))
+                .setInfoColor(context.resources.getColor(R.color.md_color_teal))
                 .setSuccessColor(context.resources.getColor(R.color.md_color_green))
-                .setWarningColor(context.resources.getColor(R.color.md_color_amber))
+                .setWarningColor(context.resources.getColor(R.color.md_color_pink))
                 .apply()
     }
 

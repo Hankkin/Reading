@@ -33,9 +33,11 @@ class WordNoteActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
     @SuppressLint("StringFormatInvalid")
     override fun initViews(savedInstanceState: Bundle?) {
         tv_normal_title.text = resources.getString(R.string.word_note_title)
-        SnackbarUtils.Custom(ll,"长按可以进行更多操作奥",5000)
+
+        SnackbarUtils.Custom(ll, "长按可以进行更多操作奥", 3000)
                 .backColor(resources.getColor(ThemeHelper.getCurrentColor(this)))
                 .gravityFrameLayout(Gravity.BOTTOM).messageCenter().show()
+
         ViewHelper.setRefreshLayout(this, true, refresh_word_note, this)
         rv_word_note.layoutManager = LinearLayoutManager(this)
         mAdapter = WordNoteAdapter()
@@ -54,8 +56,12 @@ class WordNoteActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
                         ToastUtils.showInfo(this, resources.getString(R.string.word_note_remove_success) + t.translateBean.query)
                     }
                     2 -> {
-                        t.isEmphasis = true
-                        DaoFactory.getProtocol(WordNoteDaoContract::class.java).updateWord(t)
+                        if (!t.isEmphasis) {
+                            t.isEmphasis = true
+                            DaoFactory.getProtocol(WordNoteDaoContract::class.java).updateWord(t)
+                            ToastUtils.showInfo(this, resources.getString(R.string.word_note_add_emphasis) + t.translateBean.query)
+                        }
+
                     }
                 }
             })

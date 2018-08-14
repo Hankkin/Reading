@@ -63,7 +63,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_10">
+        android:layout_marginTop="@dimen/dp_20">
 
         <com.bilibili.magicasakura.widgets.TintTextView
             android:id="@+id/tv_word_next"

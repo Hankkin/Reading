@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.hankkin.library.utils.StatusBarUtil
+import com.hankkin.reading.R
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.utils.LoadingUtils
 import com.hankkin.reading.utils.RxBusTools
@@ -32,16 +33,17 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         activity = this
         if (getLayoutId() != 0) setContentView(getLayoutId())
-        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-
-        StatusBarUtil.MIUISetStatusBarLightMode(this.getWindow(), true)
-        StatusBarUtil.FlymeSetStatusBarLightMode(this.getWindow(), true)
-
         StatusBarUtil.setColor(this, resources.getColor(ThemeHelper.getCurrentColor(this)), 0)
-
         initViews(savedInstanceState)
         registerEvent()
         initData()
+    }
+
+    protected fun setMiuiStatusBar(){
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        StatusBarUtil.setColor(this, resources.getColor(R.color.white), 0)
+        StatusBarUtil.MIUISetStatusBarLightMode(this.getWindow(), true)
+        StatusBarUtil.FlymeSetStatusBarLightMode(this.getWindow(), true)
     }
 
     open fun isHasBus(): Boolean {

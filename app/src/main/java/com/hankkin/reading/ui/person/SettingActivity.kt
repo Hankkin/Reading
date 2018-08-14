@@ -30,7 +30,7 @@ class SettingActivity : BaseActivity() {
 
     override fun initViews(savedInstanceState: Bundle?) {
 
-        StatusBarUtil.setColor(this, resources.getColor(R.color.white), 0)
+        setMiuiStatusBar()
 
         mCurrentTheme = ThemeHelper.getTheme(this)
         tv_setting_theme_value.text = ThemeHelper.getName(this,mCurrentTheme)

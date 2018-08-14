@@ -6,12 +6,7 @@ import com.google.gson.Gson
 
 
 /**
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 2016/8/2
- *     desc  : SP相关工具类
- * </pre>
+ *
  */
 object SPUtils {
     private lateinit var editor: SharedPreferences.Editor

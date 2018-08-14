@@ -31,7 +31,8 @@
     <string name="about_rate">评分</string>
     <string name="about_license_content">Copyright 2018 Hankkin \n </string>
     <string name="about_use_content">Reading是一款基于WanAndroid OpenApi开发的阅读类工具，如果你是一个热衷于Android开发者，那么这款软件能帮助你阅读精品Android文章。
-    同时Reading中还包含"英文单词"、"账号本子"、"天气"等小工具。项目基于"Kotlin+MVP"架构开发，风格大概也许属于Material Desgin原质化风格，包含主题颜色切换。在此感谢WanAndroid的OpenApi,以及其它开源项目的贡献。</string>
+    同时Reading中还包含"英文单词"、"账号本子"、"天气"、"查单词"、"快递查询"等小工具。项目基于"Kotlin+MVP"架构开发，风格大概也许属于Material Desgin原质化风格，包含主题颜色切换、百变Logo、
+        等功能。在此感谢WanAndroid的OpenApi,以及其它开源项目的贡献。</string>
 
     <string name="article_detail_share">分享</string>
     <string name="article_detail_open">浏览器打开</string>
@@ -51,7 +52,8 @@
     <string name="word_note_detail">去看看</string>
     <string name="word_note_remove">移除单词本</string>
     <string name="word_note_emphasis">标记为重点</string>
-    <string name="word_note_remove_success">成功移除单词</string>
+    <string name="word_note_remove_success">成功移除单词\t</string>
+    <string name="word_note_add_emphasis">已标记为重点\t</string>
 
     <string name="person_title">我的</string>
     <string name="person_no_login">未登录</string>
@@ -111,6 +113,7 @@
     <string name="tools_kuaidi_title">查快递</string>
     <string name="tools_kuaidi_hint">TIPS：本功能使用【快递100】开源API，请勿作为商业使用，如涉及隐私或构成侵权，请联系我修改或删除。\n 再次声明该功能一切数据解释权归【快递100】所有。</string>
 
+    <string name="lock_title">请设置手势密码</string>
 
     <string name="ok">确定</string>
     <string name="cancel">取消</string>

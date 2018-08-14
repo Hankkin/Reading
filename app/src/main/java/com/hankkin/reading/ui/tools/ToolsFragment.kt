@@ -19,6 +19,7 @@ import com.hankkin.reading.domain.Weatherbean
 import com.hankkin.reading.domain.WordNoteBean
 import com.hankkin.reading.mvp.model.DaoFactory
 import com.hankkin.reading.ui.home.articledetail.CommonWebActivity
+import com.hankkin.reading.ui.tools.acount.LockSetActivity
 import com.hankkin.reading.ui.tools.translate.TranslateActivity
 import com.hankkin.reading.ui.tools.wordnote.WordNoteActivity
 import com.hankkin.reading.ui.tools.wordnote.WordNoteDaoContract
@@ -78,7 +79,7 @@ class ToolsFragment : BaseMvpFragment<ToolsContract.IPresenter>(), ToolsContract
         tv_word_go.setOnClickListener { startActivity(Intent(context, TranslateActivity::class.java)) }
         tv_word_note.setOnClickListener { startActivity(Intent(context, WordNoteActivity::class.java)) }
         tv_word_next.setOnClickListener {
-            ViewHelper.startShakeAnim(ll_word_every)
+            ViewHelper.startShakeAnim(card_word_every)
             setEveryWord()
         }
     }
@@ -97,6 +98,7 @@ class ToolsFragment : BaseMvpFragment<ToolsContract.IPresenter>(), ToolsContract
                 Constant.TOOLS.ID_JUEJIN -> context?.let { CommonWebActivity.loadUrl(it, Constant.AboutUrl.JUEJIN, Constant.AboutUrl.JUEJIN_TITLE) }
                 Constant.TOOLS.ID_WORD -> startActivity(Intent(context, TranslateActivity::class.java))
                 Constant.TOOLS.ID_WORD_NOTE -> startActivity(Intent(context, WordNoteActivity::class.java))
+                Constant.TOOLS.ID_PWD_NOTE -> startActivity(Intent(context, LockSetActivity::class.java))
                 Constant.TOOLS.ID_SAOYISAO -> {
                     val intent = Intent(context, CaptureActivity::class.java)
                     val bundle = Bundle()

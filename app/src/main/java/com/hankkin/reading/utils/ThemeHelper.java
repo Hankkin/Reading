@@ -199,4 +199,40 @@ public class ThemeHelper {
         }
         return R.color.yima;
     }
+
+    public static int getCurrentColorDark(Context context) {
+        switch (ThemeHelper.getTheme(context)) {
+            case COLOR_YIMA:
+                return R.color.yima_dark;
+            case COLOR_KUAN:
+                return R.color.kuan_dark;
+            case COLOR_BILI:
+                return R.color.bili_dark;
+            case COLOR_YIDI:
+                return R.color.yidi_dark;
+            case COLOR_SHUIYA:
+                return R.color.shuiya_dark;
+            case COLOR_YITENG:
+                return R.color.yiteng;
+            case COLOR_JILAO:
+                return R.color.jilao;
+            case COLOR_ZHIHU:
+                return R.color.zhihu;
+            case COLOR_GUTONG:
+                return R.color.gutong;
+            case COLOR_DIDIAO:
+                return R.color.didiao;
+            case COLOR_GAODUAN:
+                return R.color.gaoduan;
+            case COLOR_APING:
+                return R.color.aping;
+            case COLOR_LIANGBAI:
+                return R.color.liangbai;
+            case COLOR_ANLUOLAN:
+                return R.color.anluolan;
+            case COLOR_XINGHONG:
+                return R.color.xinghong;
+        }
+        return R.color.yima;
+    }
 }

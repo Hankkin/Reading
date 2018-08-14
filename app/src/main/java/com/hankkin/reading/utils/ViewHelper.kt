@@ -10,9 +10,14 @@ import android.support.design.widget.BottomSheetDialog
 import android.support.v4.widget.SwipeRefreshLayout
 import android.view.LayoutInflater
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationSet
+import android.view.animation.RotateAnimation
+import android.view.animation.ScaleAnimation
 import android.widget.ImageView
 import android.widget.TextView
 import com.afollestad.materialdialogs.MaterialDialog
+import com.hankkin.library.utils.LogUtils
 import com.hankkin.library.utils.ToastUtils
 import com.hankkin.reading.R
 import com.hankkin.reading.common.Constant
@@ -55,7 +60,7 @@ object ViewHelper {
     /**
      * list dialog
      */
-    fun showListNoTitleDialog(context: Context,list: MutableList<String>,calback: MaterialDialog.ListCallback){
+    fun showListNoTitleDialog(context: Context, list: MutableList<String>, calback: MaterialDialog.ListCallback) {
         MaterialDialog.Builder(context)
                 .items(list)
                 .itemsCallback(calback)
@@ -66,14 +71,14 @@ object ViewHelper {
      * about dialog
      */
     fun showAboutDialog(context: Context) {
-        val view = LayoutInflater.from(context).inflate(R.layout.layout_about_dialog,null)
-        view.findViewById<ImageView>(R.id.iv_about_github).setOnClickListener { CommonWebActivity.loadUrl(context,Constant.AboutUrl.GITHUB,Constant.AboutUrl.GITHUB_TITLE) }
-        view.findViewById<ImageView>(R.id.iv_about_juejin).setOnClickListener { CommonWebActivity.loadUrl(context,Constant.AboutUrl.JUEJIN,Constant.AboutUrl.JUEJIN_TITLE) }
-        view.findViewById<ImageView>(R.id.iv_about_jianshu).setOnClickListener { CommonWebActivity.loadUrl(context,Constant.AboutUrl.JIANSHU,Constant.AboutUrl.JIANSHU_TITLE) }
-        view.findViewById<ImageView>(R.id.iv_about_csdn).setOnClickListener { CommonWebActivity.loadUrl(context,Constant.AboutUrl.CSDN,Constant.AboutUrl.CSDN_TITLE) }
-        val bottomSheet = BottomSheetDialog(context,R.style.BottomSheetDialog)
+        val view = LayoutInflater.from(context).inflate(R.layout.layout_about_dialog, null)
+        view.findViewById<ImageView>(R.id.iv_about_github).setOnClickListener { CommonWebActivity.loadUrl(context, Constant.AboutUrl.GITHUB, Constant.AboutUrl.GITHUB_TITLE) }
+        view.findViewById<ImageView>(R.id.iv_about_juejin).setOnClickListener { CommonWebActivity.loadUrl(context, Constant.AboutUrl.JUEJIN, Constant.AboutUrl.JUEJIN_TITLE) }
+        view.findViewById<ImageView>(R.id.iv_about_jianshu).setOnClickListener { CommonWebActivity.loadUrl(context, Constant.AboutUrl.JIANSHU, Constant.AboutUrl.JIANSHU_TITLE) }
+        view.findViewById<ImageView>(R.id.iv_about_csdn).setOnClickListener { CommonWebActivity.loadUrl(context, Constant.AboutUrl.CSDN, Constant.AboutUrl.CSDN_TITLE) }
+        val bottomSheet = BottomSheetDialog(context, R.style.BottomSheetDialog)
         view.findViewById<TextView>(R.id.tv_about_close).setOnClickListener { bottomSheet.dismiss() }
-        view.findViewById<TextView>(R.id.tv_about_rate).setOnClickListener { ToastUtils.showInfo(context,"敬请期待") }
+        view.findViewById<TextView>(R.id.tv_about_rate).setOnClickListener { ToastUtils.showInfo(context, "敬请期待") }
         bottomSheet.setContentView(view)
         bottomSheet.show()
     }
@@ -81,53 +86,26 @@ object ViewHelper {
     /**
      * 抖动动画
      */
-    fun startShakeAnim(view: View){
-        //先变小后变大
-        val scaleXValuesHolder = PropertyValuesHolder.ofKeyframe(View.SCALE_X,
-                Keyframe.ofFloat(0f, 1.0f),
-                Keyframe.ofFloat(0.25f, 0.9f),
-                Keyframe.ofFloat(0.5f, 1.1f),
-                Keyframe.ofFloat(0.75f, 1.1f),
-                Keyframe.ofFloat(1.0f, 1.0f)
-        )
-        val scaleYValuesHolder = PropertyValuesHolder.ofKeyframe(View.SCALE_Y,
-                Keyframe.ofFloat(0f, 1.0f),
-                Keyframe.ofFloat(0.25f, 0.9f),
-                Keyframe.ofFloat(0.5f, 1.1f),
-                Keyframe.ofFloat(0.75f, 1.1f),
-                Keyframe.ofFloat(1.0f, 1.0f)
-        )
-
-        //先往左再往右
-        val rotateValuesHolder = PropertyValuesHolder.ofKeyframe(View.ROTATION,
-                Keyframe.ofFloat(0f, 0f),
-                Keyframe.ofFloat(0.1f, -10f),
-                Keyframe.ofFloat(0.2f, 10f),
-                Keyframe.ofFloat(0.3f, -10f),
-                Keyframe.ofFloat(0.4f, 10f),
-                Keyframe.ofFloat(0.5f, -10f),
-                Keyframe.ofFloat(0.6f, 10f),
-                Keyframe.ofFloat(0.7f, -10f),
-                Keyframe.ofFloat(0.8f, 10f),
-                Keyframe.ofFloat(0.9f, -10f),
-                Keyframe.ofFloat(1.0f, 0f)
-        )
-
-        val objectAnimator = ObjectAnimator.ofPropertyValuesHolder(view, scaleXValuesHolder, scaleYValuesHolder, rotateValuesHolder)
-        objectAnimator.duration = duration.toLong()
-        objectAnimator.start()
-        objectAnimator.addListener(object : Animator.AnimatorListener{
-            override fun onAnimationRepeat(animation: Animator?) {
+    fun startShakeAnim(view: View) {
+        val scale = ScaleAnimation(0.95f, 1.05f, 0.95f, 1.05f)
+        val rotate = RotateAnimation(-0.5f, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f)
+        scale.duration = 800
+        rotate.duration = 80
+        rotate.repeatMode = Animation.REVERSE
+        rotate.repeatCount = 5
+        val animSet = AnimationSet(false)
+        animSet.addAnimation(scale)
+        animSet.addAnimation(rotate)
+        view.startAnimation(animSet)
+        animSet.setAnimationListener(object : Animation.AnimationListener{
+            override fun onAnimationRepeat(animation: Animation?) {
             }
 
-            override fun onAnimationEnd(animation: Animator?) {
-                objectAnimator.cancel()
+            override fun onAnimationEnd(animation: Animation?) {
+                animSet.cancel()
             }
 
-            override fun onAnimationCancel(animation: Animator?) {
-            }
-
-            override fun onAnimationStart(animation: Animator?) {
+            override fun onAnimationStart(animation: Animation?) {
             }
 
         })

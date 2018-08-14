@@ -246,7 +246,9 @@
         <activity android:name=".ui.home.search.searchresult.SearchResultActivity" />
         <activity android:name=".ui.tools.KuaiDiActivity" />
         <activity android:name=".ui.tools.translate.TranslateActivity" />
-        <activity android:name=".ui.tools.wordnote.WordNoteActivity"></activity>
+        <activity android:name=".ui.tools.wordnote.WordNoteActivity" />
+        <activity android:name=".ui.tools.acount.LockSetActivity" />
+        <activity android:name=".ui.tools.acount.AccountListActivity"></activity>
     </application>
 
 </manifest>

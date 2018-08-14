@@ -16,7 +16,7 @@
         android:id="@+id/tv_word_go"
         android:layout_marginEnd="@dimen/dp_10"
         android:textColor="@color/theme_color_primary"
-        android:layout_marginTop="@dimen/dp_4"
+        android:layout_marginTop="@dimen/dp_20"
         android:layout_gravity="right"
         android:textSize="@dimen/sp_13"
         android:text="@string/word_go"

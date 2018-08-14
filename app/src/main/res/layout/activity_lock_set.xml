@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.hankkin.reading.ui.tools.acount.LockSetActivity">
+
+    <include layout="@layout/layout_title_bar_back"/>
+
+
+    <com.github.ihsg.patternlocker.PatternIndicatorView
+        android:id="@+id/pattern_indicator_view"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_margin="20dp" />
+
+    <com.github.ihsg.patternlocker.PatternLockerView
+        android:id="@+id/pattern_lock_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="20dp" />
+
+</LinearLayout>
