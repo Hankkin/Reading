@@ -39,7 +39,10 @@
             android:layout_height="match_parent" />
     </RelativeLayout>
 
-
+    <View
+        android:background="@color/normal_bg"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"/>
 
     <LinearLayout
         android:orientation="vertical"
@@ -47,6 +50,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <EditText
+            android:paddingBottom="@dimen/dp_14"
+            android:paddingTop="@dimen/dp_14"
             android:id="@+id/et_add_account_name"
             android:textStyle="bold"
             style="@style/normalTxt"
@@ -55,13 +60,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <View
-            android:layout_marginTop="@dimen/dp_14"
             android:background="@color/normal_bg"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"/>
         <EditText
             android:id="@+id/et_add_account_number"
-            android:layout_marginTop="@dimen/dp_14"
+            android:paddingBottom="@dimen/dp_14"
+            android:paddingTop="@dimen/dp_14"
             android:textSize="@dimen/sp_14"
             style="@style/normalTxt"
             android:hint="@string/account_add_number_hint"
@@ -69,14 +74,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <View
-            android:layout_marginTop="@dimen/dp_14"
             android:background="@color/normal_bg"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"/>
 
         <EditText
+            android:paddingBottom="@dimen/dp_14"
+            android:paddingTop="@dimen/dp_14"
             android:id="@+id/et_add_account_password"
-            android:layout_marginTop="@dimen/dp_14"
             android:textSize="@dimen/sp_14"
             style="@style/normalTxt"
             android:hint="@string/account_add_password_hint"
@@ -84,15 +89,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <View
-            android:layout_marginTop="@dimen/dp_14"
             android:background="@color/normal_bg"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"/>
 
         <TextView
+            android:paddingBottom="@dimen/dp_14"
+            android:paddingTop="@dimen/dp_14"
             android:id="@+id/tv_add_account_cate"
             android:drawableRight="@mipmap/icon_common_arrow"
-            android:layout_marginTop="@dimen/dp_14"
             android:textSize="@dimen/sp_14"
             style="@style/normalTxt"
             android:hint="@string/account_add_cate_hint"
