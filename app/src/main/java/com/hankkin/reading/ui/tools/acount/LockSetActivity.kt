@@ -1,5 +1,6 @@
 package com.hankkin.reading.ui.tools.acount
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.TypedValue
 import com.github.ihsg.patternlocker.OnPatternChangeListener
@@ -90,6 +91,7 @@ class LockSetActivity : BaseActivity() {
 
     private fun finishIfNeeded() {
         if (this.patternHelper.isFinish) {
+            startActivity(Intent(this,AccountListActivity::class.java))
             finish()
         }
     }

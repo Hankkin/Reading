@@ -55,6 +55,20 @@
     <string name="word_note_remove_success">成功移除单词\t</string>
     <string name="word_note_add_emphasis">已标记为重点\t</string>
 
+    <string name="account_title">账号本子</string>
+    <string name="account_no_data_hint">还没账号，快去新建吧!</string>
+    <string name="account_add_title">新建账号</string>
+    <string name="account_cate_socail">社交</string>
+    <string name="account_cate_bank">银行</string>
+    <string name="account_cate_code">技术</string>
+    <string name="account_cate_email">邮箱</string>
+    <string name="account_cate_work">工作</string>
+    <string name="account_cate_other">其他</string>
+    <string name="account_add_name_hint">标题</string>
+    <string name="account_add_number_hint">账号</string>
+    <string name="account_add_password_hint">密码</string>
+    <string name="account_add_cate_hint">选择分类</string>
+
     <string name="person_title">我的</string>
     <string name="person_no_login">未登录</string>
     <string name="person_authorize_login">授权登录</string>

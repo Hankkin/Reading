@@ -26,6 +26,7 @@ public class DaoMaster extends AbstractDaoMaster {
         WordNoteBeanDao.createTable(db, ifNotExists);
         HotBeanDao.createTable(db, ifNotExists);
         WebExplainDao.createTable(db, ifNotExists);
+        AccountBeanDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
@@ -35,6 +36,7 @@ public class DaoMaster extends AbstractDaoMaster {
         WordNoteBeanDao.dropTable(db, ifExists);
         HotBeanDao.dropTable(db, ifExists);
         WebExplainDao.dropTable(db, ifExists);
+        AccountBeanDao.dropTable(db, ifExists);
     }
 
     /**
@@ -58,6 +60,7 @@ public class DaoMaster extends AbstractDaoMaster {
         registerDaoClass(WordNoteBeanDao.class);
         registerDaoClass(HotBeanDao.class);
         registerDaoClass(WebExplainDao.class);
+        registerDaoClass(AccountBeanDao.class);
     }
 
     public DaoSession newSession() {

@@ -2,6 +2,8 @@ package com.hankkin.reading.mvp.model
 
 import com.hankkin.reading.ui.home.search.SearchDao
 import com.hankkin.reading.ui.home.search.SearchDaoContract
+import com.hankkin.reading.ui.tools.acount.AccountDao
+import com.hankkin.reading.ui.tools.acount.AccountDaoContract
 import com.hankkin.reading.ui.tools.translate.TranslateDao
 import com.hankkin.reading.ui.tools.translate.TranslateDaoContract
 import com.hankkin.reading.ui.tools.wordnote.WordNoteDao
@@ -18,6 +20,7 @@ object DaoFactoryUtils {
         SearchDaoContract::class.java -> SearchDao()
         TranslateDaoContract::class.java -> TranslateDao()
         WordNoteDaoContract::class.java -> WordNoteDao()
+        AccountDaoContract::class.java -> AccountDao()
 
         else -> throw ClassNotFoundException("Not found : ${clazz.name}")
     } as T

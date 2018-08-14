@@ -4,12 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/normal_bg"
     tools:context="com.hankkin.reading.ui.tools.acount.AccountListActivity">
 
     <include layout="@layout/layout_title_bar_back"/>
 
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_account"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <com.github.clans.fab.FloatingActionMenu
+            app:layout_behavior="com.hankkin.reading.view.ScrollAwareFABBehavior"
+            android:id="@+id/fab_menu_add"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            fab:menu_labels_ellipsize="end"
+            fab:menu_labels_singleLine="true"
+            fab:menu_backgroundColor="#99ffffff"
+            fab:menu_colorNormal="@color/theme_color_primary"
+            fab:menu_colorPressed="@color/theme_color_primary"
+            fab:menu_colorRipple="@color/theme_color_primary"
+            fab:menu_fab_label=""/>
+    </android.support.design.widget.CoordinatorLayout>
 
 
 </LinearLayout>

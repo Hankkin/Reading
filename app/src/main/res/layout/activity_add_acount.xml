@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".ui.tools.acount.AddAcountActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_bar_height">
+        <ImageView
+            android:id="@+id/iv_add_acount_back"
+            android:paddingRight="@dimen/dp_16"
+            android:paddingLeft="@dimen/dp_10"
+            android:src="@mipmap/ic_close_normal"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <TextView
+            android:layout_toEndOf="@+id/iv_add_acount_back"
+            style="@style/normalTxt"
+            android:layout_centerVertical="true"
+            android:text="@string/account_add_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <com.bilibili.magicasakura.widgets.TintTextView
+            android:id="@+id/tv_add_account_ok"
+            android:textStyle="bold"
+            android:text="@string/ok"
+            android:paddingStart="@dimen/dp_10"
+            android:paddingEnd="@dimen/dp_16"
+            android:layout_alignParentEnd="true"
+            android:textColor="@color/theme_color_primary"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="@dimen/dp_10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/et_add_account_name"
+            android:textStyle="bold"
+            style="@style/normalTxt"
+            android:hint="@string/account_add_name_hint"
+            android:background="@null"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_marginTop="@dimen/dp_14"
+            android:background="@color/normal_bg"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"/>
+        <EditText
+            android:id="@+id/et_add_account_number"
+            android:layout_marginTop="@dimen/dp_14"
+            android:textSize="@dimen/sp_14"
+            style="@style/normalTxt"
+            android:hint="@string/account_add_number_hint"
+            android:background="@null"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_marginTop="@dimen/dp_14"
+            android:background="@color/normal_bg"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"/>
+
+        <EditText
+            android:id="@+id/et_add_account_password"
+            android:layout_marginTop="@dimen/dp_14"
+            android:textSize="@dimen/sp_14"
+            style="@style/normalTxt"
+            android:hint="@string/account_add_password_hint"
+            android:background="@null"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_marginTop="@dimen/dp_14"
+            android:background="@color/normal_bg"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"/>
+
+        <TextView
+            android:id="@+id/tv_add_account_cate"
+            android:drawableRight="@mipmap/icon_common_arrow"
+            android:layout_marginTop="@dimen/dp_14"
+            android:textSize="@dimen/sp_14"
+            style="@style/normalTxt"
+            android:hint="@string/account_add_cate_hint"
+            android:background="@null"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+</LinearLayout>
