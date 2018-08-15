@@ -27,7 +27,7 @@ public class AccountBeanDao extends AbstractDao<AccountBean, Long> {
         public final static Property Id = new Property(0, long.class, "id", true, "_id");
         public final static Property Icon = new Property(1, int.class, "icon", false, "ICON");
         public final static Property Name = new Property(2, String.class, "name", false, "NAME");
-        public final static Property Cate = new Property(3, int.class, "cate", false, "CATE");
+        public final static Property Cate = new Property(3, String.class, "cate", false, "CATE");
         public final static Property Number = new Property(4, String.class, "number", false, "NUMBER");
         public final static Property Password = new Property(5, String.class, "password", false, "PASSWORD");
         public final static Property IsCollected = new Property(6, boolean.class, "isCollected", false, "IS_COLLECTED");
@@ -51,7 +51,7 @@ public class AccountBeanDao extends AbstractDao<AccountBean, Long> {
                 "\"_id\" INTEGER PRIMARY KEY NOT NULL ," + // 0: id
                 "\"ICON\" INTEGER NOT NULL ," + // 1: icon
                 "\"NAME\" TEXT," + // 2: name
-                "\"CATE\" INTEGER NOT NULL ," + // 3: cate
+                "\"CATE\" TEXT," + // 3: cate
                 "\"NUMBER\" TEXT," + // 4: number
                 "\"PASSWORD\" TEXT," + // 5: password
                 "\"IS_COLLECTED\" INTEGER NOT NULL ," + // 6: isCollected
@@ -75,7 +75,11 @@ public class AccountBeanDao extends AbstractDao<AccountBean, Long> {
         if (name != null) {
             stmt.bindString(3, name);
         }
-        stmt.bindLong(4, entity.getCate());
+ 
+        String cate = entity.getCate();
+        if (cate != null) {
+            stmt.bindString(4, cate);
+        }
  
         String number = entity.getNumber();
         if (number != null) {
@@ -101,7 +105,11 @@ public class AccountBeanDao extends AbstractDao<AccountBean, Long> {
         if (name != null) {
             stmt.bindString(3, name);
         }
-        stmt.bindLong(4, entity.getCate());
+ 
+        String cate = entity.getCate();
+        if (cate != null) {
+            stmt.bindString(4, cate);
+        }
  
         String number = entity.getNumber();
         if (number != null) {
@@ -128,7 +136,7 @@ public class AccountBeanDao extends AbstractDao<AccountBean, Long> {
             cursor.getLong(offset + 0), // id
             cursor.getInt(offset + 1), // icon
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // name
-            cursor.getInt(offset + 3), // cate
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // cate
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // number
             cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // password
             cursor.getShort(offset + 6) != 0, // isCollected
@@ -143,7 +151,7 @@ public class AccountBeanDao extends AbstractDao<AccountBean, Long> {
         entity.setId(cursor.getLong(offset + 0));
         entity.setIcon(cursor.getInt(offset + 1));
         entity.setName(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setCate(cursor.getInt(offset + 3));
+        entity.setCate(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setNumber(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setPassword(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
         entity.setIsCollected(cursor.getShort(offset + 6) != 0);

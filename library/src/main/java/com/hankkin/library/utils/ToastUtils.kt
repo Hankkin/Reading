@@ -17,6 +17,14 @@ object ToastUtils{
                 .apply()
     }
 
+    fun init(context: Context,infoColor: Int) {
+        Toasty.Config.getInstance().setErrorColor(context.resources.getColor(R.color.md_color_red))
+                .setInfoColor(infoColor)
+                .setSuccessColor(context.resources.getColor(R.color.md_color_green))
+                .setWarningColor(context.resources.getColor(R.color.md_color_pink))
+                .apply()
+    }
+
     fun showToast(context: Context,str: String){
         Toasty.normal(context,str).show()
     }

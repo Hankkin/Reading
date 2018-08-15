@@ -25,7 +25,7 @@
             style="@style/normalTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
             android:layout_toEndOf="@+id/iv_add_acount_back"
             android:text="@string/account_add_title" />
 
@@ -96,17 +96,38 @@
                 android:layout_height="0.5dp"
                 android:background="@color/normal_bg" />
 
-            <TextView
-                android:id="@+id/tv_add_account_cate"
-                style="@style/normalTxt"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:drawableRight="@mipmap/icon_common_arrow"
-                android:hint="@string/account_add_cate_hint"
-                android:paddingBottom="@dimen/dp_14"
-                android:paddingTop="@dimen/dp_14"
-                android:textSize="@dimen/sp_16" />
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_add_account_cate"
+                    style="@style/normalTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="@string/account_add_cate_hint"
+                    android:paddingBottom="@dimen/dp_14"
+                    android:paddingTop="@dimen/dp_14"
+                    android:textSize="@dimen/sp_16" />
+                <ImageView
+                    android:layout_toStartOf="@+id/iv_add_acount_arrow"
+                    android:visibility="gone"
+                    android:layout_marginEnd="@dimen/dp_10"
+                    android:id="@+id/iv_add_acount_cate"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/icon_account_social"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp" />
+                <com.bilibili.magicasakura.widgets.TintImageView
+                    android:id="@+id/iv_add_acount_arrow"
+                    android:layout_alignParentEnd="true"
+                    app:imageTint="@color/grey1"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/icon_common_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
         </LinearLayout>
 
         <com.github.clans.fab.FloatingActionButton
@@ -120,8 +141,8 @@
             android:src="@mipmap/fab_confirm"
             style="@style/menu_labels_style"
             fab:fab_size="normal"
-            android:layout_marginRight="@dimen/dp_10"
-            android:layout_marginBottom="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_16"
+            android:layout_marginBottom="@dimen/dp_16"
             fab:fab_label="@string/home_fab_up" />
     </android.support.design.widget.CoordinatorLayout>
 

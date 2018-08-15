@@ -11,4 +11,6 @@ interface AccountDaoContract : BaseDaoContract{
 
     fun queryAllAccount(): MutableList<AccountBean>
 
+    fun saveAccount(accountBean: AccountBean)
+
 }

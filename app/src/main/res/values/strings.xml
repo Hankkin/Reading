@@ -65,9 +65,14 @@
     <string name="account_cate_work">工作</string>
     <string name="account_cate_other">其他</string>
     <string name="account_add_name_hint">标题</string>
+    <string name="account_add_name_input_hint">请输入标题</string>
     <string name="account_add_number_hint">账号</string>
+    <string name="account_add_number_input_hint">请输入账号</string>
     <string name="account_add_password_hint">密码</string>
+    <string name="account_add_password_input_hint">请输入密码</string>
     <string name="account_add_cate_hint">选择分类</string>
+    <string name="account_add_cate_select_hint">请选择分类</string>
+    <string name="account_add_success">已保存账户</string>
 
     <string name="person_title">我的</string>
     <string name="person_no_login">未登录</string>

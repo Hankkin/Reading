@@ -9,11 +9,21 @@ import com.hankkin.reading.mvp.model.BaseDao
  * @date 2018/8/14
  */
 class AccountDao : BaseDao(),AccountDaoContract{
+
+    /**
+     * 保存账号
+     */
+    override fun saveAccount(accountBean: AccountBean) {
+        daoSession.accountBeanDao.insertOrReplace(accountBean)
+    }
+
     /**
      * 查询所有账号
      */
     override fun queryAllAccount(): MutableList<AccountBean> =
-            daoSession.accountBeanDao.queryBuilder().orderAsc(AccountBeanDao.Properties.UpdateAt).list()
+            daoSession.accountBeanDao.queryBuilder().orderDesc(AccountBeanDao.Properties.CreateAt).list()
+
+
 
 
 }

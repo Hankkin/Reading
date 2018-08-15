@@ -23,6 +23,7 @@ import android.widget.Toast
 import com.bilibili.magicasakura.utils.ThemeUtils
 import com.hankkin.library.utils.LogUtils
 import com.hankkin.library.utils.StatusBarUtil
+import com.hankkin.library.utils.ToastUtils
 import com.hankkin.reading.adapter.MainFragmentAdapter
 import com.hankkin.reading.base.BaseActivity
 import com.hankkin.reading.control.UserControl
@@ -177,6 +178,7 @@ class MainActivity : BaseActivity() {
 
     fun changeTheme() {
         setStatuBar()
+        ToastUtils.init(this,resources.getColor(ThemeHelper.getCurrentColor(this)))
         ThemeUtils.refreshUI(this, object : ThemeUtils.ExtraRefreshable {
             override fun refreshSpecificView(view: View?) {
             }

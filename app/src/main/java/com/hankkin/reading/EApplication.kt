@@ -36,7 +36,7 @@ class EApplication : Application() ,ThemeUtils.switchColor{
 
         FileUtils.initSd()
         SPUtils.init(this,Constant.COMMON.SP_NAME)
-        ToastUtils.init(this)
+        ToastUtils.init(this,resources.getColor(R.color.theme_color_primary))
 
         ThemeUtils.setSwitchColor(this)
         initLeakCanary()
