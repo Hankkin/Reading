@@ -109,24 +109,20 @@
                 android:textSize="@dimen/sp_16" />
         </LinearLayout>
 
-        <com.github.clans.fab.FloatingActionMenu
-            android:id="@+id/fab_add_acount"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:paddingBottom="10dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            app:menu_icon="@mipmap/fab_confirm"
-            app:layout_behavior="com.hankkin.reading.view.ScrollAwareFABBehavior"
-            fab:menu_backgroundColor="#99ffffff"
+        <com.github.clans.fab.FloatingActionButton
+            android:layout_gravity="bottom|right"
             fab:menu_colorNormal="@color/theme_color_primary"
             fab:menu_colorPressed="@color/theme_color_primary"
             fab:menu_colorRipple="@color/theme_color_primary"
-            fab:menu_fab_label=""
-            fab:menu_labels_ellipsize="end"
-            fab:menu_labels_singleLine="true" />
+            android:id="@+id/fab_add_acount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/fab_confirm"
+            style="@style/menu_labels_style"
+            fab:fab_size="normal"
+            android:layout_marginRight="@dimen/dp_10"
+            android:layout_marginBottom="@dimen/dp_10"
+            fab:fab_label="@string/home_fab_up" />
     </android.support.design.widget.CoordinatorLayout>
 
 

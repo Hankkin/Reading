@@ -5,6 +5,7 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseActivity
 import com.hankkin.reading.common.Constant
+import com.hankkin.reading.utils.ThemeHelper
 import com.hankkin.reading.utils.ViewHelper
 import kotlinx.android.synthetic.main.activity_add_acount.*
 
@@ -23,6 +24,7 @@ class AddAcountActivity : BaseActivity() {
 
     override fun initViews(savedInstanceState: Bundle?) {
         setMiuiStatusBar()
+        fab_add_acount.setColorPressedResId(ThemeHelper.getCurrentColor(this))
         tv_add_account_cate.setOnClickListener {
             ViewHelper.showListTitleDialog(this,resources.getString(R.string.account_add_cate_hint),CATE,
                     MaterialDialog.ListCallback { dialog, itemView, which, text ->
