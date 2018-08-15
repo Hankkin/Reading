@@ -72,5 +72,15 @@ object Constant {
         const val ID_ABOUT = 11
     }
 
+    object ACCOUNT_CATE{
+        const val SOCIAL = "社交"
+        const val BANK = "银行"
+        const val CODE = "技术"
+        const val WORK = "工作"
+        const val SHOP = "购物"
+        const val EMAIL = "邮箱"
+        const val OTHER = "其他"
+    }
+
 
 }

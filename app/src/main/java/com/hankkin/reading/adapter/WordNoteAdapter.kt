@@ -1,6 +1,8 @@
 package com.hankkin.reading.adapter
 
+import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.base.BaseRecyclerViewAdapter
@@ -23,6 +25,7 @@ class WordNoteAdapter : BaseRecyclerViewAdapter<WordNoteBean>() {
 
         private val tvKey by lazy { itemView.findViewById<TextView>(R.id.tv_adapter_word_note_key) }
         private val tvContent by lazy { itemView.findViewById<TextView>(R.id.tv_adapter_word_note_content) }
+        private val ivImport by lazy { itemView.findViewById<ImageView>(R.id.iv_adapter_word_note_important) }
 
         override fun onBindViewHolder(bean: WordNoteBean, position: Int) {
             tvKey.text = bean.translateBean.query
@@ -32,6 +35,7 @@ class WordNoteAdapter : BaseRecyclerViewAdapter<WordNoteBean>() {
                 onItemLongClickListener.onLongClick(bean, position)
                 false
             }
+            ivImport.visibility = if (bean.isEmphasis) View.VISIBLE else View.GONE
         }
 
     }

@@ -243,11 +243,17 @@ class TranslateActivity : BaseActivity() {
         }
         val wordNotes = DaoFactory.getProtocol(WordNoteDaoContract::class.java).queryWordNotes()
         if (wordNotes != null && wordNotes.size > 0) {
+            var ids = mutableListOf<Long>()
             for (word in wordNotes){
-                if (word.translateBean.id == translate.id){
-                    iv_translate_stared.visibility = View.VISIBLE
-                    iv_translate_star.visibility = View.GONE
-                }
+                ids.add(word.id)
+            }
+            if (ids.contains(translate.id)){
+                iv_translate_stared.visibility = View.VISIBLE
+                iv_translate_star.visibility = View.GONE
+            }
+            else{
+                iv_translate_stared.visibility = View.GONE
+                iv_translate_star.visibility = View.VISIBLE
             }
         }
     }

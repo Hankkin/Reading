@@ -17,6 +17,7 @@ import com.hankkin.reading.common.Constant
 import com.hankkin.reading.domain.ToolsBean
 import com.hankkin.reading.domain.Weatherbean
 import com.hankkin.reading.domain.WordNoteBean
+import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.mvp.model.DaoFactory
 import com.hankkin.reading.ui.home.articledetail.CommonWebActivity
 import com.hankkin.reading.ui.tools.acount.LockSetActivity
@@ -43,21 +44,14 @@ class ToolsFragment : BaseMvpFragment<ToolsContract.IPresenter>(), ToolsContract
 
     private lateinit var mToolsAdapter: ToolsAdapter
 
-    private val mWords: MutableList<WordNoteBean>? by lazy {
-        DaoFactory.getProtocol(WordNoteDaoContract::class.java).queryEmphasisWord()
-    }
+    private var mWords: MutableList<WordNoteBean>? = null
 
 
     override fun registerPresenter() = ToolsPresenter::class.java
 
-
-    public fun newInstance(index: Int): ToolsFragment {
-        var fragment = ToolsFragment()
-        var args = Bundle()
-        args.putInt("index", index)
-        return fragment
+    override fun isHasBus(): Boolean {
+        return true
     }
-
 
     override fun getLayoutId(): Int {
         return R.layout.fragment_word
@@ -130,8 +124,10 @@ class ToolsFragment : BaseMvpFragment<ToolsContract.IPresenter>(), ToolsContract
         )
     }
 
+    fun getWords() = DaoFactory.getProtocol(WordNoteDaoContract::class.java).queryEmphasisWord()
 
     private fun setEveryWord() {
+        mWords = getWords()
         if (mWords != null && mWords!!.size > 0) {
             layout_word_every.visibility = View.VISIBLE
             layout_word_no_data.visibility = View.GONE
@@ -173,5 +169,12 @@ class ToolsFragment : BaseMvpFragment<ToolsContract.IPresenter>(), ToolsContract
             }
         }
     }
+
+    override fun onEvent(event: EventMap.BaseEvent) {
+        if (event is EventMap.UpdateEveryEvent){
+            setEveryWord()
+        }
+    }
+
 }
 

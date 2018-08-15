@@ -67,6 +67,20 @@ object ViewHelper {
                 .show()
     }
 
+
+    /**
+     * list dialog
+     */
+    fun showListTitleDialog(context: Context, title: String,list: MutableList<String>, calback: MaterialDialog.ListCallback) {
+        MaterialDialog.Builder(context)
+                .title(title)
+                .titleColor(context.resources.getColor(ThemeHelper.getCurrentColor(context)))
+                .items(list)
+                .itemsCallback(calback)
+                .show()
+    }
+
+
     /**
      * about dialog
      */
@@ -97,7 +111,7 @@ object ViewHelper {
         animSet.addAnimation(scale)
         animSet.addAnimation(rotate)
         view.startAnimation(animSet)
-        animSet.setAnimationListener(object : Animation.AnimationListener{
+        animSet.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationRepeat(animation: Animation?) {
             }
 

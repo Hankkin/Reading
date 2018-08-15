@@ -12,8 +12,10 @@ import com.hankkin.library.utils.ToastUtils
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.WordNoteAdapter
 import com.hankkin.reading.base.BaseActivity
+import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.mvp.model.DaoFactory
 import com.hankkin.reading.ui.tools.translate.TranslateActivity
+import com.hankkin.reading.utils.RxBusTools
 import com.hankkin.reading.utils.SnackbarUtils
 import com.hankkin.reading.utils.ThemeHelper
 import com.hankkin.reading.utils.ViewHelper
@@ -58,7 +60,9 @@ class WordNoteActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
                     2 -> {
                         if (!t.isEmphasis) {
                             t.isEmphasis = true
+                            mAdapter.notifyItemChanged(position)
                             DaoFactory.getProtocol(WordNoteDaoContract::class.java).updateWord(t)
+                            RxBusTools.getDefault().post(EventMap.UpdateEveryEvent())
                             ToastUtils.showInfo(this, resources.getString(R.string.word_note_add_emphasis) + t.translateBean.query)
                         }
 

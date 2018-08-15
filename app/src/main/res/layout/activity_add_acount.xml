@@ -1,110 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".ui.tools.acount.AddAcountActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/title_bar_height">
+
         <ImageView
             android:id="@+id/iv_add_acount_back"
-            android:paddingRight="@dimen/dp_16"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:paddingLeft="@dimen/dp_10"
-            android:src="@mipmap/ic_close_normal"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
-        <TextView
-            android:layout_toEndOf="@+id/iv_add_acount_back"
-            style="@style/normalTxt"
-            android:layout_centerVertical="true"
-            android:text="@string/account_add_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:paddingRight="@dimen/dp_16"
+            android:src="@mipmap/ic_close_normal" />
 
-        <com.bilibili.magicasakura.widgets.TintTextView
-            android:id="@+id/tv_add_account_ok"
-            android:textStyle="bold"
-            android:text="@string/ok"
-            android:paddingStart="@dimen/dp_10"
-            android:paddingEnd="@dimen/dp_16"
-            android:layout_alignParentEnd="true"
-            android:textColor="@color/theme_color_primary"
-            android:gravity="center"
+        <TextView
+            style="@style/normalTxt"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/iv_add_acount_back"
+            android:text="@string/account_add_title" />
+
+
     </RelativeLayout>
 
     <View
-        android:background="@color/normal_bg"
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"/>
+        android:layout_height="0.5dp"
+        android:background="@color/normal_bg" />
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:padding="@dimen/dp_10"
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <EditText
-            android:paddingBottom="@dimen/dp_14"
-            android:paddingTop="@dimen/dp_14"
-            android:id="@+id/et_add_account_name"
-            android:textStyle="bold"
-            style="@style/normalTxt"
-            android:hint="@string/account_add_name_hint"
-            android:background="@null"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <View
-            android:background="@color/normal_bg"
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"/>
-        <EditText
-            android:id="@+id/et_add_account_number"
-            android:paddingBottom="@dimen/dp_14"
-            android:paddingTop="@dimen/dp_14"
-            android:textSize="@dimen/sp_14"
-            style="@style/normalTxt"
-            android:hint="@string/account_add_number_hint"
-            android:background="@null"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <View
-            android:background="@color/normal_bg"
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"/>
+        android:layout_height="match_parent">
 
-        <EditText
-            android:paddingBottom="@dimen/dp_14"
-            android:paddingTop="@dimen/dp_14"
-            android:id="@+id/et_add_account_password"
-            android:textSize="@dimen/sp_14"
-            style="@style/normalTxt"
-            android:hint="@string/account_add_password_hint"
-            android:background="@null"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <View
-            android:background="@color/normal_bg"
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"/>
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/dp_10">
 
-        <TextView
-            android:paddingBottom="@dimen/dp_14"
-            android:paddingTop="@dimen/dp_14"
-            android:id="@+id/tv_add_account_cate"
-            android:drawableRight="@mipmap/icon_common_arrow"
-            android:textSize="@dimen/sp_14"
-            style="@style/normalTxt"
-            android:hint="@string/account_add_cate_hint"
-            android:background="@null"
+            <EditText
+                android:id="@+id/et_add_account_name"
+                style="@style/normalTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="@string/account_add_name_hint"
+                android:paddingBottom="@dimen/dp_14"
+                android:paddingTop="@dimen/dp_14"
+                android:textSize="@dimen/sp_18"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/normal_bg" />
+
+            <EditText
+                android:id="@+id/et_add_account_number"
+                style="@style/normalTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="@string/account_add_number_hint"
+                android:paddingBottom="@dimen/dp_14"
+                android:paddingTop="@dimen/dp_14"
+                android:textSize="@dimen/sp_16" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/normal_bg" />
+
+            <EditText
+                android:id="@+id/et_add_account_password"
+                style="@style/normalTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="@string/account_add_password_hint"
+                android:paddingBottom="@dimen/dp_14"
+                android:paddingTop="@dimen/dp_14"
+                android:textSize="@dimen/sp_16" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/normal_bg" />
+
+            <TextView
+                android:id="@+id/tv_add_account_cate"
+                style="@style/normalTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:drawableRight="@mipmap/icon_common_arrow"
+                android:hint="@string/account_add_cate_hint"
+                android:paddingBottom="@dimen/dp_14"
+                android:paddingTop="@dimen/dp_14"
+                android:textSize="@dimen/sp_16" />
+        </LinearLayout>
+
+        <com.github.clans.fab.FloatingActionMenu
+            android:id="@+id/fab_add_acount"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            app:menu_icon="@mipmap/fab_confirm"
+            app:layout_behavior="com.hankkin.reading.view.ScrollAwareFABBehavior"
+            fab:menu_backgroundColor="#99ffffff"
+            fab:menu_colorNormal="@color/theme_color_primary"
+            fab:menu_colorPressed="@color/theme_color_primary"
+            fab:menu_colorRipple="@color/theme_color_primary"
+            fab:menu_fab_label=""
+            fab:menu_labels_ellipsize="end"
+            fab:menu_labels_singleLine="true" />
+    </android.support.design.widget.CoordinatorLayout>
 
 
 </LinearLayout>
