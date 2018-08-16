@@ -27,19 +27,22 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <RelativeLayout
+                android:clickable="true"
                 android:id="@+id/rl_setting_theme"
                 android:paddingBottom="@dimen/dp_12"
                 android:paddingTop="@dimen/dp_12"
-                android:background="@drawable/ripple_normal_selector"
+                android:background="?attr/selectableItemBackground"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:textColor="@color/black"
                     android:layout_centerVertical="true"
                     style="@style/normalTxt"
                     android:text="@string/setting_theme"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <com.bilibili.magicasakura.widgets.TintTextView
+                    android:textColor="@color/theme_color_primary"
                     android:id="@+id/tv_setting_theme_value"
                     style="@style/themeTxt"
                     android:layout_centerVertical="true"
@@ -52,6 +55,42 @@
                 android:background="@color/normal_bg"
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"/>
+
+            <RelativeLayout
+                android:clickable="true"
+                android:id="@+id/rl_setting_lock"
+                android:paddingBottom="@dimen/dp_12"
+                android:paddingTop="@dimen/dp_12"
+                android:background="?attr/selectableItemBackground"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textColor="@color/black"
+                    android:id="@+id/tv_setting_lock"
+                    style="@style/normalTxt"
+                    android:text="@string/setting_lock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_marginTop="@dimen/dp_4"
+                    android:layout_below="@+id/switch_lock"
+                    android:text="@string/setting_lock_hint"
+                    android:textSize="@dimen/sp_13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <Switch
+                    android:id="@+id/switch_lock"
+                    android:layout_alignParentEnd="true"
+                    android:theme="@style/mdCheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+            <View
+                android:background="@color/normal_bg"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"/>
+
 
         </LinearLayout>
     </ScrollView>

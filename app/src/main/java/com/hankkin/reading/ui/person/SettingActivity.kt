@@ -7,9 +7,11 @@ import android.os.Bundle
 import android.view.View
 import com.bilibili.magicasakura.utils.ThemeUtils
 import com.cocosw.bottomsheet.BottomSheet
+import com.hankkin.library.utils.SPUtils
 import com.hankkin.library.utils.StatusBarUtil
 import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseActivity
+import com.hankkin.reading.common.Constant
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.utils.RxBusTools
 import com.hankkin.reading.utils.ThemeHelper
@@ -36,6 +38,10 @@ class SettingActivity : BaseActivity() {
         tv_setting_theme_value.text = ThemeHelper.getName(this,mCurrentTheme)
         initThemeBuilder()
         rl_setting_theme.setOnClickListener { mThemeBuilder.show() }
+        switch_lock.isChecked = SPUtils.getInt(Constant.SP_KEY.LOCK_OPEN) != 0
+        switch_lock.setOnCheckedChangeListener { buttonView, isChecked ->
+            SPUtils.put(Constant.SP_KEY.LOCK_OPEN,if (isChecked) 1 else 0)
+        }
     }
 
     fun initThemeBuilder() {

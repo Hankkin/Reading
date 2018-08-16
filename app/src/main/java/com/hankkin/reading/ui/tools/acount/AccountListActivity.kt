@@ -11,6 +11,7 @@ import com.hankkin.reading.R
 import com.hankkin.reading.adapter.AccountAdapter
 import com.hankkin.reading.base.BaseActivity
 import com.hankkin.reading.domain.AccountBean
+import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.mvp.model.DaoFactory
 import com.hankkin.reading.utils.ThemeHelper
 import com.hankkin.reading.utils.ViewHelper
@@ -22,6 +23,11 @@ class AccountListActivity : BaseActivity() {
 
     private lateinit var mAdapter: AccountAdapter
     private var mData: MutableList<AccountBean>? = null
+
+
+    override fun isHasBus(): Boolean {
+        return true
+    }
 
     override fun getLayoutId(): Int {
         return R.layout.activity_account_list
@@ -41,12 +47,21 @@ class AccountListActivity : BaseActivity() {
         mAdapter.setOnItemLongClickListener { t, position ->
             ViewHelper.showListNoTitleDialog(this, longClickItems, MaterialDialog.ListCallback { dialog, itemView, which, text ->
                 when (which) {
-                    0 -> {}
+                    0 -> {
+                        AccountDetailActivity.intentTo(this, t.id)
+                    }
+                    1 -> {
+                        AddAcountActivity.intentTo(this, t.id)
+                    }
+                    2 -> {
+                        DaoFactory.getProtocol(AccountDaoContract::class.java).deleteAccountById(t.id)
+                        initData()
+                    }
                 }
             })
         }
         mAdapter.setOnItemClickListener { t, position ->
-
+            AccountDetailActivity.intentTo(this, t.id)
         }
     }
 
@@ -62,9 +77,11 @@ class AccountListActivity : BaseActivity() {
 
     private fun getData() = DaoFactory.getProtocol(AccountDaoContract::class.java).queryAllAccount()
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK)
+
+    override fun onEvent(event: EventMap.BaseEvent) {
+        if (event is EventMap.UpdateAccountListEvent){
             initData()
+        }
     }
 
 }

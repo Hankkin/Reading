@@ -74,7 +74,7 @@ object SPUtils {
      * @return 存在返回对应值，不存在返回默认值-1
      */
     fun getInt(key: String?): Int {
-        return getInt(key)
+        return getInt(key,0)
     }
 
     /**

@@ -9,6 +9,25 @@ import com.hankkin.reading.mvp.model.BaseDao
  * @date 2018/8/14
  */
 class AccountDao : BaseDao(),AccountDaoContract{
+    /**
+     * 更新
+     */
+    override fun updateAccountById(accountBean: AccountBean) {
+        daoSession.accountBeanDao.update(accountBean)
+    }
+
+    /**
+     * 删除账号
+     */
+    override fun deleteAccountById(id: Long) {
+        daoSession.accountBeanDao.deleteByKey(id)
+    }
+
+    /**
+     * 根据id查询账号
+     */
+    override fun queryAccountById(id: Long): AccountBean? =
+            daoSession.accountBeanDao.queryBuilder().where(AccountBeanDao.Properties.Id.eq(id)).build().unique()
 
     /**
      * 保存账号

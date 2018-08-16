@@ -82,5 +82,9 @@ object Constant {
         const val OTHER = "其他"
     }
 
+    object SP_KEY{
+        const val LOCK_OPEN = "lock_open"
+    }
+
 
 }

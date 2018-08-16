@@ -10,6 +10,7 @@ import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import com.hankkin.library.fuct.android.CaptureActivity
 import com.hankkin.library.fuct.bean.ZxingConfig
+import com.hankkin.library.utils.SPUtils
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.ToolsAdapter
 import com.hankkin.reading.base.BaseMvpFragment
@@ -20,6 +21,7 @@ import com.hankkin.reading.domain.WordNoteBean
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.mvp.model.DaoFactory
 import com.hankkin.reading.ui.home.articledetail.CommonWebActivity
+import com.hankkin.reading.ui.tools.acount.AccountListActivity
 import com.hankkin.reading.ui.tools.acount.LockSetActivity
 import com.hankkin.reading.ui.tools.translate.TranslateActivity
 import com.hankkin.reading.ui.tools.wordnote.WordNoteActivity
@@ -92,7 +94,14 @@ class ToolsFragment : BaseMvpFragment<ToolsContract.IPresenter>(), ToolsContract
                 Constant.TOOLS.ID_JUEJIN -> context?.let { CommonWebActivity.loadUrl(it, Constant.AboutUrl.JUEJIN, Constant.AboutUrl.JUEJIN_TITLE) }
                 Constant.TOOLS.ID_WORD -> startActivity(Intent(context, TranslateActivity::class.java))
                 Constant.TOOLS.ID_WORD_NOTE -> startActivity(Intent(context, WordNoteActivity::class.java))
-                Constant.TOOLS.ID_PWD_NOTE -> startActivity(Intent(context, LockSetActivity::class.java))
+                Constant.TOOLS.ID_PWD_NOTE -> {
+                    if (SPUtils.getInt(Constant.SP_KEY.LOCK_OPEN) != 0){
+                        startActivity(Intent(context, LockSetActivity::class.java))
+                    }
+                    else{
+                        startActivity(Intent(context,AccountListActivity::class.java))
+                    }
+                }
                 Constant.TOOLS.ID_SAOYISAO -> {
                     val intent = Intent(context, CaptureActivity::class.java)
                     val bundle = Bundle()

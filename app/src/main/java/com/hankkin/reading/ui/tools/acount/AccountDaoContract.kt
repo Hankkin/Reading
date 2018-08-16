@@ -13,4 +13,10 @@ interface AccountDaoContract : BaseDaoContract{
 
     fun saveAccount(accountBean: AccountBean)
 
+    fun queryAccountById(id: Long): AccountBean?
+
+    fun deleteAccountById(id: Long)
+
+    fun updateAccountById(accountBean: AccountBean)
+
 }

@@ -74,6 +74,12 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <style name="mdCheckBox" parent="Theme.AppCompat.Light">
+        <item name="android:colorControlActivated">#2176cb</item>
+        <item name="android:trackTint">#fec6d9</item>
+        <item name="android:colorForeground">#88FFFFFF</item>
+    </style>
+
 
     <style name="BottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/bottomSheetStyleWrapper</item>

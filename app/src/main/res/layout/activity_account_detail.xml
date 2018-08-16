@@ -2,25 +2,137 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
     tools:context=".ui.tools.acount.AccountDetailActivity">
 
-    <TextView
-        android:padding="@dimen/sp_12"
-        android:textStyle="bold"
-        android:textSize="@dimen/sp_20"
-        android:gravity="center_vertical"
-        style="@style/normalTxt"
-        android:text="@string/account_detail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_bar_height">
+        <com.hankkin.reading.view.ClickImageView
+            android:id="@+id/iv_account_back"
+            android:paddingRight="@dimen/dp_10"
+            android:paddingLeft="@dimen/dp_10"
+            android:src="@mipmap/icon_normal_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <TextView
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/iv_account_back"
+            android:textStyle="bold"
+            android:textSize="@dimen/sp_18"
+            android:gravity="center_vertical"
+            style="@style/normalTxt"
+            android:text="@string/account_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <com.hankkin.reading.view.ClickImageView
+            android:id="@+id/iv_account_delete"
+            android:padding="@dimen/dp_12"
+            android:layout_alignParentEnd="true"
+            android:src="@mipmap/icon_account_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+
 
     <View
         android:background="@color/normal_bg"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:padding="@dimen/dp_12"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="@string/account_detail_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_account_detail_name"
+                android:textSize="@dimen/sp_16"
+                android:layout_marginTop="@dimen/dp_10"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_marginTop="@dimen/dp_20"
+                android:text="@string/account_detail_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_account_detail_number"
+                android:textSize="@dimen/sp_16"
+                android:layout_marginTop="@dimen/dp_10"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_marginTop="@dimen/dp_20"
+                android:text="@string/account_detail_pwd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_account_detail_pwd"
+                android:textSize="@dimen/sp_16"
+                android:layout_marginTop="@dimen/dp_10"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_marginTop="@dimen/dp_20"
+                android:text="@string/account_detail_cate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_account_detail_cate"
+                android:textSize="@dimen/sp_16"
+                android:layout_marginTop="@dimen/dp_10"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_marginTop="@dimen/dp_20"
+                android:text="@string/account_add_bz"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_account_detail_bz"
+                android:textSize="@dimen/sp_16"
+                android:layout_marginTop="@dimen/dp_10"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <com.github.clans.fab.FloatingActionButton
+            android:layout_gravity="bottom|right"
+            fab:menu_colorNormal="@color/theme_color_primary"
+            fab:menu_colorPressed="@color/theme_color_primary"
+            fab:menu_colorRipple="@color/theme_color_primary"
+            android:id="@+id/fab_edit_acount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/fab_account_write"
+            style="@style/menu_labels_style"
+            fab:fab_size="normal"
+            android:layout_marginRight="@dimen/dp_16"
+            android:layout_marginBottom="@dimen/dp_16"
+            fab:fab_label="@string/home_fab_up" />
+    </FrameLayout>
+
 
 </LinearLayout>

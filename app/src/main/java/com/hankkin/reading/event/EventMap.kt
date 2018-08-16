@@ -77,6 +77,7 @@ object EventMap {
     class LoginEvent : BaseEvent()
     class HomeRefreshEvent : BaseEvent()
     class UpdateEveryEvent : BaseEvent()
+    class UpdateAccountListEvent : BaseEvent()
     class SearchHistoryDeleteEvent(val position:Int) : BaseEvent()
     class LoginSetTabEvent() : BaseEvent(){
          var name: String = ""

@@ -78,6 +78,12 @@
     <string name="account_look">查看</string>
     <string name="account_edit">编辑</string>
     <string name="account_delete">删除</string>
+    <string name="account_detail_name">标题</string>
+    <string name="account_detail_number">账号</string>
+    <string name="account_detail_pwd">密码</string>
+    <string name="account_detail_cate">分类</string>
+    <string name="account_detail_delete_hint">是否删除该帐号？</string>
+    <string name="account_detail_delete_success_hint">已删除</string>
 
     <string name="person_title">我的</string>
     <string name="person_no_login">未登录</string>
@@ -119,6 +125,8 @@
 
     <string name="setting">设置</string>
     <string name="setting_theme">个性换肤</string>
+    <string name="setting_lock">开启账号锁</string>
+    <string name="setting_lock_hint">请注意，为了保护您的账号密码安全，建议开启账号锁，账号本子利用本地数据库进行缓存，密码进行加密。同时账号本子备份到您的手机中，请您放心使用.</string>
 
     <string name="work_kuaidi">查快递</string>
     <string name="work_pwd_note">账号本子</string>
