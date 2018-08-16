@@ -33,6 +33,7 @@ public class AccountBeanDao extends AbstractDao<AccountBean, Long> {
         public final static Property IsCollected = new Property(6, boolean.class, "isCollected", false, "IS_COLLECTED");
         public final static Property CreateAt = new Property(7, long.class, "createAt", false, "createAt");
         public final static Property UpdateAt = new Property(8, long.class, "updateAt", false, "updateAt");
+        public final static Property Beizhu = new Property(9, String.class, "beizhu", false, "BEIZHU");
     }
 
 
@@ -56,7 +57,8 @@ public class AccountBeanDao extends AbstractDao<AccountBean, Long> {
                 "\"PASSWORD\" TEXT," + // 5: password
                 "\"IS_COLLECTED\" INTEGER NOT NULL ," + // 6: isCollected
                 "\"createAt\" INTEGER NOT NULL ," + // 7: createAt
-                "\"updateAt\" INTEGER NOT NULL );"); // 8: updateAt
+                "\"updateAt\" INTEGER NOT NULL ," + // 8: updateAt
+                "\"BEIZHU\" TEXT);"); // 9: beizhu
     }
 
     /** Drops the underlying database table. */
@@ -93,6 +95,11 @@ public class AccountBeanDao extends AbstractDao<AccountBean, Long> {
         stmt.bindLong(7, entity.getIsCollected() ? 1L: 0L);
         stmt.bindLong(8, entity.getCreateAt());
         stmt.bindLong(9, entity.getUpdateAt());
+ 
+        String beizhu = entity.getBeizhu();
+        if (beizhu != null) {
+            stmt.bindString(10, beizhu);
+        }
     }
 
     @Override
@@ -123,6 +130,11 @@ public class AccountBeanDao extends AbstractDao<AccountBean, Long> {
         stmt.bindLong(7, entity.getIsCollected() ? 1L: 0L);
         stmt.bindLong(8, entity.getCreateAt());
         stmt.bindLong(9, entity.getUpdateAt());
+ 
+        String beizhu = entity.getBeizhu();
+        if (beizhu != null) {
+            stmt.bindString(10, beizhu);
+        }
     }
 
     @Override
@@ -141,7 +153,8 @@ public class AccountBeanDao extends AbstractDao<AccountBean, Long> {
             cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // password
             cursor.getShort(offset + 6) != 0, // isCollected
             cursor.getLong(offset + 7), // createAt
-            cursor.getLong(offset + 8) // updateAt
+            cursor.getLong(offset + 8), // updateAt
+            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9) // beizhu
         );
         return entity;
     }
@@ -157,6 +170,7 @@ public class AccountBeanDao extends AbstractDao<AccountBean, Long> {
         entity.setIsCollected(cursor.getShort(offset + 6) != 0);
         entity.setCreateAt(cursor.getLong(offset + 7));
         entity.setUpdateAt(cursor.getLong(offset + 8));
+        entity.setBeizhu(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
      }
     
     @Override

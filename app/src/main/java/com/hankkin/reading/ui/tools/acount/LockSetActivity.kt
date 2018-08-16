@@ -86,7 +86,7 @@ class LockSetActivity : BaseActivity() {
         tv_normal_title.setTextColor(if (this.patternHelper.isOk)
             resources.getColor(R.color.white)
         else
-            resources.getColor(R.color.brown))
+            resources.getColor(R.color.white))
     }
 
     private fun finishIfNeeded() {

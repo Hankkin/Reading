@@ -6,10 +6,11 @@
     android:layout_height="match_parent"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@color/normal_bg"
+    android:background="@color/white"
     tools:context="com.hankkin.reading.ui.tools.acount.AccountListActivity">
 
-    <include layout="@layout/layout_title_bar_back"/>
+    <include
+        layout="@layout/layout_white_title_bar_back"/>
 
 
     <android.support.design.widget.CoordinatorLayout

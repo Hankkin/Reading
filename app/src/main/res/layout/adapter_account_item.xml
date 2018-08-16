@@ -1,57 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/dp_10"
-    app:cardCornerRadius="@dimen/dp_4">
+    android:gravity="center"
+    android:background="?attr/selectableItemBackground"
+    android:orientation="horizontal"
+    android:padding="@dimen/dp_10">
+
+    <ImageView
+        android:scaleType="fitXY"
+        android:id="@+id/iv_adapter_account_icon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@mipmap/icon_account_social" />
 
     <LinearLayout
+        android:id="@+id/ll_adapter_account"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="@dimen/dp_10">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_14"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/iv_adapter_account_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/icon_account_social" />
-
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_10"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/tv_adapter_account_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:textColor="@color/black"
                 android:textSize="@dimen/sp_17"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_adapter_account_number"
+                style="@style/normalTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_toEndOf="@+id/tv_adapter_account_name"
+                android:layout_toStartOf="@+id/tv_adapter_account_cate"
+                />
 
             <com.bilibili.magicasakura.widgets.TintTextView
                 android:id="@+id/tv_adapter_account_cate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_4"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dp_10"
                 android:textColor="@color/theme_color_primary"
                 android:textSize="@dimen/sp_13" />
-        </LinearLayout>
+        </RelativeLayout>
 
-
-        <TextView
-            android:id="@+id/tv_adapter_account_number"
-            style="@style/normalTxt"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_10" />
+            android:layout_marginTop="@dimen/dp_4">
 
+            <TextView
+                android:id="@+id/tv_adapter_account_bz"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/sp_14" />
+
+            <TextView
+                android:id="@+id/tv_adapter_account_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/sp_12" />
+        </RelativeLayout>
 
     </LinearLayout>
 
-</android.support.v7.widget.CardView>
+
+</LinearLayout>
+

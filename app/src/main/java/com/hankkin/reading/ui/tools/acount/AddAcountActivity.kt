@@ -14,6 +14,8 @@ import com.hankkin.reading.mvp.model.DaoFactory
 import com.hankkin.reading.utils.ThemeHelper
 import com.hankkin.reading.utils.ViewHelper
 import kotlinx.android.synthetic.main.activity_add_acount.*
+import kotlinx.android.synthetic.main.layout_title_bar_back.*
+import kotlinx.android.synthetic.main.layout_white_title_bar_back.*
 
 class AddAcountActivity : BaseActivity() {
 
@@ -31,7 +33,9 @@ class AddAcountActivity : BaseActivity() {
     override fun initViews(savedInstanceState: Bundle?) {
         setMiuiStatusBar()
         fab_add_acount.setColorPressedResId(ThemeHelper.getCurrentColor(this))
-        iv_add_acount_back.setOnClickListener { finish() }
+        fab_add_acount.setColorNormalResId(ThemeHelper.getCurrentColor(this))
+        tv_normal_title_white.text = resources.getString(R.string.account_add_title)
+        iv_back_icon_white.setOnClickListener { finish() }
         tv_add_account_cate.setOnClickListener {
             ViewHelper.showListTitleDialog(this, resources.getString(R.string.account_add_cate_hint), CATE,
                     MaterialDialog.ListCallback { dialog, itemView, which, text ->
@@ -54,7 +58,6 @@ class AddAcountActivity : BaseActivity() {
         }
         fab_add_acount.setOnClickListener {
             checkMsg()
-            saveAccount()
         }
     }
 
@@ -78,6 +81,7 @@ class AddAcountActivity : BaseActivity() {
             ToastUtils.showError(this, resources.getString(R.string.account_add_cate_select_hint))
             return
         }
+        saveAccount()
     }
 
     private fun saveAccount() {
@@ -88,6 +92,7 @@ class AddAcountActivity : BaseActivity() {
         accountBean.number = et_add_account_number.text.toString()
         accountBean.password = et_add_account_password.text.toString()
         accountBean.createAt = System.currentTimeMillis()
+        accountBean.beizhu = et_add_account_bz.text.toString()
         DaoFactory.getProtocol(AccountDaoContract::class.java).saveAccount(accountBean)
         ToastUtils.showSuccess(this, resources.getString(R.string.account_add_success))
         setResult(Activity.RESULT_OK, Intent())

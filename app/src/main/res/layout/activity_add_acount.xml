@@ -9,28 +9,7 @@
     android:orientation="vertical"
     tools:context=".ui.tools.acount.AddAcountActivity">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/title_bar_height">
-
-        <ImageView
-            android:id="@+id/iv_add_acount_back"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:paddingLeft="@dimen/dp_10"
-            android:paddingRight="@dimen/dp_16"
-            android:src="@mipmap/ic_close_normal" />
-
-        <TextView
-            style="@style/normalTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_toEndOf="@+id/iv_add_acount_back"
-            android:text="@string/account_add_title" />
-
-
-    </RelativeLayout>
+    <include layout="@layout/layout_white_title_bar_back"/>
 
     <View
         android:layout_width="match_parent"
@@ -48,6 +27,7 @@
             android:padding="@dimen/dp_10">
 
             <EditText
+                android:singleLine="true"
                 android:id="@+id/et_add_account_name"
                 style="@style/normalTxt"
                 android:layout_width="match_parent"
@@ -65,6 +45,7 @@
                 android:background="@color/normal_bg" />
 
             <EditText
+                android:singleLine="true"
                 android:id="@+id/et_add_account_number"
                 style="@style/normalTxt"
                 android:layout_width="match_parent"
@@ -81,12 +62,29 @@
                 android:background="@color/normal_bg" />
 
             <EditText
+                android:singleLine="true"
                 android:id="@+id/et_add_account_password"
                 style="@style/normalTxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:hint="@string/account_add_password_hint"
+                android:paddingBottom="@dimen/dp_14"
+                android:paddingTop="@dimen/dp_14"
+                android:textSize="@dimen/sp_16" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/normal_bg" />
+
+            <EditText
+                android:id="@+id/et_add_account_bz"
+                style="@style/normalTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="@string/account_add_bz"
                 android:paddingBottom="@dimen/dp_14"
                 android:paddingTop="@dimen/dp_14"
                 android:textSize="@dimen/sp_16" />

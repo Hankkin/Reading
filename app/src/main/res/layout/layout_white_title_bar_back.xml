@@ -3,24 +3,25 @@
     android:id="@+id/rl_title"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@color/theme_color_primary"
+    android:background="@color/white"
     android:layout_height="@dimen/title_bar_height">
 
 
     <com.hankkin.reading.view.ClickImageView
-        android:id="@+id/iv_back_icon"
+        android:id="@+id/iv_back_icon_white"
         android:paddingRight="@dimen/dp_10"
         android:paddingLeft="@dimen/dp_10"
-        android:src="@mipmap/icon_white_back"
+        android:src="@mipmap/icon_normal_back"
         android:layout_width="wrap_content"
         android:layout_height="match_parent" />
 
     <TextView
+        android:textSize="@dimen/sp_18"
         android:layout_marginStart="@dimen/dp_6"
-        android:layout_toEndOf="@+id/iv_back_icon"
-        android:id="@+id/tv_normal_title"
+        android:layout_toEndOf="@+id/iv_back_icon_white"
+        android:id="@+id/tv_normal_title_white"
         android:layout_centerVertical="true"
-        style="@style/whiteTxtBig"
+        style="@style/blackTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

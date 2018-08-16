@@ -26,10 +26,15 @@ public class AccountBean implements Serializable{
     private long createAt;
     @Property(nameInDb = "updateAt")
     private long updateAt;
+    private String beizhu;
 
-    @Generated(hash = 1916310308)
+
+
+
+    @Generated(hash = 1956632468)
     public AccountBean(long id, int icon, String name, String cate, String number,
-            String password, boolean isCollected, long createAt, long updateAt) {
+            String password, boolean isCollected, long createAt, long updateAt,
+            String beizhu) {
         this.id = id;
         this.icon = icon;
         this.name = name;
@@ -39,10 +44,14 @@ public class AccountBean implements Serializable{
         this.isCollected = isCollected;
         this.createAt = createAt;
         this.updateAt = updateAt;
+        this.beizhu = beizhu;
     }
     @Generated(hash = 1267506976)
     public AccountBean() {
     }
+
+
+    
 
     public long getId() {
         return this.id;
@@ -97,5 +106,11 @@ public class AccountBean implements Serializable{
     }
     public void setUpdateAt(long updateAt) {
         this.updateAt = updateAt;
+    }
+    public String getBeizhu() {
+        return this.beizhu;
+    }
+    public void setBeizhu(String beizhu) {
+        this.beizhu = beizhu;
     }
 }

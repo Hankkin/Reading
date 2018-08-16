@@ -5,7 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".ui.tools.acount.AccountDetailActivity">
 
+    <TextView
+        android:padding="@dimen/sp_12"
+        android:textStyle="bold"
+        android:textSize="@dimen/sp_20"
+        android:gravity="center_vertical"
+        style="@style/normalTxt"
+        android:text="@string/account_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:background="@color/normal_bg"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"/>
 
 </LinearLayout>
