@@ -5,9 +5,11 @@ import android.content.Context;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.GlideBuilder;
+import com.bumptech.glide.load.engine.cache.InternalCacheDiskCacheFactory;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.module.GlideModule;
-  
+import com.hankkin.library.utils.CacheUtils;
+
 import java.io.InputStream;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
@@ -18,10 +20,16 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 import okhttp3.OkHttpClient;
-  
-public class OkHttpGlideModule implements GlideModule {  
+
+
+public class OkHttpGlideModule implements GlideModule {
+
+
     @Override  
     public void applyOptions(Context context, GlideBuilder builder) {
+        builder.setDiskCache(new InternalCacheDiskCacheFactory(context,
+                CacheUtils.INSTANCE.GLIDE_CARCH_DIR,
+                CacheUtils.INSTANCE.GLIDE_CATCH_SIZE));
     }
 
     @Override
@@ -61,5 +69,6 @@ public class OkHttpGlideModule implements GlideModule {
             return new X509Certificate[0];
         }
     }
+
 
 }  

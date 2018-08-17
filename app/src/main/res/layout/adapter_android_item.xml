@@ -58,7 +58,7 @@
                 android:layout_height="80dp"
                 android:layout_alignParentRight="true"
                 android:layout_marginLeft="@dimen/dp_10"
-                android:background="@drawable/bg_trancant_round"
+                android:src="@mipmap/bg_default"
                 app:type="round" />
         </RelativeLayout>
 

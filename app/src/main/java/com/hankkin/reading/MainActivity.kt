@@ -22,10 +22,12 @@ import android.widget.TextView
 import android.widget.Toast
 import com.bilibili.magicasakura.utils.ThemeUtils
 import com.hankkin.library.utils.LogUtils
+import com.hankkin.library.utils.SPUtils
 import com.hankkin.library.utils.StatusBarUtil
 import com.hankkin.library.utils.ToastUtils
 import com.hankkin.reading.adapter.MainFragmentAdapter
 import com.hankkin.reading.base.BaseActivity
+import com.hankkin.reading.common.Constant
 import com.hankkin.reading.control.UserControl
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.ui.home.HomeFragment
@@ -67,6 +69,7 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initData() {
+        SPUtils.put(Constant.SP_KEY.WIFI_IMG,1)//默认加载图片
         RxPermissions(this).requestEach(Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.READ_CALENDAR,

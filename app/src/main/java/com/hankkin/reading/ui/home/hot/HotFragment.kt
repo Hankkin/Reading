@@ -18,13 +18,6 @@ import kotlinx.android.synthetic.main.fragment_hot.*
 class HotFragment : BaseMvpFragment<HotPresenter>(), HotContact.IView {
 
 
-    public fun newInstance(index: Int) {
-        val fragment = HotFragment()
-        val args = Bundle()
-        args.putInt("index", index)
-        fragment.arguments = args
-    }
-
     override fun getLayoutId(): Int {
         return R.layout.fragment_hot
     }

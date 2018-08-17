@@ -8,6 +8,7 @@
     <color name="blue">#0E6EB8</color>
     <color name="orginal">#FE9A76</color>
     <color name="grey">#A0A0A0</color>
+    <color name="grey_text">#999999</color>
     <color name="grey1">#dddddd</color>
     <color name="grey2">#dddeee</color>
     <color name="yellow">#FFD700</color>

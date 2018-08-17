@@ -84,6 +84,9 @@ object Constant {
 
     object SP_KEY{
         const val LOCK_OPEN = "lock_open"
+        const val LOCK_BACKUP_OPEN = "lock_backup_open"
+        const val WIFI_IMG = "wifi_img"
+        const val WORD_NOTE_BACKUP = "word_note_backup"
     }
 
 

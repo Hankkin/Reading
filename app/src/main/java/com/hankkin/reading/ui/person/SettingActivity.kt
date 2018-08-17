@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import com.bilibili.magicasakura.utils.ThemeUtils
 import com.cocosw.bottomsheet.BottomSheet
+import com.hankkin.library.utils.CacheUtils
 import com.hankkin.library.utils.SPUtils
 import com.hankkin.library.utils.StatusBarUtil
 import com.hankkin.reading.R
@@ -15,6 +16,7 @@ import com.hankkin.reading.common.Constant
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.utils.RxBusTools
 import com.hankkin.reading.utils.ThemeHelper
+import com.hankkin.reading.utils.ViewHelper
 import kotlinx.android.synthetic.main.activity_setting.*
 
 class SettingActivity : BaseActivity() {
@@ -27,9 +29,6 @@ class SettingActivity : BaseActivity() {
         return R.layout.activity_setting
     }
 
-    override fun initData() {
-    }
-
     override fun initViews(savedInstanceState: Bundle?) {
 
         setMiuiStatusBar()
@@ -38,11 +37,37 @@ class SettingActivity : BaseActivity() {
         tv_setting_theme_value.text = ThemeHelper.getName(this,mCurrentTheme)
         initThemeBuilder()
         rl_setting_theme.setOnClickListener { mThemeBuilder.show() }
+        //账号锁 账号备份 加载图片 单词备份
         switch_lock.isChecked = SPUtils.getInt(Constant.SP_KEY.LOCK_OPEN) != 0
+        switch_lock_backup.isChecked = SPUtils.getInt(Constant.SP_KEY.LOCK_BACKUP_OPEN) != 0
+        switch_img.isChecked = SPUtils.getInt(Constant.SP_KEY.WIFI_IMG) != 0
+        switch_word_backup.isChecked = SPUtils.getInt(Constant.SP_KEY.WORD_NOTE_BACKUP) != 0
+
+        tv_setting_lock_hint.setTextColor(if (switch_lock.isChecked) resources.getColor(ThemeHelper.getCurrentColor(this)) else resources.getColor(R.color.grey_text))
+        tv_setting_lock_backup_hint.setTextColor(if (switch_lock_backup.isChecked) resources.getColor(ThemeHelper.getCurrentColor(this)) else resources.getColor(R.color.grey_text))
+
         switch_lock.setOnCheckedChangeListener { buttonView, isChecked ->
             SPUtils.put(Constant.SP_KEY.LOCK_OPEN,if (isChecked) 1 else 0)
+            tv_setting_lock_hint.setTextColor(if (isChecked) resources.getColor(ThemeHelper.getCurrentColor(this)) else resources.getColor(R.color.grey_text))
         }
+        switch_lock_backup.setOnCheckedChangeListener { buttonView, isChecked ->
+            SPUtils.put(Constant.SP_KEY.LOCK_BACKUP_OPEN,if (isChecked) 1 else 0)
+            tv_setting_lock_backup_hint.setTextColor(if (isChecked) resources.getColor(ThemeHelper.getCurrentColor(this)) else resources.getColor(R.color.grey_text))
+        }
+        switch_img.setOnCheckedChangeListener { buttonView, isChecked ->
+            SPUtils.put(Constant.SP_KEY.WIFI_IMG,if (isChecked) 1 else 0)
+            RxBusTools.getDefault().post(EventMap.WifiImgEvent())
+        }
+        switch_word_backup.setOnCheckedChangeListener { buttonView, isChecked ->
+            SPUtils.put(Constant.SP_KEY.WORD_NOTE_BACKUP,if (isChecked) 1 else 0)
+        }
+        rl_setting_about.setOnClickListener { ViewHelper.showAboutDialog(this) }
     }
+
+    override fun initData() {
+        tv_setting_cache_size.setText(CacheUtils.getGlideCacheSize(this))
+    }
+
 
     fun initThemeBuilder() {
         mThemeBuilder = BottomSheet.Builder(this, R.style.BottomSheet_StyleDialog)

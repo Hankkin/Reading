@@ -31,12 +31,7 @@ class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IVie
         ViewHelper.setRefreshLayout(context, true, refresh_android, this)
     }
 
-    public fun newInstance(index: Int) {
-        val fragment = AndroidFragment()
-        val args = Bundle()
-        args.putInt("index", index)
-        fragment.arguments = args
-    }
+
 
     override fun getLayoutId(): Int {
         return R.layout.fragment_android
@@ -124,6 +119,9 @@ class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IVie
             } else {
                 getPresenter().cancelCollectHttp(it.id)
             }
+        }
+        else if (it is EventMap.WifiImgEvent){
+            mAdapter.notifyDataSetChanged()
         }
     }
 

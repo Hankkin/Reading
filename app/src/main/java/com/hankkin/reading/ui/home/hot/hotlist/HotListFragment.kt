@@ -12,6 +12,7 @@ import com.hankkin.reading.base.BaseMvpFragment
 import com.hankkin.reading.domain.ArticleBean
 import com.hankkin.reading.domain.BannerBean
 import com.hankkin.reading.domain.HotBean
+import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.ui.home.articledetail.CommonWebActivity
 import com.hankkin.reading.ui.home.search.SearchActivity
 import com.hankkin.reading.utils.GlideUtils
@@ -33,6 +34,11 @@ class HotListFragment : BaseMvpFragment<HotListPresenter>(), HotListContact.IVie
     private lateinit var hotBean: HotBean
     private var mPage: Int = 0
 
+    override fun registerPresenter() = HotListPresenter::class.java
+
+    override fun isHasBus(): Boolean {
+        return true
+    }
 
     override fun getLayoutId(): Int {
         return R.layout.fragment_hot_list
@@ -130,8 +136,12 @@ class HotListFragment : BaseMvpFragment<HotListPresenter>(), HotListContact.IVie
         getPresenter().queryKey(mPage,hotBean.name)
     }
 
-    override fun registerPresenter() = HotListPresenter::class.java
 
+    override fun onEvent(event: EventMap.BaseEvent) {
+        if (event is EventMap.WifiImgEvent){
+            mAdapter.notifyDataSetChanged()
+        }
+    }
 
 
     override fun onResume() {

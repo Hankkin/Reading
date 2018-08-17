@@ -9,10 +9,12 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.bilibili.magicasakura.widgets.TintImageView
 import com.bilibili.magicasakura.widgets.TintTextView
+import com.hankkin.library.utils.SPUtils
 import com.hankkin.library.view.RippleView
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.base.BaseRecyclerViewAdapter
 import com.hankkin.reading.adapter.base.BaseRecyclerViewHolder
+import com.hankkin.reading.common.Constant
 import com.hankkin.reading.control.UserControl
 import com.hankkin.reading.domain.ArticleDetailBean
 import com.hankkin.reading.event.EventMap
@@ -57,8 +59,14 @@ class AndroidAdapter : BaseRecyclerViewAdapter<ArticleDetailBean>() {
             if (bean.envelopePic.isEmpty()) {
                 ivPic.visibility = View.GONE
             } else {
-                ivPic.visibility = View.VISIBLE
-                GlideUtils.loadImageView(ivPic.context, bean.envelopePic, ivPic)
+                if (SPUtils.getInt(Constant.SP_KEY.WIFI_IMG) != 0){
+                    ivPic.visibility = View.VISIBLE
+                    GlideUtils.loadImageView(ivPic.context, bean.envelopePic, ivPic)
+                }
+                else{
+                    ivPic.visibility = View.VISIBLE
+                    ivPic.setImageResource(R.mipmap.bg_default)
+                }
             }
             llTags.removeAllViews()
             if (bean.tags != null) {

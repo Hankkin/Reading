@@ -9,6 +9,7 @@ import com.hankkin.reading.base.BaseMvpFragment
 import com.hankkin.reading.domain.ArticleBean
 import com.hankkin.reading.domain.BannerBean
 import com.hankkin.reading.domain.CateBean
+import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.utils.ViewHelper
 import com.stx.xhb.xbanner.XBanner
 import kotlinx.android.synthetic.main.fragment_android.*
@@ -25,6 +26,11 @@ class ProjectListFragment : BaseMvpFragment<ProjectListPresenter>(), ProjectList
     private lateinit var cateBean: CateBean
     private var mPage: Int = 0
 
+    override fun registerPresenter() = ProjectListPresenter::class.java
+
+    override fun isHasBus(): Boolean {
+        return true
+    }
 
     override fun getLayoutId(): Int {
         return R.layout.fragment_project_list
@@ -89,8 +95,12 @@ class ProjectListFragment : BaseMvpFragment<ProjectListPresenter>(), ProjectList
         getPresenter().getCateList(mPage,cateBean.id)
     }
 
-    override fun registerPresenter() = ProjectListPresenter::class.java
 
+    override fun onEvent(event: EventMap.BaseEvent) {
+        if (event is EventMap.WifiImgEvent){
+            mAdapter.notifyDataSetChanged()
+        }
+    }
 
 
 }

@@ -5,92 +5,298 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:padding="@dimen/dp_12"
     android:orientation="vertical"
+    android:padding="@dimen/dp_12"
     tools:context="com.hankkin.reading.ui.person.SettingActivity">
 
 
     <TextView
-        android:textStyle="bold"
-        android:textSize="@dimen/sp_20"
-        android:gravity="center_vertical"
         style="@style/normalTxt"
-        android:text="@string/setting"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_40" />
+        android:layout_height="@dimen/dp_40"
+        android:gravity="center_vertical"
+        android:text="@string/setting"
+        android:textSize="@dimen/sp_20"
+        android:textStyle="bold" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
             <RelativeLayout
-                android:clickable="true"
                 android:id="@+id/rl_setting_theme"
-                android:paddingBottom="@dimen/dp_12"
-                android:paddingTop="@dimen/dp_12"
-                android:background="?attr/selectableItemBackground"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:paddingBottom="@dimen/dp_12"
+                android:paddingTop="@dimen/dp_12">
+
                 <TextView
-                    android:textColor="@color/black"
-                    android:layout_centerVertical="true"
                     style="@style/normalTxt"
-                    android:text="@string/setting_theme"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/setting_theme"
+                    android:textColor="@color/black" />
+
                 <com.bilibili.magicasakura.widgets.TintTextView
-                    android:textColor="@color/theme_color_primary"
                     android:id="@+id/tv_setting_theme_value"
                     style="@style/themeTxt"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/theme_color_primary" />
             </RelativeLayout>
 
             <View
-                android:background="@color/normal_bg"
                 android:layout_width="match_parent"
-                android:layout_height="0.5dp"/>
+                android:layout_height="0.5dp"
+                android:background="@color/normal_bg" />
 
             <RelativeLayout
-                android:clickable="true"
                 android:id="@+id/rl_setting_lock"
-                android:paddingBottom="@dimen/dp_12"
-                android:paddingTop="@dimen/dp_12"
-                android:background="?attr/selectableItemBackground"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:paddingBottom="@dimen/dp_12"
+                android:paddingTop="@dimen/dp_12">
+
                 <TextView
-                    android:textColor="@color/black"
                     android:id="@+id/tv_setting_lock"
                     style="@style/normalTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="@string/setting_lock"
+                    android:textColor="@color/black" />
+
+                <com.bilibili.magicasakura.widgets.TintTextView
+                    android:id="@+id/tv_setting_lock_hint"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:layout_marginTop="@dimen/dp_4"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/switch_lock"
+                    android:layout_marginTop="@dimen/dp_4"
                     android:text="@string/setting_lock_hint"
-                    android:textSize="@dimen/sp_13"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:textColor="@color/grey_text"
+                    android:textSize="@dimen/sp_13" />
+
                 <Switch
                     android:id="@+id/switch_lock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:theme="@style/mdCheckBox"
+                    android:theme="@style/mdCheckBox" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/normal_bg" />
+
+
+            <RelativeLayout
+                android:id="@+id/rl_setting_lock_backup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:paddingBottom="@dimen/dp_12"
+                android:paddingTop="@dimen/dp_12">
+
+                <com.bilibili.magicasakura.widgets.TintTextView
+                    android:id="@+id/tv_setting_lock_backup"
+                    style="@style/normalTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/setting_lock_backup"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/tv_setting_lock_backup_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/switch_lock_backup"
+                    android:layout_marginTop="@dimen/dp_4"
+                    android:text="@string/setting_lock_backup_hint"
+                    android:textColor="@color/grey_text"
+                    android:textSize="@dimen/sp_13" />
+
+                <Switch
+                    android:id="@+id/switch_lock_backup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:theme="@style/mdCheckBox" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/normal_bg" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.bilibili.magicasakura.widgets.TintTextView
+                    style="@style/normalTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:text="@string/setting_common"
+                    android:textColor="@color/theme_color_primary" />
+                <RelativeLayout
+                    android:id="@+id/rl_setting_word_backup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:paddingBottom="@dimen/dp_12"
+                    android:paddingTop="@dimen/dp_12">
+
+                    <TextView
+                        android:id="@+id/tv_setting_word_backup"
+                        style="@style/normalTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/setting_word_backup"
+                        android:textColor="@color/black" />
+
+                    <Switch
+                        android:id="@+id/switch_word_backup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:theme="@style/mdCheckBox" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/normal_bg" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_setting_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:paddingBottom="@dimen/dp_12"
+                    android:paddingTop="@dimen/dp_12">
+
+                    <TextView
+                        android:id="@+id/tv_setting_img"
+                        style="@style/normalTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/setting_img"
+                        android:textColor="@color/black" />
+
+                    <Switch
+                        android:id="@+id/switch_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:theme="@style/mdCheckBox" />
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/normal_bg" />
+
+            <com.bilibili.magicasakura.widgets.TintTextView
+                style="@style/normalTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                android:text="@string/setting_other"
+                android:textColor="@color/theme_color_primary" />
+
+            <RelativeLayout
+                android:id="@+id/rl_setting_clear_cache"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:paddingBottom="@dimen/dp_12"
+                android:paddingTop="@dimen/dp_12">
+
+                <TextView
+                    android:id="@+id/tv_setting_clear_cache"
+                    style="@style/normalTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/setting_clear_cache"
+                    android:textColor="@color/black" />
+                <com.bilibili.magicasakura.widgets.TintTextView
+                    android:textSize="@dimen/sp_14"
+                    android:id="@+id/tv_setting_cache_size"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/theme_color_primary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </RelativeLayout>
 
             <View
-                android:background="@color/normal_bg"
                 android:layout_width="match_parent"
-                android:layout_height="0.5dp"/>
+                android:layout_height="0.5dp"
+                android:background="@color/normal_bg" />
 
+            <RelativeLayout
+                android:id="@+id/rl_setting_about"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:paddingBottom="@dimen/dp_12"
+                android:paddingTop="@dimen/dp_12">
+
+                <TextView
+                    style="@style/normalTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/drawer_about"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/normal_bg" />
+
+            <RelativeLayout
+                android:id="@+id/rl_setting_api"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:paddingBottom="@dimen/dp_12"
+                android:paddingTop="@dimen/dp_12">
+
+                <TextView
+                    style="@style/normalTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/setting_api"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
 
         </LinearLayout>
     </ScrollView>
