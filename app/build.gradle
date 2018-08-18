@@ -10,6 +10,7 @@ apply plugin: 'org.greenrobot.greendao'
 android {
     sourceSets.main.jniLibs.srcDirs = ['libs']
     compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
     defaultConfig {
         applicationId "com.hankkin.reading"
         minSdkVersion rootProject.ext.android.minSdkVersion
@@ -26,7 +27,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    buildToolsVersion rootProject.ext.android.buildToolsVersion
+    splits {
+        abi {
+            enable true
+            reset()
+            include "x86", "armeabi-v7a"
+            universalApk true
+        }
+    }
 }
 
 greendao {

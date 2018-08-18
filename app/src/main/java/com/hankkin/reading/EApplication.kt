@@ -41,7 +41,7 @@ class EApplication : Application() ,ThemeUtils.switchColor{
         ThemeUtils.setSwitchColor(this)
         initLeakCanary()
         initDao()
-        YouDaoApplication.init(this,"46dbe20b62a7eae3")
+//        YouDaoApplication.init(this,"46dbe20b62a7eae3")
     }
     fun initLeakCanary(){
         if (LeakCanary.isInAnalyzerProcess(this)){
@@ -51,7 +51,7 @@ class EApplication : Application() ,ThemeUtils.switchColor{
     }
 
     fun initDao(){
-        val devOpenHelper = DaoMaster.DevOpenHelper(this,Constant.DB.DB_NAME,null)
+        val devOpenHelper = DaoMaster.DevOpenHelper(this,Constant.COMMON.DB_NAME,null)
         val daoMaster = DaoMaster(devOpenHelper.writableDb)
         daoSession = daoMaster.newSession()
     }

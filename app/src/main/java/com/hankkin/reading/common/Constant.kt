@@ -5,6 +5,13 @@ package com.hankkin.reading.common
  */
 object Constant {
 
+
+    object COMMON{
+        const val WEATHER_KEY = "lwfgtgl1hehjy4vd"
+        const val DB_NAME = "reading.db"
+        const val SP_NAME = "Reading"
+    }
+
     object AboutUrl {
         const val GITHUB = "https://github.com/Hankkin"
         const val GITHUB_TITLE = "Github"
@@ -16,11 +23,7 @@ object Constant {
         const val CSDN_TITLE = "CSDN"
     }
 
-    const val WEATHER_KEY = "lwfgtgl1hehjy4vd"
 
-    object COMMON{
-        const val SP_NAME = "Reading"
-    }
 
     /**
      *  HTTP URL
@@ -54,9 +57,6 @@ object Constant {
         const val TRANSLATE = "translate"
     }
 
-    object DB {
-        const val DB_NAME = "reading.db"
-    }
 
     object TOOLS {
         const val ID_KUAIDI = 1

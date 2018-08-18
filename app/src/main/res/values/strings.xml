@@ -132,6 +132,8 @@
     <string name="setting_lock_backup_hint">开启账号备份后，您保存的账号将会被扫描，方便您清除缓存或者卸载软件后，下次进入Reading可直接使用您的账号本子功能。</string>
     <string name="setting_img">默认加载图片</string>
     <string name="setting_clear_cache">清除缓存</string>
+    <string name="setting_clear_cache_hint">确定要清除缓存吗？</string>
+    <string name="setting_clear_cache_success">清除完毕</string>
     <string name="setting_other">其他</string>
     <string name="setting_common">通用</string>
     <string name="setting_api">开源第三方</string>

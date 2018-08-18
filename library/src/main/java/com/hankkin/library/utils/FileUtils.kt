@@ -77,7 +77,7 @@ object FileUtils{
 
         val kiloByte = size / 1024
         if (kiloByte < 1) {
-            return size.toString() + "Byte"
+            return "0KB"
         }
 
         val megaByte = kiloByte / 1024

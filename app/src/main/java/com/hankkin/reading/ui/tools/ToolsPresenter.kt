@@ -13,7 +13,7 @@ class ToolsPresenter : RxLifePresenter<ToolsContract.IView>(), ToolsContract.IPr
 
     override fun getWeather(city: String) {
         val map = HashMap<String, Any>()
-        map.put("key", Constant.WEATHER_KEY)
+        map.put("key", Constant.COMMON.WEATHER_KEY)
         map.put("location", city)
         HttpClient.Builder.getToolsHttp().getWeather(map)
                 .subscribeOn(Schedulers.io())
