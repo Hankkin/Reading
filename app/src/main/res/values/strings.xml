@@ -111,6 +111,7 @@
     <string name="person_msg">私信</string>
     <string name="person_at">\@</string>
     <string name="person_fans">粉丝</string>
+    <string name="person_theme">主题风格</string>
 
     <string name="person_info_title">个人主页</string>
     <string name="person_info_boy">男</string>

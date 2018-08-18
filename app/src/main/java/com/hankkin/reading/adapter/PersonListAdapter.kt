@@ -1,5 +1,6 @@
 package com.hankkin.reading.adapter
 
+import android.content.Intent
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RelativeLayout
@@ -10,6 +11,7 @@ import com.hankkin.reading.R
 import com.hankkin.reading.adapter.base.BaseRecyclerViewAdapter
 import com.hankkin.reading.adapter.base.BaseRecyclerViewHolder
 import com.hankkin.reading.domain.PersonListBean
+import com.hankkin.reading.ui.person.SettingActivity
 
 /**
  * Created by huanghaijie on 2018/6/28.
@@ -29,7 +31,11 @@ class PersonListAdapter : BaseRecyclerViewAdapter<PersonListBean>() {
         override fun onBindViewHolder(bean: PersonListBean?, position: Int) {
             tvText.text = bean!!.text
             ivIcon.setImageResource(bean.icon)
-            rlItem.setOnRippleCompleteListener{ ToastUtils.showToast(ivIcon.context,bean.text) }
+            rlItem.setOnRippleCompleteListener{
+                when(position){
+                    3 -> { rlItem.context.startActivity(Intent(rlItem.context, SettingActivity::class.java)) }
+                }
+            }
         }
 
     }

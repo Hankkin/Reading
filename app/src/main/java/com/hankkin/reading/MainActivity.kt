@@ -72,15 +72,15 @@ class MainActivity : BaseActivity() {
         SPUtils.put(Constant.SP_KEY.WIFI_IMG,1)//默认加载图片
         RxPermissions(this).requestEach(Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.READ_CALENDAR,
-                Manifest.permission.READ_CALL_LOG,
-                Manifest.permission.READ_CONTACTS,
+//                Manifest.permission.READ_CALENDAR,
+//                Manifest.permission.READ_CALL_LOG,
+//                Manifest.permission.READ_CONTACTS,
                 Manifest.permission.READ_PHONE_STATE,
-                Manifest.permission.READ_SMS,
-                Manifest.permission.RECORD_AUDIO,
-                Manifest.permission.CAMERA,
-                Manifest.permission.CALL_PHONE,
-                Manifest.permission.SEND_SMS,
+//                Manifest.permission.READ_SMS,
+//                Manifest.permission.RECORD_AUDIO,
+//                Manifest.permission.CAMERA,
+//                Manifest.permission.CALL_PHONE,
+//                Manifest.permission.SEND_SMS,
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE).subscribe { p0 ->
             if (p0.granted) {
