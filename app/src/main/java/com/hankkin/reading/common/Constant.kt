@@ -55,6 +55,8 @@ object Constant {
     object CONSTANT_KEY {
         const val CODE = "code"
         const val TRANSLATE = "translate"
+        const val KEY_WEB_URL = "web_url"
+        const val KEY_WEB_TITLE = "web_title"
     }
 
 

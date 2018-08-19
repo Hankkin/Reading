@@ -9,14 +9,13 @@ import android.webkit.SslErrorHandler
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import com.hankkin.library.utils.SPUtils
 import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseMvpActivity
 import com.hankkin.reading.common.Constant
 import com.hankkin.reading.control.UserControl
 import com.hankkin.reading.domain.UserBean
-import com.hankkin.reading.utils.Key4Intent
 import com.hankkin.reading.utils.LoadingUtils
-import com.hankkin.library.utils.SPUtils
 import kotlinx.android.synthetic.main.activity_common_web.*
 import kotlinx.android.synthetic.main.layout_title_bar_back.*
 
@@ -81,8 +80,8 @@ open class AuthorizeWebActivity : BaseMvpActivity<AuthorizePresenter>(), View.On
     }
 
     fun loadUrl() {
-        var url = intent.getStringExtra(Key4Intent.KEY_WEB_URL)
-        var title = intent.getStringExtra(Key4Intent.KEY_WEB_TITLE)
+        var url = intent.getStringExtra(Constant.CONSTANT_KEY.KEY_WEB_URL)
+        var title = intent.getStringExtra(Constant.CONSTANT_KEY.KEY_WEB_TITLE)
         if (!url.isNullOrEmpty()) {
             wb_common.loadUrl(url)
         }

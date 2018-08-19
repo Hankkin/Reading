@@ -1,4 +1,4 @@
-package com.hankkin.reading.utils
+package com.hankkin.library.utils
 
 import android.content.Context
 
