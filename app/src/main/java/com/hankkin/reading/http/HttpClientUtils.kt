@@ -16,7 +16,6 @@ import javax.net.ssl.SSLContext
 import javax.net.ssl.SSLSocketFactory
 import javax.net.ssl.X509TrustManager
 
-
 /**
  * Created by huanghaijie on 2018/5/16.
  */
