@@ -16,4 +16,5 @@ object JsonUtils{
         val gson = Gson()
         return gson.toJson(obj)
     }
+
 }

@@ -1,14 +1,109 @@
 package com.hankkin.library.utils
 
+import android.os.Environment
 import android.text.TextUtils
-import java.io.File
+import java.io.*
 import java.math.BigDecimal
+import java.nio.charset.Charset
 
 
 /**
  * Created by huanghaijie on 2018/8/17.
  */
 object FileUtils{
+    const val TAG = "fileutils"
+
+    fun initSd(apkName: String) {
+        val file = File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+apkName)
+        if (!file.exists()) file.mkdirs()
+        LogUtils.d("$TAG 初始化文件夹成功 ${file.absolutePath}")
+    }
+
+    /**
+     * 文件或者文件夹是否存在.
+     */
+    fun fileExists(filePath: String): Boolean {
+        val file = File(filePath)
+        return file.exists()
+    }
+
+    /**
+     * 文件复制.
+     */
+    fun copy(oldPath: String, newPath: String): Boolean {
+        try {
+            var bytesum = 0
+            var byteread = 0
+            val oldfile = File(oldPath)
+            val newFile = File(newPath)
+            if (!newFile.exists()) {
+                newFile.createNewFile()
+            }
+            if (oldfile.exists()) { //文件存在时
+                val inStream = FileInputStream(oldPath) //读入原文件
+                val fs = FileOutputStream(newPath)
+                val buffer = ByteArray(1444)
+                val length: Int
+                while (inStream.read(buffer) != -1) {
+                    byteread = inStream.read(buffer)
+                    bytesum += byteread //字节数 文件大小
+                    println(bytesum)
+                    fs.write(buffer, 0, byteread)
+                }
+                inStream.close()
+            }
+        } catch (e: Exception) {
+            println("复制单个文件操作出错")
+            e.printStackTrace()
+        }
+
+
+
+        return true
+    }
+
+    /**
+     * 复制整个文件夹内.
+     *
+     * @param oldPath string 原文件路径如：c:/fqf.
+     * @param newPath string 复制后路径如：f:/fqf/ff.
+     */
+    fun copyFolder(oldPath: String, newPath: String) {
+        try {
+            File(newPath).mkdirs() // 如果文件夹不存在 则建立新文件夹
+            val a = File(oldPath)
+            val file = a.list()
+            var temp: File? = null
+            for (i in file!!.indices) {
+                if (oldPath.endsWith(File.separator)) {
+                    temp = File(oldPath + file[i])
+                } else {
+                    temp = File(oldPath + File.separator + file[i])
+                }
+
+                if (temp.isFile) {
+                    val input = FileInputStream(temp)
+                    val output = FileOutputStream(newPath + "/" + temp.name.toString())
+                    val b = ByteArray(1024 * 5)
+                    var len: Int
+                    while (input.read(b) != -1) {
+                        len = input.read(b)
+                        output.write(b, 0, len)
+                    }
+                    output.flush()
+                    output.close()
+                    input.close()
+                }
+                if (temp.isDirectory) {// 如果是子文件夹
+                    copyFolder(oldPath + "/" + file[i], newPath + "/" + file[i])
+                }
+            }
+        } catch (e: NullPointerException) {
+        } catch (e: Exception) {
+        }
+
+    }
+
     /**
      * 获取指定文件夹内所有文件大小的和
      *
@@ -100,5 +195,38 @@ object FileUtils{
         val result4 = BigDecimal(teraBytes)
 
         return result4.setScale(2, BigDecimal.ROUND_HALF_UP).toPlainString() + "TB"
+    }
+
+    /**
+     * 用UTF8保存一个文件.
+     */
+    @Throws(IOException::class)
+    fun saveFileUTF8(path: String, content: String, append: Boolean?) {
+        val fos = FileOutputStream(path, append!!)
+        val out = OutputStreamWriter(fos, "UTF-8")
+        out.write(content)
+        out.flush()
+        out.close()
+        fos.flush()
+        fos.close()
+    }
+
+    /**
+     * 用UTF8读取一个文件.
+     */
+    fun getFileUTF8(path: String): String {
+        var result = ""
+        var fin: InputStream? = null
+        try {
+            fin = FileInputStream(path)
+            val length = fin.available()
+            val buffer = ByteArray(length)
+            fin.read(buffer)
+            fin.close()
+            result = String(buffer, Charset.forName("UTF-8"))
+        } catch (e: Exception) {
+        }
+
+        return result
     }
 }

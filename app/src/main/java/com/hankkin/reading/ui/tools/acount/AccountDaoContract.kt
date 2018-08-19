@@ -19,4 +19,6 @@ interface AccountDaoContract : BaseDaoContract{
 
     fun updateAccountById(accountBean: AccountBean)
 
+    fun insertAccounts(data: MutableList<AccountBean>)
+
 }

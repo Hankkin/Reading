@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat.startActivity
 import com.afollestad.materialdialogs.DialogAction
 import com.afollestad.materialdialogs.MaterialDialog
+import com.hankkin.library.utils.EncodeUtils
+import com.hankkin.library.utils.EncryptUtils
 import com.hankkin.library.utils.ToastUtils
 import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseActivity
@@ -66,7 +68,7 @@ class AccountDetailActivity : BaseActivity() {
             tv_account_detail_name.text = accountBean!!.name
             tv_account_detail_number.text = accountBean!!.number
             tv_account_detail_cate.text = accountBean!!.cate
-            tv_account_detail_pwd.text = accountBean!!.password
+            tv_account_detail_pwd.text = EncryptUtils.convertMD5(accountBean!!.password)
             tv_account_detail_bz.text = accountBean!!.beizhu
         }
     }

@@ -9,6 +9,10 @@ import com.hankkin.reading.mvp.model.BaseDao
  * @date 2018/8/14
  */
 class AccountDao : BaseDao(),AccountDaoContract{
+    override fun insertAccounts(data: MutableList<AccountBean>) {
+        daoSession.accountBeanDao.insertOrReplaceInTx(data)
+    }
+
     /**
      * 更新
      */

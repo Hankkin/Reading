@@ -228,6 +228,7 @@ class MainActivity : BaseActivity() {
     }
 
     fun changeLogo(){
+        if (SPUtils.getInt(Constant.SP_KEY.LOGO) == 0) return
         enableCompont(ThemeHelper.getNameStr(this))
         disableComponent("MainActivity")
         for (str in ThemeHelper.themeList){

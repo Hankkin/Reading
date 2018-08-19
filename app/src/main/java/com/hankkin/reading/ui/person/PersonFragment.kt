@@ -45,6 +45,7 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
         mAdapter.data.add(PersonListBean(R.mipmap.icon_person_star, resources.getString(R.string.person_star)))
         mAdapter.data.add(PersonListBean(R.mipmap.icon_person_follow, resources.getString(R.string.person_follow)))
         mAdapter.data.add(PersonListBean(R.mipmap.icon_person_list_theme, resources.getString(R.string.person_theme)))
+        mAdapter.data.add(PersonListBean(R.mipmap.icon_person_db, resources.getString(R.string.setting_db)))
         mAdapter.data.add(PersonListBean(R.mipmap.icon_person_set_list, resources.getString(R.string.setting)))
         xrv_person_lisy.layoutManager = LinearLayoutManager(context)
         xrv_person_lisy.adapter = mAdapter

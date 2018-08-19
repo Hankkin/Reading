@@ -3,7 +3,7 @@
     rv_centered="true"
     android:id="@+id/rl_adapter_person"
     android:paddingLeft="@dimen/dp_12"
-    android:paddingTop="@dimen/dp_12"
+    android:paddingTop="@dimen/dp_16"
     android:paddingRight="@dimen/dp_12"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"

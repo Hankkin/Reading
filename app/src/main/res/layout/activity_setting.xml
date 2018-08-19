@@ -155,7 +155,7 @@
                     android:text="@string/setting_common"
                     android:textColor="@color/theme_color_primary" />
                 <RelativeLayout
-                    android:id="@+id/rl_setting_word_backup"
+                    android:id="@+id/rl_setting_logo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_10"
@@ -169,11 +169,11 @@
                         style="@style/normalTxt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/setting_word_backup"
+                        android:text="@string/setting_logo"
                         android:textColor="@color/black" />
 
                     <Switch
-                        android:id="@+id/switch_word_backup"
+                        android:id="@+id/switch_logo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"

@@ -5,12 +5,14 @@ import android.content.Context
 import android.support.annotation.ColorInt
 import android.support.annotation.ColorRes
 import com.bilibili.magicasakura.utils.ThemeUtils
+import com.hankkin.library.utils.AppUtils
+import com.hankkin.library.utils.FileUtils
 import com.hankkin.library.utils.SPUtils
 import com.hankkin.library.utils.ToastUtils
 import com.hankkin.reading.common.Constant
 import com.hankkin.reading.greendao.DaoMaster
 import com.hankkin.reading.greendao.DaoSession
-import com.hankkin.reading.utils.FileUtils
+import com.hankkin.reading.utils.GreenOpenHelper
 import com.hankkin.reading.utils.ThemeHelper
 import com.hankkin.reading.utils.ThemeHelper.*
 import com.squareup.leakcanary.LeakCanary
@@ -34,14 +36,14 @@ class EApplication : Application() ,ThemeUtils.switchColor{
         super.onCreate()
         instance = this
 
-        FileUtils.initSd()
+        FileUtils.initSd(AppUtils.getAppName(this)!!)
         SPUtils.init(this,Constant.COMMON.SP_NAME)
         ToastUtils.init(this,resources.getColor(R.color.theme_color_primary))
 
         ThemeUtils.setSwitchColor(this)
         initLeakCanary()
         initDao()
-//        YouDaoApplication.init(this,"46dbe20b62a7eae3")
+        YouDaoApplication.init(this,"46dbe20b62a7eae3")
     }
     fun initLeakCanary(){
         if (LeakCanary.isInAnalyzerProcess(this)){
@@ -51,7 +53,7 @@ class EApplication : Application() ,ThemeUtils.switchColor{
     }
 
     fun initDao(){
-        val devOpenHelper = DaoMaster.DevOpenHelper(this,Constant.COMMON.DB_NAME,null)
+        val devOpenHelper = GreenOpenHelper(this, Constant.COMMON.DB_NAME, null)
         val daoMaster = DaoMaster(devOpenHelper.writableDb)
         daoSession = daoMaster.newSession()
     }

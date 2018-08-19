@@ -6,6 +6,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.afollestad.materialdialogs.MaterialDialog
+import com.hankkin.library.utils.EncodeUtils
+import com.hankkin.library.utils.EncryptUtils
 import com.hankkin.library.utils.ToastUtils
 import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseActivity
@@ -78,7 +80,7 @@ class AddAcountActivity : BaseActivity() {
             et_add_account_name.setSelection(accountBean!!.name.length)
             et_add_account_number.setText(accountBean!!.number)
             et_add_account_number.setSelection(accountBean!!.number.length)
-            et_add_account_password.setText(accountBean!!.password)
+            et_add_account_password.setText(EncryptUtils.convertMD5(accountBean!!.password))
             et_add_account_password.setSelection(accountBean!!.password.length)
             et_add_account_bz.setText(accountBean!!.beizhu)
             et_add_account_bz.setSelection(accountBean!!.beizhu.length)
@@ -128,7 +130,7 @@ class AddAcountActivity : BaseActivity() {
         accountBean.id = if(accountId != 0L) this!!.accountId!! else accountBean.hashCode().toLong()
         accountBean.name = et_add_account_name.text.toString()
         accountBean.number = et_add_account_number.text.toString()
-        accountBean.password = et_add_account_password.text.toString()
+        accountBean.password = EncryptUtils.string2MD5(et_add_account_password.text.toString())
         accountBean.createAt = System.currentTimeMillis()
         accountBean.beizhu = et_add_account_bz.text.toString()
         if (accountId != 0L){

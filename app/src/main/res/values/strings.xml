@@ -127,10 +127,12 @@
     <string name="setting">设置</string>
     <string name="setting_theme">个性换肤</string>
     <string name="setting_lock">开启账号锁</string>
-    <string name="setting_lock_backup">账号备份</string>
-    <string name="setting_word_backup">单词本备份</string>
+    <string name="setting_lock_backup">数据备份</string>
+    <string name="setting_logo">百变logo</string>
+    <string name="setting_logo_hint">开启百变logo后，部分机型可能会因此导致代码崩溃，请问您是否确定开启百变Logo？</string>
+    <string name="setting_logo_success">开启百变logo成功</string>
     <string name="setting_lock_hint">请注意，为了保护您的账号密码安全，建议开启账号锁，账号本子利用本地数据库进行缓存，密码进行加密。同时账号本子备份到您的手机中，请您放心使用。</string>
-    <string name="setting_lock_backup_hint">开启账号备份后，您保存的账号将会被扫描，方便您清除缓存或者卸载软件后，下次进入Reading可直接使用您的账号本子功能。</string>
+    <string name="setting_lock_backup_hint">开启账号备份后，您保存的账号、单词本将会被扫描，方便您清除缓存或者卸载软件后，下次进入Reading可直接使用您的账号本子、单词本功能。</string>
     <string name="setting_img">默认加载图片</string>
     <string name="setting_clear_cache">清除缓存</string>
     <string name="setting_clear_cache_hint">确定要清除缓存吗？</string>
@@ -138,6 +140,9 @@
     <string name="setting_other">其他</string>
     <string name="setting_common">通用</string>
     <string name="setting_api">开源第三方</string>
+    <string name="setting_db">数据恢复</string>
+    <string name="setting_db_hint">请到设置界面先开启数据备份，然后可导入本地数据库,是否去开启？</string>
+    <string name="setting_db_success">导入数据库成功</string>
 
     <string name="work_kuaidi">查快递</string>
     <string name="work_pwd_note">账号本子</string>

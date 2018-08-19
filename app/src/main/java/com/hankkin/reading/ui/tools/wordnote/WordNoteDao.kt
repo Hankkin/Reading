@@ -9,6 +9,11 @@ import com.hankkin.reading.mvp.model.BaseDao
  * @date 2018/8/12
  */
 class WordNoteDao : BaseDao(),WordNoteDaoContract{
+
+    override fun insertWordNotes(data: MutableList<WordNoteBean>) {
+        daoSession.wordNoteBeanDao.insertOrReplaceInTx(data)
+    }
+
     /**
      * 插入更新单词
      */
