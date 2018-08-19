@@ -62,11 +62,11 @@ class SettingActivity : BaseActivity() {
         switch_logo.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked){
                 ViewHelper.showConfirmDialog(this,resources.getString(R.string.setting_logo_hint), MaterialDialog.SingleButtonCallback { dialog, which ->
-                    SPUtils.put(Constant.SP_KEY.LOCK_OPEN, 1)
+                    SPUtils.put(Constant.SP_KEY.LOGO, 1)
                     ToastUtils.showInfo(this,resources.getString(R.string.setting_logo_success))
                 })
             }else{
-                SPUtils.put(Constant.SP_KEY.LOCK_OPEN, 0)
+                SPUtils.put(Constant.SP_KEY.LOGO, 0)
             }
         }
         rl_setting_about.setOnClickListener { ViewHelper.showAboutDialog(this) }
