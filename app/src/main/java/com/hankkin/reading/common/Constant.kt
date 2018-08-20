@@ -91,6 +91,7 @@ object Constant {
         const val LOGO = "logo"
         const val WORDNOTE = "wordnote"
         const val ACCOUNT = "account"
+        const val DB_UPDATE_TIME = "da_update_time"
     }
 
 

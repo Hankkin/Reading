@@ -200,6 +200,11 @@ public class TranslateBean implements Serializable{
         }
         return webExplains;
     }
+
+    public List<WebExplain> getMyWebExplains(){
+        return webExplains;
+    }
+
     /** Resets a to-many relationship, making the next get call to query for a fresh result. */
     @Generated(hash = 1686472250)
     public synchronized void resetWebExplains() {

@@ -12,4 +12,5 @@ interface TranslateDaoContract : BaseDaoContract{
     fun insertTranslateHistory(translateBean: TranslateBean)
     fun queryTranslateHistoty(): MutableList<TranslateBean>?
     fun deleteTranslateHistory(id: Long)
+    fun insertTranslates(data: MutableList<TranslateBean>)
 }

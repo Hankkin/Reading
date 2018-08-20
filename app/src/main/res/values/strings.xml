@@ -128,6 +128,14 @@
     <string name="setting_theme">个性换肤</string>
     <string name="setting_lock">开启账号锁</string>
     <string name="setting_lock_backup">数据备份</string>
+    <string name="setting_lock_data_backup">数据备份</string>
+    <string name="setting_lock_data_restore">数据还原</string>
+    <string name="setting_lock_data_restore_hint">检测到您本地有之前的数据文件，请问您是否需要还原该数据？</string>
+    <string name="setting_lock_data_restore_success">数据还原成功</string>
+    <string name="setting_lock_data_restore_fail">数据还原失败</string>
+    <string name="setting_lock_backup_success">数据备份成功</string>
+    <string name="setting_lock_backup_new">数据已经最新...</string>
+    <string name="setting_lock_backup_fail">数据备份失败</string>
     <string name="setting_logo">百变logo</string>
     <string name="setting_logo_hint">开启百变logo后，部分机型可能会因此导致代码崩溃，请问您是否确定开启百变Logo？</string>
     <string name="setting_logo_success">开启百变logo成功</string>

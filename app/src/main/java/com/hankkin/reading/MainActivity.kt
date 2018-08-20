@@ -20,6 +20,8 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import com.afollestad.materialdialogs.DialogAction
+import com.afollestad.materialdialogs.MaterialDialog
 import com.bilibili.magicasakura.utils.ThemeUtils
 import com.hankkin.library.utils.LogUtils
 import com.hankkin.library.utils.SPUtils
@@ -38,6 +40,9 @@ import com.hankkin.reading.ui.tools.ToolsFragment
 import com.hankkin.reading.ui.user.collect.MyCollectActivity
 import com.hankkin.reading.utils.*
 import com.tbruyelle.rxpermissions2.RxPermissions
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 
 @SuppressLint("RestrictedApi")
@@ -69,7 +74,7 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initData() {
-        SPUtils.put(Constant.SP_KEY.WIFI_IMG,1)//默认加载图片
+        SPUtils.put(Constant.SP_KEY.WIFI_IMG, 1)//默认加载图片
         RxPermissions(this).requestEach(Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
 //                Manifest.permission.READ_CALENDAR,
@@ -95,6 +100,7 @@ class MainActivity : BaseActivity() {
         if (UserControl.isLogin()) {
             setNavHeader()
         }
+        checkSync()
 
     }
 
@@ -172,7 +178,6 @@ class MainActivity : BaseActivity() {
     }
 
 
-
     fun setNavHeader() {
         val navView = nav_view.getHeaderView(0)
         val tvName = navView.findViewById<TextView>(R.id.tv_username)
@@ -181,7 +186,7 @@ class MainActivity : BaseActivity() {
 
     fun changeTheme() {
         setStatuBar()
-        ToastUtils.init(this,resources.getColor(ThemeHelper.getCurrentColor(this)))
+        ToastUtils.init(this, resources.getColor(ThemeHelper.getCurrentColor(this)))
         ThemeUtils.refreshUI(this, object : ThemeUtils.ExtraRefreshable {
             override fun refreshSpecificView(view: View?) {
             }
@@ -227,24 +232,52 @@ class MainActivity : BaseActivity() {
 
     }
 
-    fun changeLogo(){
+    private fun changeLogo() {
         if (SPUtils.getInt(Constant.SP_KEY.LOGO) == 0) return
         enableCompont(ThemeHelper.getNameStr(this))
         disableComponent("MainActivity")
-        for (str in ThemeHelper.themeList){
-            if (str != ThemeHelper.getNameStr(this)){
+        for (str in ThemeHelper.themeList) {
+            if (str != ThemeHelper.getNameStr(this)) {
                 disableComponent(str)
             }
         }
     }
 
-    fun enableCompont(compontName: String){
-        packageManager.setComponentEnabledSetting(ComponentName(baseContext,packageName+"."+compontName),
+    private fun checkSync() {
+        if (DBUtils.isAutoSync(this)) {
+            ViewHelper.showConfirmDialog(this, resources.getString(R.string.setting_lock_data_restore_hint),
+                    MaterialDialog.SingleButtonCallback { dialog, which ->
+                        val disposable = Observable.create<Boolean> {
+                            try {
+                                DBUtils.loadDBData(this)
+                                it.onNext(true)
+                                it.onComplete()
+                            } catch (e: Exception) {
+                                it.onError(e)
+                            }
+                        }
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe({
+                                    LoadingUtils.hideLoading()
+                                    ToastUtils.showInfo(this, resources.getString(R.string.setting_lock_data_restore_success))
+                                }, {
+                                    LoadingUtils.hideLoading()
+                                    ToastUtils.showError(this, resources.getString(R.string.setting_lock_data_restore_fail))
+                                })
+                        LoadingUtils.showLoading(this)
+                        disposables.add(disposable)
+                    })
+        }
+    }
+
+    private fun enableCompont(compontName: String) {
+        packageManager.setComponentEnabledSetting(ComponentName(baseContext, packageName + "." + compontName),
                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP)
     }
 
-    fun disableComponent(compontName: String){
-        packageManager.setComponentEnabledSetting(ComponentName(baseContext,packageName+"."+compontName),
+    private fun disableComponent(compontName: String) {
+        packageManager.setComponentEnabledSetting(ComponentName(baseContext, packageName + "." + compontName),
                 PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP)
     }
 

@@ -108,6 +108,11 @@ public class WordNoteBean implements Serializable {
         }
         return translateBean;
     }
+
+    public TranslateBean getMyTranslate(){
+        return translateBean;
+    }
+
     /** called by internal mechanisms, do not call yourself. */
     @Generated(hash = 1759489943)
     public void setTranslateBean(@NotNull TranslateBean translateBean) {

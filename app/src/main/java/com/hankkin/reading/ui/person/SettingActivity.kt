@@ -15,10 +15,11 @@ import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseActivity
 import com.hankkin.reading.common.Constant
 import com.hankkin.reading.event.EventMap
-import com.hankkin.reading.utils.DBUtils
-import com.hankkin.reading.utils.RxBusTools
-import com.hankkin.reading.utils.ThemeHelper
-import com.hankkin.reading.utils.ViewHelper
+import com.hankkin.reading.utils.*
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_setting.*
 
 class SettingActivity : BaseActivity() {
@@ -43,39 +44,96 @@ class SettingActivity : BaseActivity() {
         //账号锁 账号备份 加载图片 单词备份
         switch_lock.isChecked = SPUtils.getInt(Constant.SP_KEY.LOCK_OPEN) != 0
         switch_lock_backup.isChecked = SPUtils.getInt(Constant.SP_KEY.LOCK_BACKUP_OPEN) != 0
+        ll_setting_backup.visibility = if (switch_lock_backup.isChecked) View.VISIBLE else View.GONE
         switch_img.isChecked = SPUtils.getInt(Constant.SP_KEY.WIFI_IMG) != 0
         switch_logo.isChecked = SPUtils.getInt(Constant.SP_KEY.LOGO) != 0
 
+        //开启账号锁
         switch_lock.setOnCheckedChangeListener { buttonView, isChecked ->
             SPUtils.put(Constant.SP_KEY.LOCK_OPEN, if (isChecked) 1 else 0)
         }
+        //数据备份
         switch_lock_backup.setOnCheckedChangeListener { buttonView, isChecked ->
             SPUtils.put(Constant.SP_KEY.LOCK_BACKUP_OPEN, if (isChecked) 1 else 0)
-            if (isChecked){
-                DBUtils.saveDBData(this)
-            }
+            ll_setting_backup.visibility = if (isChecked) View.VISIBLE else View.GONE
         }
+        //数据备份
+        rl_setting_data_backup.setOnClickListener {
+            if (DBUtils.isNeedBackup(this)) {
+                LoadingUtils.showLoading(this)
+                val disposable = Observable.create<Boolean> {
+                    try {
+                        DBUtils.saveDBData(this)
+                        it.onNext(true)
+                        it.onComplete()
+                    } catch (e: Exception) {
+                        it.onError(e)
+                    }
+                }
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe({
+                            LoadingUtils.hideLoading()
+                            ToastUtils.showSuccess(this, resources.getString(R.string.setting_lock_backup_success))
+                        }, {
+                            LoadingUtils.hideLoading()
+                            ToastUtils.showError(this, resources.getString(R.string.setting_lock_backup_fail))
+                        })
+                disposables.add(disposable)
+            } else {
+                ToastUtils.showInfo(this, resources.getString(R.string.setting_lock_backup_new))
+            }
+
+        }
+
+        //数据还原
+        rl_setting_data_restore.setOnClickListener {
+            LoadingUtils.showLoading(this)
+            val disposable = Observable.create<Boolean> {
+                try {
+                    DBUtils.loadDBData(this)
+                    it.onNext(true)
+                    it.onComplete()
+                } catch (e: Exception) {
+                    it.onError(e)
+                }
+            }
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({
+                        LoadingUtils.hideLoading()
+                        ToastUtils.showInfo(this, resources.getString(R.string.setting_lock_data_restore_success))
+                    }, {
+                        LoadingUtils.hideLoading()
+                        ToastUtils.showError(this, resources.getString(R.string.setting_lock_data_restore_fail))
+                    })
+            disposables.add(disposable)
+        }
+
+        //默认加载图片
         switch_img.setOnCheckedChangeListener { buttonView, isChecked ->
             SPUtils.put(Constant.SP_KEY.WIFI_IMG, if (isChecked) 1 else 0)
             RxBusTools.getDefault().post(EventMap.WifiImgEvent())
         }
+        //百变logo
         switch_logo.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked){
-                ViewHelper.showConfirmDialog(this,resources.getString(R.string.setting_logo_hint), MaterialDialog.SingleButtonCallback { dialog, which ->
+            if (isChecked) {
+                ViewHelper.showConfirmDialog(this, resources.getString(R.string.setting_logo_hint), MaterialDialog.SingleButtonCallback { dialog, which ->
                     SPUtils.put(Constant.SP_KEY.LOGO, 1)
-                    ToastUtils.showInfo(this,resources.getString(R.string.setting_logo_success))
+                    ToastUtils.showInfo(this, resources.getString(R.string.setting_logo_success))
                 })
-            }else{
+            } else {
                 SPUtils.put(Constant.SP_KEY.LOGO, 0)
             }
         }
+
         rl_setting_about.setOnClickListener { ViewHelper.showAboutDialog(this) }
         rl_setting_clear_cache.setOnClickListener {
             ViewHelper.showConfirmDialog(this,
                     resources.getString(R.string.setting_clear_cache_hint),
                     MaterialDialog.SingleButtonCallback { dialog, which ->
                         CacheUtils.clearGlideImg(this)
-                        ToastUtils.showInfo(this,resources.getString(R.string.setting_clear_cache_success))
+                        ToastUtils.showInfo(this, resources.getString(R.string.setting_clear_cache_success))
                         tv_setting_cache_size.setText("0KB")
                     })
         }

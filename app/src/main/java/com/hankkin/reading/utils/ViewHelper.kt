@@ -57,6 +57,15 @@ object ViewHelper {
 
     }
 
+    fun showProgressDIalog(context: Context,content: String){
+        MaterialDialog.Builder(context)
+                .content(content)
+                .progress(true,0)
+                .progressIndeterminateStyle(true)
+                .widgetColor(context.resources.getColor(ThemeHelper.getCurrentColor(context)))
+                .show()
+    }
+
     /**
      * list dialog
      */

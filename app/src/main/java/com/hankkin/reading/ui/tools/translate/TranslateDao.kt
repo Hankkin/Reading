@@ -1,6 +1,7 @@
 package com.hankkin.reading.ui.tools.translate
 
 import com.hankkin.reading.domain.TranslateBean
+import com.hankkin.reading.domain.WebExplain
 import com.hankkin.reading.domain.WordNoteBean
 import com.hankkin.reading.mvp.model.BaseDao
 
@@ -8,6 +9,9 @@ import com.hankkin.reading.mvp.model.BaseDao
  * Created by huanghaijie on 2018/8/10.
  */
 class TranslateDao : BaseDao(), TranslateDaoContract {
+    override fun insertTranslates(data: MutableList<TranslateBean>) {
+        daoSession.translateBeanDao.insertOrReplaceInTx(data)
+    }
 
     /**
      * 添加搜索单词历史

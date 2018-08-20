@@ -1,5 +1,7 @@
 package com.hankkin.reading.ui.tools.wordnote
 
+import com.hankkin.library.utils.SPUtils
+import com.hankkin.reading.common.Constant
 import com.hankkin.reading.domain.WordNoteBean
 import com.hankkin.reading.greendao.WordNoteBeanDao
 import com.hankkin.reading.mvp.model.BaseDao
@@ -8,9 +10,10 @@ import com.hankkin.reading.mvp.model.BaseDao
  * @author Hankkin
  * @date 2018/8/12
  */
-class WordNoteDao : BaseDao(),WordNoteDaoContract{
+class WordNoteDao : BaseDao(), WordNoteDaoContract {
 
     override fun insertWordNotes(data: MutableList<WordNoteBean>) {
+        updateSPTime()
         daoSession.wordNoteBeanDao.insertOrReplaceInTx(data)
     }
 
@@ -18,6 +21,7 @@ class WordNoteDao : BaseDao(),WordNoteDaoContract{
      * 插入更新单词
      */
     override fun updateWord(wordNoteBean: WordNoteBean) {
+        updateSPTime()
         daoSession.wordNoteBeanDao.insertOrReplace(wordNoteBean)
     }
 
@@ -25,7 +29,7 @@ class WordNoteDao : BaseDao(),WordNoteDaoContract{
      * 查询重点单词
      */
     override fun queryEmphasisWord(): MutableList<WordNoteBean>? {
-        return  daoSession.wordNoteBeanDao.queryBuilder().where(WordNoteBeanDao.Properties.IsEmphasis.eq(true)).build().list()
+        return daoSession.wordNoteBeanDao.queryBuilder().where(WordNoteBeanDao.Properties.IsEmphasis.eq(true)).build().list()
     }
 
 
@@ -33,6 +37,7 @@ class WordNoteDao : BaseDao(),WordNoteDaoContract{
      * 移除单词本
      */
     override fun removeWordNote(wordNoteBean: WordNoteBean) {
+        updateSPTime()
         daoSession.wordNoteBeanDao.delete(wordNoteBean)
     }
 
@@ -40,6 +45,7 @@ class WordNoteDao : BaseDao(),WordNoteDaoContract{
      * 加入单词本
      */
     override fun addWordToNote(wordNoteBean: WordNoteBean) {
+        updateSPTime()
         daoSession.wordNoteBeanDao.insertOrReplace(wordNoteBean)
     }
 
@@ -48,5 +54,9 @@ class WordNoteDao : BaseDao(),WordNoteDaoContract{
      */
     override fun queryWordNotes(): MutableList<WordNoteBean> =
             daoSession.wordNoteBeanDao.queryBuilder().list()
+
+    private fun updateSPTime() {
+        SPUtils.put(Constant.SP_KEY.DB_UPDATE_TIME, System.currentTimeMillis())
+    }
 
 }

@@ -136,6 +136,59 @@
                     android:theme="@style/mdCheckBox" />
             </RelativeLayout>
 
+            <LinearLayout
+                android:id="@+id/ll_setting_backup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <RelativeLayout
+                    android:id="@+id/rl_setting_data_backup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:paddingBottom="@dimen/dp_12"
+                    android:paddingTop="@dimen/dp_12">
+
+                    <TextView
+                        android:textSize="@dimen/sp_14"
+                        android:id="@+id/tv_setting_data_backup"
+                        style="@style/normalTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/setting_lock_data_backup"
+                         />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/normal_bg" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_setting_data_restore"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:paddingBottom="@dimen/dp_12"
+                    android:paddingTop="@dimen/dp_12">
+
+                    <TextView
+                        android:textSize="@dimen/sp_14"
+                        android:id="@+id/tv_setting_data_restore"
+                        style="@style/normalTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/setting_lock_data_restore"
+                        />
+                </RelativeLayout>
+            </LinearLayout>
+
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
@@ -154,6 +207,7 @@
                     android:layout_marginTop="@dimen/dp_20"
                     android:text="@string/setting_common"
                     android:textColor="@color/theme_color_primary" />
+
                 <RelativeLayout
                     android:id="@+id/rl_setting_logo"
                     android:layout_width="match_parent"
@@ -244,14 +298,15 @@
                     android:layout_height="wrap_content"
                     android:text="@string/setting_clear_cache"
                     android:textColor="@color/black" />
+
                 <com.bilibili.magicasakura.widgets.TintTextView
-                    android:textSize="@dimen/sp_14"
                     android:id="@+id/tv_setting_cache_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:textColor="@color/theme_color_primary"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:textSize="@dimen/sp_14" />
             </RelativeLayout>
 
             <View

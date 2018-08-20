@@ -1,5 +1,7 @@
 package com.hankkin.reading.ui.tools.acount
 
+import com.hankkin.library.utils.SPUtils
+import com.hankkin.reading.common.Constant
 import com.hankkin.reading.domain.AccountBean
 import com.hankkin.reading.greendao.AccountBeanDao
 import com.hankkin.reading.mvp.model.BaseDao
@@ -17,6 +19,7 @@ class AccountDao : BaseDao(),AccountDaoContract{
      * 更新
      */
     override fun updateAccountById(accountBean: AccountBean) {
+        updateSPTime()
         daoSession.accountBeanDao.update(accountBean)
     }
 
@@ -24,6 +27,7 @@ class AccountDao : BaseDao(),AccountDaoContract{
      * 删除账号
      */
     override fun deleteAccountById(id: Long) {
+        updateSPTime()
         daoSession.accountBeanDao.deleteByKey(id)
     }
 
@@ -37,6 +41,7 @@ class AccountDao : BaseDao(),AccountDaoContract{
      * 保存账号
      */
     override fun saveAccount(accountBean: AccountBean) {
+        updateSPTime()
         daoSession.accountBeanDao.insertOrReplace(accountBean)
     }
 
@@ -47,6 +52,9 @@ class AccountDao : BaseDao(),AccountDaoContract{
             daoSession.accountBeanDao.queryBuilder().orderDesc(AccountBeanDao.Properties.CreateAt).list()
 
 
+    private fun updateSPTime(){
+        SPUtils.put(Constant.SP_KEY.DB_UPDATE_TIME,System.currentTimeMillis())
+    }
 
 
 }

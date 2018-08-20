@@ -34,7 +34,7 @@
     <application
         android:name=".EApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/kuan"
+        android:icon="@mipmap/yima"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
