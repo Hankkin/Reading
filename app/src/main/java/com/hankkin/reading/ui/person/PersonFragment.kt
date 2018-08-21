@@ -3,17 +3,25 @@ package com.hankkin.reading.ui.person
 import android.content.Intent
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import com.afollestad.materialdialogs.MaterialDialog
 import com.hankkin.library.utils.LogUtils
 import com.hankkin.library.utils.SPUtils
+import com.hankkin.library.utils.ToastUtils
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.PersonListAdapter
 import com.hankkin.reading.base.BaseMvpFragment
+import com.hankkin.reading.common.Constant
 import com.hankkin.reading.control.UserControl
 import com.hankkin.reading.domain.NoticeBean
 import com.hankkin.reading.domain.PersonListBean
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.ui.login.LoginActivity
+import com.hankkin.reading.utils.DBUtils
+import com.hankkin.reading.utils.LoadingUtils
 import com.hankkin.reading.utils.ViewHelper
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_person.*
 
 /**
@@ -42,13 +50,13 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
 
     override fun initData() {
         mAdapter = PersonListAdapter()
-        mAdapter.data.add(PersonListBean(R.mipmap.icon_person_star, resources.getString(R.string.person_star)))
-        mAdapter.data.add(PersonListBean(R.mipmap.icon_person_follow, resources.getString(R.string.person_follow)))
+        mAdapter.data.add(PersonListBean(R.mipmap.icon_person_star, resources.getString(R.string.person_follow)))
         mAdapter.data.add(PersonListBean(R.mipmap.icon_person_list_theme, resources.getString(R.string.person_theme)))
         mAdapter.data.add(PersonListBean(R.mipmap.icon_person_db, resources.getString(R.string.setting_db)))
         mAdapter.data.add(PersonListBean(R.mipmap.icon_person_set_list, resources.getString(R.string.setting)))
         xrv_person_lisy.layoutManager = LinearLayoutManager(context)
         xrv_person_lisy.adapter = mAdapter
+
     }
 
     override fun initView() {
@@ -153,6 +161,51 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
             ViewHelper.changeRefreshColor(refresh_person, context)
         } else if (event is EventMap.LoginEvent) {
             setUserHeader()
+        }else if (event is EventMap.PersonClickEvent){
+            when (event.index) {
+                2 -> syncData()
+                3 -> context!!.startActivity(Intent(context, SettingActivity::class.java))
+            }
+        }
+    }
+
+    /**
+     * 数据还原
+     */
+    private fun syncData(){
+        if (context != null) {
+            if (SPUtils.getInt(Constant.SP_KEY.LOCK_BACKUP_OPEN) == 1) {
+                if (DBUtils.isNeedSync(context!!)){
+                    LoadingUtils.showLoading(context)
+                    val disposable = Observable.create<Boolean> {
+                        try {
+                            DBUtils.loadDBData(context!!)
+                            it.onNext(true)
+                            it.onComplete()
+                        } catch (e: Exception) {
+                            it.onError(e)
+                        }
+                    }
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe({
+                                LoadingUtils.hideLoading()
+                                ToastUtils.showInfo(context!!, resources.getString(R.string.setting_lock_data_restore_success))
+                            }, {
+                                LoadingUtils.hideLoading()
+                                ToastUtils.showError(context!!, resources.getString(R.string.setting_lock_data_restore_fail))
+                            })
+                    disposables.add(disposable)
+                }
+                else{
+                    ToastUtils.showInfo(context!!, resources.getString(R.string.setting_lock_backup_new))
+                }
+            } else {
+                ViewHelper.showConfirmDialog(context!!, context!!.resources.getString(R.string.setting_db_hint),
+                        MaterialDialog.SingleButtonCallback { dialog, which ->
+                            context!!.startActivity(Intent(context, SettingActivity::class.java))
+                        })
+            }
         }
     }
 

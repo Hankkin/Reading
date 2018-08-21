@@ -3,7 +3,6 @@
     rv_centered="true"
     android:id="@+id/rl_adapter_person"
     android:paddingLeft="@dimen/dp_12"
-    android:paddingTop="@dimen/dp_16"
     android:paddingRight="@dimen/dp_12"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -12,13 +11,14 @@
     <ImageView
         android:layout_centerVertical="true"
         android:id="@+id/iv_adapter_person_icon"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:focusable="true"
         android:gravity="center_vertical"
         android:text=""
         />
     <TextView
+        android:layout_marginTop="@dimen/dp_16"
         android:layout_marginLeft="@dimen/dp_12"
         android:layout_toEndOf="@+id/iv_adapter_person_icon"
         android:layout_centerVertical="true"
@@ -41,6 +41,6 @@
         android:layout_below="@+id/tv_adapter_person_text"
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:layout_marginTop="@dimen/dp_12"
+        android:layout_marginTop="@dimen/dp_16"
         android:background="@color/normal_bg" />
 </com.hankkin.library.view.RippleView>

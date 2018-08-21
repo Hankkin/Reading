@@ -124,7 +124,7 @@
 
 
                 <LinearLayout
-                    android:id="@+id/ll_nav_deedback"
+                    android:id="@+id/ll_nav_wordnote"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:background="?attr/selectableItemBackground"
@@ -149,6 +149,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll_nav_account"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:background="?attr/selectableItemBackground"

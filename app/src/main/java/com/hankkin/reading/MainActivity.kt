@@ -37,6 +37,8 @@ import com.hankkin.reading.ui.login.LoginActivity
 import com.hankkin.reading.ui.person.PersonFragment
 import com.hankkin.reading.ui.person.SettingActivity
 import com.hankkin.reading.ui.tools.ToolsFragment
+import com.hankkin.reading.ui.tools.acount.AccountListActivity
+import com.hankkin.reading.ui.tools.wordnote.WordNoteActivity
 import com.hankkin.reading.ui.user.collect.MyCollectActivity
 import com.hankkin.reading.utils.*
 import com.tbruyelle.rxpermissions2.RxPermissions
@@ -186,7 +188,7 @@ class MainActivity : BaseActivity() {
 
     fun changeTheme() {
         setStatuBar()
-        ToastUtils.init(this, resources.getColor(ThemeHelper.getCurrentColor(this)))
+//        ToastUtils.init(this, resources.getColor(ThemeHelper.getCurrentColor(this)))
         ThemeUtils.refreshUI(this, object : ThemeUtils.ExtraRefreshable {
             override fun refreshSpecificView(view: View?) {
             }
@@ -226,6 +228,8 @@ class MainActivity : BaseActivity() {
                         }
                     }
                     R.id.ll_nav_exit -> finish()
+                    R.id.ll_nav_wordnote -> startActivity(Intent(this@MainActivity,WordNoteActivity::class.java))
+                    R.id.ll_nav_account -> startActivity(Intent(this@MainActivity,AccountListActivity::class.java))
                 }
             }, 200)
         }

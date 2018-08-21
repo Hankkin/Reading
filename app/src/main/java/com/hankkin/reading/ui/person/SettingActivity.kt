@@ -88,26 +88,32 @@ class SettingActivity : BaseActivity() {
 
         //数据还原
         rl_setting_data_restore.setOnClickListener {
-            LoadingUtils.showLoading(this)
-            val disposable = Observable.create<Boolean> {
-                try {
-                    DBUtils.loadDBData(this)
-                    it.onNext(true)
-                    it.onComplete()
-                } catch (e: Exception) {
-                    it.onError(e)
+            if (DBUtils.isNeedSync(this)){
+                LoadingUtils.showLoading(this)
+                val disposable = Observable.create<Boolean> {
+                    try {
+                        DBUtils.loadDBData(this)
+                        it.onNext(true)
+                        it.onComplete()
+                    } catch (e: Exception) {
+                        it.onError(e)
+                    }
                 }
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe({
+                            LoadingUtils.hideLoading()
+                            ToastUtils.showInfo(this, resources.getString(R.string.setting_lock_data_restore_success))
+                        }, {
+                            LoadingUtils.hideLoading()
+                            ToastUtils.showError(this, resources.getString(R.string.setting_lock_data_restore_fail))
+                        })
+                disposables.add(disposable)
             }
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({
-                        LoadingUtils.hideLoading()
-                        ToastUtils.showInfo(this, resources.getString(R.string.setting_lock_data_restore_success))
-                    }, {
-                        LoadingUtils.hideLoading()
-                        ToastUtils.showError(this, resources.getString(R.string.setting_lock_data_restore_fail))
-                    })
-            disposables.add(disposable)
+            else{
+                ToastUtils.showInfo(this, resources.getString(R.string.setting_lock_backup_new))
+            }
+
         }
 
         //默认加载图片
@@ -118,9 +124,12 @@ class SettingActivity : BaseActivity() {
         //百变logo
         switch_logo.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
-                ViewHelper.showConfirmDialog(this, resources.getString(R.string.setting_logo_hint), MaterialDialog.SingleButtonCallback { dialog, which ->
+                ViewHelper.showConfirmDialog(this, resources.getString(R.string.setting_logo_hint),
+                        MaterialDialog.SingleButtonCallback { dialog, which ->
                     SPUtils.put(Constant.SP_KEY.LOGO, 1)
                     ToastUtils.showInfo(this, resources.getString(R.string.setting_logo_success))
+                },MaterialDialog.SingleButtonCallback{dialog, which ->
+                    switch_logo.isChecked = false
                 })
             } else {
                 SPUtils.put(Constant.SP_KEY.LOGO, 0)

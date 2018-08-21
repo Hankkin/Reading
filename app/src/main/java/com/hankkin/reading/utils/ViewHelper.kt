@@ -56,6 +56,19 @@ object ViewHelper {
                 .show()
 
     }
+    /**
+     * normal dialog
+     */
+    fun showConfirmDialog(context: Context, content: String, callback: MaterialDialog.SingleButtonCallback,cancelBack: MaterialDialog.SingleButtonCallback) {
+        MaterialDialog.Builder(context)
+                .content(content)
+                .positiveText(context.resources.getString(R.string.ok))
+                .negativeText(context.resources.getString(R.string.cancel))
+                .onPositive(callback)
+                .onNegative(cancelBack)
+                .show()
+
+    }
 
     fun showProgressDIalog(context: Context,content: String){
         MaterialDialog.Builder(context)

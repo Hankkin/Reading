@@ -26,11 +26,10 @@ object DBUtils {
 
     /**
      * 是否需要还原
-     * 0-弹框还原 1-时间相同 不需要还原 2-需要还原
      */
     fun isNeedSync(context: Context): Boolean {
         if (getUpdateTime(context) != -1L &&
-                getUpdateTime(context) < SPUtils.getLong(Constant.SP_KEY.DB_UPDATE_TIME)) {
+                getUpdateTime(context) >= SPUtils.getLong(Constant.SP_KEY.DB_UPDATE_TIME)) {
             return true
         }
         return false

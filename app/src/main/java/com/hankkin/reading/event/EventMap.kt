@@ -1,6 +1,7 @@
 package com.hankkin.reading.event
 
 import android.text.TextUtils
+import com.hankkin.reading.domain.PersonListBean
 
 import java.util.HashMap
 
@@ -100,5 +101,6 @@ object EventMap {
             val UNCOLLECT: Int = 0x2
         }
     }
+    class PersonClickEvent(val index: Int,bean: PersonListBean): BaseEvent()
 
 }
