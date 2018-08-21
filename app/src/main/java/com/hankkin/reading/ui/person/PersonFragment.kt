@@ -67,6 +67,14 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
         ll_person_new.setOnClickListener { context?.let { it1 -> ToastUtils.showInfo(it1,"待开发") } }
         ll_person_todo.setOnClickListener { context?.let { it1 -> ToastUtils.showInfo(it1,"待开发") } }
         ll_person_done.setOnClickListener { context?.let { it1 -> ToastUtils.showInfo(it1,"待开发") } }
+        iv_person_feedback.setOnClickListener {
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.type = "message/rfc822"
+            intent.putExtra(Intent.EXTRA_EMAIL,"1019283569@qq.com")
+            intent.putExtra(Intent.EXTRA_SUBJECT,"您的建议")
+            intent.putExtra(Intent.EXTRA_TEXT,"希望能得到您的建议")
+            startActivity(Intent.createChooser(intent,"Select email application"))
+        }
     }
 
     fun initHeaderAnim() {

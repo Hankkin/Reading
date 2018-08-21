@@ -159,7 +159,6 @@
 
                         <com.bilibili.magicasakura.widgets.TintTextView
                             android:textSize="@dimen/sp_16"
-                            android:textStyle="bold"
                             android:textColor="@color/theme_color_primary"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -192,7 +191,6 @@
 
                         <com.bilibili.magicasakura.widgets.TintTextView
                             android:textSize="@dimen/sp_16"
-                            android:textStyle="bold"
                             android:textColor="@color/theme_color_primary"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -224,7 +222,6 @@
 
                         <com.bilibili.magicasakura.widgets.TintTextView
                             android:textSize="@dimen/sp_16"
-                            android:textStyle="bold"
                             android:textColor="@color/theme_color_primary"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
