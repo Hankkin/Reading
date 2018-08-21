@@ -5,7 +5,7 @@
  
 ### ScreenShot
 
-![1](https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/1.jpg)
+![1](https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/1.jpg = 320x480)
 ![1](https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/2.jpg)
 ![1](https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/3.jpg)
 ![1](https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/4.jpg)
