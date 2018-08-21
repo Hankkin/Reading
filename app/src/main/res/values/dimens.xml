@@ -4,7 +4,7 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="title_bar_height">48dp</dimen>
     <dimen name="toolbar_height">48dp</dimen>
-    <dimen name="subscription_head">150dp</dimen>
+    <dimen name="subscription_head">120dp</dimen>
 
     <dimen name="dp_4">4dp</dimen>
     <dimen name="dp_6">6dp</dimen>

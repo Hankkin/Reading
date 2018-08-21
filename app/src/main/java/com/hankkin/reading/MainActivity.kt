@@ -129,6 +129,8 @@ class MainActivity : BaseActivity() {
         navView.findViewById<LinearLayout>(R.id.ll_nav_exit).setOnClickListener(doubleClick)
         navView.findViewById<LinearLayout>(R.id.ll_nav_about).setOnClickListener(doubleClick)
         navView.findViewById<LinearLayout>(R.id.ll_nav_collect).setOnClickListener(doubleClick)
+        navView.findViewById<LinearLayout>(R.id.ll_nav_wordnote).setOnClickListener(doubleClick)
+        navView.findViewById<LinearLayout>(R.id.ll_nav_account).setOnClickListener(doubleClick)
     }
 
     fun openDrawer() {

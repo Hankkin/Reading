@@ -235,4 +235,8 @@ public class ThemeHelper {
         }
         return R.color.yima;
     }
+
+    public static void changTheme(){
+
+    }
 }

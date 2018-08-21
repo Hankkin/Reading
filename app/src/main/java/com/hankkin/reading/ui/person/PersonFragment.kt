@@ -1,9 +1,15 @@
 package com.hankkin.reading.ui.person
 
+import android.app.Activity
+import android.app.ActivityManager
 import android.content.Intent
+import android.os.Build
+import android.support.design.widget.AppBarLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.afollestad.materialdialogs.MaterialDialog
+import com.bilibili.magicasakura.utils.ThemeUtils
+import com.cocosw.bottomsheet.BottomSheet
 import com.hankkin.library.utils.LogUtils
 import com.hankkin.library.utils.SPUtils
 import com.hankkin.library.utils.ToastUtils
@@ -12,16 +18,15 @@ import com.hankkin.reading.adapter.PersonListAdapter
 import com.hankkin.reading.base.BaseMvpFragment
 import com.hankkin.reading.common.Constant
 import com.hankkin.reading.control.UserControl
-import com.hankkin.reading.domain.NoticeBean
 import com.hankkin.reading.domain.PersonListBean
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.ui.login.LoginActivity
-import com.hankkin.reading.utils.DBUtils
-import com.hankkin.reading.utils.LoadingUtils
-import com.hankkin.reading.utils.ViewHelper
+import com.hankkin.reading.ui.user.collect.MyCollectActivity
+import com.hankkin.reading.utils.*
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.activity_setting.*
 import kotlinx.android.synthetic.main.fragment_person.*
 
 /**
@@ -30,15 +35,10 @@ import kotlinx.android.synthetic.main.fragment_person.*
 class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContract.IView {
 
     private lateinit var mAdapter: PersonListAdapter
+    private var mCurrentTheme: Int = 0
+    private lateinit var mThemeBuilder: BottomSheet.Builder
 
     override fun registerPresenter() = PersonPresenter::class.java
-    private var mSelfHeight = 0f//用以判断是否得到正确的宽高值
-    private var mTitleScale: Float = 0.toFloat()
-    private var tv_me_setScale: Float = 0.toFloat()
-    private var tv_me_setScaleX: Float = 0.toFloat()
-    private var iv_me_setScale: Float = 0.toFloat()
-    private var iv_me_setScaleX: Float = 0.toFloat()
-    private var mHeadImgScale: Float = 0.toFloat()
 
     override fun getLayoutId(): Int {
         return R.layout.fragment_person
@@ -56,75 +56,59 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
         mAdapter.data.add(PersonListBean(R.mipmap.icon_person_set_list, resources.getString(R.string.setting)))
         xrv_person_lisy.layoutManager = LinearLayoutManager(context)
         xrv_person_lisy.adapter = mAdapter
-
+        mCurrentTheme = ThemeHelper.getTheme(context)
+        initThemeBuilder()
     }
 
     override fun initView() {
         initHeaderAnim()
-        refresh_person.setColorSchemeResources(R.color.theme_color_primary)
-        refresh_person.setOnRefreshListener { getPresenter().getUserNotice(SPUtils.getString(UserControl.TOKEN)) }
         iv_person_avatar.setOnClickListener { llAvatarClick() }
-        tv_me_set.setOnClickListener { startActivity(Intent(context, SettingActivity::class.java)) }
+        iv_person_set.setOnClickListener { startActivity(Intent(context, SettingActivity::class.java)) }
+        ll_person_new.setOnClickListener { context?.let { it1 -> ToastUtils.showInfo(it1,"待开发") } }
+        ll_person_todo.setOnClickListener { context?.let { it1 -> ToastUtils.showInfo(it1,"待开发") } }
+        ll_person_done.setOnClickListener { context?.let { it1 -> ToastUtils.showInfo(it1,"待开发") } }
     }
 
     fun initHeaderAnim() {
         val name = if (!UserControl.isLogin()) {
             "未登录"
         } else UserControl.getCurrentUser()!!.username
-        val screenW = resources.displayMetrics.widthPixels
-        val toolbarHeight = resources.getDimension(R.dimen.toolbar_height)
-        val initHeight = resources.getDimension(R.dimen.subscription_head)
-        app_bar.addOnOffsetChangedListener({ appBarLayout, verticalOffset ->
-            if (mSelfHeight == 0f) {
-                mSelfHeight = tv_person_name.getHeight().toFloat()
-                val distanceTitle = tv_person_name.getTop() + (mSelfHeight - toolbarHeight) / 2.0f
-                val distanceSubscribe = tv_me_set.getY() + (tv_me_set.getHeight() - toolbarHeight) / 2.0f
-                val distanceHeadImg = iv_person_avatar.getY() + (iv_person_avatar.getHeight() - toolbarHeight) / 2.0f
-                val distanceSubscribeX = screenW / 2.0f - (tv_me_set.getWidth() / 2.0f + resources.getDimension(R.dimen.dp_10))
-                val distanceIcon = iv_person_avatar.getY() + (iv_person_avatar.getHeight() - toolbarHeight) / 2.0f
-                val distanceIconX = screenW / 2.0f - (iv_person_avatar.getWidth() / 2.0f + resources.getDimension(R.dimen.dp_10))
-                mTitleScale = distanceTitle / (initHeight - toolbarHeight)
-                tv_me_setScale = distanceSubscribe / (initHeight - toolbarHeight)
-                mHeadImgScale = distanceHeadImg / (initHeight - toolbarHeight)
-                tv_me_setScaleX = distanceSubscribeX / (initHeight - toolbarHeight)
-                iv_me_setScale = distanceIcon / (initHeight - toolbarHeight)
-                iv_me_setScaleX = distanceIconX / (initHeight - toolbarHeight)
-            }
-            val scale = 1.0f - (-verticalOffset / (initHeight - toolbarHeight)) / 2
-            LogUtils.e(">>>>>>scale" + scale.toString())
-            iv_person_avatar.scaleX = scale
-            iv_person_avatar.scaleY = scale
-            iv_person_avatar.translationY = mHeadImgScale * verticalOffset
-            tv_person_name.translationY = mTitleScale * verticalOffset
-            tv_me_set.translationY = tv_me_setScale * verticalOffset
-            tv_me_set.translationX = -tv_me_setScaleX * verticalOffset
-            iv_person_avatar.translationX = iv_me_setScaleX * verticalOffset
-            iv_person_avatar.translationY = iv_me_setScale * verticalOffset
-            if (scale == 1f) {
-                refresh_person.setEnabled(true)
-                tv_person_name.text = name
-                tv_me_set.text = "设置"
-            } else {
-                iv_person_set.visibility = View.GONE
-                refresh_person.setEnabled(false)
-                tv_me_set.text = "设置"
-            }
-            if (scale == 0.5f) {
-                iv_person_set.visibility = View.VISIBLE
-                tv_person_name.text = name
-                tv_me_set.text = ""
-            }
-        })
+        tv_person_name.text = name
+        ll_person_header.viewTreeObserver.addOnGlobalLayoutListener {
+            val height = ll_person_header.height
+            app_bar.addOnOffsetChangedListener(object : AppBarStateChangeListener() {
+                override fun onStateChanged(appBarLayout: AppBarLayout?, state: State?) {
+                }
+
+                override fun onAppBarOffsetChanged(state: State?, appBarLayout: AppBarLayout?, i: Int) {
+                    when (state) {
+                        AppBarStateChangeListener.State.COLLAPSED -> {
+                            tv_person_title.visibility = View.VISIBLE
+                            ll_person_header.visibility = View.GONE
+                        }
+                        else -> {
+                            tv_person_title.visibility = View.GONE
+                            ll_person_header.visibility = View.VISIBLE
+                        }
+                    }
+                    LogUtils.e(">>>>>alpha" + i )
+                    if (i == 0) {
+                        ll_person_header.alpha = 1F
+
+                    } else if (i in 1..(height - 30)) {
+                        ll_person_header.alpha = ((height-i).toFloat() / height)
+                    }else if (i>height - 30){
+                        ll_person_header.alpha = 0F
+                    }
+                }
+
+            })
+        }
+
     }
 
     fun llAvatarClick() {
         if (!UserControl.isLogin()) {
-//            val authorizeUrl = Constant.OSChinaUrl.BASE_URL +
-//                    "oauth2/authorize?response_type=code&client_id=${Constant.OSChinaUrl.CLIENT_ID}&redirect_uri=${Constant.OSChinaUrl.REDIRECT_URL}"
-//            val intent = Intent(activity, AuthorizeWebActivity::class.java)
-//            intent.putExtra(Key4Intent.KEY_WEB_URL, authorizeUrl)
-//            intent.putExtra(Key4Intent.KEY_WEB_TITLE, resources.getString(R.string.person_authorize_login))
-//            startActivity(intent)
             startActivity(Intent(context, LoginActivity::class.java))
         } else {
             startActivity(Intent(context, PersonInfoActivity::class.java))
@@ -141,28 +125,15 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
         }
     }
 
-    override fun refresh() {
-        refresh_person.isRefreshing = true
-    }
 
-    override fun refreshStop() {
-        refresh_person.isRefreshing = false
-    }
-
-    override fun setNotice(noticeBean: NoticeBean) {
-        tv_person_comments.text = noticeBean.replyCount.toString()
-        tv_person_fans.text = noticeBean.fansCount.toString()
-        tv_person_msg.text = noticeBean.msgCount.toString()
-        tv_person_fans.text = noticeBean.fansCount.toString()
-    }
 
     override fun onEvent(event: EventMap.BaseEvent) {
-        if (event is EventMap.ChangeThemeEvent) {
-            ViewHelper.changeRefreshColor(refresh_person, context)
-        } else if (event is EventMap.LoginEvent) {
+        if (event is EventMap.LoginEvent) {
             setUserHeader()
-        }else if (event is EventMap.PersonClickEvent){
+        } else if (event is EventMap.PersonClickEvent) {
             when (event.index) {
+                0 -> startActivity(Intent(context,MyCollectActivity::class.java))
+                1 -> mThemeBuilder.show()
                 2 -> syncData()
                 3 -> context!!.startActivity(Intent(context, SettingActivity::class.java))
             }
@@ -172,10 +143,10 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
     /**
      * 数据还原
      */
-    private fun syncData(){
+    private fun syncData() {
         if (context != null) {
             if (SPUtils.getInt(Constant.SP_KEY.LOCK_BACKUP_OPEN) == 1) {
-                if (DBUtils.isNeedSync(context!!)){
+                if (DBUtils.isNeedSync(context!!)) {
                     LoadingUtils.showLoading(context)
                     val disposable = Observable.create<Boolean> {
                         try {
@@ -196,8 +167,7 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
                                 ToastUtils.showError(context!!, resources.getString(R.string.setting_lock_data_restore_fail))
                             })
                     disposables.add(disposable)
-                }
-                else{
+                } else {
                     ToastUtils.showInfo(context!!, resources.getString(R.string.setting_lock_backup_new))
                 }
             } else {
@@ -208,5 +178,59 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
             }
         }
     }
+
+    fun initThemeBuilder() {
+        mThemeBuilder = BottomSheet.Builder(context, R.style.BottomSheet_StyleDialog)
+                .title(R.string.setting_theme)
+                .sheet(R.menu.theme_bottomsheet)
+                .listener { dialog, which ->
+                    changeTheme(which)
+                }
+    }
+
+    /**
+     * 修改主题颜色
+     */
+    fun changeTheme(themeValue: Int) {
+        mCurrentTheme = when (themeValue) {
+            R.id.yima -> ThemeHelper.COLOR_YIMA
+            R.id.kuan -> ThemeHelper.COLOR_KUAN
+            R.id.bili -> ThemeHelper.COLOR_BILI
+            R.id.yidi -> ThemeHelper.COLOR_YIDI
+            R.id.shuiya -> ThemeHelper.COLOR_SHUIYA
+            R.id.yiteng -> ThemeHelper.COLOR_YITENG
+            R.id.jilao -> ThemeHelper.COLOR_JILAO
+            R.id.zhihu -> ThemeHelper.COLOR_ZHIHU
+            R.id.gutong -> ThemeHelper.COLOR_GUTONG
+            R.id.didiao -> ThemeHelper.COLOR_DIDIAO
+            R.id.gaoduan -> ThemeHelper.COLOR_GAODUAN
+            R.id.aping -> ThemeHelper.COLOR_APING
+            R.id.liangbai -> ThemeHelper.COLOR_LIANGBAI
+            R.id.anluolan -> ThemeHelper.COLOR_ANLUOLAN
+            R.id.xinghong -> ThemeHelper.COLOR_XINGHONG
+            else -> {
+                ThemeHelper.COLOR_YIMA
+            }
+        }
+        if (ThemeHelper.getTheme(context) != mCurrentTheme) {
+            ThemeHelper.setTheme(context, mCurrentTheme)
+            ThemeUtils.refreshUI(context, object : ThemeUtils.ExtraRefreshable {
+                override fun refreshSpecificView(view: View?) {
+                }
+
+                override fun refreshGlobal(activity: Activity?) {
+                    if (Build.VERSION.SDK_INT >= 21) {
+                        val taskDescription = ActivityManager.TaskDescription(null, null,
+                                ThemeUtils.getThemeAttrColor(context, android.R.attr.colorPrimary))
+                        activity!!.setTaskDescription(taskDescription)
+                        activity.window.statusBarColor = ThemeUtils.getColorById(context, R.color.theme_color_primary_dark)
+                    }
+                }
+
+            })
+            RxBusTools.getDefault().post(EventMap.ChangeThemeEvent())
+        }
+    }
+
 
 }

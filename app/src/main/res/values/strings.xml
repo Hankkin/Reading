@@ -112,6 +112,12 @@
     <string name="person_at">\@</string>
     <string name="person_fans">粉丝</string>
     <string name="person_theme">主题风格</string>
+    <string name="person_new">NEW</string>
+    <string name="person_new_hint">新建事项</string>
+    <string name="person_todo">TODO</string>
+    <string name="person_todo_hint">待办事项</string>
+    <string name="person_done">DONE</string>
+    <string name="person_done_hint">已办事项</string>
 
     <string name="person_info_title">个人主页</string>
     <string name="person_info_boy">男</string>
