@@ -25,4 +25,4 @@
 [https://fir.im/Reading](https://fir.im/Reading)
 
 
-<img width="153" height=“153” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/fir_download.png"></img>
+<img width="240" height=“240” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/fir_download.png"></img>
