@@ -1,9 +1,9 @@
 # Reading
 
-### 简介
+## 简介
  Reading: Reading是一款基于WanAndroid OpenApi开发的阅读类工具，如果你是一个热衷于Android开发者，那么这款软件能帮助你阅读精品Android文章。同时Reading中还包含"英文单词"、"账号本子"、"天气"、"查单词"、"快递查询"等小工具。项目基于"Kotlin+MVP"架构开发，风格大概也许属于Material Desgin原质化风格，包含主题颜色切换、百变Logo、等功能。在此感谢WanAndroid的OpenApi,以及其它开源项目的贡献。
  
-### ScreenShot
+## ScreenShot
 
 
 <img width="173" height=“274” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/1.jpg"></img>
@@ -20,9 +20,76 @@
 <img width="173" height=“274” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/15.jpg"></img>
 <img width="173" height=“274” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/16.jpg"></img>
 
-### DownLoad
+## DownLoad
 
 [https://fir.im/Reading](https://fir.im/Reading)
 
 
-<img width="240" height=“240” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/fir_download.png"></img>
+<img width="400" height=“400” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/fir_download.png"></img>
+
+
+## Function Tips
+
+#### 1.首页
+- WanAndroid API实现**Android文章列表**、**热门搜索文章**、**项目列表**
+- **刷新、置顶、分享文章**、**搜索文章**、**搜索历史**
+- **收藏列表**
+
+#### 2.工作台
+- **快递查询** 使用快递100免费API进行快递查询
+- **扫一扫** 快速扫一扫、从相册选择扫一扫
+- **查询单词** 使用有道SDK查询单词 加入单词本
+- **单词本** 单词本记录功能 标记重点
+- **账号本子** 新建账号 保存本地 记录你的常用账号密码
+- **每日推荐** 标记重点的单词推荐在首页
+
+#### 3.我的
+- **登录注册** 使用WanAndroid Api进行账号注册登录
+- **TODO List** WanAndroid API 待办事项 （待开发）
+- **设置** 个性换肤、账号锁功能、本地数据备份、百变Logo、清除缓存
+
+## Skill Tips
+
+- **项目架构** 使用MVP架构模式搭建，封装MvpActivity、MvpFragment、BasePresenter、BaseView。P层绑定V层生命周期 。具体可见[**MVP包**](https://github.com/Hankkin/Reading/tree/develop-1.0.0/app/src/main/java/com/hankkin/reading/mvp)
+
+- **网络层** 使用Retrofit+RxJava进行网络请求，封装公共Rerofit的HttpClientUtils(创建RetrofitBuilder、OkHttpClient、addHeader、拦截器、Cookie、https等)、工厂模式创建不同BaseUrl的网络对象。具体可见[**http包**](https://github.com/Hankkin/Reading/tree/develop-1.0.0/app/src/main/java/com/hankkin/reading/http)
+
+- **缓存** 使用GreenDao数据库缓存本地数据，并提供数据备份、还原功能。同时结合MVP架构，将数据库操作作为Dao层，Dao层封装Protocol，利用工厂模式包装GreenDao产生的xxxBeanDao
+
+- **RecycleAdapter** 封装RecycleView Adapter 配合SwipeRefreshLayout支持下拉刷新、上拉加载功能，不满足一屏数据
+
+- **RxBusTools** 封装RxBusTools事件分发 封装BaseActivity、BaseFragment统一处理注册监听事件
+
+- **StatuBarUtils沉浸式** 使用**写代码的猴子**的[StatusBarUtil 状态栏工具类（实现沉浸式状态栏/变色状态栏）](https://jaeger.itscoder.com/android/2016/03/27/statusbar-util.html)适配沉浸式通知栏
+
+- **主题切换** B站开源框架[MagicaSakura](https://github.com/Bilibili/MagicaSakura)
+
+- **百变Logo** *Android群英传*中利用<activity-alias>根据主题颜色动态切换Icon，部分机型可能会出现crash，目前还没找到更好的解决方案，所以提供了开启关闭的开关。如果有大神可以在Issues提供。
+
+- **本地数据备份还原** 通过读取数据库数据写入txt文件，读取txt文件数据还原实现，记录备份还原的时间戳作为版本号
+
+- **单词翻译** 使用有道SDK翻译单词
+
+- **FloatActionButton** 实现首页悬浮按钮 点击展开
+
+- **HorizontalScrollView+ViewPager** 首页仿网易云音乐滑动
+
+- **BottomSheet** 主题切换底部弹出框
+
+- **手势解锁** 参考[Github-ihsg/PatternLocker](https://github.com/ihsg/PatternLocker)
+
+
+## License
+> Copyright (C) 2018 Hankkin
+
+> Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+> [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
+
+> Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
