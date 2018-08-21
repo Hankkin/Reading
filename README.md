@@ -19,3 +19,10 @@
 <img width="173" height=“274” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/14.jpg"></img>
 <img width="173" height=“274” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/15.jpg"></img>
 <img width="173" height=“274” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/16.jpg"></img>
+
+### DownLoad
+
+[https://fir.im/Reading](https://fir.im/Reading)
+
+
+<img width="153" height=“153” src="https://fir.im/Reading"></img>
