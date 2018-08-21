@@ -1,7 +1,7 @@
 # Reading
 
 ### 简介
- Reading: 一款基于WanAndroid OpenApi开发的Kotlin版本的符合Material Desgin的Android客户端。项目采用MVP+Kotlin开发，现主要功能包括：首页WanAndroid模块、工作台模块、我的模块。
+ Reading: Reading是一款基于WanAndroid OpenApi开发的阅读类工具，如果你是一个热衷于Android开发者，那么这款软件能帮助你阅读精品Android文章。同时Reading中还包含"英文单词"、"账号本子"、"天气"、"查单词"、"快递查询"等小工具。项目基于"Kotlin+MVP"架构开发，风格大概也许属于Material Desgin原质化风格，包含主题颜色切换、百变Logo、等功能。在此感谢WanAndroid的OpenApi,以及其它开源项目的贡献。
  
 ### ScreenShot
 
