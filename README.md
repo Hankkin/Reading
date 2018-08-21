@@ -5,10 +5,21 @@
  
 ### ScreenShot
 
-![1](https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/1.jpg = 320x480)
-![1](https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/2.jpg)
-![1](https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/3.jpg)
-![1](https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/4.jpg)
-![1](https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/5.jpg)
 
-
+<img width="173" height=“274” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/1.jpg"></img>
+<img width="173" height=“274” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/2.jpg"></img>
+<img width="173" height=“274” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/3.jpg"></img>
+<img width="173" height=“274” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/4.jpg"></img>
+<img width="173" height=“274” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/5.jpg"></img>
+<img width="173" height=“274” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/6.jpg"></img>
+<img width="173" height=“274” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/7.jpg"></img>
+<img width="173" height=“274” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/8.jpg"></img>
+<img width="173" height=“274” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/9.jpg"></img>
+<img width="173" height=“274” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/10.jpg"></img>
+<img width="173" height=“274” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/11.jpg"></img>
+<img width="173" height=“274” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/12.jpg"></img>
+<img width="173" height=“274” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/13.jpg"></img>
+<img width="173" height=“274” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/14.jpg"></img>
+<img width="173" height=“274” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/15.jpg"></img>
+<img width="173" height=“274” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/16.jpg"></img>
+<img width="173" height=“274” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/17.jpg"></img>
