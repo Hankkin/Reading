@@ -23,10 +23,9 @@
                 android:background="@color/theme_color_primary">
 
                 <android.support.design.widget.CollapsingToolbarLayout
-                    app:layout_scrollFlags="scroll|exitUntilCollapsed"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    >
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
 
                     <android.support.v7.widget.Toolbar
