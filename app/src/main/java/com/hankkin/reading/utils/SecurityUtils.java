@@ -9,7 +9,7 @@ import javax.crypto.spec.SecretKeySpec;
  * AES encrypt/decrypt utility
  * Created by Hankkin on 14/8/2018.
  */
-public class SecurityUtil {
+public class SecurityUtils {
     private static final String CIPHER_MODE = "AES/ECB/PKCS5Padding";
     private static final String MASTER_PASSWORD = "Hankkin";
 

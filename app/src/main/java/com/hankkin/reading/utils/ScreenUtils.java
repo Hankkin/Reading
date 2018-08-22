@@ -20,9 +20,9 @@ import android.view.WindowManager;
  * https://github.com/guoyoujin/MySnackBar
  */
 
-public class ScreenUtil {
+public class ScreenUtils {
 
-    private ScreenUtil() {
+    private ScreenUtils() {
         /* cannot be instantiated */
         throw new UnsupportedOperationException("cannot be instantiated");
     }
