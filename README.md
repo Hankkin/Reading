@@ -5,6 +5,9 @@
  
 ## ScreenShot
 
+<img width="220" height=“400” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/reading.gif"></img>
+
+
 
 <img width="173" height=“274” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/1.jpeg"></img>
 <img width="173" height=“274” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/2.jpeg"></img>
