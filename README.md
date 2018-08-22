@@ -81,6 +81,19 @@
 
 - **手势解锁** 参考[Github-ihsg/PatternLocker](https://github.com/ihsg/PatternLocker)
 
+## Version
+
+### V1.0.1
+ 
+- 完善数据备份还原清空数据功能
+
+- 完善账号锁功能
+
+- 新增版本号
+
+### V1.0.0 
+- 首次提交 部分功能不完善
+
 
 ## License
 > Copyright (C) 2018 Hankkin
