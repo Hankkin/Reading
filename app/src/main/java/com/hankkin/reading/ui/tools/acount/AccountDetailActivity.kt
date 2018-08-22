@@ -3,10 +3,8 @@ package com.hankkin.reading.ui.tools.acount
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.content.ContextCompat.startActivity
-import com.afollestad.materialdialogs.DialogAction
+import android.view.Gravity
 import com.afollestad.materialdialogs.MaterialDialog
-import com.hankkin.library.utils.EncodeUtils
 import com.hankkin.library.utils.EncryptUtils
 import com.hankkin.library.utils.SPUtils
 import com.hankkin.library.utils.ToastUtils
@@ -16,12 +14,8 @@ import com.hankkin.reading.common.Constant
 import com.hankkin.reading.domain.AccountBean
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.mvp.model.DaoFactory
-import com.hankkin.reading.utils.PatternHelper
-import com.hankkin.reading.utils.RxBusTools
-import com.hankkin.reading.utils.ThemeHelper
-import com.hankkin.reading.utils.ViewHelper
+import com.hankkin.reading.utils.*
 import kotlinx.android.synthetic.main.activity_account_detail.*
-import kotlinx.android.synthetic.main.activity_add_acount.*
 
 class AccountDetailActivity : BaseActivity() {
 
@@ -59,6 +53,7 @@ class AccountDetailActivity : BaseActivity() {
                 finish()
             }
         }
+
     }
 
     override fun initData() {
@@ -72,13 +67,8 @@ class AccountDetailActivity : BaseActivity() {
             tv_account_detail_name.text = accountBean!!.name
             tv_account_detail_number.text = accountBean!!.number
             tv_account_detail_cate.text = accountBean!!.cate
-            if (SPUtils.getString(PatternHelper.GESTURE_PWD_KEY).isNotEmpty()){
-                tv_account_detail_pwd.text = EncryptUtils.HloveyRC4(accountBean!!.password.toString(),SPUtils.getString(PatternHelper.GESTURE_PWD_KEY))
-            }
-            else{
-                tv_account_detail_pwd.text = EncryptUtils.HloveyRC4(accountBean!!.password.toString(), Constant.COMMON.DEFAULT_LOCK_KEY)
-            }
             tv_account_detail_bz.text = accountBean!!.beizhu
+            tv_account_detail_pwd.text = EncryptUtils.HloveyRC4(accountBean!!.password.toString(), Constant.COMMON.DEFAULT_LOCK_KEY)
         }
     }
 

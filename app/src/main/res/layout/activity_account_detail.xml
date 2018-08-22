@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
+    android:id="@+id/ll_account_detail"
     tools:context=".ui.tools.acount.AccountDetailActivity">
 
     <RelativeLayout

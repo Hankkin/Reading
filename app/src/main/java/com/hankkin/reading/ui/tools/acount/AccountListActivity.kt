@@ -1,10 +1,8 @@
 package com.hankkin.reading.ui.tools.acount
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.view.View
 import com.afollestad.materialdialogs.MaterialDialog
 import com.hankkin.library.utils.ToastUtils
 import com.hankkin.reading.R

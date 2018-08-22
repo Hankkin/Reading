@@ -86,6 +86,7 @@ object DBUtils {
         }
     }
 
+
     fun loadDBData(context: Context) {
         val gson = Gson()
         var wordNotes = getFileInTxt(Constant.SP_KEY.WORDNOTE, context)
