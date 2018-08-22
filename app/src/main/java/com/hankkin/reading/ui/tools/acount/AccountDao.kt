@@ -12,6 +12,7 @@ import com.hankkin.reading.mvp.model.BaseDao
  */
 class AccountDao : BaseDao(),AccountDaoContract{
     override fun insertAccounts(data: MutableList<AccountBean>) {
+        updateSPTime()
         daoSession.accountBeanDao.insertOrReplaceInTx(data)
     }
 

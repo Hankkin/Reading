@@ -13,6 +13,7 @@ import com.hankkin.reading.mvp.model.BaseDao
 class WordNoteDao : BaseDao(), WordNoteDaoContract {
 
     override fun insertWordNotes(data: MutableList<WordNoteBean>) {
+        updateSPTime()
         daoSession.wordNoteBeanDao.insertOrReplaceInTx(data)
     }
 
