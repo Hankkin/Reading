@@ -1,13 +1,12 @@
 package com.hankkin.reading.ui.tools.acount
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.afollestad.materialdialogs.MaterialDialog
 import com.hankkin.library.utils.EncodeUtils
-import com.hankkin.library.utils.EncryptUtils
+import com.hankkin.library.utils.SPUtils
 import com.hankkin.library.utils.ToastUtils
 import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseActivity
@@ -15,6 +14,7 @@ import com.hankkin.reading.common.Constant
 import com.hankkin.reading.domain.AccountBean
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.mvp.model.DaoFactory
+import com.hankkin.reading.utils.PatternHelper
 import com.hankkin.reading.utils.RxBusTools
 import com.hankkin.reading.utils.ThemeHelper
 import com.hankkin.reading.utils.ViewHelper
@@ -80,8 +80,8 @@ class AddAcountActivity : BaseActivity() {
             et_add_account_name.setSelection(accountBean!!.name.length)
             et_add_account_number.setText(accountBean!!.number)
             et_add_account_number.setSelection(accountBean!!.number.length)
-            et_add_account_password.setText(EncryptUtils.convertMD5(accountBean!!.password))
-            et_add_account_password.setSelection(accountBean!!.password.length)
+            et_add_account_password.setText(EncodeUtils.decodePwd(accountBean!!.password))
+            et_add_account_password.setSelection(EncodeUtils.decodePwd(accountBean!!.password).length)
             et_add_account_bz.setText(accountBean!!.beizhu)
             et_add_account_bz.setSelection(accountBean!!.beizhu.length)
             tv_add_account_cate.setText(accountBean!!.cate)
@@ -130,7 +130,7 @@ class AddAcountActivity : BaseActivity() {
         accountBean.id = if(accountId != 0L) this!!.accountId!! else accountBean.hashCode().toLong()
         accountBean.name = et_add_account_name.text.toString()
         accountBean.number = et_add_account_number.text.toString()
-        accountBean.password = EncryptUtils.string2MD5(et_add_account_password.text.toString())
+        accountBean.password = EncodeUtils.encodePwd(et_add_account_password.text.toString(),SPUtils.getString(PatternHelper.GESTURE_PWD_KEY))
         accountBean.createAt = System.currentTimeMillis()
         accountBean.beizhu = et_add_account_bz.text.toString()
         if (accountId != 0L){

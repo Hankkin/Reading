@@ -24,6 +24,10 @@ import java.io.IOException
  */
 object DBUtils {
 
+    fun deleteData(context: Context){
+        FileUtils.delAllFile(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + AppUtils.getAppName(context) + "/" + "db")
+    }
+
     /**
      * 是否需要还原
      */
@@ -60,6 +64,9 @@ object DBUtils {
                 time = accountStrTime.substring(accountStrTime.indexOf("<") + 1, accountStrTime.indexOf(">")).toLong()
             }
             return time < SPUtils.getLong(Constant.SP_KEY.DB_UPDATE_TIME)
+        }
+        else{
+            return true
         }
         return false
     }

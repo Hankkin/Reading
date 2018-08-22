@@ -196,4 +196,30 @@ object EncodeUtils{
         return Html.fromHtml(input).toString()
     }
 
+    /**
+     * 密码编码
+     */
+    fun encodePwd(pwd: String,lockStr: String?): String{
+        return if (lockStr.isNullOrEmpty()){
+            urlEncode(pwd)
+        }
+        else{
+            val str = pwd+"-"+lockStr
+            return urlEncode(str)
+        }
+    }
+
+    /**
+     * 密码解码
+     */
+    fun decodePwd(pwdStr: String): String{
+        val str = urlDecode(pwdStr)
+        return if (str.contains("-")){
+            urlDecode(pwdStr).substringBefore("-")
+        }
+        else{
+            str
+        }
+    }
+
 }

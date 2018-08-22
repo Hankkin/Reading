@@ -229,4 +229,31 @@ object FileUtils{
 
         return result
     }
+
+    /**
+     * 删除指定文件夹下所有文件, 不保留文件夹.
+     */
+    fun delAllFile(path: String): Boolean {
+        val flag = false
+        val file = File(path)
+        if (!file.exists()) {
+            return flag
+        }
+        if (file.isFile) {
+            file.delete()
+            return true
+        }
+        val files = file.listFiles()
+        for (i in files.indices) {
+            val exeFile = files[i]
+            if (exeFile.isDirectory) {
+                delAllFile(exeFile.absolutePath)
+            } else {
+                exeFile.delete()
+            }
+        }
+        file.delete()
+
+        return flag
+    }
 }

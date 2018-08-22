@@ -8,12 +8,14 @@ import com.afollestad.materialdialogs.DialogAction
 import com.afollestad.materialdialogs.MaterialDialog
 import com.hankkin.library.utils.EncodeUtils
 import com.hankkin.library.utils.EncryptUtils
+import com.hankkin.library.utils.SPUtils
 import com.hankkin.library.utils.ToastUtils
 import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseActivity
 import com.hankkin.reading.domain.AccountBean
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.mvp.model.DaoFactory
+import com.hankkin.reading.utils.PatternHelper
 import com.hankkin.reading.utils.RxBusTools
 import com.hankkin.reading.utils.ThemeHelper
 import com.hankkin.reading.utils.ViewHelper
@@ -68,7 +70,7 @@ class AccountDetailActivity : BaseActivity() {
             tv_account_detail_name.text = accountBean!!.name
             tv_account_detail_number.text = accountBean!!.number
             tv_account_detail_cate.text = accountBean!!.cate
-            tv_account_detail_pwd.text = EncryptUtils.convertMD5(accountBean!!.password)
+            tv_account_detail_pwd.text = EncodeUtils.decodePwd(accountBean!!.password)
             tv_account_detail_bz.text = accountBean!!.beizhu
         }
     }

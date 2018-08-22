@@ -135,6 +135,7 @@
     <string name="setting_lock">开启账号锁</string>
     <string name="setting_lock_backup">数据备份</string>
     <string name="setting_lock_data_backup">数据备份</string>
+    <string name="setting_lock_data_clear">数据清空</string>
     <string name="setting_lock_data_restore">数据还原</string>
     <string name="setting_lock_data_restore_hint">检测到您本地有之前的数据文件，请问您是否需要还原该数据？</string>
     <string name="setting_lock_data_restore_success">数据还原成功</string>
@@ -156,6 +157,8 @@
     <string name="setting_api">开源第三方</string>
     <string name="setting_db">数据恢复</string>
     <string name="setting_db_hint">请到设置界面先开启数据备份，然后可导入本地数据库,是否去开启？</string>
+    <string name="setting_db_delete_hint">数据清空后不可还原，您之前保存的账号信息以及单词本将被清空，是否清空数据？</string>
+    <string name="setting_db_delete_success">清空成功</string>
     <string name="setting_db_success">导入数据库成功</string>
 
     <string name="work_kuaidi">查快递</string>

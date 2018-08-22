@@ -5,6 +5,7 @@ import android.app.ActivityManager
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import com.afollestad.materialdialogs.DialogAction
 import com.afollestad.materialdialogs.MaterialDialog
 import com.bilibili.magicasakura.utils.ThemeUtils
 import com.cocosw.bottomsheet.BottomSheet
@@ -113,6 +114,15 @@ class SettingActivity : BaseActivity() {
                 ToastUtils.showInfo(this, resources.getString(R.string.setting_lock_backup_new))
             }
 
+        }
+
+        //数据清空
+        rl_setting_data_clear.setOnClickListener {
+            ViewHelper.showConfirmDialog(this,resources.getString(R.string.setting_db_delete_hint),
+                    MaterialDialog.SingleButtonCallback { dialog, which ->
+                        DBUtils.deleteData(this)
+                        ToastUtils.showSuccess(this,resources.getString(R.string.setting_db_delete_success))
+                    })
         }
 
         //默认加载图片

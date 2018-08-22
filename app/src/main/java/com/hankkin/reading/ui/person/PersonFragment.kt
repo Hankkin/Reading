@@ -10,6 +10,7 @@ import android.view.View
 import com.afollestad.materialdialogs.MaterialDialog
 import com.bilibili.magicasakura.utils.ThemeUtils
 import com.cocosw.bottomsheet.BottomSheet
+import com.hankkin.library.utils.AppUtils
 import com.hankkin.library.utils.LogUtils
 import com.hankkin.library.utils.SPUtils
 import com.hankkin.library.utils.ToastUtils
@@ -26,7 +27,6 @@ import com.hankkin.reading.utils.*
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_setting.*
 import kotlinx.android.synthetic.main.fragment_person.*
 
 /**
@@ -57,6 +57,7 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
         xrv_person_lisy.layoutManager = LinearLayoutManager(context)
         xrv_person_lisy.adapter = mAdapter
         mCurrentTheme = ThemeHelper.getTheme(context)
+        tv_person_version.text = context?.let { "当前版本："+AppUtils.getVersionName(it) }
         initThemeBuilder()
     }
 
