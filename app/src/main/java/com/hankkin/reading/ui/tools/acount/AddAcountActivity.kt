@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import com.afollestad.materialdialogs.MaterialDialog
 import com.hankkin.library.utils.EncodeUtils
+import com.hankkin.library.utils.EncryptUtils
 import com.hankkin.library.utils.SPUtils
 import com.hankkin.library.utils.ToastUtils
 import com.hankkin.reading.R
@@ -80,8 +81,13 @@ class AddAcountActivity : BaseActivity() {
             et_add_account_name.setSelection(accountBean!!.name.length)
             et_add_account_number.setText(accountBean!!.number)
             et_add_account_number.setSelection(accountBean!!.number.length)
-            et_add_account_password.setText(EncodeUtils.decodePwd(accountBean!!.password))
-            et_add_account_password.setSelection(EncodeUtils.decodePwd(accountBean!!.password).length)
+            if (SPUtils.getString(PatternHelper.GESTURE_PWD_KEY).isNotEmpty()){
+                et_add_account_password.setText(EncryptUtils.HloveyRC4(accountBean!!.password.toString(),SPUtils.getString(PatternHelper.GESTURE_PWD_KEY)))
+            }
+            else{
+                et_add_account_password.setText(EncryptUtils.HloveyRC4(accountBean!!.password.toString(),Constant.COMMON.DEFAULT_LOCK_KEY))
+            }
+            et_add_account_password.setSelection(et_add_account_password.text.length)
             et_add_account_bz.setText(accountBean!!.beizhu)
             et_add_account_bz.setSelection(accountBean!!.beizhu.length)
             tv_add_account_cate.setText(accountBean!!.cate)
@@ -130,7 +136,7 @@ class AddAcountActivity : BaseActivity() {
         accountBean.id = if(accountId != 0L) this!!.accountId!! else accountBean.hashCode().toLong()
         accountBean.name = et_add_account_name.text.toString()
         accountBean.number = et_add_account_number.text.toString()
-        accountBean.password = EncodeUtils.encodePwd(et_add_account_password.text.toString(),SPUtils.getString(PatternHelper.GESTURE_PWD_KEY))
+        accountBean.password = EncryptUtils.HloveyRC4(et_add_account_password.text.toString(),SPUtils.getString(PatternHelper.GESTURE_PWD_KEY))
         accountBean.createAt = System.currentTimeMillis()
         accountBean.beizhu = et_add_account_bz.text.toString()
         if (accountId != 0L){
