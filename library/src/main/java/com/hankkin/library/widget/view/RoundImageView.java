@@ -1,4 +1,4 @@
-package com.hankkin.library.view;
+package com.hankkin.library.widget.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

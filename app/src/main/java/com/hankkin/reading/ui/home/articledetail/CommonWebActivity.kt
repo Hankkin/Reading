@@ -3,15 +3,20 @@ package com.hankkin.reading.ui.home.articledetail
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
 import android.view.Menu
 import android.view.MenuItem
+import android.webkit.WebChromeClient
 import android.webkit.WebSettings
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import com.hankkin.library.utils.StatusBarUtil
 import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseMvpActivity
 import com.hankkin.reading.utils.CommonUtils
+import com.hankkin.reading.utils.LoadingUtils
 import com.hankkin.reading.utils.ThemeHelper
 import kotlinx.android.synthetic.main.activity_article_detail.*
 
@@ -114,6 +119,17 @@ class CommonWebActivity : BaseMvpActivity<ArticleDetailPresenter>(), ArticleDeta
             intent.addCategory(Intent.CATEGORY_BROWSABLE)
             intent.data = Uri.parse(url)
             startActivity(intent)
+        }
+        web_article.webViewClient = object : WebViewClient(){
+            override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
+                super.onPageStarted(view, url, favicon)
+                LoadingUtils.showLoading(this@CommonWebActivity)
+            }
+
+            override fun onPageFinished(view: WebView?, url: String?) {
+                super.onPageFinished(view, url)
+                LoadingUtils.hideLoading()
+            }
         }
     }
 

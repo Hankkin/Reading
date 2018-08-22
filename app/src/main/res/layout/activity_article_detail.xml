@@ -32,7 +32,7 @@
 
     </com.bilibili.magicasakura.widgets.TintToolbar>
 
-    <com.hankkin.reading.view.ProgressWebView
+    <WebView
         android:id="@+id/web_article"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

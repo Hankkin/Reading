@@ -10,7 +10,6 @@ import android.widget.TextView
 import com.bilibili.magicasakura.widgets.TintImageView
 import com.bilibili.magicasakura.widgets.TintTextView
 import com.hankkin.library.utils.SPUtils
-import com.hankkin.library.view.RippleView
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.base.BaseRecyclerViewAdapter
 import com.hankkin.reading.adapter.base.BaseRecyclerViewHolder
