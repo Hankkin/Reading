@@ -27,7 +27,6 @@ class AccountDao : BaseDao(),AccountDaoContract{
      * 删除账号
      */
     override fun deleteAccountById(id: Long) {
-        updateSPTime()
         daoSession.accountBeanDao.deleteByKey(id)
     }
 

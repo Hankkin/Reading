@@ -46,6 +46,7 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_setting.*
 
 @SuppressLint("RestrictedApi")
 @RequiresApi(Build.VERSION_CODES.M)
@@ -251,6 +252,7 @@ class MainActivity : BaseActivity() {
 
     private fun checkSync() {
         if (DBUtils.isAutoSync(this)) {
+            SPUtils.put(Constant.SP_KEY.LOCK_BACKUP_OPEN,1)
             ViewHelper.showConfirmDialog(this, resources.getString(R.string.setting_lock_data_restore_hint),
                     MaterialDialog.SingleButtonCallback { dialog, which ->
                         val disposable = Observable.create<Boolean> {
