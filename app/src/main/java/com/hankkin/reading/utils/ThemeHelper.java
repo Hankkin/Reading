@@ -16,18 +16,10 @@
 
 package com.hankkin.reading.utils;
 
-import android.app.Activity;
-import android.app.ActivityManager;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Build;
-import android.view.View;
 
-import com.bilibili.magicasakura.utils.ThemeUtils;
 import com.hankkin.reading.R;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -38,20 +30,20 @@ public class ThemeHelper {
     private static final String CURRENT_THEME = "theme_current";
 
     public static final int COLOR_YIMA = 0x1;
-    public static final int COLOR_KUAN = 0x2;
-    public static final int COLOR_BILI = 0x3;
-    public static final int COLOR_YIDI = 0x5;
-    public static final int COLOR_SHUIYA = 0x6;
-    public static final int COLOR_YITENG = 0x7;
-    public static final int COLOR_JILAO = 0x8;
+    public static final int COLOR_BILI = 0x2;
+    public static final int COLOR_YITENG = 0x3;
+    public static final int COLOR_XINGHONG = 0x4;
+    public static final int COLOR_ANLUOLAN = 0x5;
+    public static final int COLOR_KUAN = 0x6;
+    public static final int COLOR_JILAO = 0x7;
+    public static final int COLOR_YIDI = 0x8;
     public static final int COLOR_ZHIHU = 0x9;
-    public static final int COLOR_GUTONG = 0x10;
+    public static final int COLOR_SHUIYA = 0x10;
     public static final int COLOR_DIDIAO = 0x11;
-    public static final int COLOR_GAODUAN = 0x12;
+    public static final int COLOR_GUTONG = 0x12;
     public static final int COLOR_APING = 0x13;
-    public static final int COLOR_LIANGBAI = 0x14;
-    public static final int COLOR_ANLUOLAN = 0x15;
-    public static final int COLOR_XINGHONG = 0x16;
+    public static final int COLOR_GAODUAN = 0x14;
+    public static final int COLOR_LIANGBAI = 0x15;
 
     public static String[] themeList = {"yima","kuan","bili","yidi","shuiya","yiteng","jilao","zhihu","gutong","didiao","gaoduan","aping","liangbai","anluolan","xinghong"}
     ;

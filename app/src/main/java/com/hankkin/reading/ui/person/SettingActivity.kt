@@ -2,6 +2,7 @@ package com.hankkin.reading.ui.person
 
 import android.app.Activity
 import android.app.ActivityManager
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -26,7 +27,12 @@ class SettingActivity : BaseActivity() {
 
 
     private var mCurrentTheme: Int = 0
-    private lateinit var mThemeBuilder: BottomSheet.Builder
+//    private lateinit var mThemeBuilder: BottomSheet.Builder
+
+
+    override fun isHasBus(): Boolean {
+        return true
+    }
 
     override fun getLayoutId(): Int {
         return R.layout.activity_setting
@@ -38,8 +44,8 @@ class SettingActivity : BaseActivity() {
 
         mCurrentTheme = ThemeHelper.getTheme(this)
         tv_setting_theme_value.text = ThemeHelper.getName(this, mCurrentTheme)
-        initThemeBuilder()
-        rl_setting_theme.setOnClickListener { mThemeBuilder.show() }
+//        initThemeBuilder()
+        rl_setting_theme.setOnClickListener { startActivity(Intent(this,ThemeActivity::class.java)) }
 
         //账号锁 账号备份 加载图片 单词备份
         switch_lock.isChecked = SPUtils.getInt(Constant.SP_KEY.LOCK_OPEN) != 0
@@ -157,59 +163,20 @@ class SettingActivity : BaseActivity() {
     }
 
 
-    fun initThemeBuilder() {
-        mThemeBuilder = BottomSheet.Builder(this, R.style.BottomSheet_StyleDialog)
-                .title(R.string.setting_theme)
-                .sheet(R.menu.theme_bottomsheet)
-                .listener { dialog, which ->
-                    changeTheme(which)
-                }
-    }
+//    fun initThemeBuilder() {
+//        mThemeBuilder = BottomSheet.Builder(this, R.style.BottomSheet_StyleDialog)
+//                .title(R.string.setting_theme)
+//                .sheet(R.menu.theme_bottomsheet)
+//                .listener { dialog, which ->
+//                    changeTheme(which)
+//                }
+//    }
 
-    /**
-     * 修改主题颜色
-     */
-    fun changeTheme(themeValue: Int) {
-        mCurrentTheme = when (themeValue) {
-            R.id.yima -> ThemeHelper.COLOR_YIMA
-            R.id.kuan -> ThemeHelper.COLOR_KUAN
-            R.id.bili -> ThemeHelper.COLOR_BILI
-            R.id.yidi -> ThemeHelper.COLOR_YIDI
-            R.id.shuiya -> ThemeHelper.COLOR_SHUIYA
-            R.id.yiteng -> ThemeHelper.COLOR_YITENG
-            R.id.jilao -> ThemeHelper.COLOR_JILAO
-            R.id.zhihu -> ThemeHelper.COLOR_ZHIHU
-            R.id.gutong -> ThemeHelper.COLOR_GUTONG
-            R.id.didiao -> ThemeHelper.COLOR_DIDIAO
-            R.id.gaoduan -> ThemeHelper.COLOR_GAODUAN
-            R.id.aping -> ThemeHelper.COLOR_APING
-            R.id.liangbai -> ThemeHelper.COLOR_LIANGBAI
-            R.id.anluolan -> ThemeHelper.COLOR_ANLUOLAN
-            R.id.xinghong -> ThemeHelper.COLOR_XINGHONG
-            else -> {
-                ThemeHelper.COLOR_YIMA
-            }
-        }
-        tv_setting_theme_value.text = ThemeHelper.getName(this, mCurrentTheme)
 
-        if (ThemeHelper.getTheme(this) != mCurrentTheme) {
-            ThemeHelper.setTheme(this, mCurrentTheme)
-            ThemeUtils.refreshUI(this, object : ThemeUtils.ExtraRefreshable {
-                override fun refreshSpecificView(view: View?) {
-                }
-
-                override fun refreshGlobal(activity: Activity?) {
-                    if (Build.VERSION.SDK_INT >= 21) {
-                        val context = this@SettingActivity
-                        val taskDescription = ActivityManager.TaskDescription(null, null,
-                                ThemeUtils.getThemeAttrColor(context, android.R.attr.colorPrimary))
-                        setTaskDescription(taskDescription)
-                        window.statusBarColor = ThemeUtils.getColorById(context, R.color.theme_color_primary_dark)
-                    }
-                }
-
-            })
-            RxBusTools.getDefault().post(EventMap.ChangeThemeEvent())
+    override fun onEvent(event: EventMap.BaseEvent) {
+        if (event is EventMap.ChangeThemeEvent){
+            mCurrentTheme = ThemeHelper.getTheme(this)
+            tv_setting_theme_value.text = ThemeHelper.getName(this, mCurrentTheme)
         }
     }
 

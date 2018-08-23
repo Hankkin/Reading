@@ -1,16 +1,14 @@
 package com.hankkin.reading.ui.person
 
-import android.app.Activity
-import android.app.ActivityManager
 import android.content.Intent
-import android.os.Build
 import android.support.design.widget.AppBarLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.afollestad.materialdialogs.MaterialDialog
-import com.bilibili.magicasakura.utils.ThemeUtils
-import com.cocosw.bottomsheet.BottomSheet
-import com.hankkin.library.utils.*
+import com.hankkin.library.utils.AppUtils
+import com.hankkin.library.utils.LogUtils
+import com.hankkin.library.utils.SPUtils
+import com.hankkin.library.utils.ToastUtils
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.PersonListAdapter
 import com.hankkin.reading.base.BaseMvpFragment
@@ -33,7 +31,6 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
 
     private lateinit var mAdapter: PersonListAdapter
     private var mCurrentTheme: Int = 0
-    private lateinit var mThemeBuilder: BottomSheet.Builder
 
     override fun registerPresenter() = PersonPresenter::class.java
 
@@ -55,7 +52,6 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
         xrv_person_lisy.adapter = mAdapter
         mCurrentTheme = ThemeHelper.getTheme(context)
         tv_person_version.text = context?.let { "当前版本：" + AppUtils.getVersionName(it) }
-        initThemeBuilder()
     }
 
     override fun initView() {
@@ -133,7 +129,7 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
         } else if (event is EventMap.PersonClickEvent) {
             when (event.index) {
                 0 -> startActivity(Intent(context, MyCollectActivity::class.java))
-                1 -> mThemeBuilder.show()
+                1 -> startActivity(Intent(context,ThemeActivity::class.java))
                 2 -> syncData()
                 3 -> context!!.startActivity(Intent(context, SettingActivity::class.java))
             }
@@ -174,59 +170,5 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
             }
         }
     }
-
-    fun initThemeBuilder() {
-        mThemeBuilder = BottomSheet.Builder(context, R.style.BottomSheet_StyleDialog)
-                .title(R.string.setting_theme)
-                .sheet(R.menu.theme_bottomsheet)
-                .listener { dialog, which ->
-                    changeTheme(which)
-                }
-    }
-
-    /**
-     * 修改主题颜色
-     */
-    fun changeTheme(themeValue: Int) {
-        mCurrentTheme = when (themeValue) {
-            R.id.yima -> ThemeHelper.COLOR_YIMA
-            R.id.kuan -> ThemeHelper.COLOR_KUAN
-            R.id.bili -> ThemeHelper.COLOR_BILI
-            R.id.yidi -> ThemeHelper.COLOR_YIDI
-            R.id.shuiya -> ThemeHelper.COLOR_SHUIYA
-            R.id.yiteng -> ThemeHelper.COLOR_YITENG
-            R.id.jilao -> ThemeHelper.COLOR_JILAO
-            R.id.zhihu -> ThemeHelper.COLOR_ZHIHU
-            R.id.gutong -> ThemeHelper.COLOR_GUTONG
-            R.id.didiao -> ThemeHelper.COLOR_DIDIAO
-            R.id.gaoduan -> ThemeHelper.COLOR_GAODUAN
-            R.id.aping -> ThemeHelper.COLOR_APING
-            R.id.liangbai -> ThemeHelper.COLOR_LIANGBAI
-            R.id.anluolan -> ThemeHelper.COLOR_ANLUOLAN
-            R.id.xinghong -> ThemeHelper.COLOR_XINGHONG
-            else -> {
-                ThemeHelper.COLOR_YIMA
-            }
-        }
-        if (ThemeHelper.getTheme(context) != mCurrentTheme) {
-            ThemeHelper.setTheme(context, mCurrentTheme)
-            ThemeUtils.refreshUI(context, object : ThemeUtils.ExtraRefreshable {
-                override fun refreshSpecificView(view: View?) {
-                }
-
-                override fun refreshGlobal(activity: Activity?) {
-                    if (Build.VERSION.SDK_INT >= 21) {
-                        val taskDescription = ActivityManager.TaskDescription(null, null,
-                                ThemeUtils.getThemeAttrColor(context, android.R.attr.colorPrimary))
-                        activity!!.setTaskDescription(taskDescription)
-                        activity.window.statusBarColor = ThemeUtils.getColorById(context, R.color.theme_color_primary_dark)
-                    }
-                }
-
-            })
-            RxBusTools.getDefault().post(EventMap.ChangeThemeEvent())
-        }
-    }
-
 
 }

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".ui.person.ThemeActivity">
+
+    <com.bilibili.magicasakura.widgets.TintRelativeLayout
+        android:id="@+id/rl_title"
+        android:layout_width="match_parent"
+        android:background="@color/theme_color_primary"
+        android:layout_height="@dimen/title_bar_height">
+
+
+        <com.hankkin.reading.view.ClickImageView
+            android:id="@+id/iv_back_icon"
+            android:paddingRight="@dimen/dp_10"
+            android:paddingLeft="@dimen/dp_10"
+            android:src="@mipmap/icon_white_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:layout_marginStart="@dimen/dp_6"
+            android:layout_toEndOf="@+id/iv_back_icon"
+            android:id="@+id/tv_normal_title"
+            android:layout_centerVertical="true"
+            style="@style/whiteTxtBig"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_theme_ok"
+            style="@style/whiteTxt"
+            android:gravity="center"
+            android:text="@string/ok"
+            android:paddingRight="@dimen/dp_10"
+            android:paddingLeft="@dimen/dp_10"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+    </com.bilibili.magicasakura.widgets.TintRelativeLayout>
+
+    <ImageView
+        android:id="@+id/iv_theme_expamle"
+        android:layout_weight="1"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_20"
+        android:src="@mipmap/pic_yima"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <View
+        android:background="@color/grey1"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_theme"
+        android:paddingTop="@dimen/dp_10"
+        android:paddingBottom="@dimen/dp_10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>

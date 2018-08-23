@@ -32,6 +32,7 @@ import com.hankkin.reading.ui.home.HomeFragment
 import com.hankkin.reading.ui.login.LoginActivity
 import com.hankkin.reading.ui.person.PersonFragment
 import com.hankkin.reading.ui.person.SettingActivity
+import com.hankkin.reading.ui.person.ThemeActivity
 import com.hankkin.reading.ui.tools.ToolsFragment
 import com.hankkin.reading.ui.tools.acount.AccountListActivity
 import com.hankkin.reading.ui.tools.wordnote.WordNoteActivity
@@ -214,7 +215,7 @@ class MainActivity : BaseActivity() {
         drawer_layout.closeDrawer(Gravity.START)
         drawer_layout.postDelayed({
             when (v.id) {
-                R.id.ll_nav_theme -> startActivity(Intent(this@MainActivity, SettingActivity::class.java))
+                R.id.ll_nav_theme -> startActivity(Intent(this@MainActivity, ThemeActivity::class.java))
                 R.id.ll_nav_setting -> startActivity(Intent(this@MainActivity, SettingActivity::class.java))
                 R.id.ll_nav_about -> ViewHelper.showAboutDialog(this@MainActivity)
                 R.id.ll_nav_collect -> {
