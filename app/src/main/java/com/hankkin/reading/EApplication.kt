@@ -5,6 +5,8 @@ import android.content.Context
 import android.support.annotation.ColorInt
 import android.support.annotation.ColorRes
 import com.bilibili.magicasakura.utils.ThemeUtils
+import com.hankkin.library.http.HttpConfig
+import com.hankkin.library.http.cookie.CookiesManager
 import com.hankkin.library.utils.AppUtils
 import com.hankkin.library.utils.FileUtils
 import com.hankkin.library.utils.SPUtils
@@ -35,11 +37,10 @@ class EApplication : Application() ,ThemeUtils.switchColor{
     override fun onCreate() {
         super.onCreate()
         instance = this
-
         FileUtils.initSd(AppUtils.getAppName(this)!!)
         SPUtils.init(this,Constant.COMMON.SP_NAME)
         ToastUtils.init(this)
-
+        HttpConfig.setCookie(CookiesManager(this))
         ThemeUtils.setSwitchColor(this)
         initLeakCanary()
         initDao()

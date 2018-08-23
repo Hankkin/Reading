@@ -1,5 +1,6 @@
 package com.hankkin.reading.http
 
+import com.hankkin.library.http.HttpClient
 import com.hankkin.reading.common.Constant
 
 
@@ -21,7 +22,7 @@ class ApiFactory {
             Constant.WanAndroidUrl.BASE_URL -> {
                 if (commonApi == null) {
                     synchronized(ApiFactory::class.java) {
-                        commonApi = HttpClientUtils.getBuilder(type).build().create(clazz)
+                        commonApi = HttpClient.getBuilder(type).build().create(clazz)
                     }
                 }
                 return commonApi as T
@@ -29,7 +30,7 @@ class ApiFactory {
             Constant.ToolsUrl.WEATHER_URL -> {
                 if (toolsApi == null) {
                     synchronized(ApiFactory::class.java) {
-                        toolsApi = HttpClientUtils.getBuilder(type).build().create(clazz)
+                        toolsApi = HttpClient.getBuilder(type).build().create(clazz)
                     }
                 }
                 return toolsApi as T
@@ -37,7 +38,7 @@ class ApiFactory {
             Constant.OSChinaUrl.BASE_URL -> {
                 if (osChinaApi == null) {
                     synchronized(ApiFactory::class.java) {
-                        osChinaApi = HttpClientUtils.getBuilder(type).build().create(clazz)
+                        osChinaApi = HttpClient.getBuilder(type).build().create(clazz)
                     }
                 }
                 return osChinaApi as T

@@ -1,6 +1,6 @@
 package com.hankkin.reading.ui.home.project.projectlist
 
-import com.hankkin.reading.http.HttpClient
+import com.hankkin.reading.http.HttpClientUtils
 import com.hankkin.library.mvp.presenter.RxLifePresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -11,7 +11,7 @@ import io.reactivex.schedulers.Schedulers
 class ProjectListPresenter : RxLifePresenter<ProjectListContact.IView>(), ProjectListContact.IPresenter{
 
     override fun getCateList(page: Int,cid: Int) {
-        HttpClient.Builder.getCommonHttp()
+        HttpClientUtils.Builder.getCommonHttp()
                 .getArticleCid(page,cid)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

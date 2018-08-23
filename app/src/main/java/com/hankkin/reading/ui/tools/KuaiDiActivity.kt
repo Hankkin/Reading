@@ -59,7 +59,7 @@ class KuaiDiActivity : BaseActivity() {
 
     private fun showCompany(data: MutableList<String>){
         et_kuaidi_company.inputType = InputType.TYPE_NULL
-        ViewHelper.showListNoTitleDialog(this, data,
+        ViewHelper.showListTitleDialog(this,"请选择快递", data,
                 MaterialDialog.ListCallback { dialog, itemView, which, text ->
                     et_kuaidi_company.setText(mCompanys[which].name)
                     mSelectCompany = mCompanys[which]

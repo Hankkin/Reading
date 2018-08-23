@@ -6,7 +6,7 @@ import android.support.annotation.NonNull;
 import android.view.Window;
 
 import com.hankkin.library.R;
-import com.hankkin.library.commpoent.AVLoadingIndicatorView;
+import com.hankkin.library.widget.view.indicators.AVLoadingIndicatorView;
 
 
 /**

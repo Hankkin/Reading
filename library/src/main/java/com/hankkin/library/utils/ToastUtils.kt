@@ -2,7 +2,7 @@ package com.hankkin.library.utils
 
 import android.content.Context
 import com.hankkin.library.R
-import com.hankkin.library.commpoent.toasty.Toasty
+import com.hankkin.library.widget.toasty.Toasty
 
 /**
  * Created by huanghaijie on 2018/8/13.

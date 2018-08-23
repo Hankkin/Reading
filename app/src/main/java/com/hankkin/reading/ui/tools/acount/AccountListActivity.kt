@@ -43,7 +43,7 @@ class AccountListActivity : BaseActivity() {
         fab_menu_add.setOnMenuButtonClickListener { startActivityForResult(Intent(this, AddAcountActivity::class.java), REQUEST_CODE) }
         val longClickItems = mutableListOf<String>(resources.getString(R.string.account_look), resources.getString(R.string.account_edit), resources.getString(R.string.account_delete))
         mAdapter.setOnItemLongClickListener { t, position ->
-            ViewHelper.showListNoTitleDialog(this, longClickItems, MaterialDialog.ListCallback { dialog, itemView, which, text ->
+            ViewHelper.showListTitleDialog(this,"操作", longClickItems, MaterialDialog.ListCallback { dialog, itemView, which, text ->
                 when (which) {
                     0 -> {
                         AccountDetailActivity.intentTo(this, t.id)

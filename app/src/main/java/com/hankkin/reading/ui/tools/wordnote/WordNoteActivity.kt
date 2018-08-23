@@ -47,7 +47,7 @@ class WordNoteActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
         rv_word_note.adapter = mAdapter
         val longClickItems = mutableListOf<String>(resources.getString(R.string.word_note_detail), resources.getString(R.string.word_note_remove), resources.getString(R.string.word_note_emphasis))
         mAdapter.setOnItemLongClickListener { t, position ->
-            ViewHelper.showListNoTitleDialog(this, longClickItems, MaterialDialog.ListCallback { dialog, itemView, which, text ->
+            ViewHelper.showListTitleDialog(this,"操作", longClickItems, MaterialDialog.ListCallback { dialog, itemView, which, text ->
                 when (which) {
                     0 -> TranslateActivity.intentTo(this, t.translateBean.query)
                     1 -> {

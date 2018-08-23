@@ -1,6 +1,6 @@
 package com.hankkin.reading.ui.home.project
 
-import com.hankkin.reading.http.HttpClient
+import com.hankkin.reading.http.HttpClientUtils
 import com.hankkin.library.mvp.presenter.RxLifePresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -10,7 +10,7 @@ import io.reactivex.schedulers.Schedulers
  */
 class ProjectPresenter : RxLifePresenter<ProjectContact.IView>(), ProjectContact.IPresenter {
     override fun getCatesHttp() {
-        HttpClient.Builder.getCommonHttp()
+        HttpClientUtils.Builder.getCommonHttp()
                 .getProject()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

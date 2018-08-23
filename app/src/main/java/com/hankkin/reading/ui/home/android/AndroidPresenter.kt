@@ -1,6 +1,6 @@
 package com.hankkin.reading.ui.home.android
 
-import com.hankkin.reading.http.HttpClient
+import com.hankkin.reading.http.HttpClientUtils
 import com.hankkin.library.mvp.presenter.RxLifePresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -10,7 +10,7 @@ import io.reactivex.schedulers.Schedulers
  */
 class AndroidPresenter : RxLifePresenter<AndroidContact.IView>(), AndroidContact.IPresenter {
     override fun cancelCollectHttp(id: Int) {
-        HttpClient.Builder.getCommonHttp()
+        HttpClientUtils.Builder.getCommonHttp()
                 .cancelCollectArticle(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -22,7 +22,7 @@ class AndroidPresenter : RxLifePresenter<AndroidContact.IView>(), AndroidContact
     }
 
     override fun collectHttp(id: Int) {
-        HttpClient.Builder.getCommonHttp()
+        HttpClientUtils.Builder.getCommonHttp()
                 .collectArticle(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -34,7 +34,7 @@ class AndroidPresenter : RxLifePresenter<AndroidContact.IView>(), AndroidContact
     }
 
     override fun getArticle(page: Int) {
-        HttpClient.Builder.getCommonHttp()
+        HttpClientUtils.Builder.getCommonHttp()
                 .getArticle(page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

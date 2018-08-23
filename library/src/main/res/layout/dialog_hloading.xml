@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:background="@color/transparent"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/transparent">
 
-    <com.hankkin.library.commpoent.AVLoadingIndicatorView
-        android:id="@+id/avi"
-        app:indicatorColor="@color/blue"
+    <FrameLayout
+        android:padding="15dp"
+        android:background="@drawable/bg_loading_shape"
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/AVLoadingIndicatorView.Small"
-        />
+        android:layout_height="wrap_content">
+
+        <com.hankkin.library.widget.view.indicators.AVLoadingIndicatorView
+            android:id="@+id/avi"
+            style="@style/AVLoadingIndicatorView.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:indicatorColor="@color/blue" />
+    </FrameLayout>
+
 
 </RelativeLayout>
