@@ -5,11 +5,11 @@ import android.app.ActivityManager
 import android.os.Build
 import android.os.Bundle
 import android.view.View
-import com.afollestad.materialdialogs.DialogAction
 import com.afollestad.materialdialogs.MaterialDialog
 import com.bilibili.magicasakura.utils.ThemeUtils
 import com.cocosw.bottomsheet.BottomSheet
 import com.hankkin.library.utils.CacheUtils
+import com.hankkin.library.utils.RxBusTools
 import com.hankkin.library.utils.SPUtils
 import com.hankkin.library.utils.ToastUtils
 import com.hankkin.reading.R

@@ -1,9 +1,7 @@
-package com.hankkin.reading.utils;
+package com.hankkin.reading.greendao;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-
-import com.hankkin.reading.greendao.DaoMaster;
 
 public class GreenOpenHelper extends DaoMaster.DevOpenHelper {
 

@@ -6,9 +6,10 @@ package com.hankkin.reading.base
 import android.os.Bundle
 import com.hankkin.library.utils.StatusBarUtil
 import com.hankkin.reading.event.EventMap
-import com.hankkin.reading.mvp.contract.IPresenterContract
-import com.hankkin.reading.mvp.view.MvpActivity
-import com.hankkin.reading.utils.RxBusTools
+import com.hankkin.library.mvp.contract.IPresenterContract
+import com.hankkin.library.mvp.view.MvpActivity
+import com.hankkin.library.utils.RxBusTools
+import com.hankkin.reading.utils.LoadingUtils
 import com.hankkin.reading.utils.ThemeHelper
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.Consumer
@@ -58,6 +59,7 @@ abstract class BaseMvpActivity<out P : IPresenterContract> : MvpActivity<P>() {
     override fun onDestroy() {
         super.onDestroy()
         disposables.clear()
+        LoadingUtils.onDestory()
     }
 
 

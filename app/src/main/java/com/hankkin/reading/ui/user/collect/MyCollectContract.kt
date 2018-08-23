@@ -1,8 +1,8 @@
 package com.hankkin.reading.ui.user.collect
 
 import com.hankkin.reading.domain.ArticleBean
-import com.hankkin.reading.mvp.contract.IBaseViewContract
-import com.hankkin.reading.mvp.contract.IPresenterContract
+import com.hankkin.library.mvp.contract.IBaseViewContract
+import com.hankkin.library.mvp.contract.IPresenterContract
 
 interface MyCollectContract{
 

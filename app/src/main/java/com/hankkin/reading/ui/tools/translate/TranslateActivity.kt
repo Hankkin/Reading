@@ -18,7 +18,7 @@ import com.hankkin.reading.base.BaseActivity
 import com.hankkin.reading.common.Constant
 import com.hankkin.reading.domain.TranslateBean
 import com.hankkin.reading.domain.WordNoteBean
-import com.hankkin.reading.mvp.model.DaoFactory
+import com.hankkin.reading.dao.DaoFactory
 import com.hankkin.reading.ui.home.articledetail.CommonWebActivity
 import com.hankkin.reading.ui.tools.wordnote.WordNoteDaoContract
 import com.hankkin.reading.utils.JsonUtils

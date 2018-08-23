@@ -10,10 +10,7 @@ import android.view.View
 import com.afollestad.materialdialogs.MaterialDialog
 import com.bilibili.magicasakura.utils.ThemeUtils
 import com.cocosw.bottomsheet.BottomSheet
-import com.hankkin.library.utils.AppUtils
-import com.hankkin.library.utils.LogUtils
-import com.hankkin.library.utils.SPUtils
-import com.hankkin.library.utils.ToastUtils
+import com.hankkin.library.utils.*
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.PersonListAdapter
 import com.hankkin.reading.base.BaseMvpFragment

@@ -1,15 +1,15 @@
 package com.hankkin.reading.ui.user
 
 import com.hankkin.reading.domain.UserBean
-import com.hankkin.reading.mvp.contract.IBaseLoading
-import com.hankkin.reading.mvp.contract.IPresenterContract
+import com.hankkin.library.mvp.contract.IBaseLoading
+import com.hankkin.library.mvp.contract.IPresenterContract
 
 /**
  * Created by huanghaijie on 2018/6/8.
  */
 interface AuthorizeContract{
 
-    interface IView : IBaseLoading{
+    interface IView : IBaseLoading {
         fun saveUserInfo(userBean: UserBean)
     }
 

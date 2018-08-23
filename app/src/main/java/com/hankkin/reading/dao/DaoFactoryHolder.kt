@@ -1,4 +1,4 @@
-package com.hankkin.reading.mvp.model
+package com.hankkin.reading.dao
 
 import java.util.*
 /**

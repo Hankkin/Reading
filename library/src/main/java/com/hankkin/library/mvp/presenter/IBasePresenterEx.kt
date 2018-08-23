@@ -1,8 +1,9 @@
-package com.hankkin.reading.mvp.presenter
+package com.hankkin.library.mvp.presenter
 
 import android.app.Activity
 import android.content.Context
 import android.support.v4.app.Fragment
+import com.hankkin.library.mvp.presenter.IBasePresenter
 import java.lang.IllegalStateException
 
 /**

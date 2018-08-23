@@ -1,4 +1,4 @@
-package com.hankkin.reading.utils;
+package com.hankkin.reading.glide;
 
 import android.content.Context;
 import android.view.View;

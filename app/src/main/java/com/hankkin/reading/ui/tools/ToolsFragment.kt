@@ -19,7 +19,7 @@ import com.hankkin.reading.domain.ToolsBean
 import com.hankkin.reading.domain.Weatherbean
 import com.hankkin.reading.domain.WordNoteBean
 import com.hankkin.reading.event.EventMap
-import com.hankkin.reading.mvp.model.DaoFactory
+import com.hankkin.reading.dao.DaoFactory
 import com.hankkin.reading.ui.home.articledetail.CommonWebActivity
 import com.hankkin.reading.ui.tools.acount.AccountListActivity
 import com.hankkin.reading.ui.tools.acount.LockSetActivity

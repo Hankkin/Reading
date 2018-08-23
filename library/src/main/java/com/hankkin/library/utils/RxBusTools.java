@@ -1,4 +1,4 @@
-package com.hankkin.reading.utils;
+package com.hankkin.library.utils;
 
 import com.jakewharton.rxrelay2.PublishRelay;
 import com.jakewharton.rxrelay2.Relay;

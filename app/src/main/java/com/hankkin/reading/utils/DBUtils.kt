@@ -11,7 +11,7 @@ import com.hankkin.reading.common.Constant
 import com.hankkin.reading.domain.AccountBean
 import com.hankkin.reading.domain.TranslateBean
 import com.hankkin.reading.domain.WordNoteBean
-import com.hankkin.reading.mvp.model.DaoFactory
+import com.hankkin.reading.dao.DaoFactory
 import com.hankkin.reading.ui.tools.acount.AccountDaoContract
 import com.hankkin.reading.ui.tools.translate.TranslateDaoContract
 import com.hankkin.reading.ui.tools.wordnote.WordNoteDaoContract

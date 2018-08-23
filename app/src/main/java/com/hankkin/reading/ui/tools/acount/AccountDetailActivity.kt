@@ -3,17 +3,16 @@ package com.hankkin.reading.ui.tools.acount
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.Gravity
 import com.afollestad.materialdialogs.MaterialDialog
 import com.hankkin.library.utils.EncryptUtils
-import com.hankkin.library.utils.SPUtils
+import com.hankkin.library.utils.RxBusTools
 import com.hankkin.library.utils.ToastUtils
 import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseActivity
 import com.hankkin.reading.common.Constant
 import com.hankkin.reading.domain.AccountBean
 import com.hankkin.reading.event.EventMap
-import com.hankkin.reading.mvp.model.DaoFactory
+import com.hankkin.reading.dao.DaoFactory
 import com.hankkin.reading.utils.*
 import kotlinx.android.synthetic.main.activity_account_detail.*
 

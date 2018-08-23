@@ -1,16 +1,16 @@
 package com.hankkin.reading.ui.person.friend
 
 import com.hankkin.reading.domain.FriendBean
-import com.hankkin.reading.mvp.contract.IPresenterContract
-import com.hankkin.reading.mvp.contract.IRefresh
+import com.hankkin.library.mvp.contract.IPresenterContract
+import com.hankkin.library.mvp.contract.IRefresh
 
 interface FriendContract{
 
-    interface IView : IRefresh{
+    interface IView : IRefresh {
         fun setFriendList(data: FriendBean)
     }
 
-    interface IPresenter : IPresenterContract{
+    interface IPresenter : IPresenterContract {
         fun getFriendList(map: HashMap<String,Any>)
     }
 

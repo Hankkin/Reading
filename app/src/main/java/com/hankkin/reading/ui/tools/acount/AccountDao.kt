@@ -4,7 +4,7 @@ import com.hankkin.library.utils.SPUtils
 import com.hankkin.reading.common.Constant
 import com.hankkin.reading.domain.AccountBean
 import com.hankkin.reading.greendao.AccountBeanDao
-import com.hankkin.reading.mvp.model.BaseDao
+import com.hankkin.reading.dao.BaseDao
 
 /**
  * @author Hankkin

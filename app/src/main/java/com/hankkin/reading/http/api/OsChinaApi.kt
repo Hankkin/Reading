@@ -1,5 +1,6 @@
 package com.hankkin.reading.http.api
 
+import com.hankkin.library.domin.BaseResponse
 import com.hankkin.reading.domain.*
 import io.reactivex.Observable
 import retrofit2.http.GET

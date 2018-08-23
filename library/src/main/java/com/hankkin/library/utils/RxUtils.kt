@@ -1,4 +1,4 @@
-package com.hankkin.reading.utils
+package com.hankkin.library.utils
 
 import io.reactivex.disposables.Disposable
 

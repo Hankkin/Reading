@@ -6,7 +6,7 @@ import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseMvpActivity
 import com.hankkin.reading.control.UserControl
 import com.hankkin.reading.domain.UserInfoBean
-import com.hankkin.reading.utils.GlideUtils
+import com.hankkin.reading.glide.GlideUtils
 import kotlinx.android.synthetic.main.activity_person_info.*
 import kotlinx.android.synthetic.main.layout_title_bar_back.*
 

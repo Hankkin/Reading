@@ -1,14 +1,14 @@
-package com.hankkin.reading.mvp.view
+package com.hankkin.library.mvp.view
 
 import android.os.Bundle
-import android.support.v4.app.FragmentActivity
-import com.hankkin.reading.mvp.contract.IBaseViewContract
-import com.hankkin.reading.mvp.contract.IPresenterContract
+import android.support.v7.app.AppCompatActivity
+import com.hankkin.library.mvp.contract.IBaseViewContract
+import com.hankkin.library.mvp.contract.IPresenterContract
 
 /**
  * Created by huanghaijie on 2018/5/16.
  */
-abstract class MvpFragmentActivity<out T : IPresenterContract> : FragmentActivity(),IBaseView<T>, IBaseViewContract {
+ abstract class MvpActivity<out T : IPresenterContract> : AppCompatActivity() , IBaseView<T>, IBaseViewContract {
 
     private val mPresenter: T by lazy {
         val clazz = registerPresenter()
@@ -50,4 +50,5 @@ abstract class MvpFragmentActivity<out T : IPresenterContract> : FragmentActivit
         super.onDestroy()
         mPresenter.onDestroy()
     }
+
 }

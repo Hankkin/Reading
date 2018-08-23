@@ -12,7 +12,7 @@ import com.hankkin.reading.domain.UserBean
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.ui.login.register.RegisterPresenter
 import com.hankkin.reading.utils.LoadingUtils
-import com.hankkin.reading.utils.RxBusTools
+import com.hankkin.library.utils.RxBusTools
 import kotlinx.android.synthetic.main.fragment_login.*
 
 /**

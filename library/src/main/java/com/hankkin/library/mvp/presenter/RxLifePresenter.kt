@@ -1,15 +1,12 @@
-package com.hankkin.reading.mvp.presenter
+package com.hankkin.library.mvp.presenter
 
+import com.hankkin.library.domin.BaseResponse
+import com.hankkin.library.mvp.contract.IBaseViewContract
+import com.hankkin.library.mvp.contract.IPresenterContract
 import com.hankkin.library.utils.LogUtils
-import com.hankkin.library.utils.ToastUtils
-import com.hankkin.reading.EApplication
-import com.hankkin.reading.domain.BaseResponse
-import com.hankkin.reading.mvp.contract.IBaseViewContract
-import com.hankkin.reading.mvp.contract.IPresenterContract
-import com.hankkin.reading.utils.RxUtils
+import com.hankkin.library.utils.RxUtils
 import io.reactivex.Observable
 import io.reactivex.disposables.Disposable
-import java.util.*
 
 /**
  * Created by huanghaijie on 2018/5/16.
@@ -82,9 +79,7 @@ abstract class RxLifePresenter<out V : IBaseViewContract> : IBasePresenter<V>, I
     fun <T> Observable<BaseResponse<T>>.subscribeEx(onNext: (data: T) -> Unit = {}, onError: (e: Throwable) -> Unit = {}, onComplete: () -> Unit = {}): Disposable {
         return this.subscribe({
             //编写订阅触发时的公共代码
-
             if(it.errorCode != 0){
-                ToastUtils.showError(EApplication.instance(),it.errorMsg)
                 onError.invoke(kotlin.Throwable())
             }
             else{
@@ -101,7 +96,7 @@ abstract class RxLifePresenter<out V : IBaseViewContract> : IBasePresenter<V>, I
         })
     }
 
-    fun <T> Observable<T>.subscribeNx(onNext: (data: T) -> Unit = {},onError: (e: Throwable) -> Unit = {},onComplete: () -> Unit = {}): Disposable{
+    fun <T> Observable<T>.subscribeNx(onNext: (data: T) -> Unit = {}, onError: (e: Throwable) -> Unit = {}, onComplete: () -> Unit = {}): Disposable{
         return this.subscribe({
             //编写订阅触发时的公共代码
             onNext.invoke(it)

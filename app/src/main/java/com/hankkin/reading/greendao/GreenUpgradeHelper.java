@@ -1,4 +1,4 @@
-package com.hankkin.reading.utils;
+package com.hankkin.reading.greendao;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;

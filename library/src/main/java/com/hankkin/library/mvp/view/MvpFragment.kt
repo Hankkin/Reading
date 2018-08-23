@@ -1,16 +1,14 @@
-package com.hankkin.reading.mvp.view
+package com.hankkin.library.mvp.view
 
-import android.app.Activity
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import com.hankkin.reading.mvp.contract.IBaseViewContract
-import com.hankkin.reading.mvp.contract.IPresenterContract
-import com.hankkin.reading.utils.LoadingUtils
+import android.support.v4.app.Fragment
+import com.hankkin.library.mvp.contract.IBaseViewContract
+import com.hankkin.library.mvp.contract.IPresenterContract
 
 /**
  * Created by huanghaijie on 2018/5/16.
  */
- abstract class MvpActivity<out T : IPresenterContract> : AppCompatActivity() ,IBaseView<T>, IBaseViewContract {
+abstract class MvpFragment<out T : IPresenterContract> : Fragment(), IBaseView<T>, IBaseViewContract {
 
     private val mPresenter: T by lazy {
         val clazz = registerPresenter()
@@ -20,7 +18,7 @@ import com.hankkin.reading.utils.LoadingUtils
         presenter
     }
 
-    fun getPresenter(): T = mPresenter
+    fun getPresenter() = mPresenter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +49,5 @@ import com.hankkin.reading.utils.LoadingUtils
     override fun onDestroy() {
         super.onDestroy()
         mPresenter.onDestroy()
-        LoadingUtils.onDestory()
     }
-
 }

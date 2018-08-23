@@ -8,7 +8,7 @@ import com.hankkin.reading.adapter.base.BaseRecyclerViewAdapter
 import com.hankkin.reading.adapter.base.BaseRecyclerViewHolder
 import com.hankkin.reading.domain.HotBean
 import com.hankkin.reading.event.EventMap
-import com.hankkin.reading.utils.RxBusTools
+import com.hankkin.library.utils.RxBusTools
 
 class SearchHistoryAdapter : BaseRecyclerViewAdapter<HotBean>(){
 

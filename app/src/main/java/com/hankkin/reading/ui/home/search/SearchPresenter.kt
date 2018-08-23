@@ -2,9 +2,8 @@ package com.hankkin.reading.ui.home.search
 
 import com.hankkin.reading.domain.HotBean
 import com.hankkin.reading.http.HttpClient
-import com.hankkin.reading.mvp.model.DaoFactory
-import com.hankkin.reading.mvp.presenter.RxLifePresenter
-import com.hankkin.reading.mvp.presenter.getContext
+import com.hankkin.reading.dao.DaoFactory
+import com.hankkin.library.mvp.presenter.RxLifePresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 

@@ -1,6 +1,7 @@
-package com.hankkin.reading.mvp.presenter
+package com.hankkin.library.mvp.presenter
 
-import com.hankkin.reading.mvp.contract.IBaseViewContract
+import com.hankkin.library.mvp.contract.IBaseViewContract
+
 
 /**
  * Created by huanghaijie on 2018/5/16.

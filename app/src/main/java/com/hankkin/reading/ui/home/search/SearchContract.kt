@@ -1,8 +1,8 @@
 package com.hankkin.reading.ui.home.search
 
 import com.hankkin.reading.domain.HotBean
-import com.hankkin.reading.mvp.contract.IBaseLoading
-import com.hankkin.reading.mvp.contract.IPresenterContract
+import com.hankkin.library.mvp.contract.IBaseLoading
+import com.hankkin.library.mvp.contract.IPresenterContract
 
 interface SearchContract {
 

@@ -1,4 +1,4 @@
-package com.hankkin.reading.mvp.model
+package com.hankkin.reading.dao
 
 import com.hankkin.reading.ui.home.search.SearchDao
 import com.hankkin.reading.ui.home.search.SearchDaoContract

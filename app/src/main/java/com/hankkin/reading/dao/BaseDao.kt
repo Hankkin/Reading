@@ -1,4 +1,4 @@
-package com.hankkin.reading.mvp.model
+package com.hankkin.reading.dao
 
 import com.hankkin.reading.EApplication
 import com.hankkin.reading.greendao.DaoSession
