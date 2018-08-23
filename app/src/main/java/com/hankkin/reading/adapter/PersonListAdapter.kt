@@ -3,13 +3,13 @@ package com.hankkin.reading.adapter
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import com.hankkin.library.view.RippleView
+import com.hankkin.library.widget.view.RippleView
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.base.BaseRecyclerViewAdapter
 import com.hankkin.reading.adapter.base.BaseRecyclerViewHolder
 import com.hankkin.reading.domain.PersonListBean
 import com.hankkin.reading.event.EventMap
-import com.hankkin.reading.utils.RxBusTools
+import com.hankkin.library.utils.RxBusTools
 
 /**
  * Created by huanghaijie on 2018/6/28.

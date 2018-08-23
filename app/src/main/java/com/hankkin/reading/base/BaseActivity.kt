@@ -8,7 +8,7 @@ import com.hankkin.library.utils.StatusBarUtil
 import com.hankkin.reading.R
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.utils.LoadingUtils
-import com.hankkin.reading.utils.RxBusTools
+import com.hankkin.library.utils.RxBusTools
 import com.hankkin.reading.utils.ThemeHelper
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.Consumer

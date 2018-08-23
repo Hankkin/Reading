@@ -17,7 +17,7 @@ import com.hankkin.reading.ui.home.hot.HotFragment
 import com.hankkin.reading.ui.home.project.ProjectFragment
 import com.hankkin.reading.MainActivity
 import com.hankkin.reading.ui.home.search.SearchActivity
-import com.hankkin.reading.utils.RxBusTools
+import com.hankkin.library.utils.RxBusTools
 import com.hankkin.reading.utils.ThemeHelper
 import kotlinx.android.synthetic.main.fragment_home.*
 

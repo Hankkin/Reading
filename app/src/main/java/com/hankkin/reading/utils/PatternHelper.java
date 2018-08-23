@@ -114,13 +114,13 @@ public class PatternHelper {
     }
 
     private void saveToStorage(String gesturePwd) {
-        final String encryptPwd = SecurityUtil.encrypt(gesturePwd);
+        final String encryptPwd = SecurityUtils.encrypt(gesturePwd);
         SPUtils.INSTANCE.put(GESTURE_PWD_KEY,encryptPwd);
     }
 
     private String getFromStorage() {
         final String result = SPUtils.INSTANCE.getString(GESTURE_PWD_KEY);
-        return SecurityUtil.decrypt(result);
+        return SecurityUtils.decrypt(result);
     }
 
     private int getRemainTimes() {

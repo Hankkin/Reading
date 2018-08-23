@@ -52,17 +52,14 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation rootProject.ext.dependencies["design"]
     implementation rootProject.ext.dependencies["cardview"]
-    implementation rootProject.ext.dependencies["retrofit"]
+    implementation rootProject.ext.dependencies["base-rv-helper"]
+    implementation rootProject.ext.dependencies["green_dao"]
+    implementation rootProject.ext.dependencies["rxpermissions"]
     implementation rootProject.ext.dependencies["rxjava"]
     implementation rootProject.ext.dependencies["rxandroid"]
     implementation rootProject.ext.dependencies["adapter-rxjava"]
-    implementation rootProject.ext.dependencies["okhttp3"]
-    implementation rootProject.ext.dependencies["glide"]
-    implementation rootProject.ext.dependencies["base-rv-helper"]
-    implementation rootProject.ext.dependencies["rxpermissions"]
     implementation rootProject.ext.dependencies["converter-gson"]
-    implementation rootProject.ext.dependencies["rxrelay"]
-    implementation rootProject.ext.dependencies["green_dao"]
+    implementation rootProject.ext.dependencies["glide"]
     //materialdialog
     implementation('com.github.afollestad.material-dialogs:core:0.8.5.8@aar') {
         transitive = true

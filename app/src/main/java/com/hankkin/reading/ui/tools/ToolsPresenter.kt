@@ -2,7 +2,7 @@ package com.hankkin.reading.ui.tools
 
 import com.hankkin.reading.common.Constant
 import com.hankkin.reading.http.HttpClient
-import com.hankkin.reading.mvp.presenter.RxLifePresenter
+import com.hankkin.library.mvp.presenter.RxLifePresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 

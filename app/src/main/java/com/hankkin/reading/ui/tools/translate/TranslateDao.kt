@@ -1,9 +1,7 @@
 package com.hankkin.reading.ui.tools.translate
 
 import com.hankkin.reading.domain.TranslateBean
-import com.hankkin.reading.domain.WebExplain
-import com.hankkin.reading.domain.WordNoteBean
-import com.hankkin.reading.mvp.model.BaseDao
+import com.hankkin.reading.dao.BaseDao
 
 /**
  * Created by huanghaijie on 2018/8/10.

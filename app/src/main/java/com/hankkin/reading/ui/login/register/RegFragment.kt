@@ -3,9 +3,9 @@ package com.hankkin.reading.ui.login.register
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.KeyEvent
-import com.afollestad.materialdialogs.DialogAction
 import com.afollestad.materialdialogs.MaterialDialog
 import com.bilibili.magicasakura.widgets.KeyEditText
+import com.hankkin.library.utils.RxBusTools
 import com.hankkin.library.utils.ToastUtils
 import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseMvpFragment

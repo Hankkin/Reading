@@ -15,7 +15,7 @@ import com.hankkin.reading.domain.HotBean
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.ui.home.articledetail.CommonWebActivity
 import com.hankkin.reading.ui.home.search.SearchActivity
-import com.hankkin.reading.utils.GlideUtils
+import com.hankkin.reading.glide.GlideUtils
 import com.hankkin.reading.utils.ViewHelper
 import com.hankkin.reading.view.widget.SWImageView
 import com.stx.xhb.xbanner.XBanner

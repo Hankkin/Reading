@@ -10,7 +10,6 @@ import android.widget.TextView
 import com.bilibili.magicasakura.widgets.TintImageView
 import com.bilibili.magicasakura.widgets.TintTextView
 import com.hankkin.library.utils.SPUtils
-import com.hankkin.library.view.RippleView
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.base.BaseRecyclerViewAdapter
 import com.hankkin.reading.adapter.base.BaseRecyclerViewHolder
@@ -20,8 +19,8 @@ import com.hankkin.reading.domain.ArticleDetailBean
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.ui.home.articledetail.CommonWebActivity
 import com.hankkin.reading.ui.login.LoginActivity
-import com.hankkin.reading.utils.GlideUtils
-import com.hankkin.reading.utils.RxBusTools
+import com.hankkin.reading.glide.GlideUtils
+import com.hankkin.library.utils.RxBusTools
 
 /**
  * Created by huanghaijie on 2018/7/8.

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.hankkin.library.view.RippleView
+<com.hankkin.library.widget.view.RippleView
     rv_centered="true"
     android:id="@+id/rl_adapter_person"
     android:paddingLeft="@dimen/dp_12"
@@ -43,4 +43,4 @@
         android:layout_height="1px"
         android:layout_marginTop="@dimen/dp_16"
         android:background="@color/normal_bg" />
-</com.hankkin.library.view.RippleView>
+</com.hankkin.library.widget.view.RippleView>

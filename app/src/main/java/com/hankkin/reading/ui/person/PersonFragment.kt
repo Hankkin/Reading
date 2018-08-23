@@ -10,10 +10,7 @@ import android.view.View
 import com.afollestad.materialdialogs.MaterialDialog
 import com.bilibili.magicasakura.utils.ThemeUtils
 import com.cocosw.bottomsheet.BottomSheet
-import com.hankkin.library.utils.AppUtils
-import com.hankkin.library.utils.LogUtils
-import com.hankkin.library.utils.SPUtils
-import com.hankkin.library.utils.ToastUtils
+import com.hankkin.library.utils.*
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.PersonListAdapter
 import com.hankkin.reading.base.BaseMvpFragment
@@ -57,7 +54,7 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
         xrv_person_lisy.layoutManager = LinearLayoutManager(context)
         xrv_person_lisy.adapter = mAdapter
         mCurrentTheme = ThemeHelper.getTheme(context)
-        tv_person_version.text = context?.let { "当前版本："+AppUtils.getVersionName(it) }
+        tv_person_version.text = context?.let { "当前版本：" + AppUtils.getVersionName(it) }
         initThemeBuilder()
     }
 
@@ -65,9 +62,9 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
         initHeaderAnim()
         iv_person_avatar.setOnClickListener { llAvatarClick() }
         iv_person_set.setOnClickListener { startActivity(Intent(context, SettingActivity::class.java)) }
-        ll_person_new.setOnClickListener { context?.let { it1 -> ToastUtils.showInfo(it1,"待开发") } }
-        ll_person_todo.setOnClickListener { context?.let { it1 -> ToastUtils.showInfo(it1,"待开发") } }
-        ll_person_done.setOnClickListener { context?.let { it1 -> ToastUtils.showInfo(it1,"待开发") } }
+        ll_person_new.setOnClickListener { context?.let { it1 -> ToastUtils.showInfo(it1, "待开发") } }
+        ll_person_todo.setOnClickListener { context?.let { it1 -> ToastUtils.showInfo(it1, "待开发") } }
+        ll_person_done.setOnClickListener { context?.let { it1 -> ToastUtils.showInfo(it1, "待开发") } }
         iv_person_feedback.setOnClickListener {
             activity?.let { it1 -> CommonUtils.feedBack(it1) }
         }
@@ -95,13 +92,13 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
                             ll_person_header.visibility = View.VISIBLE
                         }
                     }
-                    LogUtils.e(">>>>>alpha" + i )
+                    LogUtils.e(">>>>>alpha" + i)
                     if (i == 0) {
                         ll_person_header.alpha = 1F
 
                     } else if (i in 1..(height - 30)) {
-                        ll_person_header.alpha = ((height-i).toFloat() / height)
-                    }else if (i>height - 30){
+                        ll_person_header.alpha = ((height - i).toFloat() / height)
+                    } else if (i > height - 30) {
                         ll_person_header.alpha = 0F
                     }
                 }
@@ -130,13 +127,12 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
     }
 
 
-
     override fun onEvent(event: EventMap.BaseEvent) {
         if (event is EventMap.LoginEvent) {
             setUserHeader()
         } else if (event is EventMap.PersonClickEvent) {
             when (event.index) {
-                0 -> startActivity(Intent(context,MyCollectActivity::class.java))
+                0 -> startActivity(Intent(context, MyCollectActivity::class.java))
                 1 -> mThemeBuilder.show()
                 2 -> syncData()
                 3 -> context!!.startActivity(Intent(context, SettingActivity::class.java))
@@ -150,30 +146,26 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
     private fun syncData() {
         if (context != null) {
             if (SPUtils.getInt(Constant.SP_KEY.LOCK_BACKUP_OPEN) == 1) {
-                if (DBUtils.isNeedSync(context!!)) {
-                    LoadingUtils.showLoading(context)
-                    val disposable = Observable.create<Boolean> {
-                        try {
-                            DBUtils.loadDBData(context!!)
-                            it.onNext(true)
-                            it.onComplete()
-                        } catch (e: Exception) {
-                            it.onError(e)
-                        }
+                LoadingUtils.showLoading(context)
+                val disposable = Observable.create<Boolean> {
+                    try {
+                        DBUtils.loadDBData(context!!)
+                        it.onNext(true)
+                        it.onComplete()
+                    } catch (e: Exception) {
+                        it.onError(e)
                     }
-                            .subscribeOn(Schedulers.io())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe({
-                                LoadingUtils.hideLoading()
-                                ToastUtils.showInfo(context!!, resources.getString(R.string.setting_lock_data_restore_success))
-                            }, {
-                                LoadingUtils.hideLoading()
-                                ToastUtils.showError(context!!, resources.getString(R.string.setting_lock_data_restore_fail))
-                            })
-                    disposables.add(disposable)
-                } else {
-                    ToastUtils.showInfo(context!!, resources.getString(R.string.setting_lock_backup_new))
                 }
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe({
+                            LoadingUtils.hideLoading()
+                            ToastUtils.showInfo(context!!, resources.getString(R.string.setting_lock_data_restore_success))
+                        }, {
+                            LoadingUtils.hideLoading()
+                            ToastUtils.showError(context!!, resources.getString(R.string.setting_lock_data_restore_fail))
+                        })
+                disposables.add(disposable)
             } else {
                 ViewHelper.showConfirmDialog(context!!, context!!.resources.getString(R.string.setting_db_hint),
                         MaterialDialog.SingleButtonCallback { dialog, which ->

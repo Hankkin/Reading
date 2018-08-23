@@ -4,7 +4,7 @@ import com.hankkin.library.utils.SPUtils
 import com.hankkin.reading.common.Constant
 import com.hankkin.reading.domain.WordNoteBean
 import com.hankkin.reading.greendao.WordNoteBeanDao
-import com.hankkin.reading.mvp.model.BaseDao
+import com.hankkin.reading.dao.BaseDao
 
 /**
  * @author Hankkin
@@ -37,7 +37,6 @@ class WordNoteDao : BaseDao(), WordNoteDaoContract {
      * 移除单词本
      */
     override fun removeWordNote(wordNoteBean: WordNoteBean) {
-        updateSPTime()
         daoSession.wordNoteBeanDao.delete(wordNoteBean)
     }
 

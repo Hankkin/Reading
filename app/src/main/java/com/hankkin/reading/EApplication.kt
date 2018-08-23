@@ -12,7 +12,7 @@ import com.hankkin.library.utils.ToastUtils
 import com.hankkin.reading.common.Constant
 import com.hankkin.reading.greendao.DaoMaster
 import com.hankkin.reading.greendao.DaoSession
-import com.hankkin.reading.utils.GreenOpenHelper
+import com.hankkin.reading.greendao.GreenOpenHelper
 import com.hankkin.reading.utils.ThemeHelper
 import com.hankkin.reading.utils.ThemeHelper.*
 import com.squareup.leakcanary.LeakCanary

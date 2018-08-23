@@ -1,13 +1,13 @@
 package com.hankkin.reading.ui.tools.acount
 
 import com.hankkin.reading.domain.AccountBean
-import com.hankkin.reading.mvp.model.BaseDaoContract
+import com.hankkin.reading.dao.BaseDaoContract
 
 /**
  * @author Hankkin
  * @date 2018/8/14
  */
-interface AccountDaoContract : BaseDaoContract{
+interface AccountDaoContract : BaseDaoContract {
 
     fun queryAllAccount(): MutableList<AccountBean>
 

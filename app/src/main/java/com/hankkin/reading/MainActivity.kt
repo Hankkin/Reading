@@ -20,13 +20,9 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-import com.afollestad.materialdialogs.DialogAction
 import com.afollestad.materialdialogs.MaterialDialog
 import com.bilibili.magicasakura.utils.ThemeUtils
-import com.hankkin.library.utils.LogUtils
-import com.hankkin.library.utils.SPUtils
-import com.hankkin.library.utils.StatusBarUtil
-import com.hankkin.library.utils.ToastUtils
+import com.hankkin.library.utils.*
 import com.hankkin.reading.adapter.MainFragmentAdapter
 import com.hankkin.reading.base.BaseActivity
 import com.hankkin.reading.common.Constant
@@ -214,28 +210,25 @@ class MainActivity : BaseActivity() {
     }
 
 
-    private val doubleClick = object : DoubleClickListener() {
-        override fun onNoDoubleClick(v: View) {
-            drawer_layout.closeDrawer(Gravity.START)
-            drawer_layout.postDelayed({
-                when (v.id) {
-                    R.id.ll_nav_theme -> startActivity(Intent(this@MainActivity, SettingActivity::class.java))
-                    R.id.ll_nav_setting -> startActivity(Intent(this@MainActivity, SettingActivity::class.java))
-                    R.id.ll_nav_about -> ViewHelper.showAboutDialog(this@MainActivity)
-                    R.id.ll_nav_collect -> {
-                        if (!UserControl.isLogin()) {
-                            startActivity(Intent(this@MainActivity, LoginActivity::class.java))
-                        } else {
-                            startActivity(Intent(this@MainActivity, MyCollectActivity::class.java))
-                        }
+    private val doubleClick = View.OnClickListener { v ->
+        drawer_layout.closeDrawer(Gravity.START)
+        drawer_layout.postDelayed({
+            when (v.id) {
+                R.id.ll_nav_theme -> startActivity(Intent(this@MainActivity, SettingActivity::class.java))
+                R.id.ll_nav_setting -> startActivity(Intent(this@MainActivity, SettingActivity::class.java))
+                R.id.ll_nav_about -> ViewHelper.showAboutDialog(this@MainActivity)
+                R.id.ll_nav_collect -> {
+                    if (!UserControl.isLogin()) {
+                        startActivity(Intent(this@MainActivity, LoginActivity::class.java))
+                    } else {
+                        startActivity(Intent(this@MainActivity, MyCollectActivity::class.java))
                     }
-                    R.id.ll_nav_exit -> finish()
-                    R.id.ll_nav_wordnote -> startActivity(Intent(this@MainActivity,WordNoteActivity::class.java))
-                    R.id.ll_nav_account -> startActivity(Intent(this@MainActivity,AccountListActivity::class.java))
                 }
-            }, 200)
-        }
-
+                R.id.ll_nav_exit -> finish()
+                R.id.ll_nav_wordnote -> startActivity(Intent(this@MainActivity,WordNoteActivity::class.java))
+                R.id.ll_nav_account -> startActivity(Intent(this@MainActivity,AccountListActivity::class.java))
+            }
+        }, 200)
     }
 
     private fun changeLogo() {
@@ -251,6 +244,7 @@ class MainActivity : BaseActivity() {
 
     private fun checkSync() {
         if (DBUtils.isAutoSync(this)) {
+            SPUtils.put(Constant.SP_KEY.LOCK_BACKUP_OPEN,1)
             ViewHelper.showConfirmDialog(this, resources.getString(R.string.setting_lock_data_restore_hint),
                     MaterialDialog.SingleButtonCallback { dialog, which ->
                         val disposable = Observable.create<Boolean> {

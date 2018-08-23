@@ -1,6 +1,6 @@
 package com.hankkin.reading.http.api
 
-import com.hankkin.reading.domain.BaseResponse
+import com.hankkin.library.domin.BaseResponse
 import com.hankkin.reading.domain.Weatherbean
 import com.hankkin.reading.domain.WordBean
 import io.reactivex.Observable

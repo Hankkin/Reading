@@ -4,7 +4,7 @@ import com.hankkin.library.utils.SPUtils
 import com.hankkin.reading.common.Constant
 import com.hankkin.reading.domain.AccountBean
 import com.hankkin.reading.greendao.AccountBeanDao
-import com.hankkin.reading.mvp.model.BaseDao
+import com.hankkin.reading.dao.BaseDao
 
 /**
  * @author Hankkin
@@ -12,6 +12,7 @@ import com.hankkin.reading.mvp.model.BaseDao
  */
 class AccountDao : BaseDao(),AccountDaoContract{
     override fun insertAccounts(data: MutableList<AccountBean>) {
+        updateSPTime()
         daoSession.accountBeanDao.insertOrReplaceInTx(data)
     }
 
@@ -27,7 +28,6 @@ class AccountDao : BaseDao(),AccountDaoContract{
      * 删除账号
      */
     override fun deleteAccountById(id: Long) {
-        updateSPTime()
         daoSession.accountBeanDao.deleteByKey(id)
     }
 

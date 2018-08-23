@@ -10,7 +10,7 @@ import com.hankkin.reading.adapter.AccountAdapter
 import com.hankkin.reading.base.BaseActivity
 import com.hankkin.reading.domain.AccountBean
 import com.hankkin.reading.event.EventMap
-import com.hankkin.reading.mvp.model.DaoFactory
+import com.hankkin.reading.dao.DaoFactory
 import com.hankkin.reading.utils.ThemeHelper
 import com.hankkin.reading.utils.ViewHelper
 import kotlinx.android.synthetic.main.activity_account_list.*
