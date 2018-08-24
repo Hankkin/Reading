@@ -29,6 +29,7 @@ class PersonInfoActivity : BaseMvpActivity<PersonInfoPresenter>(), PersonInfoCon
      override fun registerPresenter(): Class<out PersonInfoPresenter> = PersonInfoPresenter::class.java
 
     override fun initView() {
+        setStatusBarColor()
         tv_normal_title.text = resources.getString(R.string.person_info_title)
         iv_back_icon.setOnClickListener { finish() }
         tv_person_info_logout.setOnClickListener {

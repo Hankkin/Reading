@@ -10,15 +10,16 @@
     tools:openDrawer="start">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
         <com.hankkin.reading.view.NoScrollViewPager
-            android:descendantFocusability="blocksDescendants"
             android:id="@+id/vp_main"
-            android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:descendantFocusability="blocksDescendants" />
 
         <android.support.design.widget.BottomNavigationView
             android:id="@+id/navigation"
@@ -26,9 +27,9 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="0dp"
             android:layout_marginStart="0dp"
-            app:itemTextColor="@color/grey"
-            app:itemIconTint="@color/grey"
             android:background="?android:attr/windowBackground"
+            app:itemIconTint="@color/grey"
+            app:itemTextColor="@color/grey"
             app:menu="@menu/navigation" />
     </LinearLayout>
 

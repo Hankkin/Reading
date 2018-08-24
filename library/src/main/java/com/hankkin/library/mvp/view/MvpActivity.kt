@@ -2,13 +2,14 @@ package com.hankkin.library.mvp.view
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.hankkin.library.base.BaseSwipeBackActivity
 import com.hankkin.library.mvp.contract.IBaseViewContract
 import com.hankkin.library.mvp.contract.IPresenterContract
 
 /**
  * Created by huanghaijie on 2018/5/16.
  */
- abstract class MvpActivity<out T : IPresenterContract> : AppCompatActivity() , IBaseView<T>, IBaseViewContract {
+ abstract class MvpActivity<out T : IPresenterContract> : BaseSwipeBackActivity() , IBaseView<T>, IBaseViewContract {
 
     private val mPresenter: T by lazy {
         val clazz = registerPresenter()

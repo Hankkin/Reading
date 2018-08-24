@@ -29,6 +29,7 @@ class ThemeActivity : BaseActivity() {
     }
 
     override fun initViews(savedInstanceState: Bundle?) {
+        setStatusBarColor()
         iv_back_icon.setOnClickListener { finish() }
         tv_theme_ok.setOnClickListener {
             changeTheme()

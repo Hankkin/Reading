@@ -32,6 +32,7 @@ class WordNoteActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
 
     @SuppressLint("StringFormatInvalid")
     override fun initViews(savedInstanceState: Bundle?) {
+        setStatusBarColor()
         tv_normal_title.text = resources.getString(R.string.word_note_title)
 
         SnackbarUtils.Custom(ll, "长按可以进行更多操作奥", 3000)

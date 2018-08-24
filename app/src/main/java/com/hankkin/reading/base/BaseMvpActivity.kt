@@ -9,8 +9,8 @@ import com.hankkin.library.mvp.view.MvpActivity
 import com.hankkin.library.utils.RxBusTools
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.utils.LoadingUtils
+import com.hankkin.reading.utils.MyStatusBarUtil
 import com.hankkin.reading.utils.ThemeHelper
-import com.jaeger.library.StatusBarUtil
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.Consumer
 
@@ -23,7 +23,6 @@ abstract class BaseMvpActivity<out P : IPresenterContract> : MvpActivity<P>() {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutId())
 
-        StatusBarUtil.setColor(this, resources.getColor(ThemeHelper.getCurrentColor(this)), 0)
 
         init(savedInstanceState)
         initView()
@@ -31,18 +30,18 @@ abstract class BaseMvpActivity<out P : IPresenterContract> : MvpActivity<P>() {
         initData()
     }
 
-    open fun isHasBus(): Boolean{
+    open fun isHasBus(): Boolean {
         return false
     }
 
-    protected fun registerEvent(){
-        if (isHasBus()){
+    protected fun registerEvent() {
+        if (isHasBus()) {
             val disposable = RxBusTools.getDefault().register(EventMap.BaseEvent::class.java, Consumer { onEvent(it) })
             disposables.add(disposable)
         }
     }
 
-    open  fun onEvent(event: EventMap.BaseEvent){
+    open fun onEvent(event: EventMap.BaseEvent) {
     }
 
     abstract fun getLayoutId(): Int
@@ -52,6 +51,16 @@ abstract class BaseMvpActivity<out P : IPresenterContract> : MvpActivity<P>() {
     open fun initView() {}
 
     open fun initData() {}
+
+
+    /**
+     * 设置状态栏颜色
+     *
+     * @param color
+     */
+    protected fun setStatusBarColor() {
+        MyStatusBarUtil.setColorForSwipeBack(this, resources.getColor(ThemeHelper.getCurrentColor(this)), 0)
+    }
 
 
     override fun onDestroy() {

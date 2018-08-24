@@ -59,6 +59,7 @@ class TranslateActivity : BaseActivity() {
     }
 
     override fun initViews(savedInstanceState: Bundle?) {
+        setStatusBarColor()
         setMiuiStatusBar()
         iv_translate_back.setOnClickListener { finish() }
         iv_translate_search.setOnClickListener { searchWord(et_translate_search.text.toString()) }

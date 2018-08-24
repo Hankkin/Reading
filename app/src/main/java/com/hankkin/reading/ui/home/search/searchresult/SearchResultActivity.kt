@@ -27,6 +27,7 @@ class SearchResultActivity : BaseMvpActivity<HotListPresenter>(), HotListContact
     }
 
     override fun initView() {
+        setStatusBarColor()
         iv_back_icon.setOnClickListener { finish() }
         ViewHelper.setRefreshLayout(this,true,refresh_search_result,this)
 

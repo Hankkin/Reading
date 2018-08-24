@@ -46,7 +46,7 @@ class CommonWebActivity : BaseMvpActivity<ArticleDetailPresenter>(), ArticleDeta
     }
 
     override fun initView() {
-        StatusBarUtil.setColor(this, resources.getColor(ThemeHelper.getCurrentColor(this)), 0)
+        setStatusBarColor()
         getIntentData()
         initWebView()
         initToolBar()
@@ -153,7 +153,7 @@ class CommonWebActivity : BaseMvpActivity<ArticleDetailPresenter>(), ArticleDeta
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home){
-            finish()
+            onBackPressed()
         }
         return super.onOptionsItemSelected(item)
     }

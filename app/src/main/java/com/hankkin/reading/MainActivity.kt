@@ -20,6 +20,7 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper
 import com.afollestad.materialdialogs.MaterialDialog
 import com.bilibili.magicasakura.utils.ThemeUtils
 import com.hankkin.library.utils.*
@@ -75,6 +76,10 @@ class MainActivity : BaseActivity() {
 
     override fun isSupportSwipeBack(): Boolean {
         return false
+    }
+
+    fun getSwipeBackHelper(): BGASwipeBackHelper{
+        return mSwipeBackHelper
     }
 
     override fun initData() {
@@ -140,6 +145,7 @@ class MainActivity : BaseActivity() {
     }
 
     fun setStatuBar() {
+        MyStatusBarUtil.setColorForSwipeBackDrawerLayout(this, resources.getColor(ThemeHelper.getCurrentColor(this)), 0)
         StatusBarUtil.setColorNoTranslucentForDrawerLayout(this@MainActivity, drawer_layout, resources.getColor(ThemeHelper.getCurrentColor(this)))
     }
 

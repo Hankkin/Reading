@@ -28,6 +28,7 @@ class SearchActivity : BaseMvpActivity<SearchPresenter>(),SearchContract.IView {
     }
 
     override fun initView() {
+        setStatusBarColor()
         iv_search_back.setOnClickListener { finish() }
         et_search.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH){

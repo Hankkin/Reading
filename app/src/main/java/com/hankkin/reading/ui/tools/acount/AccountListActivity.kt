@@ -32,6 +32,7 @@ class AccountListActivity : BaseActivity() {
     }
 
     override fun initViews(savedInstanceState: Bundle?) {
+        setStatusBarColor()
         setMiuiStatusBar()
         tv_normal_title_white.text = resources.getString(R.string.account_title)
         rv_account.layoutManager = LinearLayoutManager(this)
