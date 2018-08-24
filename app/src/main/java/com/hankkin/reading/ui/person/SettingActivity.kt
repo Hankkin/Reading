@@ -38,7 +38,6 @@ class SettingActivity : BaseActivity() {
 
     override fun initViews(savedInstanceState: Bundle?) {
 
-        setStatusBarColor()
         setMiuiStatusBar()
 
         mCurrentTheme = ThemeHelper.getTheme(this)

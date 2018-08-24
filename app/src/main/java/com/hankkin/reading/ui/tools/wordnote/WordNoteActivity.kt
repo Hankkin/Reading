@@ -14,6 +14,7 @@ import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.dao.DaoFactory
 import com.hankkin.reading.ui.tools.translate.TranslateActivity
 import com.hankkin.library.utils.RxBusTools
+import com.hankkin.reading.utils.MyStatusBarUtil
 import com.hankkin.reading.utils.SnackbarUtils
 import com.hankkin.reading.utils.ThemeHelper
 import com.hankkin.reading.utils.ViewHelper

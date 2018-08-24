@@ -33,7 +33,7 @@ class MyCollectActivity : BaseMvpActivity<MyCollectPresenter>(),MyCollectContrac
     }
 
     override fun initView() {
-        MyStatusBarUtil.setColorForSwipeBack(this, resources.getColor(ThemeHelper.getCurrentColor(this)), 0)
+        setStatusBarColor()
         tv_normal_title.text = resources.getString(R.string.drawer_collect)
         ViewHelper.setRefreshLayout(this,true,refresh_collect,this)
         iv_back_icon.setOnClickListener { finish() }

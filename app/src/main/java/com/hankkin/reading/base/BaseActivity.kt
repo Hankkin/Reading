@@ -31,8 +31,9 @@ abstract class BaseActivity : BaseSwipeBackActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(getLayoutId())
+
         activity = this
-        if (getLayoutId() != 0) setContentView(getLayoutId())
         initViews(savedInstanceState)
         registerEvent()
         initData()
@@ -42,7 +43,7 @@ abstract class BaseActivity : BaseSwipeBackActivity() {
      * 设置白底黑字
      */
     protected fun setMiuiStatusBar() {
-        StatusBarUtil.setColorForSwipeBack(this,resources.getColor(R.color.white),0)
+        MyStatusBarUtil.setColorForSwipeBack(this,resources.getColor(R.color.white),0)
         StatusBarUtil.setLightMode(this)
     }
 

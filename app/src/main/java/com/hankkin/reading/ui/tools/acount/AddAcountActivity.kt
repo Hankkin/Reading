@@ -45,7 +45,6 @@ class AddAcountActivity : BaseActivity() {
     }
 
     override fun initViews(savedInstanceState: Bundle?) {
-        setStatusBarColor()
         setMiuiStatusBar()
         fab_add_acount.setColorPressedResId(ThemeHelper.getCurrentColor(this))
         fab_add_acount.setColorNormalResId(ThemeHelper.getCurrentColor(this))
