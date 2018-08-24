@@ -162,19 +162,19 @@ class MainActivity : BaseActivity() {
 
     fun setTabColor(index: Int) {
         ((navigation.getChildAt(0) as BottomNavigationMenuView)
-                .getChildAt(index) as BottomNavigationItemView).setTextColor(getColorStateList(ThemeHelper.getCurrentColor(this@MainActivity)))
+                .getChildAt(index) as BottomNavigationItemView).setTextColor(resources.getColorStateList(ThemeHelper.getCurrentColor(this@MainActivity)))
 
         ((navigation.getChildAt(0) as BottomNavigationMenuView)
-                .getChildAt(index) as BottomNavigationItemView).setIconTintList(getColorStateList(ThemeHelper.getCurrentColor(this@MainActivity)))
+                .getChildAt(index) as BottomNavigationItemView).setIconTintList(resources.getColorStateList(ThemeHelper.getCurrentColor(this@MainActivity)))
     }
 
     fun clearTabColor() {
         for (i in 0..2) {
             ((navigation.getChildAt(0) as BottomNavigationMenuView)
-                    .getChildAt(i) as BottomNavigationItemView).setTextColor(getColorStateList(R.color.grey))
+                    .getChildAt(i) as BottomNavigationItemView).setTextColor(resources.getColorStateList(R.color.grey))
 
             ((navigation.getChildAt(0) as BottomNavigationMenuView)
-                    .getChildAt(i) as BottomNavigationItemView).setIconTintList(getColorStateList(R.color.grey))
+                    .getChildAt(i) as BottomNavigationItemView).setIconTintList(resources.getColorStateList(R.color.grey))
         }
     }
 
