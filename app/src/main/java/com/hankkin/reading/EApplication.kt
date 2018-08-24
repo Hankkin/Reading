@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.support.annotation.ColorInt
 import android.support.annotation.ColorRes
+import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper
 import com.bilibili.magicasakura.utils.ThemeUtils
 import com.hankkin.library.http.HttpConfig
 import com.hankkin.library.http.cookie.CookiesManager
@@ -42,6 +43,7 @@ class EApplication : Application() ,ThemeUtils.switchColor{
         ToastUtils.init(this)
         HttpConfig.setCookie(CookiesManager(this))
         ThemeUtils.setSwitchColor(this)
+        BGASwipeBackHelper.init(this,null)
         initLeakCanary()
         initDao()
         YouDaoApplication.init(this,"46dbe20b62a7eae3")

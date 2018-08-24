@@ -60,6 +60,8 @@ dependencies {
     implementation rootProject.ext.dependencies["adapter-rxjava"]
     implementation rootProject.ext.dependencies["converter-gson"]
     implementation rootProject.ext.dependencies["glide"]
+    implementation rootProject.ext.dependencies["statusbar-utils"]
+    implementation rootProject.ext.dependencies["swipelayout"]
     //materialdialog
     implementation('com.github.afollestad.material-dialogs:core:0.8.5.8@aar') {
         transitive = true

@@ -12,8 +12,8 @@ ext {
     ]
 
     library = [
-            versionCode      : 1,
-            versionName      : '1.0.0',
+            versionCode: 1,
+            versionName: '1.0.0',
     ]
 
     dependencies = [
@@ -40,7 +40,7 @@ ext {
             "canary-debug"             : "com.squareup.leakcanary:leakcanary-android:1.4-beta2",
             "canary-release"           : "com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2",
             "SpinKit"                  : "com.github.ybq:Android-SpinKit:1.1.0",
-            "statusbar-utils"          : "com.jaeger.statusbaruitl:library:1.4.0",
+            "statusbar-utils"          : "com.jaeger.statusbarutil:library:1.5.1",
             "base-rv-helper"           : "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.21",
             "picker-view"              : "com.contrarywind:Android-PickerView:3.2.2",
             "pickerimg"                : "com.github.LuckSiege.PictureSelector:picture_library:v1.5.3",
@@ -58,6 +58,7 @@ ext {
             "rxbinding-recyclerview-v7": "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7:2.0.0",
             "base-rvadapter"           : "com.zhy:base-rvadapter:3.0.3",
             "green_dao"                : "org.greenrobot:greendao:3.2.0",
-            "toasty"                   : "com.github.GrenderG:Toasty:1.3.0"
+            "toasty"                   : "com.github.GrenderG:Toasty:1.3.0",
+            "swipelayout"              : "cn.bingoogolapple:bga-swipebacklayout:1.1.9@aar"
     ]
 }

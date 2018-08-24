@@ -8,16 +8,15 @@ import android.net.Uri
 import android.os.Build
 import android.view.Menu
 import android.view.MenuItem
-import android.webkit.WebChromeClient
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import com.hankkin.library.utils.StatusBarUtil
 import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseMvpActivity
 import com.hankkin.reading.utils.CommonUtils
 import com.hankkin.reading.utils.LoadingUtils
 import com.hankkin.reading.utils.ThemeHelper
+import com.jaeger.library.StatusBarUtil
 import kotlinx.android.synthetic.main.activity_article_detail.*
 
 class CommonWebActivity : BaseMvpActivity<ArticleDetailPresenter>(), ArticleDetailContract.IView {

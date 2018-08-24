@@ -38,6 +38,7 @@ import com.hankkin.reading.ui.tools.acount.AccountListActivity
 import com.hankkin.reading.ui.tools.wordnote.WordNoteActivity
 import com.hankkin.reading.ui.user.collect.MyCollectActivity
 import com.hankkin.reading.utils.*
+import com.jaeger.library.StatusBarUtil
 import com.tbruyelle.rxpermissions2.RxPermissions
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -70,6 +71,10 @@ class MainActivity : BaseActivity() {
 
     override fun isHasBus(): Boolean {
         return true
+    }
+
+    override fun isSupportSwipeBack(): Boolean {
+        return false
     }
 
     override fun initData() {

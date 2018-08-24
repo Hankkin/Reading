@@ -1,14 +1,9 @@
 package com.hankkin.reading.ui.person
 
-import android.app.Activity
-import android.app.ActivityManager
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.view.View
 import com.afollestad.materialdialogs.MaterialDialog
-import com.bilibili.magicasakura.utils.ThemeUtils
-import com.cocosw.bottomsheet.BottomSheet
 import com.hankkin.library.utils.CacheUtils
 import com.hankkin.library.utils.RxBusTools
 import com.hankkin.library.utils.SPUtils
@@ -17,7 +12,10 @@ import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseActivity
 import com.hankkin.reading.common.Constant
 import com.hankkin.reading.event.EventMap
-import com.hankkin.reading.utils.*
+import com.hankkin.reading.utils.DBUtils
+import com.hankkin.reading.utils.LoadingUtils
+import com.hankkin.reading.utils.ThemeHelper
+import com.hankkin.reading.utils.ViewHelper
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -40,6 +38,7 @@ class SettingActivity : BaseActivity() {
 
     override fun initViews(savedInstanceState: Bundle?) {
 
+        setStatusBarColor()
         setMiuiStatusBar()
 
         mCurrentTheme = ThemeHelper.getTheme(this)
