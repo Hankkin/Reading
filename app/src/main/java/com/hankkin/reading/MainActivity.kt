@@ -34,6 +34,7 @@ import com.hankkin.reading.ui.login.LoginActivity
 import com.hankkin.reading.ui.person.PersonFragment
 import com.hankkin.reading.ui.person.SettingActivity
 import com.hankkin.reading.ui.person.ThemeActivity
+import com.hankkin.reading.ui.todo.ToDoFragment
 import com.hankkin.reading.ui.tools.ToolsFragment
 import com.hankkin.reading.ui.tools.acount.AccountListActivity
 import com.hankkin.reading.ui.tools.wordnote.WordNoteActivity
@@ -55,13 +56,15 @@ class MainActivity : BaseActivity() {
     companion object {
         private const val DEFAULT_FG_SIZE = 3
         private const val DICTIONARY_INDEX = 0
-        private const val TRANSLATE_INDEX = 1
-        private const val PERSON_INDEX = 2
+        private const val TODO_INDEX = 1
+        private const val TRANSLATE_INDEX = 2
+        private const val PERSON_INDEX = 3
     }
 
 
     private val fgList = listOf<Fragment>(
             HomeFragment(),
+            ToDoFragment(),
             ToolsFragment(),
             PersonFragment()
     )
@@ -146,7 +149,7 @@ class MainActivity : BaseActivity() {
 
     fun setStatuBar() {
         MyStatusBarUtil.setColorForSwipeBackDrawerLayout(this, resources.getColor(ThemeHelper.getCurrentColor(this)), 0)
-        StatusBarUtil.setColorNoTranslucentForDrawerLayout(this@MainActivity, drawer_layout, resources.getColor(ThemeHelper.getCurrentColor(this)))
+        MyStatusBarUtil.setColorNoTranslucentForDrawerLayout(this@MainActivity, drawer_layout, resources.getColor(ThemeHelper.getCurrentColor(this)))
     }
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
@@ -157,14 +160,19 @@ class MainActivity : BaseActivity() {
                 setTabColor(0)
                 return@OnNavigationItemSelectedListener true
             }
+            R.id.navigation_todo -> {
+                vp_main.setCurrentItem(TODO_INDEX, false)
+                setTabColor(1)
+                return@OnNavigationItemSelectedListener true
+            }
             R.id.navigation_tran -> {
                 vp_main.setCurrentItem(TRANSLATE_INDEX, false)
-                setTabColor(1)
+                setTabColor(2)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_person -> {
                 vp_main.setCurrentItem(PERSON_INDEX, false)
-                setTabColor(2)
+                setTabColor(3)
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -246,7 +254,7 @@ class MainActivity : BaseActivity() {
     private fun changeLogo() {
         if (SPUtils.getInt(Constant.SP_KEY.LOGO) == 0) return
         enableCompont(ThemeHelper.getNameStr(this))
-        disableComponent("MainActivity")
+        disableComponent("SplashActivity")
         for (str in ThemeHelper.themeList) {
             if (str != ThemeHelper.getNameStr(this)) {
                 disableComponent(str)

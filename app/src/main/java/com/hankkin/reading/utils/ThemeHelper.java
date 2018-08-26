@@ -102,7 +102,6 @@ public class ThemeHelper {
         return context.getResources().getString(R.string.theme_yima);
     }
 
-
     public static String getNameStr(Context context) {
         String str = "";
         switch (getTheme(context)) {
@@ -192,43 +191,40 @@ public class ThemeHelper {
         return R.color.yima;
     }
 
-    public static int getCurrentColorDark(Context context) {
+    public static int getCurrentLogo(Context context) {
         switch (ThemeHelper.getTheme(context)) {
             case COLOR_YIMA:
-                return R.color.yima_dark;
+                return R.mipmap.yima;
             case COLOR_KUAN:
-                return R.color.kuan_dark;
+                return R.mipmap.kuan;
             case COLOR_BILI:
-                return R.color.bili_dark;
+                return R.mipmap.bili;
             case COLOR_YIDI:
-                return R.color.yidi_dark;
+                return R.mipmap.yidi;
             case COLOR_SHUIYA:
-                return R.color.shuiya_dark;
+                return R.mipmap.shuiya;
             case COLOR_YITENG:
-                return R.color.yiteng;
+                return R.mipmap.yiteng;
             case COLOR_JILAO:
-                return R.color.jilao;
+                return R.mipmap.jilao;
             case COLOR_ZHIHU:
-                return R.color.zhihu;
+                return R.mipmap.zhihu;
             case COLOR_GUTONG:
-                return R.color.gutong;
+                return R.mipmap.gutong;
             case COLOR_DIDIAO:
-                return R.color.didiao;
+                return R.mipmap.didiao;
             case COLOR_GAODUAN:
-                return R.color.gaoduan;
+                return R.mipmap.gaoduan;
             case COLOR_APING:
-                return R.color.aping;
+                return R.mipmap.aping;
             case COLOR_LIANGBAI:
-                return R.color.liangbai;
+                return R.mipmap.liangbai;
             case COLOR_ANLUOLAN:
-                return R.color.anluolan;
+                return R.mipmap.anluolan;
             case COLOR_XINGHONG:
-                return R.color.xinghong;
+                return R.mipmap.xinghong;
         }
-        return R.color.yima;
+        return R.mipmap.yima;
     }
 
-    public static void changTheme(){
-
-    }
 }

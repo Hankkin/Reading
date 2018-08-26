@@ -31,7 +31,7 @@ abstract class BaseSwipeBackActivity : AppCompatActivity(), BGASwipeBackHelper.D
         // 设置滑动返回是否可用。默认值为 true
         mSwipeBackHelper.setSwipeBackEnable(true)
         // 设置是否仅仅跟踪左侧边缘的滑动返回。默认值为 true
-        mSwipeBackHelper.setIsOnlyTrackingLeftEdge(false)
+        mSwipeBackHelper.setIsOnlyTrackingLeftEdge(true)
         // 设置是否是微信滑动返回样式。默认值为 true
         mSwipeBackHelper.setIsWeChatStyle(true)
         // 设置阴影资源 id。默认值为 R.drawable.bga_sbl_shadow

@@ -47,11 +47,13 @@ object ViewHelper {
     /**
      * normal dialog
      */
-    fun showConfirmDialog(context: Context, content: String, callback: MaterialDialog.SingleButtonCallback) {
+    fun showConfirmDialog(context: Context, content: String, callback: MaterialDialog.SingleButtonCallback){
         MaterialDialog.Builder(context)
                 .content(content)
                 .positiveText(context.resources.getString(R.string.ok))
                 .negativeText(context.resources.getString(R.string.cancel))
+                .negativeColor(context.resources.getColor(ThemeHelper.getCurrentColor(context)))
+                .positiveColor(context.resources.getColor(ThemeHelper.getCurrentColor(context)))
                 .onPositive(callback)
                 .show()
 
@@ -64,6 +66,8 @@ object ViewHelper {
                 .content(content)
                 .positiveText(context.resources.getString(R.string.ok))
                 .negativeText(context.resources.getString(R.string.cancel))
+                .negativeColor(context.resources.getColor(ThemeHelper.getCurrentColor(context)))
+                .positiveColor(context.resources.getColor(ThemeHelper.getCurrentColor(context)))
                 .onPositive(callback)
                 .onNegative(cancelBack)
                 .show()

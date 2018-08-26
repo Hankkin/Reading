@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.bilibili.magicasakura.widgets.TintToolbar
+        android:background="@color/theme_color_primary"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_bar_height">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_centerVertical="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_18"
+                android:textStyle="bold"
+                android:text="@string/title_todo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:id="@+id/iv_todo_display"
+                android:paddingRight="@dimen/dp_10"
+                android:src="@mipmap/icon_ver"
+                android:layout_alignParentEnd="true"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+        </RelativeLayout>
+
+    </com.bilibili.magicasakura.widgets.TintToolbar>
+
+</android.support.design.widget.CoordinatorLayout>

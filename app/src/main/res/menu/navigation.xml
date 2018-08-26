@@ -7,6 +7,11 @@
         android:title="@string/title_home" />
 
     <item
+        android:id="@+id/navigation_todo"
+        android:icon="@mipmap/tab_todo"
+        android:title="@string/title_todo" />
+
+    <item
         android:id="@+id/navigation_tran"
         android:icon="@mipmap/tab_word"
         android:title="@string/title_translate" />
