@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:visibility="gone"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:id="@+id/ll_todo_login"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:textStyle="italic"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_18"
+            android:text="@string/todo_not_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <com.bilibili.magicasakura.widgets.TintImageView
+            android:id="@+id/iv_todo_login"
+            android:layout_marginTop="@dimen/dp_20"
+            app:imageTint="@color/theme_color_primary"
+            android:src="@mipmap/bg_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refresh_todo_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.hankkin.reading.adapter.base.XRecyclerView
+            android:id="@+id/rv_todo_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
+</LinearLayout>

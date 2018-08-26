@@ -188,7 +188,8 @@ class MainActivity : BaseActivity() {
     }
 
     fun clearTabColor() {
-        for (i in 0..2) {
+        for (i in 0..3
+        ) {
             ((navigation.getChildAt(0) as BottomNavigationMenuView)
                     .getChildAt(i) as BottomNavigationItemView).setTextColor(resources.getColorStateList(R.color.grey))
 

@@ -67,7 +67,7 @@ dependencies {
         transitive = true
     }
     //首页tab
-    implementation 'com.github.Andy671:Dachshund-Tab-Layout:v0.3.0'
+    implementation 'com.github.Andy671:Dachshund-Tab-Layout:v0.3.3'
     //悬浮按钮
     implementation 'com.github.clans:fab:1.6.4'
     //banner

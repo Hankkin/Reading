@@ -74,10 +74,16 @@ interface WanAndroidApi {
 
     @FormUrlEncoded
     @POST("user/login")
-    fun login(@FieldMap map: HashMap<String,Any>): Observable<BaseResponse<UserBean>>
+    fun login(@FieldMap map: HashMap<String, Any>): Observable<BaseResponse<UserBean>>
 
     @FormUrlEncoded
     @POST("user/register")
-    fun signUp(@FieldMap map: HashMap<String,String>): Observable<BaseResponse<UserBean>>
+    fun signUp(@FieldMap map: HashMap<String, String>): Observable<BaseResponse<UserBean>>
+
+    @GET("lg/todo/listdone/{cate}/json/{page}")
+    fun getListDone(@Path("cate") cate: Int, @Path("page") page: Int)
+
+    @GET("lg/todo/listnotdo/{cate}/json/{page}")
+    fun listnotdo(@Path("cate") cate: Int, @Path("page") page: Int)
 
 }

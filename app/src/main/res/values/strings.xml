@@ -174,6 +174,8 @@
     <string name="work_juejin">掘金</string>
     <string name="work_about">关于</string>
 
+    <string name="todo_not_login">登录WanAndroid，体验TODO功能</string>
+
     <string name="tools_kuaidi_number">请输入快递单号</string>
     <string name="tools_kuaidi_company">请选择快递公司</string>
     <string name="tools_kuaidi_title">查快递</string>

@@ -1,6 +1,5 @@
 package com.hankkin.reading.ui.home.android
 
-import android.os.Bundle
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import com.hankkin.library.utils.ToastUtils
@@ -11,7 +10,6 @@ import com.hankkin.reading.base.BaseMvpFragment
 import com.hankkin.reading.control.UserControl
 import com.hankkin.reading.domain.ArticleBean
 import com.hankkin.reading.event.EventMap
-import com.hankkin.reading.utils.ThemeHelper
 import com.hankkin.reading.utils.ViewHelper
 import kotlinx.android.synthetic.main.fragment_android.*
 

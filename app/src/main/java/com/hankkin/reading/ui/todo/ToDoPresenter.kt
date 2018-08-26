@@ -8,4 +8,8 @@ import com.hankkin.library.mvp.presenter.RxLifePresenter
  */
 class ToDoPresenter : RxLifePresenter<ToDoContract.IView>(),ToDoContract.IPresenter{
 
+    override fun getListDone(page: Int) {
+
+    }
+
 }
