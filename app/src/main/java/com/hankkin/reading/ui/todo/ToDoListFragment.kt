@@ -55,7 +55,7 @@ class ToDoListFragment : BaseMvpFragment<ToDoContract.IPresenter>(), ToDoContrac
     }
 
     override fun setListDone(data: ToDoBean) {
-        mAdapter.addAll(data.data.todoList)
+//        mAdapter.addAll(data.data.todoList)
     }
 
     override fun onRefresh() {
