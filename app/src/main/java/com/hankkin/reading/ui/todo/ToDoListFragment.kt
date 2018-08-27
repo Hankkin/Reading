@@ -3,6 +3,8 @@ package com.hankkin.reading.ui.todo
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.widget.SwipeRefreshLayout
+import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.ToDoAdapter
@@ -23,6 +25,7 @@ class ToDoListFragment : BaseMvpFragment<ToDoContract.IPresenter>(), ToDoContrac
     private lateinit var mAdapter: ToDoAdapter
     private var mPage: Int = 0
     private var mIndex: Int = 0
+    private var mStyle: Int = 0
 
     override fun getLayoutId(): Int {
         return R.layout.fragment_todo_list
@@ -45,11 +48,14 @@ class ToDoListFragment : BaseMvpFragment<ToDoContract.IPresenter>(), ToDoContrac
     }
 
     override fun initData() {
+        mAdapter = ToDoAdapter()
+        rv_todo_list.layoutManager = if (mStyle == 0) LinearLayoutManager(context) else GridLayoutManager(context,2)
+        rv_todo_list.adapter = mAdapter
         getPresenter().getListDone(mIndex,mPage)
     }
 
     override fun setListDone(data: ToDoBean) {
-
+        mAdapter.addAll(data.data.todoList)
     }
 
     override fun onRefresh() {

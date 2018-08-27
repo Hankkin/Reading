@@ -81,7 +81,7 @@ class AndroidAdapter : BaseRecyclerViewAdapter<ArticleDetailBean>() {
                 }
             }
 
-            ll.setOnClickListener { CommonWebActivity.loadUrl(itemView.context, bean.link, bean.title) }
+            ll.setOnClickListener { CommonWebActivity.loadUrl(itemView.context, "https://apps.m.58che.com/58/car/p0-5.html?from=58tc.000803", bean.title) }
 
             if (!UserControl.isLogin()) {
                 ivCollect.visibility = View.VISIBLE
