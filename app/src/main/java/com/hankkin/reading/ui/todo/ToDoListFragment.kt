@@ -65,6 +65,7 @@ class ToDoListFragment : BaseMvpFragment<ToDoContract.IPresenter>(), ToDoContrac
     }
 
     override fun setListDone(data: ToDoBean) {
+        rv_todo_list.clearHeader()
         val headerTodo = layoutInflater.inflate(R.layout.layout_header_todo, null)
         val headerDone = layoutInflater.inflate(R.layout.layout_header_done, null)
         headerDone.findViewById<TextView>(R.id.tv_done_more).setOnClickListener { context?.let { it1 -> ToastUtils.showInfo(it1, "待开发") } }
