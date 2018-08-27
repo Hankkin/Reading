@@ -80,8 +80,8 @@ interface WanAndroidApi {
     @POST("user/register")
     fun signUp(@FieldMap map: HashMap<String, String>): Observable<BaseResponse<UserBean>>
 
-    @GET("lg/todo/listdone/{cate}/json/{page}")
-    fun getListDone(@Path("cate") cate: Int, @Path("page") page: Int)
+    @GET("lg/todo/list/{cate}/json")
+    fun getTodo(@Path("cate") cate: Int): Observable<BaseResponse<ToDoBean>>
 
     @GET("lg/todo/listnotdo/{cate}/json/{page}")
     fun listnotdo(@Path("cate") cate: Int, @Path("page") page: Int)

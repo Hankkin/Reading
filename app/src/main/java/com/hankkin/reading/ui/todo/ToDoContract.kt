@@ -12,10 +12,11 @@ interface ToDoContract{
 
     interface IView : IBaseViewContract{
         fun setListDone(data: ToDoBean)
+        fun setFail()
     }
 
     interface IPresenter : IPresenterContract{
-        fun getListDone(cate: Int,page: Int)
+        fun getListDone(cate: Int)
     }
 
 }

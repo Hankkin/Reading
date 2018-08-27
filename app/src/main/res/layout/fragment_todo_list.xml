@@ -35,10 +35,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.hankkin.reading.adapter.base.XRecyclerView
-            android:id="@+id/rv_todo_list"
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent">
+            <com.hankkin.reading.adapter.base.XRecyclerView
+                android:layout_marginTop="@dimen/dp_10"
+                android:id="@+id/rv_todo_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
 
     </android.support.v4.widget.SwipeRefreshLayout>
 

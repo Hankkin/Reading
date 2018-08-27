@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_12">
+
+        <com.bilibili.magicasakura.widgets.TintView
+            android:id="@+id/view_small_line"
+            android:layout_width="5dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/tv_hot_search_title"
+            android:layout_alignTop="@+id/tv_hot_search_title"
+            android:background="@drawable/shape_line_small" />
+
+        <TextView
+            android:id="@+id/tv_hot_search_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp_8"
+            android:layout_toRightOf="@+id/view_small_line"
+            android:text="@string/title_done"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_done_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:drawableRight="@mipmap/icon_common_arrow"
+            android:text="@string/home_search_hot_more"
+            android:textColor="@color/normal_txt"
+            android:textSize="@dimen/sp_12" />
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_marginTop="@dimen/dp_10"
+        android:id="@+id/ll_done_container"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </LinearLayout>
+</LinearLayout>

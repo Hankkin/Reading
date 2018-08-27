@@ -26,6 +26,7 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun initViews(savedInstanceState: Bundle?) {
+        setStatusBarColor()
         vp_login.adapter = adapter
     }
 
