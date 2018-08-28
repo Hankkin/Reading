@@ -38,7 +38,9 @@ class AccountDetailActivity : BaseActivity() {
         fab_edit_acount.setColorNormalResId(ThemeHelper.getCurrentColor(this))
         iv_account_back.setOnClickListener { finish() }
         iv_account_delete.setOnClickListener {
-            ViewHelper.showConfirmDialog(this, resources.getString(R.string.account_detail_delete_hint), MaterialDialog.SingleButtonCallback { dialog, which ->
+            ViewHelper.showConfirmDialog(this,
+                    resources.getString(R.string.account_detail_delete_hint),
+                    MaterialDialog.SingleButtonCallback { dialog, which ->
                 id?.let { it1 -> DaoFactory.getProtocol(AccountDaoContract::class.java).deleteAccountById(it1) }
                 ToastUtils.showInfo(this, resources.getString(R.string.account_detail_delete_success_hint))
                 RxBusTools.getDefault().post(EventMap.UpdateAccountListEvent())

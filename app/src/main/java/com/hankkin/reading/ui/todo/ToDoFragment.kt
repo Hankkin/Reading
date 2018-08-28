@@ -1,5 +1,6 @@
 package com.hankkin.reading.ui.todo
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
@@ -13,7 +14,7 @@ import kotlinx.android.synthetic.main.fragment_todo.*
  * @author Hankkin
  * @date 2018/8/26
  */
-class ToDoFragment : BaseFragment(){
+class ToDoFragment : BaseFragment() {
 
 
     override fun getLayoutId(): Int {
@@ -21,11 +22,11 @@ class ToDoFragment : BaseFragment(){
     }
 
     override fun initViews() {
-
+        iv_todo_display.setOnClickListener { startActivity(Intent(context, AddToDoActivity::class.java)) }
     }
 
     override fun initData() {
-        val temp = mutableListOf<String>("Only One","Work","Study","Life")
+        val temp = mutableListOf<String>("Only One", "Work", "Study", "Life")
         val adapter = PageAdapter(childFragmentManager, temp)
         vp_todo.adapter = adapter
         tab_todo.setupWithViewPager(vp_todo)

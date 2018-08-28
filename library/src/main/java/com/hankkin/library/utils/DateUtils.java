@@ -48,7 +48,7 @@ public class DateUtils {
     public static final String DATE_FORMAT_LINK = "yyyyMMddHHmmssSSS";
 
     //Date格式 常用
-    public static final String DATE_FORMAT_DETACH = "yyyy-MM-dd HH:mm:ss";
+    public static final String DATE_FORMAT_DETACH = "yyyy-MM-dd";
 
     //Date格式 带毫秒
     public static final String DATE_FORMAT_DETACH_SSS = "yyyy-MM-dd HH:mm:ss SSS";

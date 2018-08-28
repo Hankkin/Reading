@@ -24,7 +24,7 @@
             <ImageView
                 android:id="@+id/iv_todo_display"
                 android:paddingRight="@dimen/dp_10"
-                android:src="@mipmap/icon_ver"
+                android:src="@mipmap/icon_todo_add"
                 android:layout_alignParentEnd="true"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent" />

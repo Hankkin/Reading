@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_adapter_todo"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_toEndOf="@+id/view_adapter_todo_status"
+    android:orientation="vertical"
+    android:clickable="true"
+    android:padding="@dimen/dp_10"
+    android:background="?attr/selectableItemBackground"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_adapter_todo_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text=""
+                android:textSize="@dimen/sp_16" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_alignEnd="@+id/tv_adapter_todo_title"
+                android:layout_alignStart="@+id/tv_adapter_todo_title"
+                android:layout_centerVertical="true"
+                android:background="@color/grey_text" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10">
+
+            <TextView
+                android:id="@+id/tv_adapter_todo_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_alignEnd="@+id/tv_adapter_todo_type"
+                android:layout_alignStart="@+id/tv_adapter_todo_type"
+                android:layout_centerVertical="true"
+                android:background="@color/grey_text" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_adapter_todo_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_15" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_alignEnd="@+id/tv_adapter_todo_content"
+                android:layout_alignStart="@+id/tv_adapter_todo_content"
+                android:layout_centerVertical="true"
+                android:background="@color/grey_text" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_10">
+
+            <TextView
+                android:id="@+id/tv_adapter_todo_complete_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="11"
+                android:textSize="@dimen/sp_13" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_alignEnd="@+id/tv_adapter_todo_complete_time"
+                android:layout_alignStart="@+id/tv_adapter_todo_complete_time"
+                android:layout_centerVertical="true"
+                android:background="@color/grey_text" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
+
+

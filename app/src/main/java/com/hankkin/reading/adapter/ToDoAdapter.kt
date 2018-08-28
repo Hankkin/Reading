@@ -47,27 +47,13 @@ class ToDoAdapter : BaseRecyclerViewAdapter<ListBean>() {
                 val tvTime = view.findViewById<TextView>(R.id.tv_adapter_todo_create_time)
                 tvTime.text = l.dateStr
                 val tvType = view.findViewById<TextView>(R.id.tv_adapter_todo_type)
-                val viewType = view.findViewById<View>(R.id.view_adapter_todo_status)
-                when(l.type){
-                    TYPE_WORK -> {
-                        tvType.text = "WORK"
-                        tvType.setTextColor(tvType.context.resources.getColor(R.color.blue))
-                        viewType.setBackgroundColor(tvType.context.resources.getColor(R.color.blue))
-                    }
-                    TYPE_ONLY -> {
-                        tvType.text = "ONLY"
-                        tvType.setTextColor(tvType.context.resources.getColor(R.color.violet))
-                        viewType.setBackgroundColor(tvType.context.resources.getColor(R.color.violet))
-                    }
-                    TYPE_LIFE -> {
-                        tvType.text = "LIFE"
-                        tvType.setTextColor(tvType.context.resources.getColor(R.color.yellow))
-                        viewType.setBackgroundColor(tvType.context.resources.getColor(R.color.yellow))
-                    }
-                    TYPE_STUDY -> {
-                        tvType.text = "STUDY"
-                        tvType.setTextColor(tvType.context.resources.getColor(R.color.green))
-                        viewType.setBackgroundColor(tvType.context.resources.getColor(R.color.green))
+                tvType.text = when (l.type) {
+                    TYPE_WORK -> "WORK"
+                    TYPE_ONLY -> "ONLY"
+                    TYPE_LIFE -> "LIFE"
+                    TYPE_STUDY -> "STUDY"
+                    else -> {
+                        ""
                     }
                 }
                 llContainer.addView(view)
