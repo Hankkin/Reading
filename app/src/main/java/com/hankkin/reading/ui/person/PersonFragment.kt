@@ -5,10 +5,7 @@ import android.support.design.widget.AppBarLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.afollestad.materialdialogs.MaterialDialog
-import com.hankkin.library.utils.AppUtils
-import com.hankkin.library.utils.LogUtils
-import com.hankkin.library.utils.SPUtils
-import com.hankkin.library.utils.ToastUtils
+import com.hankkin.library.utils.*
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.PersonListAdapter
 import com.hankkin.reading.base.BaseMvpFragment
@@ -44,12 +41,17 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
 
     override fun initData() {
         mAdapter = PersonListAdapter()
-        mAdapter.data.add(PersonListBean(R.mipmap.icon_person_star, resources.getString(R.string.person_follow)))
-        mAdapter.data.add(PersonListBean(R.mipmap.icon_person_list_theme, resources.getString(R.string.person_theme)))
-        mAdapter.data.add(PersonListBean(R.mipmap.icon_person_db, resources.getString(R.string.setting_db)))
-        mAdapter.data.add(PersonListBean(R.mipmap.icon_person_set_list, resources.getString(R.string.setting)))
-        xrv_person_lisy.layoutManager = LinearLayoutManager(context)
-        xrv_person_lisy.adapter = mAdapter
+        mAdapter.apply {
+            data.add(PersonListBean(R.mipmap.icon_person_star, resources.getString(R.string.person_follow)))
+            data.add(PersonListBean(R.mipmap.icon_person_list_theme, resources.getString(R.string.person_theme)))
+            data.add(PersonListBean(R.mipmap.icon_person_db, resources.getString(R.string.setting_db)))
+            data.add(PersonListBean(R.mipmap.icon_person_set_list, resources.getString(R.string.setting)))
+            data.add(PersonListBean(R.mipmap.icon_person_set_exit, resources.getString(R.string.person_info_logout)))
+        }
+        xrv_person_lisy.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = mAdapter
+        }
         mCurrentTheme = ThemeHelper.getTheme(context)
         tv_person_version.text = context?.let { "当前版本：" + AppUtils.getVersionName(it) }
     }
@@ -110,6 +112,12 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
         } else {
             startActivity(Intent(context, PersonInfoActivity::class.java))
         }
+        startActivity(
+                if (!UserControl.isLogin()) {
+                    Intent(context, LoginActivity::class.java)
+                } else {
+                    Intent(context, PersonInfoActivity::class.java)
+                })
     }
 
 
@@ -129,9 +137,18 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
         } else if (event is EventMap.PersonClickEvent) {
             when (event.index) {
                 0 -> startActivity(Intent(context, MyCollectActivity::class.java))
-                1 -> startActivity(Intent(context,ThemeActivity::class.java))
+                1 -> startActivity(Intent(context, ThemeActivity::class.java))
                 2 -> syncData()
                 3 -> context!!.startActivity(Intent(context, SettingActivity::class.java))
+                4 -> context?.let {
+                    ViewHelper.showConfirmDialog(it,
+                            resources.getString(R.string.person_info_logout_hint),
+                            MaterialDialog.SingleButtonCallback { dialog, which ->
+                                UserControl.logout()
+                                setUserHeader()
+                                RxBusTools.getDefault().post(EventMap.LogOutEvent())
+                            })
+                }
             }
         }
     }

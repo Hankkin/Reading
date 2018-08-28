@@ -76,6 +76,7 @@ object EventMap {
     class ChangeFabEvent : BaseEvent()
     class ToUpEvent : BaseEvent()
     class LoginEvent : BaseEvent()
+    class LogOutEvent : BaseEvent()
     class HomeRefreshEvent : BaseEvent()
     class UpdateEveryEvent : BaseEvent()
     class UpdateAccountListEvent : BaseEvent()

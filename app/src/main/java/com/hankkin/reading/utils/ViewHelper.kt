@@ -1,10 +1,5 @@
 package com.hankkin.reading.utils
 
-import android.R.attr.duration
-import android.animation.Animator
-import android.animation.Keyframe
-import android.animation.ObjectAnimator
-import android.animation.PropertyValuesHolder
 import android.content.Context
 import android.support.design.widget.BottomSheetDialog
 import android.support.v4.widget.SwipeRefreshLayout
@@ -17,7 +12,6 @@ import android.view.animation.ScaleAnimation
 import android.widget.ImageView
 import android.widget.TextView
 import com.afollestad.materialdialogs.MaterialDialog
-import com.hankkin.library.utils.LogUtils
 import com.hankkin.library.utils.ToastUtils
 import com.hankkin.reading.R
 import com.hankkin.reading.common.Constant
@@ -35,19 +29,22 @@ object ViewHelper {
     fun setRefreshLayout(context: Context?, isAutoRefresh: Boolean,
                          layout: SwipeRefreshLayout,
                          onRefreshListener: SwipeRefreshLayout.OnRefreshListener) {
-        layout.setColorSchemeResources(ThemeHelper.getCurrentColor(context))
-        layout.setOnRefreshListener(onRefreshListener)
-        if (isAutoRefresh) layout.isRefreshing = true
+        layout.apply {
+            setColorSchemeResources(ThemeHelper.getCurrentColor(context))
+            setOnRefreshListener(onRefreshListener)
+            if (isAutoRefresh) isRefreshing = true
+        }
+
     }
 
     fun changeRefreshColor(layout: SwipeRefreshLayout, context: Context?) {
-        layout.setColorSchemeResources(ThemeHelper.getCurrentColor(context))
+        layout.apply { setColorSchemeResources(ThemeHelper.getCurrentColor(context)) }
     }
 
     /**
      * normal dialog
      */
-    fun showConfirmDialog(context: Context, content: String, callback: MaterialDialog.SingleButtonCallback){
+    fun showConfirmDialog(context: Context, content: String, callback: MaterialDialog.SingleButtonCallback) {
         MaterialDialog.Builder(context)
                 .content(content)
                 .positiveText(context.resources.getString(R.string.ok))
@@ -58,10 +55,11 @@ object ViewHelper {
                 .show()
 
     }
+
     /**
      * normal dialog
      */
-    fun showConfirmDialog(context: Context, content: String, callback: MaterialDialog.SingleButtonCallback,cancelBack: MaterialDialog.SingleButtonCallback) {
+    fun showConfirmDialog(context: Context, content: String, callback: MaterialDialog.SingleButtonCallback, cancelBack: MaterialDialog.SingleButtonCallback) {
         MaterialDialog.Builder(context)
                 .content(content)
                 .positiveText(context.resources.getString(R.string.ok))
@@ -74,10 +72,10 @@ object ViewHelper {
 
     }
 
-    fun showProgressDIalog(context: Context,content: String){
+    fun showProgressDIalog(context: Context, content: String) {
         MaterialDialog.Builder(context)
                 .content(content)
-                .progress(true,0)
+                .progress(true, 0)
                 .progressIndeterminateStyle(true)
                 .widgetColor(context.resources.getColor(ThemeHelper.getCurrentColor(context)))
                 .show()
@@ -97,7 +95,7 @@ object ViewHelper {
     /**
      * list dialog
      */
-    fun showListTitleDialog(context: Context, title: String,list: MutableList<String>, calback: MaterialDialog.ListCallback) {
+    fun showListTitleDialog(context: Context, title: String, list: MutableList<String>, calback: MaterialDialog.ListCallback) {
         MaterialDialog.Builder(context)
                 .title(title)
                 .titleColor(context.resources.getColor(ThemeHelper.getCurrentColor(context)))

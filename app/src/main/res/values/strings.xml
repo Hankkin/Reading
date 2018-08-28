@@ -131,6 +131,7 @@
     <string name="person_info_join_time">加入时间</string>
     <string name="person_info_last_login_time">最近登录时间</string>
     <string name="person_info_logout">注销</string>
+    <string name="person_info_logout_hint">请问您是否注销登录？</string>
 
     <string name="setting">设置</string>
     <string name="setting_theme">个性换肤</string>
@@ -176,6 +177,10 @@
     <string name="work_about">关于</string>
 
     <string name="todo_not_login">登录WanAndroid，体验TODO功能</string>
+    <string name="todo_add_title_hint">标题 例如：学习Kotlin</string>
+    <string name="todo_add_content_hint">详情 非必填</string>
+    <string name="todo_add_time_hint">时间</string>
+    <string name="todo_add_title">新建TODO</string>
 
     <string name="tools_kuaidi_number">请输入快递单号</string>
     <string name="tools_kuaidi_company">请选择快递公司</string>
