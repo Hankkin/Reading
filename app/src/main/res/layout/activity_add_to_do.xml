@@ -9,7 +9,7 @@
     android:orientation="vertical"
     tools:context=".ui.todo.AddToDoActivity">
 
-    <include layout="@layout/layout_white_title_bar_back"/>
+    <include layout="@layout/layout_white_title_bar_back" />
 
     <View
         android:layout_width="match_parent"
@@ -27,7 +27,6 @@
             android:padding="@dimen/dp_10">
 
             <EditText
-                android:singleLine="true"
                 android:id="@+id/et_add_todo_title"
                 style="@style/normalTxt"
                 android:layout_width="match_parent"
@@ -36,6 +35,7 @@
                 android:hint="@string/todo_add_title_hint"
                 android:paddingBottom="@dimen/dp_14"
                 android:paddingTop="@dimen/dp_14"
+                android:singleLine="true"
                 android:textSize="@dimen/sp_18"
                 android:textStyle="bold" />
 
@@ -44,10 +44,39 @@
                 android:layout_height="0.5dp"
                 android:background="@color/normal_bg" />
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_add_todo_cate"
+                    style="@style/normalTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="@string/todo_add_cate_hint"
+                    android:paddingBottom="@dimen/dp_14"
+                    android:paddingTop="@dimen/dp_14"
+                    android:textSize="@dimen/sp_16" />
+
+                <com.bilibili.magicasakura.widgets.TintImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/icon_common_arrow"
+                    app:imageTint="@color/grey1" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/normal_bg" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <TextView
                     android:id="@+id/tv_add_todo_time"
                     style="@style/normalTxt"
@@ -58,55 +87,62 @@
                     android:paddingBottom="@dimen/dp_14"
                     android:paddingTop="@dimen/dp_14"
                     android:textSize="@dimen/sp_16" />
+
                 <ImageView
-                    android:layout_toStartOf="@+id/iv_add_acount_arrow"
-                    android:visibility="gone"
-                    android:layout_marginEnd="@dimen/dp_10"
                     android:id="@+id/iv_add_acount_cate"
-                    android:layout_centerVertical="true"
-                    android:src="@mipmap/icon_account_social"
                     android:layout_width="20dp"
-                    android:layout_height="20dp" />
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/dp_10"
+                    android:layout_toStartOf="@+id/iv_add_acount_arrow"
+                    android:src="@mipmap/icon_account_social"
+                    android:visibility="gone" />
+
                 <com.bilibili.magicasakura.widgets.TintImageView
                     android:id="@+id/iv_add_acount_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    app:imageTint="@color/grey1"
                     android:layout_centerVertical="true"
                     android:src="@mipmap/icon_common_arrow"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    app:imageTint="@color/grey1" />
             </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/normal_bg" />
+
             <EditText
-                android:gravity="start"
-                android:singleLine="true"
                 android:id="@+id/et_add_todo_content"
                 style="@style/normalTxt"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:background="@null"
+                android:gravity="start"
                 android:hint="@string/todo_add_content_hint"
                 android:paddingBottom="@dimen/dp_14"
                 android:paddingTop="@dimen/dp_14"
+                android:singleLine="true"
                 android:textSize="@dimen/sp_16" />
-
 
 
         </LinearLayout>
 
         <com.github.clans.fab.FloatingActionButton
-            android:layout_gravity="bottom|right"
-            fab:menu_colorNormal="@color/theme_color_primary"
-            fab:menu_colorPressed="@color/theme_color_primary"
-            fab:menu_colorRipple="@color/theme_color_primary"
-            android:id="@+id/fab_add_acount"
+            android:id="@+id/fab_add_todo"
+            style="@style/menu_labels_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/fab_confirm"
-            style="@style/menu_labels_style"
-            fab:fab_size="normal"
-            android:layout_marginRight="@dimen/dp_16"
+            android:layout_gravity="bottom|right"
             android:layout_marginBottom="@dimen/dp_16"
-            fab:fab_label="@string/home_fab_up" />
+            android:layout_marginRight="@dimen/dp_16"
+            android:src="@mipmap/fab_confirm"
+            fab:fab_label="@string/home_fab_up"
+            fab:fab_size="normal"
+            fab:menu_colorNormal="@color/theme_color_primary"
+            fab:menu_colorPressed="@color/theme_color_primary"
+            fab:menu_colorRipple="@color/theme_color_primary" />
     </android.support.design.widget.CoordinatorLayout>
 
 

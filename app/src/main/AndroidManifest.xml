@@ -253,7 +253,8 @@
             </intent-filter>
         </activity-alias>
 
-        <activity android:name=".ui.todo.AddToDoActivity"></activity>
+        <activity android:name=".ui.todo.AddToDoActivity"
+            android:windowSoftInputMode="adjustResize"></activity>
     </application>
 
 </manifest>

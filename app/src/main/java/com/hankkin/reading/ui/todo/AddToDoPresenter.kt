@@ -7,29 +7,27 @@ import io.reactivex.schedulers.Schedulers
 
 /**
  * @author Hankkin
- * @date 2018/8/26
+ * @date 2018/8/28
  */
-class ToDoPresenter : RxLifePresenter<ToDoContract.IView>(),ToDoContract.IPresenter{
-    override fun deleteTodo(id: Int) {
-        HttpClientUtils.Builder.getCommonHttp()
-                .deleteTodo(id)
+class AddToDoPresenter : RxLifePresenter<AddToDoContract.IView>(), AddToDoContract.IPresenter {
+    override fun addTodo(map: HashMap<String, Any>) {
+        HttpClientUtils.Builder.getCommonHttp().addTodo(map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeNx ({
-                    getMvpView().deleteTodoSuccess()
-                },{
+                .subscribeNx({
+                    getMvpView().addTodoSuccess()
+                }, {
                     getMvpView().setFail()
                 }).bindRxLifeEx(RxLife.ON_DESTROY)
     }
 
-    override fun getListDone(cate: Int) {
-        HttpClientUtils.Builder.getCommonHttp()
-                .getTodo(cate)
+    override fun updateTodo(id: Int, map: HashMap<String, Any>) {
+        HttpClientUtils.Builder.getCommonHttp().updateTodo(id, map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeNx ({
-                    getMvpView().setListDone(it.data)
-                },{
+                .subscribeNx({
+                    getMvpView().addTodoSuccess()
+                }, {
                     getMvpView().setFail()
                 }).bindRxLifeEx(RxLife.ON_DESTROY)
     }

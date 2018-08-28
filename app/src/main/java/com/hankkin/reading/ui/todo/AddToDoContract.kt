@@ -2,23 +2,20 @@ package com.hankkin.reading.ui.todo
 
 import com.hankkin.library.mvp.contract.IBaseViewContract
 import com.hankkin.library.mvp.contract.IPresenterContract
-import com.hankkin.reading.domain.ToDoBean
 
 /**
  * @author Hankkin
- * @date 2018/8/26
+ * @date 2018/8/28
  */
-interface ToDoContract {
-
+interface AddToDoContract {
     interface IView : IBaseViewContract {
-        fun setListDone(data: ToDoBean)
-        fun deleteTodoSuccess()
+        fun addTodoSuccess()
+        fun updateToDoSuccess()
         fun setFail()
     }
 
     interface IPresenter : IPresenterContract {
-        fun getListDone(cate: Int)
-        fun deleteTodo(id: Int)
+        fun addTodo(map: HashMap<String, Any>)
+        fun updateTodo(id: Int, map: HashMap<String, Any>)
     }
-
 }

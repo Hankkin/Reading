@@ -7,6 +7,8 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.afollestad.materialdialogs.MaterialDialog
+import com.hankkin.library.utils.RxBusTools
 import com.hankkin.library.utils.ToastUtils
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.ToDoAdapter
@@ -16,10 +18,14 @@ import com.hankkin.reading.adapter.ToDoAdapter.Companion.TYPE_STUDY
 import com.hankkin.reading.adapter.ToDoAdapter.Companion.TYPE_WORK
 import com.hankkin.reading.base.BaseMvpFragment
 import com.hankkin.reading.control.UserControl
+import com.hankkin.reading.dao.DaoFactory
 import com.hankkin.reading.domain.ToDoBean
 import com.hankkin.reading.domain.ToDoListBean
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.ui.login.LoginActivity
+import com.hankkin.reading.ui.tools.acount.AccountDaoContract
+import com.hankkin.reading.ui.tools.acount.AccountDetailActivity
+import com.hankkin.reading.ui.tools.acount.AddAcountActivity
 import com.hankkin.reading.utils.ViewHelper
 import kotlinx.android.synthetic.main.fragment_todo_list.*
 
@@ -28,6 +34,7 @@ import kotlinx.android.synthetic.main.fragment_todo_list.*
  * @date 2018/8/26
  */
 class ToDoListFragment : BaseMvpFragment<ToDoContract.IPresenter>(), ToDoContract.IView, SwipeRefreshLayout.OnRefreshListener {
+
     private lateinit var mAdapter: ToDoAdapter
     private var mIndex: Int = 0
     private var mStyle: Int = 0
@@ -67,11 +74,6 @@ class ToDoListFragment : BaseMvpFragment<ToDoContract.IPresenter>(), ToDoContrac
             layoutManager = if (mStyle == 0) LinearLayoutManager(context) else GridLayoutManager(context, 2)
             adapter = mAdapter
         }
-        mAdapter.apply {
-            val longClickItems = mutableListOf<String>(resources.getString(R.string.word_note_detail), resources.getString(R.string.word_note_remove), resources.getString(R.string.word_note_emphasis))
-            setOnItemClickListener { t, position ->
-            }
-        }
         getPresenter().getListDone(mIndex)
     }
 
@@ -109,6 +111,13 @@ class ToDoListFragment : BaseMvpFragment<ToDoContract.IPresenter>(), ToDoContrac
         refresh_todo_list.isRefreshing = false
     }
 
+    override fun deleteTodoSuccess() {
+        context?.let {
+            ToastUtils.showSuccess(it, resources.getString(R.string.account_detail_delete_success_hint))
+            onRefresh()
+        }
+    }
+
     override fun setFail() {
         refresh_todo_list.isRefreshing = false
     }
@@ -126,9 +135,16 @@ class ToDoListFragment : BaseMvpFragment<ToDoContract.IPresenter>(), ToDoContrac
         } else if (event is EventMap.LogOutEvent) {
             initLogin()
         }
+        else if (event is EventMap.ToDoRefreshEvent){
+            onRefresh()
+        }
+        else if (event is EventMap.DeleteToDoEvent){
+            getPresenter().deleteTodo(event.id)
+        }
     }
 
     private fun setDoneView(toDoListBean: ToDoListBean): View {
+        val longClickItems = mutableListOf<String>(context!!.resources.getString(R.string.todo_delete))
         val view = layoutInflater.inflate(R.layout.layout_done_item, null, false)
         val tvTitle = view.findViewById<TextView>(R.id.tv_adapter_todo_title)
         tvTitle.text = toDoListBean.title
@@ -145,6 +161,21 @@ class ToDoListFragment : BaseMvpFragment<ToDoContract.IPresenter>(), ToDoContrac
             else -> {
                 ""
             }
+        }
+        view.setOnLongClickListener {
+            ViewHelper.showListTitleDialog(it.context, "操作",
+                    longClickItems, MaterialDialog.ListCallback { dialog, itemView, which, text ->
+                when (which) {
+                    0 -> {
+                        ViewHelper.showConfirmDialog(it.context!!,
+                                it.context.resources.getString(R.string.todo_delete_hint),
+                                MaterialDialog.SingleButtonCallback { dialog, which ->
+                                    getPresenter().deleteTodo(toDoListBean.id)
+                                })
+                    }
+                }
+            })
+            false
         }
         return view
     }

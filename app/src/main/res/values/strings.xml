@@ -180,7 +180,14 @@
     <string name="todo_add_title_hint">标题 例如：学习Kotlin</string>
     <string name="todo_add_content_hint">详情 非必填</string>
     <string name="todo_add_time_hint">时间</string>
+    <string name="todo_add_cate_hint">分类</string>
+    <string name="todo_add_time_select_hint">请选择时间</string>
     <string name="todo_add_title">新建TODO</string>
+    <string name="todo_add_success">新建TODO成功</string>
+    <string name="todo_update_success">更新TODO成功</string>
+    <string name="todo_delete">删除</string>
+    <string name="todo_delete_hint">是否删除该条TODO？</string>
+    <string name="todo_update">编辑</string>
 
     <string name="tools_kuaidi_number">请输入快递单号</string>
     <string name="tools_kuaidi_company">请选择快递公司</string>

@@ -90,7 +90,6 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
                             ll_person_header.visibility = View.VISIBLE
                         }
                     }
-                    LogUtils.e(">>>>>alpha" + i)
                     if (i == 0) {
                         ll_person_header.alpha = 1F
 

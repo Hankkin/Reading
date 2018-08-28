@@ -79,6 +79,8 @@ object EventMap {
     class LogOutEvent : BaseEvent()
     class HomeRefreshEvent : BaseEvent()
     class UpdateEveryEvent : BaseEvent()
+    class ToDoRefreshEvent : BaseEvent()
+    class DeleteToDoEvent(val id: Int) : BaseEvent()
     class UpdateAccountListEvent : BaseEvent()
     class WifiImgEvent : BaseEvent()
     class SearchHistoryDeleteEvent(val position:Int) : BaseEvent()

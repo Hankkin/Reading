@@ -7,10 +7,12 @@ import android.os.Bundle
 import com.hankkin.library.mvp.contract.IPresenterContract
 import com.hankkin.library.mvp.view.MvpActivity
 import com.hankkin.library.utils.RxBusTools
+import com.hankkin.reading.R
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.utils.LoadingUtils
 import com.hankkin.reading.utils.MyStatusBarUtil
 import com.hankkin.reading.utils.ThemeHelper
+import com.jaeger.library.StatusBarUtil
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.Consumer
 
@@ -62,6 +64,13 @@ abstract class BaseMvpActivity<out P : IPresenterContract> : MvpActivity<P>() {
         MyStatusBarUtil.setColorForSwipeBack(this, resources.getColor(ThemeHelper.getCurrentColor(this)), 0)
     }
 
+    /**
+     * 设置白底黑字
+     */
+    protected fun setMiuiStatusBar() {
+        MyStatusBarUtil.setColorForSwipeBack(this,resources.getColor(R.color.white),0)
+        StatusBarUtil.setLightMode(this)
+    }
 
     override fun onDestroy() {
         super.onDestroy()

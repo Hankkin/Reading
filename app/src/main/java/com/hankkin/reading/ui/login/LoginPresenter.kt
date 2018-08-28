@@ -21,7 +21,7 @@ class LoginPresenter: RxLifePresenter<LoginContract.IView>(), LoginContract.IPre
                     getMvpView().hideLoading()
                 }, {
                     getMvpView().hideLoading()
-                })
+                }).bindRxLifeEx(RxLife.ON_DESTROY)
 
     }
 

@@ -1,5 +1,7 @@
 package com.hankkin.reading.domain
 
+import java.io.Serializable
+
 /**
  * @author Hankkin
  * @date 2018/8/26
@@ -16,4 +18,4 @@ data class ToDoListBean(val completeDate: Long,
                         val id: Int,
                         val status: Int,
                         val type: Int,
-                        val userId: Int)
+                        val userId: Int) : Serializable

@@ -80,6 +80,17 @@ interface WanAndroidApi {
     @POST("user/register")
     fun signUp(@FieldMap map: HashMap<String, String>): Observable<BaseResponse<UserBean>>
 
+    @FormUrlEncoded
+    @POST("lg/todo/add/json")
+    fun addTodo(@FieldMap map: HashMap<String, Any>): Observable<BaseResponse<ToDoListBean>>
+
+    @FormUrlEncoded
+    @POST("lg/todo/update/{id}/json")
+    fun updateTodo(@Path("id") id: Int, @FieldMap map: HashMap<String, Any>): Observable<BaseResponse<ToDoListBean>>
+
+    @POST("lg/todo/delete/{id}/json")
+    fun deleteTodo(@Path("id") id: Int): Observable<BaseResponse<String>>
+
     @GET("lg/todo/list/{cate}/json")
     fun getTodo(@Path("cate") cate: Int): Observable<BaseResponse<ToDoBean>>
 
