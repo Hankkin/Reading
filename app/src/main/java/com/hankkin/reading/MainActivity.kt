@@ -20,7 +20,6 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper
 import com.afollestad.materialdialogs.MaterialDialog
 import com.bilibili.magicasakura.utils.ThemeUtils
 import com.hankkin.library.utils.*
@@ -38,9 +37,8 @@ import com.hankkin.reading.ui.todo.ToDoFragment
 import com.hankkin.reading.ui.tools.ToolsFragment
 import com.hankkin.reading.ui.tools.acount.AccountListActivity
 import com.hankkin.reading.ui.tools.wordnote.WordNoteActivity
-import com.hankkin.reading.ui.user.collect.MyCollectActivity
+import com.hankkin.reading.ui.person.MyCollectActivity
 import com.hankkin.reading.utils.*
-import com.jaeger.library.StatusBarUtil
 import com.tbruyelle.rxpermissions2.RxPermissions
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers

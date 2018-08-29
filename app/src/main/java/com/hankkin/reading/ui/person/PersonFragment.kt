@@ -21,7 +21,6 @@ import com.hankkin.reading.domain.PersonListBean
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.ui.login.LoginActivity
 import com.hankkin.reading.ui.todo.AddToDoActivity
-import com.hankkin.reading.ui.user.collect.MyCollectActivity
 import com.hankkin.reading.utils.*
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/normal_bg"
-    tools:context="com.hankkin.reading.ui.user.collect.MyCollectActivity">
+    tools:context=".ui.person.MyCollectActivity">
 
     <include layout="@layout/layout_title_bar_back"/>
 

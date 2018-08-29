@@ -53,7 +53,7 @@
         <activity android:name=".ui.person.friend.FriendListActivity" />
         <activity android:name=".ui.person.SettingActivity" />
         <activity android:name=".ui.home.articledetail.CommonWebActivity" />
-        <activity android:name=".ui.user.collect.MyCollectActivity" />
+        <activity android:name="com.hankkin.reading.ui.person.MyCollectActivity" />
         <activity android:name=".ui.home.search.SearchActivity" />
         <activity android:name=".ui.home.search.searchresult.SearchResultActivity" />
         <activity android:name=".ui.tools.KuaiDiActivity" />
