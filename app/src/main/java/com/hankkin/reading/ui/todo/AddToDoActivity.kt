@@ -13,6 +13,7 @@ import com.hankkin.reading.common.Constant
 import com.hankkin.reading.domain.ToDoListBean
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.utils.LoadingUtils
+import com.hankkin.reading.utils.ThemeHelper
 import com.hankkin.reading.utils.ViewHelper
 import kotlinx.android.synthetic.main.activity_add_to_do.*
 import kotlinx.android.synthetic.main.layout_white_title_bar_back.*
@@ -50,6 +51,10 @@ class AddToDoActivity : BaseMvpActivity<AddToDoContract.IPresenter>(), AddToDoCo
 
     override fun initView() {
         setMiuiStatusBar()
+        fab_add_todo.apply {
+            setColorPressedResId(ThemeHelper.getCurrentColor(this@AddToDoActivity))
+            setColorNormalResId(ThemeHelper.getCurrentColor(this@AddToDoActivity))
+        }
         tv_normal_title_white.text = resources.getString(R.string.todo_add_title)
         iv_back_icon_white.setOnClickListener { finish() }
         val calendar = Calendar.getInstance()
