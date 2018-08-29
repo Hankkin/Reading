@@ -14,7 +14,7 @@ import com.hankkin.reading.utils.ViewHelper
 import kotlinx.android.synthetic.main.activity_my_collect.*
 import kotlinx.android.synthetic.main.layout_title_bar_back.*
 
-class MyCollectActivity : BaseMvpActivity<MyCollectPresenter>(), MyCollectContract.IView,SwipeRefreshLayout.OnRefreshListener {
+class MyCollectActivity : BaseMvpActivity<MyCollectPresenter>(), MyCollectContract.IView, SwipeRefreshLayout.OnRefreshListener {
 
 
     private var mPage: Int = 0
@@ -33,26 +33,29 @@ class MyCollectActivity : BaseMvpActivity<MyCollectPresenter>(), MyCollectContra
     override fun initView() {
         setStatusBarColor()
         tv_normal_title.text = resources.getString(R.string.drawer_collect)
-        ViewHelper.setRefreshLayout(this,true,refresh_collect,this)
+        ViewHelper.setRefreshLayout(this, true, refresh_collect, this)
         iv_back_icon.setOnClickListener { finish() }
     }
 
     override fun initData() {
-        mAdapter = AndroidAdapter()
         val linearLayoutManager = LinearLayoutManager(this)
-        xrv_collect.layoutManager = linearLayoutManager
-        xrv_collect.setPullRefreshEnabled(false)
-        xrv_collect.clearHeader()
-        xrv_collect.adapter = mAdapter
-        xrv_collect.setLoadingListener(object : XRecyclerView.LoadingListener {
-            override fun onLoadMore() {
-                loadData(mPage)
-            }
+        xrv_collect.apply {
+            mAdapter = AndroidAdapter()
+            layoutManager = linearLayoutManager
+            setPullRefreshEnabled(false)
+            clearHeader()
+            adapter = mAdapter
+            setLoadingListener(object : XRecyclerView.LoadingListener {
+                override fun onLoadMore() {
+                    loadData(mPage)
+                }
 
-            override fun onRefresh() {
-            }
-        })
-        loadData(mPage)
+                override fun onRefresh() {
+                }
+            })
+            loadData(mPage)
+        }
+
 
     }
 
@@ -91,20 +94,19 @@ class MyCollectActivity : BaseMvpActivity<MyCollectPresenter>(), MyCollectContra
 
     override fun cancelCollectResult(id: Int) {
         UserControl.getCurrentUser()!!.collectIds.remove(id.toString())
-        ToastUtils.showInfo(this,"取消收藏")
+        ToastUtils.showInfo(this, "取消收藏")
     }
 
     override fun collectResult(id: Int) {
         UserControl.getCurrentUser()!!.collectIds.add(id.toString())
-        ToastUtils.showSuccess(this,"收藏成功")
+        ToastUtils.showSuccess(this, "收藏成功")
     }
 
     override fun onEvent(event: EventMap.BaseEvent) {
-        if (event is EventMap.CollectEvent){
-            if (event.flag == EventMap.CollectEvent.COLLECT){
+        if (event is EventMap.CollectEvent) {
+            if (event.flag == EventMap.CollectEvent.COLLECT) {
                 getPresenter().collectHttp(event.id)
-            }
-            else{
+            } else {
                 getPresenter().cancelCollectHttp(event.id)
             }
         }
