@@ -35,13 +35,16 @@ class HotFragment : BaseMvpFragment<HotPresenter>(), HotContact.IView {
         temp.add(data[0])
         temp.add(data[1])
         temp.add(data[2])
-        val adapter = PageAdapter(childFragmentManager, temp)
-        vp_hot.adapter = adapter
-        tab_hot.setupWithViewPager(vp_hot)
-        tab_hot.tabMode = TabLayout.MODE_FIXED
-        val indicator = PointMoveIndicator(tab_hot)
-        tab_hot.animatedIndicator = indicator
-        vp_hot.offscreenPageLimit = temp.size
+        tab_hot.apply {
+            val adapter = PageAdapter(childFragmentManager, temp)
+            vp_hot.adapter = adapter
+            setupWithViewPager(vp_hot)
+            tabMode = TabLayout.MODE_FIXED
+            val indicator = PointMoveIndicator(tab_hot)
+            animatedIndicator = indicator
+            vp_hot.offscreenPageLimit = temp.size
+        }
+
     }
 
     override fun initView() {
@@ -55,7 +58,7 @@ class HotFragment : BaseMvpFragment<HotPresenter>(), HotContact.IView {
             val bundle = Bundle()
             val fg = HotListFragment()
             bundle.putInt("index", i)
-            bundle.putSerializable("bean",data[i])
+            bundle.putSerializable("bean", data[i])
             fg.arguments = bundle
             return fg
         }

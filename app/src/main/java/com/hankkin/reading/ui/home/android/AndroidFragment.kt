@@ -30,7 +30,6 @@ class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IVie
     }
 
 
-
     override fun getLayoutId(): Int {
         return R.layout.fragment_android
     }
@@ -41,21 +40,23 @@ class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IVie
     }
 
     fun initXrv() {
-        mAdapter = AndroidAdapter()
-        val linearLayoutManager = LinearLayoutManager(context)
-        xrv_android.layoutManager = linearLayoutManager
-        xrv_android.setPullRefreshEnabled(false)
-        xrv_android.clearHeader()
-        xrv_android.adapter = mAdapter
-        xrv_android.setLoadingListener(object : XRecyclerView.LoadingListener {
-            override fun onLoadMore() {
-                loadData(mPage)
-            }
+        xrv_android.apply {
+            mAdapter = AndroidAdapter()
+            layoutManager = LinearLayoutManager(context)
+            setPullRefreshEnabled(false)
+            clearHeader()
+            adapter = mAdapter
+            setLoadingListener(object : XRecyclerView.LoadingListener {
+                override fun onLoadMore() {
+                    loadData(mPage)
+                }
 
-            override fun onRefresh() {
-            }
+                override fun onRefresh() {
+                }
 
-        })
+            })
+        }
+
     }
 
     override fun setFail() {
@@ -69,10 +70,12 @@ class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IVie
     }
 
     override fun onRefresh() {
-        xrv_android.reset()
-        refresh_android.isRefreshing = true
-        mPage = 0
-        loadData(mPage)
+        xrv_android.apply {
+            reset()
+            refresh_android.isRefreshing = true
+            mPage = 0
+            loadData(mPage)
+        }
     }
 
     override fun registerPresenter() = AndroidPresenter::class.java
@@ -117,8 +120,7 @@ class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IVie
             } else {
                 getPresenter().cancelCollectHttp(it.id)
             }
-        }
-        else if (it is EventMap.WifiImgEvent){
+        } else if (it is EventMap.WifiImgEvent) {
             mAdapter.notifyDataSetChanged()
         }
     }

@@ -37,7 +37,7 @@ class ToDoAdapter : BaseRecyclerViewAdapter<ListBean>() {
     }
 
     private class HorViewHolder(parent: ViewGroup, layoutId: Int, viewType: Int) : BaseRecyclerViewHolder<ListBean>(parent, layoutId) {
-        val longClickItems = mutableListOf<String>(parent.context.resources.getString(R.string.todo_update), parent.context.resources.getString(R.string.todo_delete))
+        val longClickItems = mutableListOf<String>(parent.context.resources.getString(R.string.todo_complete), parent.context.resources.getString(R.string.todo_update), parent.context.resources.getString(R.string.todo_delete))
         private val tvTime by lazy { itemView.findViewById<TextView>(R.id.tv_adapter_todo_time) }
         private val llContainer by lazy { itemView.findViewById<LinearLayout>(R.id.ll_adapter_todo_container) }
         override fun onBindViewHolder(bean: ListBean, position: Int) {
@@ -50,9 +50,12 @@ class ToDoAdapter : BaseRecyclerViewAdapter<ListBean>() {
                             longClickItems, MaterialDialog.ListCallback { dialog, itemView, which, text ->
                         when (which) {
                             0 -> {
-                                AddToDoActivity.intentTo(it.context, l)
+                                RxBusTools.getDefault().post(EventMap.CompleteToDoEvent(l))
                             }
                             1 -> {
+                                AddToDoActivity.intentTo(it.context, l)
+                            }
+                            2 -> {
                                 ViewHelper.showConfirmDialog(it.context!!,
                                         it.context.resources.getString(R.string.todo_delete_hint),
                                         MaterialDialog.SingleButtonCallback { dialog, which ->

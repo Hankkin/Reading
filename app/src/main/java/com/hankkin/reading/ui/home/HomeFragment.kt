@@ -41,12 +41,6 @@ class HomeFragment : BaseFragment() {
         iv_search.setOnClickListener { startActivity(Intent(activity,SearchActivity::class.java)) }
     }
 
-    public fun newInstance(index: Int) {
-        val fragment = HomeFragment()
-        val args = Bundle()
-        args.putInt("index", index)
-        fragment.arguments = args
-    }
 
     override fun getLayoutId(): Int {
         return R.layout.fragment_home
@@ -57,27 +51,29 @@ class HomeFragment : BaseFragment() {
     }
 
     override fun initData() {
-        val adapter = HomeFragmentPagerAdapter(childFragmentManager,mFgList )
-        vp_home.adapter = adapter
-        vp_home.offscreenPageLimit = 2
-        vp_home.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-            override fun onPageScrollStateChanged(p0: Int) {
-            }
+        val mAdapter = HomeFragmentPagerAdapter(childFragmentManager,mFgList )
+        vp_home.apply {
+            adapter = mAdapter
+            offscreenPageLimit = 2
+            addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+                override fun onPageScrollStateChanged(p0: Int) {
+                }
 
-            override fun onPageScrolled(p0: Int, p1: Float, p2: Int) {
-            }
+                override fun onPageScrolled(p0: Int, p1: Float, p2: Int) {
+                }
 
-            override fun onPageSelected(p0: Int) {
-                setCurrent(p0)
-            }
+                override fun onPageSelected(p0: Int) {
+                    setCurrent(p0)
+                }
 
-        })
+            })
+        }
         setCurrent(1)
         setFabColor()
         setFabClickListener()
     }
 
-    fun setFabClickListener(){
+    private fun setFabClickListener(){
         fab_menu_add.setClosedOnTouchOutside(true)
         fab_up.setOnClickListener {
             RxBusTools.getDefault().post(EventMap.ToUpEvent())
@@ -93,7 +89,7 @@ class HomeFragment : BaseFragment() {
         }
     }
 
-    fun setFabColor(){
+    private fun setFabColor(){
         fab_menu_add.setMenuButtonColorNormalResId(ThemeHelper.getCurrentColor(context))
         fab_up.setColorNormalResId(ThemeHelper.getCurrentColor(context))
         fab_refresh.setColorNormalResId(ThemeHelper.getCurrentColor(context))

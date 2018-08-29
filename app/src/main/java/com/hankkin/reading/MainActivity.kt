@@ -81,9 +81,6 @@ class MainActivity : BaseActivity() {
         return false
     }
 
-    fun getSwipeBackHelper(): BGASwipeBackHelper{
-        return mSwipeBackHelper
-    }
 
     override fun initData() {
         SPUtils.put(Constant.SP_KEY.WIFI_IMG, 1)//默认加载图片
@@ -153,26 +150,21 @@ class MainActivity : BaseActivity() {
     }
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-        clearTabColor()
         when (item.itemId) {
             R.id.navigation_dic -> {
-                vp_main.setCurrentItem(DICTIONARY_INDEX, false)
-                setTabColor(0)
+                setTabColor(DICTIONARY_INDEX)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_todo -> {
-                vp_main.setCurrentItem(TODO_INDEX, false)
-                setTabColor(1)
+                setTabColor(TODO_INDEX)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_tran -> {
-                vp_main.setCurrentItem(TRANSLATE_INDEX, false)
-                setTabColor(2)
+                setTabColor(TRANSLATE_INDEX)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_person -> {
-                vp_main.setCurrentItem(PERSON_INDEX, false)
-                setTabColor(3)
+                setTabColor(PERSON_INDEX)
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -180,6 +172,8 @@ class MainActivity : BaseActivity() {
     }
 
     fun setTabColor(index: Int) {
+        clearTabColor()
+        vp_main.setCurrentItem(index, false)
         ((navigation.getChildAt(0) as BottomNavigationMenuView)
                 .getChildAt(index) as BottomNavigationItemView).setTextColor(resources.getColorStateList(ThemeHelper.getCurrentColor(this@MainActivity)))
 
@@ -187,7 +181,7 @@ class MainActivity : BaseActivity() {
                 .getChildAt(index) as BottomNavigationItemView).setIconTintList(resources.getColorStateList(ThemeHelper.getCurrentColor(this@MainActivity)))
     }
 
-    fun clearTabColor() {
+    private fun clearTabColor() {
         for (i in 0..3
         ) {
             ((navigation.getChildAt(0) as BottomNavigationMenuView)
@@ -199,13 +193,13 @@ class MainActivity : BaseActivity() {
     }
 
 
-    fun setNavHeader() {
+    private fun setNavHeader() {
         val navView = nav_view.getHeaderView(0)
         val tvName = navView.findViewById<TextView>(R.id.tv_username)
         tvName.text = UserControl.getCurrentUser()!!.username
     }
 
-    fun changeTheme() {
+    private fun changeTheme() {
         setStatuBar()
 //        ToastUtils.init(this, resources.getColor(ThemeHelper.getCurrentColor(this)))
         ThemeUtils.refreshUI(this, object : ThemeUtils.ExtraRefreshable {

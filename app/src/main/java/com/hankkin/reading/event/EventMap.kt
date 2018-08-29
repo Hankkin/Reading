@@ -2,6 +2,7 @@ package com.hankkin.reading.event
 
 import android.text.TextUtils
 import com.hankkin.reading.domain.PersonListBean
+import com.hankkin.reading.domain.ToDoListBean
 
 import java.util.HashMap
 
@@ -80,6 +81,7 @@ object EventMap {
     class HomeRefreshEvent : BaseEvent()
     class UpdateEveryEvent : BaseEvent()
     class ToDoRefreshEvent : BaseEvent()
+    class CompleteToDoEvent(val bean: ToDoListBean) : BaseEvent()
     class DeleteToDoEvent(val id: Int) : BaseEvent()
     class UpdateAccountListEvent : BaseEvent()
     class WifiImgEvent : BaseEvent()

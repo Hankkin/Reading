@@ -86,6 +86,7 @@
     <string name="account_detail_cate">分类</string>
     <string name="account_detail_delete_hint">是否删除该帐号？</string>
     <string name="account_detail_delete_success_hint">已删除</string>
+    <string name="account_detail_complete_success_hint">已完成该条TODO</string>
 
     <string name="person_title">我的</string>
     <string name="person_no_login">未登录</string>
@@ -186,6 +187,7 @@
     <string name="todo_add_success">新建TODO成功</string>
     <string name="todo_update_success">更新TODO成功</string>
     <string name="todo_delete">删除</string>
+    <string name="todo_complete">完成</string>
     <string name="todo_delete_hint">是否删除该条TODO？</string>
     <string name="todo_update">编辑</string>
 

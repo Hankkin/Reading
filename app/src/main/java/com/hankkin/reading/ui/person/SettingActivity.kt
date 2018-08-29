@@ -46,8 +46,11 @@ class SettingActivity : BaseActivity() {
         rl_setting_theme.setOnClickListener { startActivity(Intent(this,ThemeActivity::class.java)) }
 
         //账号锁 账号备份 加载图片 单词备份
-        switch_lock.isChecked = SPUtils.getInt(Constant.SP_KEY.LOCK_OPEN) != 0
-        switch_lock_backup.isChecked = SPUtils.getInt(Constant.SP_KEY.LOCK_BACKUP_OPEN) != 0
+        switch_lock.apply {
+            isChecked = SPUtils.getInt(Constant.SP_KEY.LOCK_OPEN) != 0
+            isChecked = SPUtils.getInt(Constant.SP_KEY.LOCK_BACKUP_OPEN) != 0
+        }
+
         ll_setting_backup.visibility = if (switch_lock_backup.isChecked) View.VISIBLE else View.GONE
         switch_img.isChecked = SPUtils.getInt(Constant.SP_KEY.WIFI_IMG) != 0
         switch_logo.isChecked = SPUtils.getInt(Constant.SP_KEY.LOGO) != 0
@@ -159,17 +162,6 @@ class SettingActivity : BaseActivity() {
     override fun initData() {
         tv_setting_cache_size.setText(CacheUtils.getCachesSize(this, Constant.COMMON.DB_NAME))
     }
-
-
-//    fun initThemeBuilder() {
-//        mThemeBuilder = BottomSheet.Builder(this, R.style.BottomSheet_StyleDialog)
-//                .title(R.string.setting_theme)
-//                .sheet(R.menu.theme_bottomsheet)
-//                .listener { dialog, which ->
-//                    changeTheme(which)
-//                }
-//    }
-
 
     override fun onEvent(event: EventMap.BaseEvent) {
         if (event is EventMap.ChangeThemeEvent){

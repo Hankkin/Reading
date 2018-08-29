@@ -11,7 +11,7 @@ data class ArticleBean(val curPage: Int,
                        val pageCount: Int,
                        val size: Int,
                        val total: Int,
-                       val datas: MutableList<ArticleDetailBean>)
+                       val datas: MutableList<ArticleDetailBean>?)
 
 data class ArticleDetailBean(val apkLink: String,
                              val author: String,

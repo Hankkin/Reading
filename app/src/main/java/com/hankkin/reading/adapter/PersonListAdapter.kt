@@ -10,6 +10,7 @@ import com.hankkin.reading.adapter.base.BaseRecyclerViewHolder
 import com.hankkin.reading.domain.PersonListBean
 import com.hankkin.reading.event.EventMap
 import com.hankkin.library.utils.RxBusTools
+import com.hankkin.library.utils.ToastUtils
 
 /**
  * Created by huanghaijie on 2018/6/28.

@@ -1,11 +1,17 @@
 package com.hankkin.reading.ui.person
 
 import android.content.Intent
+import android.os.Build
+import android.support.annotation.RequiresApi
 import android.support.design.widget.AppBarLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.afollestad.materialdialogs.MaterialDialog
-import com.hankkin.library.utils.*
+import com.hankkin.library.utils.AppUtils
+import com.hankkin.library.utils.RxBusTools
+import com.hankkin.library.utils.SPUtils
+import com.hankkin.library.utils.ToastUtils
+import com.hankkin.reading.MainActivity
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.PersonListAdapter
 import com.hankkin.reading.base.BaseMvpFragment
@@ -14,6 +20,7 @@ import com.hankkin.reading.control.UserControl
 import com.hankkin.reading.domain.PersonListBean
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.ui.login.LoginActivity
+import com.hankkin.reading.ui.todo.AddToDoActivity
 import com.hankkin.reading.ui.user.collect.MyCollectActivity
 import com.hankkin.reading.utils.*
 import io.reactivex.Observable
@@ -39,6 +46,19 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
         return true
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
+    override fun initView() {
+        initHeaderAnim()
+        iv_person_avatar.setOnClickListener { llAvatarClick() }
+        iv_person_set.setOnClickListener { startActivity(Intent(context, SettingActivity::class.java)) }
+        ll_person_new.setOnClickListener { context?.let { it1 -> AddToDoActivity.intentTo(it1, null) } }
+        ll_person_todo.setOnClickListener { (activity as MainActivity).setTabColor(1) }
+        ll_person_done.setOnClickListener { (activity as MainActivity).setTabColor(1) }
+        iv_person_feedback.setOnClickListener {
+            activity?.let { it1 -> CommonUtils.feedBack(it1) }
+        }
+    }
+
     override fun initData() {
         mAdapter = PersonListAdapter()
         mAdapter.apply {
@@ -56,56 +76,46 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
         tv_person_version.text = context?.let { "当前版本：" + AppUtils.getVersionName(it) }
     }
 
-    override fun initView() {
-        initHeaderAnim()
-        iv_person_avatar.setOnClickListener { llAvatarClick() }
-        iv_person_set.setOnClickListener { startActivity(Intent(context, SettingActivity::class.java)) }
-        ll_person_new.setOnClickListener { context?.let { it1 -> ToastUtils.showInfo(it1, "待开发") } }
-        ll_person_todo.setOnClickListener { context?.let { it1 -> ToastUtils.showInfo(it1, "待开发") } }
-        ll_person_done.setOnClickListener { context?.let { it1 -> ToastUtils.showInfo(it1, "待开发") } }
-        iv_person_feedback.setOnClickListener {
-            activity?.let { it1 -> CommonUtils.feedBack(it1) }
-        }
-    }
 
     fun initHeaderAnim() {
         val name = if (!UserControl.isLogin()) {
             "未登录"
-        } else UserControl.getCurrentUser()!!.username
-        tv_person_name.text = name
-        ll_person_header.viewTreeObserver.addOnGlobalLayoutListener {
-            val height = ll_person_header.height
-            app_bar.addOnOffsetChangedListener(object : AppBarStateChangeListener() {
-                override fun onStateChanged(appBarLayout: AppBarLayout?, state: State?) {
-                }
-
-                override fun onAppBarOffsetChanged(state: State?, appBarLayout: AppBarLayout?, i: Int) {
-                    when (state) {
-                        AppBarStateChangeListener.State.COLLAPSED -> {
-                            tv_person_title.visibility = View.VISIBLE
-                            ll_person_header.visibility = View.GONE
-                        }
-                        else -> {
-                            tv_person_title.visibility = View.GONE
-                            ll_person_header.visibility = View.VISIBLE
-                        }
-                    }
-                    if (i == 0) {
-                        ll_person_header.alpha = 1F
-
-                    } else if (i in 1..(height - 30)) {
-                        ll_person_header.alpha = ((height - i).toFloat() / height)
-                    } else if (i > height - 30) {
-                        ll_person_header.alpha = 0F
-                    }
-                }
-
-            })
+        } else {
+            UserControl.getCurrentUser()!!.username
         }
+        tv_person_name.text = name
+        ll_person_header.apply {
+            viewTreeObserver.addOnGlobalLayoutListener {
+                app_bar.apply {
+                    addOnOffsetChangedListener(object : AppBarStateChangeListener() {
+                        override fun onStateChanged(appBarLayout: AppBarLayout?, state: State?) {
+                        }
 
+                        override fun onAppBarOffsetChanged(state: State?, appBarLayout: AppBarLayout?, i: Int) {
+                            when (state) {
+                                AppBarStateChangeListener.State.COLLAPSED -> {
+                                    tv_person_title.visibility = View.VISIBLE
+                                    ll_person_header.visibility = View.GONE
+                                }
+                                else -> {
+                                    tv_person_title.visibility = View.GONE
+                                    ll_person_header.visibility = View.VISIBLE
+                                }
+                            }
+                            when {
+                                i == 0 -> ll_person_header.alpha = 1F
+                                i in 1..(height - 30) -> ll_person_header.alpha = ((height - i).toFloat() / height)
+                                i > height - 30 -> ll_person_header.alpha = 0F
+                            }
+                        }
+
+                    })
+                }
+            }
+        }
     }
 
-    fun llAvatarClick() {
+    private fun llAvatarClick() {
         if (!UserControl.isLogin()) {
             startActivity(Intent(context, LoginActivity::class.java))
         } else {
@@ -120,7 +130,7 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
     }
 
 
-    fun setUserHeader() {
+    private fun setUserHeader() {
         if (UserControl.isLogin()) {
             val user = UserControl.getCurrentUser()
             tv_person_name.text = user!!.username
@@ -146,6 +156,7 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
                                 UserControl.logout()
                                 setUserHeader()
                                 RxBusTools.getDefault().post(EventMap.LogOutEvent())
+                                ToastUtils.showInfo(context!!, "已注销登录!")
                             })
                 }
             }

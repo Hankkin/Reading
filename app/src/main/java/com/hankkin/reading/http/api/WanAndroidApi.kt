@@ -72,27 +72,51 @@ interface WanAndroidApi {
     @GET("lg/collect/list/{page}/json")
     fun getMyCollect(@Path("page") page: Int): Observable<BaseResponse<ArticleBean>>
 
+    /**
+     * 登录
+     */
     @FormUrlEncoded
     @POST("user/login")
     fun login(@FieldMap map: HashMap<String, Any>): Observable<BaseResponse<UserBean>>
 
+    /**
+     * 注册
+     */
     @FormUrlEncoded
     @POST("user/register")
     fun signUp(@FieldMap map: HashMap<String, String>): Observable<BaseResponse<UserBean>>
 
+    /**
+     * 新建TODO
+     */
     @FormUrlEncoded
     @POST("lg/todo/add/json")
     fun addTodo(@FieldMap map: HashMap<String, Any>): Observable<BaseResponse<ToDoListBean>>
 
+    /**
+     * 更新TODO
+     */
     @FormUrlEncoded
     @POST("lg/todo/update/{id}/json")
     fun updateTodo(@Path("id") id: Int, @FieldMap map: HashMap<String, Any>): Observable<BaseResponse<ToDoListBean>>
 
+    /**
+     * 删除TODO
+     */
     @POST("lg/todo/delete/{id}/json")
     fun deleteTodo(@Path("id") id: Int): Observable<BaseResponse<String>>
 
+    /**
+     * 获取TODO
+     */
     @GET("lg/todo/list/{cate}/json")
     fun getTodo(@Path("cate") cate: Int): Observable<BaseResponse<ToDoBean>>
+
+    /**
+     * 完成某条TODO
+     */
+    @POST("lg/todo/done/{id}/json/1")
+    fun completeTodo(@Path("id") id: Int): Observable<BaseResponse<String>>
 
     @GET("lg/todo/listnotdo/{cate}/json/{page}")
     fun listnotdo(@Path("cate") cate: Int, @Path("page") page: Int)

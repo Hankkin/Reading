@@ -24,7 +24,7 @@ import kotlinx.android.synthetic.main.fragment_hot_list.*
 /**
  * Created by huanghaijie on 2018/5/15.
  */
-class HotListFragment : BaseMvpFragment<HotListPresenter>(), HotListContact.IView,SwipeRefreshLayout.OnRefreshListener {
+class HotListFragment : BaseMvpFragment<HotListPresenter>(), HotListContact.IView, SwipeRefreshLayout.OnRefreshListener {
 
 
     private var bannerData = mutableListOf<BannerBean>()
@@ -46,83 +46,88 @@ class HotListFragment : BaseMvpFragment<HotListPresenter>(), HotListContact.IVie
 
 
     override fun initView() {
-        ViewHelper.setRefreshLayout(context,true,refresh_hot,this)
+        ViewHelper.setRefreshLayout(context, true, refresh_hot, this)
         initXrv()
     }
-    
+
     override fun initData() {
         hotBean = (arguments!!.getSerializable("bean")) as HotBean
         getPresenter().getBannerHttp()
     }
-    
-    fun initXrv(){
-        ViewHelper.setRefreshLayout(context,true,refresh_hot,this)
-        mAdapter = AndroidAdapter()
-        val linearLayoutManager = LinearLayoutManager(context)
-        xrv_hot.layoutManager = linearLayoutManager
-        xrv_hot.setPullRefreshEnabled(false)
-        xrv_hot.clearHeader()
-        xrv_hot.adapter = mAdapter
-        xrv_hot.setLoadingListener(object : XRecyclerView.LoadingListener {
-            override fun onLoadMore() {
-                getPresenter().queryKey(mPage,hotBean.name)
-            }
 
-            override fun onRefresh() {
-            }
+    fun initXrv() {
+        ViewHelper.setRefreshLayout(context, true, refresh_hot, this)
+        xrv_hot.apply {
+            mAdapter = AndroidAdapter()
+            layoutManager = LinearLayoutManager(context)
+            setPullRefreshEnabled(false)
+            clearHeader()
+            adapter = mAdapter
+            setLoadingListener(object : XRecyclerView.LoadingListener {
+                override fun onLoadMore() {
+                    getPresenter().queryKey(mPage, hotBean.name)
+                }
 
-        })
+                override fun onRefresh() {
+                }
+
+            })
+        }
+
 
     }
 
-    fun initBannerHeader(){
-        val layoutBanner = layoutInflater.inflate(R.layout.layout_project_banner_header,null)
+    fun initBannerHeader() {
+        val layoutBanner = layoutInflater.inflate(R.layout.layout_project_banner_header, null)
         banner_project = layoutBanner.findViewById<XBanner>(R.id.banner_project)
         val urlList = mutableListOf<String>()
         val contentList = mutableListOf<String>()
-        for (bannerBean in bannerData){
+        for (bannerBean in bannerData) {
             urlList.add(bannerBean.imagePath)
             contentList.add(bannerBean.title)
         }
-        banner_project!!.setData(R.layout.layout_banner_imageview,urlList,contentList)
-        banner_project!!.viewPager.pageMargin = 20
-        banner_project!!.loadImage(object : XBanner.XBannerAdapter{
-            override fun loadBanner(banner: XBanner?, model: Any?, view: View, position: Int) {
+        banner_project?.apply {
+            setData(R.layout.layout_banner_imageview, urlList, contentList)
+            viewPager.pageMargin = 20
+            loadImage { banner, model, view, position ->
                 val iv = view.findViewById<SWImageView>(R.id.iv_banner_item)
                 GlideUtils.loadImageView(context, model as String?, iv)
             }
-        })
-        banner_project!!.setOnItemClickListener { banner, model, position -> context?.let { CommonWebActivity.loadUrl(it,bannerData[position].url,bannerData[position].title) } }
+            setOnItemClickListener { banner, model, position -> context?.let { CommonWebActivity.loadUrl(it, bannerData[position].url, bannerData[position].title) } }
+        }
         xrv_hot.addHeaderView(layoutBanner)
     }
 
-    fun setAdapter(data: ArticleBean){
+    fun setAdapter(data: ArticleBean) {
         mPage = data.curPage
         if (mPage < 2) {
             xrv_hot.scrollToPosition(0)
             mAdapter.clear()
         }
-        mAdapter.addAll(data.datas)
-        mAdapter.notifyDataSetChanged()
-        if (data.datas.size < 20) {
-            xrv_hot.noMoreLoading()
+        data.datas?.apply {
+            mAdapter.addAll(data.datas)
+            mAdapter.notifyDataSetChanged()
+            if (data.datas.size < 20) {
+                xrv_hot.noMoreLoading()
+            }
+            xrv_hot.refreshComplete()
+            if (refresh_hot.isRefreshing) {
+                refresh_hot.isRefreshing = false
+            }
         }
-        xrv_hot.refreshComplete()
-        if (refresh_hot.isRefreshing) {
-            refresh_hot.isRefreshing = false
-        }
+
     }
 
     override fun setBanner(banner: MutableList<BannerBean>) {
         bannerData.addAll(banner)
         val index = arguments!!.get("index")
-        if (index == 0){
+        if (index == 0) {
             initBannerHeader()
         }
-        val hotSearch = layoutInflater.inflate(R.layout.layout_header_hot_more,null)
-        hotSearch.findViewById<TextView>(R.id.tv_hot_more).setOnClickListener { startActivity(Intent(activity,SearchActivity::class.java)) }
+        val hotSearch = layoutInflater.inflate(R.layout.layout_header_hot_more, null)
+        hotSearch.findViewById<TextView>(R.id.tv_hot_more).setOnClickListener { startActivity(Intent(activity, SearchActivity::class.java)) }
         xrv_hot.addHeaderView(hotSearch)
-        getPresenter().queryKey(mPage,hotBean.name)
+        getPresenter().queryKey(mPage, hotBean.name)
     }
 
     override fun setData(data: ArticleBean) {
@@ -133,12 +138,12 @@ class HotListFragment : BaseMvpFragment<HotListPresenter>(), HotListContact.IVie
         xrv_hot.reset()
         refresh_hot.isRefreshing = true
         mPage = 0
-        getPresenter().queryKey(mPage,hotBean.name)
+        getPresenter().queryKey(mPage, hotBean.name)
     }
 
 
     override fun onEvent(event: EventMap.BaseEvent) {
-        if (event is EventMap.WifiImgEvent){
+        if (event is EventMap.WifiImgEvent) {
             mAdapter.notifyDataSetChanged()
         }
     }
@@ -146,14 +151,14 @@ class HotListFragment : BaseMvpFragment<HotListPresenter>(), HotListContact.IVie
 
     override fun onResume() {
         super.onResume()
-        if(banner_project != null){
+        if (banner_project != null) {
             banner_project!!.startAutoPlay()
         }
     }
 
     override fun onStop() {
         super.onStop()
-        if(banner_project != null) {
+        if (banner_project != null) {
             banner_project!!.stopAutoPlay()
         }
     }

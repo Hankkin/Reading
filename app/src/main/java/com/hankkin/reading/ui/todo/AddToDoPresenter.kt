@@ -26,7 +26,7 @@ class AddToDoPresenter : RxLifePresenter<AddToDoContract.IView>(), AddToDoContra
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeNx({
-                    getMvpView().addTodoSuccess()
+                    getMvpView().updateToDoSuccess()
                 }, {
                     getMvpView().setFail()
                 }).bindRxLifeEx(RxLife.ON_DESTROY)

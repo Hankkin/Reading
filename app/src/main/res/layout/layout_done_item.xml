@@ -1,118 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ll_adapter_todo"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_toEndOf="@+id/view_adapter_todo_status"
+    android:layout_margin="@dimen/dp_10"
     android:orientation="vertical"
-    android:clickable="true"
-    android:padding="@dimen/dp_10"
-    android:background="?attr/selectableItemBackground"
-    >
+    app:cardCornerRadius="@dimen/dp_6">
 
     <LinearLayout
+        android:id="@+id/ll_adapter_done"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:layout_toEndOf="@+id/view_adapter_todo_status"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:orientation="vertical"
+        android:padding="@dimen/dp_10">
 
-        <RelativeLayout
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tv_adapter_todo_title"
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tv_adapter_todo_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textSize="@dimen/sp_16" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_alignEnd="@+id/tv_adapter_todo_title"
+                    android:layout_alignStart="@+id/tv_adapter_todo_title"
+                    android:layout_centerVertical="true"
+                    android:background="@color/grey_text" />
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:text=""
-                android:textSize="@dimen/sp_16" />
+                android:layout_marginLeft="@dimen/dp_10">
 
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="1dp"
-                android:layout_alignEnd="@+id/tv_adapter_todo_title"
-                android:layout_alignStart="@+id/tv_adapter_todo_title"
-                android:layout_centerVertical="true"
-                android:background="@color/grey_text" />
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/tv_adapter_todo_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textStyle="bold" />
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_alignEnd="@+id/tv_adapter_todo_type"
+                    android:layout_alignStart="@+id/tv_adapter_todo_type"
+                    android:layout_centerVertical="true"
+                    android:background="@color/grey_text" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dp_10">
+            android:layout_marginTop="@dimen/dp_10"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tv_adapter_todo_type"
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tv_adapter_todo_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/sp_15" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_alignEnd="@+id/tv_adapter_todo_content"
+                    android:layout_alignStart="@+id/tv_adapter_todo_content"
+                    android:layout_centerVertical="true"
+                    android:background="@color/grey_text" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=""
-                android:textStyle="bold" />
+                android:layout_marginStart="@dimen/dp_10">
 
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="1dp"
-                android:layout_alignEnd="@+id/tv_adapter_todo_type"
-                android:layout_alignStart="@+id/tv_adapter_todo_type"
-                android:layout_centerVertical="true"
-                android:background="@color/grey_text" />
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/tv_adapter_todo_complete_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="11"
+                    android:textSize="@dimen/sp_13" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_alignEnd="@+id/tv_adapter_todo_complete_time"
+                    android:layout_alignStart="@+id/tv_adapter_todo_complete_time"
+                    android:layout_centerVertical="true"
+                    android:background="@color/grey_text" />
+            </RelativeLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_10"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-            <TextView
-                android:id="@+id/tv_adapter_todo_content"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/sp_15" />
-
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="1dp"
-                android:layout_alignEnd="@+id/tv_adapter_todo_content"
-                android:layout_alignStart="@+id/tv_adapter_todo_content"
-                android:layout_centerVertical="true"
-                android:background="@color/grey_text" />
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp_10">
-
-            <TextView
-                android:id="@+id/tv_adapter_todo_complete_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="11"
-                android:textSize="@dimen/sp_13" />
-
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="1dp"
-                android:layout_alignEnd="@+id/tv_adapter_todo_complete_time"
-                android:layout_alignStart="@+id/tv_adapter_todo_complete_time"
-                android:layout_centerVertical="true"
-                android:background="@color/grey_text" />
-        </RelativeLayout>
-
-    </LinearLayout>
-
-</LinearLayout>
-
-
+</android.support.v7.widget.CardView>

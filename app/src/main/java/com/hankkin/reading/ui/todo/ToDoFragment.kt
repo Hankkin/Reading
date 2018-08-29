@@ -7,6 +7,8 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseFragment
+import com.hankkin.reading.control.UserControl
+import com.hankkin.reading.ui.login.LoginActivity
 import com.kekstudio.dachshundtablayout.indicators.DachshundIndicator
 import kotlinx.android.synthetic.main.fragment_todo.*
 
@@ -22,7 +24,11 @@ class ToDoFragment : BaseFragment() {
     }
 
     override fun initViews() {
-        iv_todo_display.setOnClickListener { startActivity(Intent(context, AddToDoActivity::class.java)) }
+        iv_todo_display.setOnClickListener {
+            startActivity(Intent(context, if (UserControl.isLogin()) {
+                AddToDoActivity::class.java
+            } else { LoginActivity::class.java }))
+        }
     }
 
     override fun initData() {

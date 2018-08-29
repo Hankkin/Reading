@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_project_list.*
 /**
  * Created by huanghaijie on 2018/5/15.
  */
-class ProjectListFragment : BaseMvpFragment<ProjectListPresenter>(), ProjectListContact.IView,SwipeRefreshLayout.OnRefreshListener {
+class ProjectListFragment : BaseMvpFragment<ProjectListPresenter>(), ProjectListContact.IView, SwipeRefreshLayout.OnRefreshListener {
 
     private lateinit var mAdapter: AndroidAdapter
 
@@ -38,49 +38,55 @@ class ProjectListFragment : BaseMvpFragment<ProjectListPresenter>(), ProjectList
 
 
     override fun initView() {
-        ViewHelper.setRefreshLayout(context,true,refresh_project,this)
+        ViewHelper.setRefreshLayout(context, true, refresh_project, this)
         initXrv()
     }
-    
+
     override fun initData() {
         cateBean = (arguments!!.getSerializable("bean")) as CateBean
-        getPresenter().getCateList(mPage,cateBean.id)
-    }
-    fun initXrv(){
-        ViewHelper.setRefreshLayout(context,true,refresh_project,this)
-        mAdapter = AndroidAdapter()
-        val linearLayoutManager = LinearLayoutManager(context)
-        xrv_project.layoutManager = linearLayoutManager
-        xrv_project.setPullRefreshEnabled(false)
-        xrv_project.clearHeader()
-        xrv_project.adapter = mAdapter
-        xrv_project.setLoadingListener(object : XRecyclerView.LoadingListener {
-            override fun onLoadMore() {
-                getPresenter().getCateList(mPage,cateBean.id)
-            }
-
-            override fun onRefresh() {
-            }
-
-        })
+        getPresenter().getCateList(mPage, cateBean.id)
     }
 
+    fun initXrv() {
+        ViewHelper.setRefreshLayout(context, true, refresh_project, this)
+        xrv_project.apply {
+            mAdapter = AndroidAdapter()
+            layoutManager = LinearLayoutManager(context)
+            setPullRefreshEnabled(false)
+            clearHeader()
+            adapter = mAdapter
+            setLoadingListener(object : XRecyclerView.LoadingListener {
+                override fun onLoadMore() {
+                    getPresenter().getCateList(mPage, cateBean.id)
+                }
 
-    fun setAdapter(data: ArticleBean){
+                override fun onRefresh() {
+                }
+
+            })
+        }
+    }
+
+
+    fun setAdapter(data: ArticleBean) {
+
         mPage = data.curPage
         if (mPage < 2) {
             xrv_project.scrollToPosition(0)
             mAdapter.clear()
         }
-        mAdapter.addAll(data.datas)
-        mAdapter.notifyDataSetChanged()
-        if (data.datas.size < 20) {
-            xrv_project.noMoreLoading()
+        data.datas?.apply {
+            mAdapter.addAll(data.datas)
+            mAdapter.notifyDataSetChanged()
+            if (data.datas.size < 20) {
+                xrv_project.noMoreLoading()
+            }
+            xrv_project.refreshComplete()
+            if (refresh_project.isRefreshing) {
+                refresh_project.isRefreshing = false
+            }
         }
-        xrv_project.refreshComplete()
-        if (refresh_project.isRefreshing) {
-            refresh_project.isRefreshing = false
-        }
+
     }
 
 
@@ -92,12 +98,12 @@ class ProjectListFragment : BaseMvpFragment<ProjectListPresenter>(), ProjectList
         xrv_project.reset()
         refresh_project.isRefreshing = true
         mPage = 0
-        getPresenter().getCateList(mPage,cateBean.id)
+        getPresenter().getCateList(mPage, cateBean.id)
     }
 
 
     override fun onEvent(event: EventMap.BaseEvent) {
-        if (event is EventMap.WifiImgEvent){
+        if (event is EventMap.WifiImgEvent) {
             mAdapter.notifyDataSetChanged()
         }
     }

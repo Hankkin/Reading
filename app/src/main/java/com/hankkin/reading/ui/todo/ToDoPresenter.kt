@@ -10,6 +10,19 @@ import io.reactivex.schedulers.Schedulers
  * @date 2018/8/26
  */
 class ToDoPresenter : RxLifePresenter<ToDoContract.IView>(),ToDoContract.IPresenter{
+
+    override fun completeTo(id: Int) {
+        HttpClientUtils.Builder.getCommonHttp()
+                .completeTodo(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeNx ({
+                    getMvpView().completeTodo()
+                },{
+                    getMvpView().setFail()
+                }).bindRxLifeEx(RxLife.ON_DESTROY)
+    }
+
     override fun deleteTodo(id: Int) {
         HttpClientUtils.Builder.getCommonHttp()
                 .deleteTodo(id)

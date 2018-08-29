@@ -34,16 +34,20 @@ class AccountListActivity : BaseActivity() {
     override fun initViews(savedInstanceState: Bundle?) {
         setMiuiStatusBar()
         tv_normal_title_white.text = resources.getString(R.string.account_title)
-        rv_account.layoutManager = LinearLayoutManager(this)
-        mAdapter = AccountAdapter()
-        rv_account.adapter = mAdapter
         iv_back_icon_white.setOnClickListener { finish() }
-        fab_menu_add.setMenuButtonColorNormalResId(ThemeHelper.getCurrentColor(this))
-        fab_menu_add.setClosedOnTouchOutside(false)
-        fab_menu_add.setOnMenuButtonClickListener { startActivityForResult(Intent(this, AddAcountActivity::class.java), REQUEST_CODE) }
+        rv_account.apply {
+            layoutManager = LinearLayoutManager(context)
+            mAdapter = AccountAdapter()
+            adapter = mAdapter
+        }
+        fab_menu_add.apply {
+            setMenuButtonColorNormalResId(ThemeHelper.getCurrentColor(context))
+            setClosedOnTouchOutside(false)
+            setOnMenuButtonClickListener { startActivityForResult(Intent(context, AddAcountActivity::class.java), REQUEST_CODE) }
+        }
         val longClickItems = mutableListOf<String>(resources.getString(R.string.account_look), resources.getString(R.string.account_edit), resources.getString(R.string.account_delete))
         mAdapter.setOnItemLongClickListener { t, position ->
-            ViewHelper.showListTitleDialog(this,"操作", longClickItems, MaterialDialog.ListCallback { dialog, itemView, which, text ->
+            ViewHelper.showListTitleDialog(this, "操作", longClickItems, MaterialDialog.ListCallback { dialog, itemView, which, text ->
                 when (which) {
                     0 -> {
                         AccountDetailActivity.intentTo(this, t.id)
@@ -64,20 +68,19 @@ class AccountListActivity : BaseActivity() {
     }
 
     override fun initData() {
-        mData = getData()
-        mAdapter.clear()
-        mAdapter.addAll(mData)
-        mAdapter.notifyDataSetChanged()
+        mAdapter.apply {
+            mData = DaoFactory.getProtocol(AccountDaoContract::class.java).queryAllAccount()
+            addAll(mData)
+            notifyDataSetChanged()
+        }
         if (mData == null || mData!!.size == 0) {
             ToastUtils.showInfo(this, resources.getString(R.string.account_no_data_hint))
         }
     }
 
-    private fun getData() = DaoFactory.getProtocol(AccountDaoContract::class.java).queryAllAccount()
-
 
     override fun onEvent(event: EventMap.BaseEvent) {
-        if (event is EventMap.UpdateAccountListEvent){
+        if (event is EventMap.UpdateAccountListEvent) {
             initData()
         }
     }
