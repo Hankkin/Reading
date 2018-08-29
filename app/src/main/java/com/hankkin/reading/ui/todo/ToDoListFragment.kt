@@ -159,6 +159,8 @@ class ToDoListFragment : BaseMvpFragment<ToDoContract.IPresenter>(), ToDoContrac
             getPresenter().deleteTodo(event.id)
         } else if (event is EventMap.CompleteToDoEvent) {
             getPresenter().completeTo(event.bean.id)
+        }else if (event is EventMap.ChangeThemeEvent){
+            ViewHelper.changeRefreshColor(refresh_todo_list,context)
         }
     }
 
