@@ -65,7 +65,9 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
             data.add(PersonListBean(R.mipmap.icon_person_list_theme, resources.getString(R.string.person_theme)))
             data.add(PersonListBean(R.mipmap.icon_person_db, resources.getString(R.string.setting_db)))
             data.add(PersonListBean(R.mipmap.icon_person_set_list, resources.getString(R.string.setting)))
-            data.add(PersonListBean(R.mipmap.icon_person_set_exit, resources.getString(R.string.person_info_logout)))
+            if (UserControl.isLogin()){
+                data.add(PersonListBean(R.mipmap.icon_person_set_exit, resources.getString(R.string.person_info_logout)))
+            }
         }
         xrv_person_lisy.apply {
             layoutManager = LinearLayoutManager(context)
@@ -142,6 +144,8 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
     override fun onEvent(event: EventMap.BaseEvent) {
         if (event is EventMap.LoginEvent) {
             setUserHeader()
+            mAdapter.add(PersonListBean(R.mipmap.icon_person_set_exit, resources.getString(R.string.person_info_logout)))
+            mAdapter.notifyDataSetChanged()
         } else if (event is EventMap.PersonClickEvent) {
             when (event.index) {
                 0 -> startActivity(Intent(context, MyCollectActivity::class.java))

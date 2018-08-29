@@ -12,6 +12,7 @@ import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseActivity
 import com.hankkin.reading.common.Constant
 import com.hankkin.reading.event.EventMap
+import com.hankkin.reading.ui.home.articledetail.CommonWebActivity
 import com.hankkin.reading.utils.DBUtils
 import com.hankkin.reading.utils.LoadingUtils
 import com.hankkin.reading.utils.ThemeHelper
@@ -157,10 +158,11 @@ class SettingActivity : BaseActivity() {
                         tv_setting_cache_size.setText("0KB")
                     })
         }
+        rl_setting_api.setOnClickListener { CommonWebActivity.loadUrl(this,"http://hankkin.cn/threeapi/",resources.getString(R.string.setting_api)) }
     }
 
     override fun initData() {
-        tv_setting_cache_size.setText(CacheUtils.getCachesSize(this, Constant.COMMON.DB_NAME))
+        tv_setting_cache_size.text = CacheUtils.getCachesSize(this, Constant.COMMON.DB_NAME)
     }
 
     override fun onEvent(event: EventMap.BaseEvent) {
