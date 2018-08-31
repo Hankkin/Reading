@@ -51,7 +51,7 @@ class HotListFragment : BaseMvpFragment<HotListPresenter>(), HotListContact.IVie
     }
 
     override fun initData() {
-        hotBean = (arguments!!.getSerializable("bean")) as HotBean
+        hotBean = arguments?.getSerializable("bean") as HotBean
         getPresenter().getBannerHttp()
     }
 
@@ -86,7 +86,7 @@ class HotListFragment : BaseMvpFragment<HotListPresenter>(), HotListContact.IVie
             urlList.add(bannerBean.imagePath)
             contentList.add(bannerBean.title)
         }
-        banner_project?.apply {
+        banner_project?.run {
             setData(R.layout.layout_banner_imageview, urlList, contentList)
             viewPager.pageMargin = 20
             loadImage { banner, model, view, position ->
@@ -104,7 +104,7 @@ class HotListFragment : BaseMvpFragment<HotListPresenter>(), HotListContact.IVie
             xrv_hot.scrollToPosition(0)
             mAdapter.clear()
         }
-        data.datas?.apply {
+        data.datas?.run {
             mAdapter.addAll(data.datas)
             mAdapter.notifyDataSetChanged()
             if (data.datas.size < 20) {
@@ -120,12 +120,12 @@ class HotListFragment : BaseMvpFragment<HotListPresenter>(), HotListContact.IVie
 
     override fun setBanner(banner: MutableList<BannerBean>) {
         bannerData.addAll(banner)
-        val index = arguments!!.get("index")
-        if (index == 0) {
+        if (arguments?.get("index") == 0) {
             initBannerHeader()
         }
-        val hotSearch = layoutInflater.inflate(R.layout.layout_header_hot_more, null)
-        hotSearch.findViewById<TextView>(R.id.tv_hot_more).setOnClickListener { startActivity(Intent(activity, SearchActivity::class.java)) }
+        val hotSearch = layoutInflater.inflate(R.layout.layout_header_hot_more, null)?.apply {
+            findViewById<TextView>(R.id.tv_hot_more).setOnClickListener { startActivity(Intent(activity, SearchActivity::class.java)) }
+        }
         xrv_hot.addHeaderView(hotSearch)
         getPresenter().queryKey(mPage, hotBean.name)
     }
@@ -151,15 +151,11 @@ class HotListFragment : BaseMvpFragment<HotListPresenter>(), HotListContact.IVie
 
     override fun onResume() {
         super.onResume()
-        if (banner_project != null) {
-            banner_project!!.startAutoPlay()
-        }
+        banner_project?.run { startAutoPlay() }
     }
 
     override fun onStop() {
         super.onStop()
-        if (banner_project != null) {
-            banner_project!!.stopAutoPlay()
-        }
+        banner_project?.run { stopAutoPlay() }
     }
 }

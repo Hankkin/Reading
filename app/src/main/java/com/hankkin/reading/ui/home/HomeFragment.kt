@@ -52,7 +52,7 @@ class HomeFragment : BaseFragment() {
 
     override fun initData() {
         val mAdapter = HomeFragmentPagerAdapter(childFragmentManager,mFgList )
-        vp_home.apply {
+        vp_home.run {
             adapter = mAdapter
             offscreenPageLimit = 2
             addOnPageChangeListener(object : ViewPager.OnPageChangeListener {

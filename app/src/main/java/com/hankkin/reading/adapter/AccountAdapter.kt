@@ -31,22 +31,23 @@ class AccountAdapter : BaseRecyclerViewAdapter<AccountBean>() {
         private val tvBZ by lazy { itemView.findViewById<TextView>(R.id.tv_adapter_account_bz) }
         private val tvTime by lazy { itemView.findViewById<TextView>(R.id.tv_adapter_account_time) }
 
-        override fun onBindViewHolder(bean: AccountBean, position: Int) {
-            tvName.text = bean.name
-            tvNumber.text = if (bean.number.length > 3) bean.number.substring(0, 3) + "..." else bean.number + "..."
-            tvCate.text = "【" + bean.cate + "】"
-            tvBZ.text = if (bean.beizhu.isEmpty()) "暂无备注..." else bean.beizhu
-            tvTime.text = DateUtils.format(bean.createAt)
-            when (bean.cate) {
-                Constant.ACCOUNT_CATE.BANK -> ivIcon.setImageResource(R.mipmap.icon_account_bank)
-                Constant.ACCOUNT_CATE.SHOP -> ivIcon.setImageResource(R.mipmap.icon_account_shop)
-                Constant.ACCOUNT_CATE.SOCIAL -> ivIcon.setImageResource(R.mipmap.icon_account_social)
-                Constant.ACCOUNT_CATE.EMAIL -> ivIcon.setImageResource(R.mipmap.icon_account_email)
-                Constant.ACCOUNT_CATE.CODE -> ivIcon.setImageResource(R.mipmap.icon_account_code)
-                Constant.ACCOUNT_CATE.WORK -> ivIcon.setImageResource(R.mipmap.icon_account_work)
-                Constant.ACCOUNT_CATE.OTHER -> ivIcon.setImageResource(R.mipmap.icon_account_other)
+        override fun onBindViewHolder(bean: AccountBean?, position: Int) {
+            bean?.apply {
+                tvName.text = name
+                tvNumber.text = if (number.length > 3) number.substring(0, 3) + "..." else number + "..."
+                tvCate.text = "【 $cate 】"
+                tvBZ.text = if (beizhu.isEmpty()) "暂无备注..." else beizhu
+                tvTime.text = DateUtils.format(createAt)
+                when (cate) {
+                    Constant.ACCOUNT_CATE.BANK -> ivIcon.setImageResource(R.mipmap.icon_account_bank)
+                    Constant.ACCOUNT_CATE.SHOP -> ivIcon.setImageResource(R.mipmap.icon_account_shop)
+                    Constant.ACCOUNT_CATE.SOCIAL -> ivIcon.setImageResource(R.mipmap.icon_account_social)
+                    Constant.ACCOUNT_CATE.EMAIL -> ivIcon.setImageResource(R.mipmap.icon_account_email)
+                    Constant.ACCOUNT_CATE.CODE -> ivIcon.setImageResource(R.mipmap.icon_account_code)
+                    Constant.ACCOUNT_CATE.WORK -> ivIcon.setImageResource(R.mipmap.icon_account_work)
+                    Constant.ACCOUNT_CATE.OTHER -> ivIcon.setImageResource(R.mipmap.icon_account_other)
+                }
             }
-
             itemView.setOnClickListener { onItemClickListener.onClick(bean, position) }
             itemView.setOnLongClickListener {
                 onItemLongClickListener.onLongClick(bean, position)

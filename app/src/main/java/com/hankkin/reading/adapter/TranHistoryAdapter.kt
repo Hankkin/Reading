@@ -27,14 +27,17 @@ class TranHistoryAdapter : BaseRecyclerViewAdapter<TranslateBean>() {
         val ll by lazy { itemView.findViewById<LinearLayout>(R.id.ll_adapter_translate) }
 
 
-        override fun onBindViewHolder(bean: TranslateBean, position: Int) {
-            tvKey.text = bean.query
-            tvContent.text = bean.explains.toString()
-            ll.setOnLongClickListener {
-                onItemLongClickListener.onLongClick(bean, position)
-                false
+        override fun onBindViewHolder(bean: TranslateBean?, position: Int) {
+            bean?.run {
+                tvKey.text = query
+                tvContent.text = explains.toString()
+                ll.setOnLongClickListener {
+                    onItemLongClickListener.onLongClick(this, position)
+                    false
+                }
+                ll.setOnClickListener { onItemClickListener.onClick(this, position) }
             }
-            ll.setOnClickListener { onItemClickListener.onClick(bean, position) }
+
         }
 
     }

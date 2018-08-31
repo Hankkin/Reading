@@ -40,7 +40,7 @@ class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IVie
     }
 
     fun initXrv() {
-        xrv_android.apply {
+        xrv_android.run {
             mAdapter = AndroidAdapter()
             layoutManager = LinearLayoutManager(context)
             setPullRefreshEnabled(false)

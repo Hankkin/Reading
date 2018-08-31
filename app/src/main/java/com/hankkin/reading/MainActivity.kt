@@ -128,14 +128,16 @@ class MainActivity : BaseActivity() {
 
     fun initNavView() {
         nav_view.inflateHeaderView(R.layout.layout_drawer_header)
-        val navView = nav_view.getHeaderView(0)
-        navView.findViewById<LinearLayout>(R.id.ll_nav_theme).setOnClickListener(doubleClick)
-        navView.findViewById<LinearLayout>(R.id.ll_nav_setting).setOnClickListener(doubleClick)
-        navView.findViewById<LinearLayout>(R.id.ll_nav_exit).setOnClickListener(doubleClick)
-        navView.findViewById<LinearLayout>(R.id.ll_nav_about).setOnClickListener(doubleClick)
-        navView.findViewById<LinearLayout>(R.id.ll_nav_collect).setOnClickListener(doubleClick)
-        navView.findViewById<LinearLayout>(R.id.ll_nav_wordnote).setOnClickListener(doubleClick)
-        navView.findViewById<LinearLayout>(R.id.ll_nav_account).setOnClickListener(doubleClick)
+        nav_view.getHeaderView(0)?.run {
+            findViewById<LinearLayout>(R.id.ll_nav_theme).setOnClickListener(doubleClick)
+            findViewById<LinearLayout>(R.id.ll_nav_setting).setOnClickListener(doubleClick)
+            findViewById<LinearLayout>(R.id.ll_nav_exit).setOnClickListener(doubleClick)
+            findViewById<LinearLayout>(R.id.ll_nav_about).setOnClickListener(doubleClick)
+            findViewById<LinearLayout>(R.id.ll_nav_collect).setOnClickListener(doubleClick)
+            findViewById<LinearLayout>(R.id.ll_nav_wordnote).setOnClickListener(doubleClick)
+            findViewById<LinearLayout>(R.id.ll_nav_account).setOnClickListener(doubleClick)
+        }
+
     }
 
     fun openDrawer() {
@@ -199,7 +201,6 @@ class MainActivity : BaseActivity() {
 
     private fun changeTheme() {
         setStatuBar()
-//        ToastUtils.init(this, resources.getColor(ThemeHelper.getCurrentColor(this)))
         ThemeUtils.refreshUI(this, object : ThemeUtils.ExtraRefreshable {
             override fun refreshSpecificView(view: View?) {
             }
@@ -238,8 +239,8 @@ class MainActivity : BaseActivity() {
                     }
                 }
                 R.id.ll_nav_exit -> finish()
-                R.id.ll_nav_wordnote -> startActivity(Intent(this@MainActivity,WordNoteActivity::class.java))
-                R.id.ll_nav_account -> startActivity(Intent(this@MainActivity,AccountListActivity::class.java))
+                R.id.ll_nav_wordnote -> startActivity(Intent(this@MainActivity, WordNoteActivity::class.java))
+                R.id.ll_nav_account -> startActivity(Intent(this@MainActivity, AccountListActivity::class.java))
             }
         }, 200)
     }
@@ -257,7 +258,7 @@ class MainActivity : BaseActivity() {
 
     private fun checkSync() {
         if (DBUtils.isAutoSync(this)) {
-            SPUtils.put(Constant.SP_KEY.LOCK_BACKUP_OPEN,1)
+            SPUtils.put(Constant.SP_KEY.LOCK_BACKUP_OPEN, 1)
             ViewHelper.showConfirmDialog(this, resources.getString(R.string.setting_lock_data_restore_hint),
                     MaterialDialog.SingleButtonCallback { dialog, which ->
                         val disposable = Observable.create<Boolean> {

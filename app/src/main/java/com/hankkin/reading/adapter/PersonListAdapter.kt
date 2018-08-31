@@ -3,14 +3,13 @@ package com.hankkin.reading.adapter
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.hankkin.library.utils.RxBusTools
 import com.hankkin.library.widget.view.RippleView
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.base.BaseRecyclerViewAdapter
 import com.hankkin.reading.adapter.base.BaseRecyclerViewHolder
 import com.hankkin.reading.domain.PersonListBean
 import com.hankkin.reading.event.EventMap
-import com.hankkin.library.utils.RxBusTools
-import com.hankkin.library.utils.ToastUtils
 
 /**
  * Created by huanghaijie on 2018/6/28.
@@ -28,10 +27,12 @@ class PersonListAdapter : BaseRecyclerViewAdapter<PersonListBean>() {
         val rlItem by lazy { itemView.findViewById<RippleView>(R.id.rl_adapter_person) }
 
         override fun onBindViewHolder(bean: PersonListBean?, position: Int) {
-            tvText.text = bean!!.text
-            ivIcon.setImageResource(bean.icon)
-            rlItem.setOnRippleCompleteListener {
-                RxBusTools.getDefault().post(EventMap.PersonClickEvent(position,bean))
+            bean?.run {
+                tvText.text = text
+                ivIcon.setImageResource(icon)
+                rlItem.setOnRippleCompleteListener {
+                    RxBusTools.getDefault().post(EventMap.PersonClickEvent(position,this))
+                }
             }
         }
 

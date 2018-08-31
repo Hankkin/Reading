@@ -170,7 +170,7 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
      * 数据还原
      */
     private fun syncData() {
-        if (context != null) {
+        context?.let {
             if (SPUtils.getInt(Constant.SP_KEY.LOCK_BACKUP_OPEN) == 1) {
                 LoadingUtils.showLoading(context)
                 val disposable = Observable.create<Boolean> {

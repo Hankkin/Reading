@@ -40,19 +40,22 @@ class DoneAdapter : BaseRecyclerViewAdapter<ToDoListBean>() {
         private val tvType by lazy { itemView.findViewById<TextView>(R.id.tv_adapter_todo_type) }
         private val llDone by lazy { itemView.findViewById<LinearLayout>(R.id.ll_adapter_done) }
 
-        override fun onBindViewHolder(bean: ToDoListBean, position: Int) {
-            tvTitle.text = bean.title
-            tvContent.text = bean.content
-            tvTime.text = "完成时间：${bean.completeDateStr}"
-            tvType.text = when (bean.type) {
-                TYPE_WORK -> "WORK"
-                TYPE_ONLY -> "ONLY"
-                TYPE_LIFE -> "LIFE"
-                TYPE_STUDY -> "STUDY"
-                else -> {
-                    ""
+        override fun onBindViewHolder(bean: ToDoListBean?, position: Int) {
+            bean?.run {
+                tvTitle.text = title
+                tvContent.text = content
+                tvTime.text = "完成时间：$completeDateStr"
+                tvType.text = when (type) {
+                    TYPE_WORK -> "WORK"
+                    TYPE_ONLY -> "ONLY"
+                    TYPE_LIFE -> "LIFE"
+                    TYPE_STUDY -> "STUDY"
+                    else -> {
+                        ""
+                    }
                 }
             }
+
             llDone.setOnLongClickListener {
                 onItemLongClickListener.onLongClick(bean,position)
                 false

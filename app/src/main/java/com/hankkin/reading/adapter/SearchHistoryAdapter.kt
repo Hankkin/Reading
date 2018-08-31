@@ -22,10 +22,11 @@ class SearchHistoryAdapter : BaseRecyclerViewAdapter<HotBean>(){
         val tvName by lazy { itemView.findViewById<TextView>(R.id.tv_adapter_search_history) }
         val ivDelete by lazy { itemView.findViewById<ImageView>(R.id.iv_search_history_delete) }
 
-        override fun onBindViewHolder(hotBean: HotBean, position: Int) {
+        override fun onBindViewHolder(hotBean: HotBean?, position: Int) {
 
-            tvName.text = hotBean.name
-
+            hotBean?.run {
+                tvName.text = name
+            }
             ivDelete.setOnClickListener { RxBusTools.getDefault().post(EventMap.SearchHistoryDeleteEvent(position)) }
 
         }

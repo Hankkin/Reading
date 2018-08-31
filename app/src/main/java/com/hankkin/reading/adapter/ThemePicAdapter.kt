@@ -27,9 +27,12 @@ class ThemePicAdapter : BaseRecyclerViewAdapter<ThemeItemBean>() {
         private val ivSelect by lazy { itemView.findViewById<ImageView>(R.id.iv_adapter_theme_select) }
 
         override fun onBindViewHolder(bean: ThemeItemBean?, position: Int) {
-            ivPic.setImageResource(bean!!.icon)
-            ivSelect.visibility = if (bean.isSelected) View.VISIBLE else View.GONE
-            ivPic.setOnClickListener { onItemClickListener.onClick(bean, position) }
+            bean?.apply {
+                ivPic.setImageResource(icon)
+                ivSelect.visibility = if (isSelected) View.VISIBLE else View.GONE
+                ivPic.setOnClickListener { onItemClickListener.onClick(this, position) }
+            }
+
         }
 
     }
