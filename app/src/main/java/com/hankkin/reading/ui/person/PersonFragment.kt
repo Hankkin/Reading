@@ -59,6 +59,16 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
     }
 
     override fun initData() {
+        initAdapter()
+        xrv_person_lisy.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = mAdapter
+        }
+        mCurrentTheme = ThemeHelper.getTheme(context)
+        tv_person_version.text = context?.let { "当前版本：" + AppUtils.getVersionName(it) }
+    }
+
+    private fun initAdapter(){
         mAdapter = PersonListAdapter()
         mAdapter.apply {
             data.add(PersonListBean(R.mipmap.icon_person_star, resources.getString(R.string.person_follow)))
@@ -69,12 +79,6 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
                 data.add(PersonListBean(R.mipmap.icon_person_set_exit, resources.getString(R.string.person_info_logout)))
             }
         }
-        xrv_person_lisy.apply {
-            layoutManager = LinearLayoutManager(context)
-            adapter = mAdapter
-        }
-        mCurrentTheme = ThemeHelper.getTheme(context)
-        tv_person_version.text = context?.let { "当前版本：" + AppUtils.getVersionName(it) }
     }
 
 
@@ -117,11 +121,6 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
     }
 
     private fun llAvatarClick() {
-        if (!UserControl.isLogin()) {
-            startActivity(Intent(context, LoginActivity::class.java))
-        } else {
-            startActivity(Intent(context, PersonInfoActivity::class.java))
-        }
         startActivity(
                 if (!UserControl.isLogin()) {
                     Intent(context, LoginActivity::class.java)
@@ -144,20 +143,27 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
     override fun onEvent(event: EventMap.BaseEvent) {
         if (event is EventMap.LoginEvent) {
             setUserHeader()
-            mAdapter.add(PersonListBean(R.mipmap.icon_person_set_exit, resources.getString(R.string.person_info_logout)))
-            mAdapter.notifyDataSetChanged()
+            initAdapter()
+            mAdapter.apply {
+                add(PersonListBean(R.mipmap.icon_person_set_exit, resources.getString(R.string.person_info_logout)))
+                mAdapter.notifyDataSetChanged()
+            }
         } else if (event is EventMap.PersonClickEvent) {
             when (event.index) {
                 0 -> startActivity(Intent(context, MyCollectActivity::class.java))
                 1 -> startActivity(Intent(context, ThemeActivity::class.java))
                 2 -> syncData()
-                3 -> context!!.startActivity(Intent(context, SettingActivity::class.java))
+                3 -> context?.startActivity(Intent(context, SettingActivity::class.java))
                 4 -> context?.let {
                     ViewHelper.showConfirmDialog(it,
                             resources.getString(R.string.person_info_logout_hint),
                             MaterialDialog.SingleButtonCallback { dialog, which ->
                                 UserControl.logout()
                                 setUserHeader()
+                                mAdapter.apply {
+                                    remove(data.size-1)
+                                    notifyDataSetChanged()
+                                }
                                 RxBusTools.getDefault().post(EventMap.LogOutEvent())
                                 ToastUtils.showInfo(context!!, "已注销登录!")
                             })
