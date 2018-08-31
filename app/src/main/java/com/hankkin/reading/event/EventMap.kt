@@ -86,6 +86,7 @@ object EventMap {
     class UpdateAccountListEvent : BaseEvent()
     class WifiImgEvent : BaseEvent()
     class SearchHistoryDeleteEvent(val position:Int) : BaseEvent()
+
     class LoginSetTabEvent() : BaseEvent(){
          var name: String = ""
          var pwd: String = ""
