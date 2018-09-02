@@ -115,8 +115,9 @@ interface WanAndroidApi {
     /**
      * 完成某条TODO
      */
-    @POST("lg/todo/done/{id}/json/1")
-    fun completeTodo(@Path("id") id: Int): Observable<BaseResponse<String>>
+    @FormUrlEncoded
+    @POST("lg/todo/done/{id}/json")
+    fun completeTodo(@Path("id") id: Int,@Field("status") status: Int): Observable<BaseResponse<ToDoListBean>>
 
     @GET("lg/todo/listnotdo/{cate}/json/{page}")
     fun listnotdo(@Path("cate") cate: Int, @Path("page") page: Int)

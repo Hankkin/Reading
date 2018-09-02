@@ -13,7 +13,7 @@ class ToDoPresenter : RxLifePresenter<ToDoContract.IView>(),ToDoContract.IPresen
 
     override fun completeTo(id: Int) {
         HttpClientUtils.Builder.getCommonHttp()
-                .completeTodo(id)
+                .completeTodo(id,1)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeNx ({
