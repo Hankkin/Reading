@@ -24,12 +24,12 @@ object HttpClient {
 
 
     fun getBuilder(apiUrl: String): Retrofit.Builder {
-        return Retrofit.Builder().apply {
-            client(mHttpClient)
-            baseUrl(apiUrl)//设置远程地址
-            addConverterFactory(GsonConverterFactory.create())
-            addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-        }
+        val builder = Retrofit.Builder()
+        builder.client(mHttpClient)
+        builder.baseUrl(apiUrl)//设置远程地址
+        builder.addConverterFactory(GsonConverterFactory.create())
+        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+        return builder
     }
 
     private val mHttpClient by lazy {

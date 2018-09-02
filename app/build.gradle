@@ -62,6 +62,7 @@ dependencies {
     implementation rootProject.ext.dependencies["glide"]
     implementation rootProject.ext.dependencies["statusbar-utils"]
     implementation rootProject.ext.dependencies["swipelayout"]
+    implementation rootProject.ext.dependencies["PersistentCookieJar"]
     //materialdialog
     implementation('com.github.afollestad.material-dialogs:core:0.8.5.8@aar') {
         transitive = true

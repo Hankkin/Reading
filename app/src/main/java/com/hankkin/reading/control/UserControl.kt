@@ -1,5 +1,6 @@
 package com.hankkin.reading.control
 
+import com.hankkin.library.http.cookies.CookiesManager
 import com.hankkin.library.utils.LogUtils
 import com.hankkin.library.utils.SPUtils
 import com.hankkin.reading.domain.UserBean
@@ -40,5 +41,6 @@ object UserControl {
     fun logout(){
         this.user = null
         SPUtils.clear()
+        CookiesManager.clearAllCookies()
     }
 }

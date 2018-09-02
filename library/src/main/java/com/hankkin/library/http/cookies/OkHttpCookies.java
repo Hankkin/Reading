@@ -1,4 +1,4 @@
-package com.hankkin.library.http.cookie;
+package com.hankkin.library.http.cookies;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

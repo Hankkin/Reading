@@ -1,4 +1,4 @@
-package com.hankkin.library.http.cookie;
+package com.hankkin.library.http.cookies;
 
 import android.content.Context;
 import android.content.SharedPreferences;

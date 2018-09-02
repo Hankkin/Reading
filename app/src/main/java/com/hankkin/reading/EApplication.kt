@@ -6,8 +6,10 @@ import android.support.annotation.ColorInt
 import android.support.annotation.ColorRes
 import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper
 import com.bilibili.magicasakura.utils.ThemeUtils
+import com.franmontiel.persistentcookiejar.PersistentCookieJar
+import com.franmontiel.persistentcookiejar.cache.SetCookieCache
+import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
 import com.hankkin.library.http.HttpConfig
-import com.hankkin.library.http.cookie.CookiesManager
 import com.hankkin.library.utils.AppUtils
 import com.hankkin.library.utils.FileUtils
 import com.hankkin.library.utils.SPUtils
@@ -40,22 +42,31 @@ class EApplication : Application() ,ThemeUtils.switchColor{
         instance = this
         FileUtils.initSd(AppUtils.getAppName(this)!!)
         SPUtils.init(this,Constant.COMMON.SP_NAME)
-        ToastUtils.init(this)
-        HttpConfig.setCookie(CookiesManager(this))
-        ThemeUtils.setSwitchColor(this)
-        BGASwipeBackHelper.init(this,null)
+        initCommon()
+        initHttp()
         initLeakCanary()
         initDao()
         YouDaoApplication.init(this,"46dbe20b62a7eae3")
     }
-    fun initLeakCanary(){
+
+    private fun initHttp(){
+        HttpConfig.setCookie(PersistentCookieJar(SetCookieCache(),SharedPrefsCookiePersistor(this)))
+    }
+
+    private fun initCommon(){
+        ToastUtils.init(this)
+        ThemeUtils.setSwitchColor(this)
+        BGASwipeBackHelper.init(this,null)
+    }
+
+    private fun initLeakCanary(){
         if (LeakCanary.isInAnalyzerProcess(this)){
             return
         }
         LeakCanary.install(this)
     }
 
-    fun initDao(){
+    private fun initDao(){
         val devOpenHelper = GreenOpenHelper(this, Constant.COMMON.DB_NAME, null)
         val daoMaster = DaoMaster(devOpenHelper.writableDb)
         daoSession = daoMaster.newSession()
@@ -109,9 +120,8 @@ class EApplication : Application() ,ThemeUtils.switchColor{
         }
     }
 
-    private
     @ColorRes
-    fun getThemeColorId(context: Context, colorId: Int, theme: String): Int {
+    private fun getThemeColorId(context: Context, colorId: Int, theme: String): Int {
         when (colorId) {
             R.color.theme_color_primary -> return context.resources.getIdentifier(theme, "color", packageName)
             R.color.theme_color_primary_dark -> return context.resources.getIdentifier(theme+"_dark", "color", packageName)
@@ -119,9 +129,8 @@ class EApplication : Application() ,ThemeUtils.switchColor{
         }
         return colorId
     }
-    private
     @ColorRes
-     fun getThemeColor(context: Context, color: Long, theme: String): Int {
+    private fun getThemeColor(context: Context, color: Long, theme: String): Int {
         when (color) {
             0xfff44336 -> return context.resources.getIdentifier(theme, "color", packageName)
             0xfff44336 -> return context.resources.getIdentifier(theme+"_dark", "color", packageName)
