@@ -61,5 +61,6 @@ ext {
             "toasty"                   : "com.github.GrenderG:Toasty:1.3.0",
             "swipelayout"              : "cn.bingoogolapple:bga-swipebacklayout:1.1.9@aar",
             "PersistentCookieJar"      : "com.github.franmontiel:PersistentCookieJar:v1.0.1",
+            "agentweb"                 : "com.just.agentweb:agentweb:4.0.2"
     ]
 }

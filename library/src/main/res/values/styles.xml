@@ -83,4 +83,10 @@
         <item name="android:maxWidth">60dp</item>
         <item name="android:maxHeight">60dp</item>
     </style>
+
+    <declare-styleable name="CoolIndicator">
+        <attr name="wrapShiftDrawable" format="boolean"/>
+        <attr name="shiftDuration" format="reference"/>
+        <attr name="shiftInterpolator" format="reference"/>
+    </declare-styleable>
 </resources>

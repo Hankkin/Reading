@@ -60,9 +60,17 @@ class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IVie
     }
 
     override fun setFail() {
-        refresh_android.isRefreshing = false
+        refresh_android.apply {
+            isRefreshing = false
+            isEnabled = true
+        }
         xrv_android.refreshComplete()
         context?.let { ToastUtils.showError(it, "网络异常...") }
+        empty_android.apply {
+            showError()
+            setShowErrorButton(true)
+            setEmptyButtonClickListener { loadData(mPage) }
+        }
     }
 
     fun loadData(page: Int) {

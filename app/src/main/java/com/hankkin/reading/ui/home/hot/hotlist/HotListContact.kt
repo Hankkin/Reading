@@ -11,6 +11,7 @@ import com.hankkin.library.mvp.contract.IPresenterContract
 interface HotListContact {
     interface IView : IBaseViewContract {
         fun setBanner(banner: MutableList<BannerBean>)
+        fun setFail()
         fun setData(data: ArticleBean)
     }
 

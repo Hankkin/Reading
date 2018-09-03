@@ -19,6 +19,7 @@ abstract class RxLifePresenter<out V : IBaseViewContract> : IBasePresenter<V>, I
     override fun registerMvpView(mvpViewContract: IBaseViewContract) {
         mMVPView = mvpViewContract as V
     }
+
     override fun getMvpView() = mMVPView
 
     enum class RxLife {
@@ -79,16 +80,14 @@ abstract class RxLifePresenter<out V : IBaseViewContract> : IBasePresenter<V>, I
     fun <T> Observable<BaseResponse<T>>.subscribeEx(onNext: (data: T) -> Unit = {}, onError: (e: Throwable) -> Unit = {}, onComplete: () -> Unit = {}): Disposable {
         return this.subscribe({
             //编写订阅触发时的公共代码
-            if(it.errorCode != 0){
+            if (it.errorCode != 0) {
                 onError.invoke(kotlin.Throwable())
-            }
-            else{
+            } else {
                 onNext.invoke(it.data)
             }
 
         }, {
             //编写订阅失败的公共代码
-            LogUtils.e(it)
             onError.invoke(it)
         }, {
             //编写订阅完成后的公共代码
@@ -96,13 +95,12 @@ abstract class RxLifePresenter<out V : IBaseViewContract> : IBasePresenter<V>, I
         })
     }
 
-    fun <T> Observable<T>.subscribeNx(onNext: (data: T) -> Unit = {}, onError: (e: Throwable) -> Unit = {}, onComplete: () -> Unit = {}): Disposable{
+    fun <T> Observable<T>.subscribeNx(onNext: (data: T) -> Unit = {}, onError: (e: Throwable) -> Unit = {}, onComplete: () -> Unit = {}): Disposable {
         return this.subscribe({
             //编写订阅触发时的公共代码
             onNext.invoke(it)
         }, {
             //编写订阅失败的公共代码
-            LogUtils.e(it)
             onError.invoke(it)
         }, {
             //编写订阅完成后的公共代码
@@ -112,7 +110,7 @@ abstract class RxLifePresenter<out V : IBaseViewContract> : IBasePresenter<V>, I
 
     fun addParams(key: String, value: Any): Map<String, Any> {
         val map = HashMap<String, Any>()
-        map.put(key,value)
+        map.put(key, value)
         return map
     }
 

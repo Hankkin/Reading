@@ -29,3 +29,6 @@
 -keep class com.youdao.sdk.chdict.** { *;}
 -keep class com.youdao.localtransengine.** { *;}
 -keep class com.youdao.sdk.ydonlinetranslate.** { *;}
+
+-dontwarn com.tencent.bugly.**
+-keep public class com.tencent.bugly.**{*;}

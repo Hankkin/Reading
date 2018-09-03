@@ -1,37 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/tools"
-    xmlns:app1="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+<com.hankkin.reading.view.EmptyLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/empty_hot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:ignore="NamespaceTypo">
+    android:orientation="vertical">
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/refresh_hot"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
 
             <com.hankkin.reading.adapter.base.XRecyclerView
+                android:id="@+id/xrv_hot"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginTop="-1.2dp"
                 android:scrollbarAlwaysDrawVerticalTrack="true"
                 android:scrollbarFadeDuration="1"
                 android:scrollbarSize="4dp"
-                android:scrollbars="vertical"
-                android:id="@+id/xrv_hot"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:scrollbars="vertical" />
 
 
         </LinearLayout>
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
+</com.hankkin.reading.view.EmptyLayout>
 
-</LinearLayout>
+
