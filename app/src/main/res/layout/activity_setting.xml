@@ -153,13 +153,12 @@
                     android:paddingTop="@dimen/dp_12">
 
                     <TextView
-                        android:textSize="@dimen/sp_14"
                         android:id="@+id/tv_setting_data_backup"
                         style="@style/normalTxt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/setting_lock_data_backup"
-                         />
+                        android:textSize="@dimen/sp_14" />
 
                 </RelativeLayout>
 
@@ -178,14 +177,14 @@
                     android:paddingTop="@dimen/dp_12">
 
                     <TextView
-                        android:textSize="@dimen/sp_14"
                         android:id="@+id/tv_setting_data_restore"
                         style="@style/normalTxt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/setting_lock_data_restore"
-                        />
+                        android:textSize="@dimen/sp_14" />
                 </RelativeLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
@@ -201,13 +200,12 @@
                     android:paddingTop="@dimen/dp_12">
 
                     <TextView
-                        android:textSize="@dimen/sp_14"
                         android:id="@+id/tv_setting_data_clear"
                         style="@style/normalTxt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/setting_lock_data_clear"
-                        />
+                        android:textSize="@dimen/sp_14" />
                 </RelativeLayout>
             </LinearLayout>
 
@@ -324,6 +322,39 @@
 
                 <com.bilibili.magicasakura.widgets.TintTextView
                     android:id="@+id/tv_setting_cache_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/theme_color_primary"
+                    android:textSize="@dimen/sp_14" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/normal_bg" />
+
+            <RelativeLayout
+                android:id="@+id/rl_setting_update"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:paddingBottom="@dimen/dp_12"
+                android:paddingTop="@dimen/dp_12">
+
+                <TextView
+                    android:id="@+id/tv_setting_update"
+                    style="@style/normalTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/setting_update"
+                    android:textColor="@color/black" />
+
+                <com.bilibili.magicasakura.widgets.TintTextView
+                    android:id="@+id/tv_setting_version"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
