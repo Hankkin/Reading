@@ -87,4 +87,10 @@ class SearchResultActivity : BaseMvpActivity<HotListPresenter>(), HotListContact
         getPresenter().queryKey(mPage, mKey)
     }
 
+    override fun setFail() {
+        empty_search_result.apply {
+            showError()
+        }
+    }
+
 }

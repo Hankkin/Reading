@@ -20,6 +20,9 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
+        ndk {
+            abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+        }
     }
     buildTypes {
         release {
@@ -63,6 +66,7 @@ dependencies {
     implementation rootProject.ext.dependencies["statusbar-utils"]
     implementation rootProject.ext.dependencies["swipelayout"]
     implementation rootProject.ext.dependencies["PersistentCookieJar"]
+    implementation rootProject.ext.dependencies["agentweb"]
     //materialdialog
     implementation('com.github.afollestad.material-dialogs:core:0.8.5.8@aar') {
         transitive = true
@@ -81,6 +85,9 @@ dependencies {
     implementation 'com.google.android:flexbox:1.0.0'
     //手机解锁
     implementation 'com.github.ihsg:PatternLocker:2.1.0'
+    //bugly
+    implementation 'com.tencent.bugly:crashreport_upgrade:latest.release'
+    implementation 'com.tencent.bugly:nativecrashreport:latest.release'
     //内存泄露工具
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.1'
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.1'

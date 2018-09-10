@@ -88,4 +88,10 @@
         <attr name="blink_color" format="color|reference"/>
         <attr name="blink_animation_duration" format="integer|reference"/>
     </declare-styleable>
+
+    <declare-styleable name="CoolIndicator">
+        <attr name="wrapShiftDrawable" format="boolean"/>
+        <attr name="shiftDuration" format="reference"/>
+        <attr name="shiftInterpolator" format="reference"/>
+    </declare-styleable>
 </resources>

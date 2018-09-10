@@ -39,6 +39,7 @@ dependencies {
     implementation rootProject.ext.dependencies["swipelayout"]
     implementation rootProject.ext.dependencies["statusbar-utils"]
     implementation rootProject.ext.dependencies["PersistentCookieJar"]
+    implementation rootProject.ext.dependencies["agentweb"]
     //Zxing核心包
     implementation 'com.google.zxing:core:3.3.0'
 }

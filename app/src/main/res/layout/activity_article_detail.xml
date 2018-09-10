@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/ll_common_web"
     tools:context="com.hankkin.reading.ui.home.articledetail.CommonWebActivity">
 
     <com.bilibili.magicasakura.widgets.TintToolbar
@@ -31,11 +32,6 @@
 
     </com.bilibili.magicasakura.widgets.TintToolbar>
 
-    <WebView
-        android:id="@+id/web_article"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 
 </LinearLayout>

@@ -6,24 +6,31 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
+import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuItem
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.LinearLayout
+import com.hankkin.library.widget.view.CoolIndicator
+import com.hankkin.library.widget.view.CoolIndicatorLayout
 import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseMvpActivity
 import com.hankkin.reading.utils.CommonUtils
 import com.hankkin.reading.utils.LoadingUtils
 import com.hankkin.reading.utils.ThemeHelper
 import com.jaeger.library.StatusBarUtil
+import com.just.agentweb.AgentWeb
+import com.just.agentweb.AgentWebSettingsImpl
+import com.just.agentweb.DefaultWebClient
 import kotlinx.android.synthetic.main.activity_article_detail.*
 
 class CommonWebActivity : BaseMvpActivity<ArticleDetailPresenter>(), ArticleDetailContract.IView {
 
     private lateinit var mUrl: String
     private lateinit var mTitle: String
-    private lateinit var ws: WebSettings
+    private lateinit var mAgentWeb: AgentWeb
 
 
     companion object {
@@ -51,7 +58,6 @@ class CommonWebActivity : BaseMvpActivity<ArticleDetailPresenter>(), ArticleDeta
         initWebView()
         initToolBar()
         menuClick()
-        web_article.loadUrl(mUrl)
     }
 
 
@@ -77,55 +83,15 @@ class CommonWebActivity : BaseMvpActivity<ArticleDetailPresenter>(), ArticleDeta
     }
 
     private fun initWebView() {
-        ws = web_article.settings
-        ws.apply {
-            loadWithOverviewMode = false        // 网页内容的宽度是否可大于WebView控件的宽度
-            saveFormData = true // 保存表单数据
-            setSupportZoom(true)// 是否应该支持使用其屏幕缩放控件和手势缩放
-            builtInZoomControls = true
-            displayZoomControls = false
-            // 启动应用缓存
-            setAppCacheEnabled(true)
-            // 设置缓存模式
-            cacheMode = WebSettings.LOAD_DEFAULT
-            // setDefaultZoom  api19被弃用
-            // 设置此属性，可任意比例缩放。
-            useWideViewPort = true
-            //  页面加载好以后，再放开图片
-            blockNetworkImage = false
-            // 使用localStorage则必须打开
-            domStorageEnabled = true
-            // 排版适应屏幕
-            layoutAlgorithm = WebSettings.LayoutAlgorithm.NARROW_COLUMNS
-            /** 设置字体默认缩放大小(改变网页字体大小,setTextSize  api14被弃用) */
-            textZoom = 100
-            // webview从5.0开始默认不允许混合模式,https中不能加载http资源,需要设置开启。
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
-            }
-        }
-
-        web_article.apply {
-            setInitialScale(100)        // 不缩放
-            setDownloadListener { url, userAgent, contentDisposition, mimetype, contentLength ->
-                val intent = Intent(Intent.ACTION_VIEW)
-                intent.addCategory(Intent.CATEGORY_BROWSABLE)
-                intent.data = Uri.parse(url)
-                startActivity(intent)
-            }
-            webViewClient = object : WebViewClient() {
-                override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
-                    super.onPageStarted(view, url, favicon)
-                    LoadingUtils.showLoading(this@CommonWebActivity)
-                }
-
-                override fun onPageFinished(view: WebView?, url: String?) {
-                    super.onPageFinished(view, url)
-                    LoadingUtils.hideLoading()
-                }
-            }
-        }
-
+        mAgentWeb = AgentWeb.with(this)
+                .setAgentWebParent(ll_common_web, LinearLayout.LayoutParams(-1, -1))
+                .setCustomIndicator(CoolIndicatorLayout(this))
+                .setAgentWebWebSettings(AgentWebSettingsImpl.getInstance())
+                .setSecurityType(AgentWeb.SecurityType.STRICT_CHECK)
+                .interceptUnkownUrl()
+                .setOpenOtherPageWays(DefaultWebClient.OpenOtherPageWays.ASK)
+                .createAgentWeb()
+                .go(mUrl)
     }
 
 
@@ -154,5 +120,26 @@ class CommonWebActivity : BaseMvpActivity<ArticleDetailPresenter>(), ArticleDeta
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        if (mAgentWeb.handleKeyEvent(keyCode, event)) {
+            return false
+        }
+        return super.onKeyDown(keyCode, event)
+    }
+
+    override fun onPause() {
+        mAgentWeb.webLifeCycle.onPause()
+        super.onPause()
+    }
+
+    override fun onResume() {
+        mAgentWeb.webLifeCycle.onResume()
+        super.onResume()
+    }
+
+    override fun onDestroy() {
+        mAgentWeb.webLifeCycle.onDestroy()
+        super.onDestroy()
+    }
 
 }

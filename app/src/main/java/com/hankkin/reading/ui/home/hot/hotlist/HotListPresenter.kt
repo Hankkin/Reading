@@ -8,14 +8,16 @@ import io.reactivex.schedulers.Schedulers
 /**
  * Created by huanghaijie on 2018/7/8.
  */
-class HotListPresenter : RxLifePresenter<HotListContact.IView>(), HotListContact.IPresenter{
+class HotListPresenter : RxLifePresenter<HotListContact.IView>(), HotListContact.IPresenter {
     override fun queryKey(page: Int, key: String) {
         HttpClientUtils.Builder.getCommonHttp()
-                .query(page,key)
+                .query(page, key)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeNx ({
+                .subscribeNx({
                     getMvpView().setData(it.data)
+                }, {
+                    getMvpView().setFail()
                 }).bindRxLifeEx(RxLife.ON_DESTROY)
     }
 
@@ -24,8 +26,10 @@ class HotListPresenter : RxLifePresenter<HotListContact.IView>(), HotListContact
                 .getHomeBanner()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeNx ({
+                .subscribeNx({
                     getMvpView().setBanner(it.data)
+                }, {
+                    getMvpView().setFail()
                 }).bindRxLifeEx(RxLife.ON_DESTROY)
     }
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.hankkin.reading.view.EmptyLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:id="@+id/empty_search_result"
     android:background="@color/normal_bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -32,4 +33,4 @@
         </LinearLayout>
 
     </android.support.v4.widget.SwipeRefreshLayout>
-</LinearLayout>
+</com.hankkin.reading.view.EmptyLayout>

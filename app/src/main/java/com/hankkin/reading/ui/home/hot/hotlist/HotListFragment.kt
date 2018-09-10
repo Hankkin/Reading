@@ -141,6 +141,18 @@ class HotListFragment : BaseMvpFragment<HotListPresenter>(), HotListContact.IVie
         getPresenter().queryKey(mPage, hotBean.name)
     }
 
+    override fun setFail() {
+        empty_hot.apply {
+            showError()
+            setShowErrorButton(true)
+            setEmptyButtonClickListener { getPresenter().getBannerHttp() }
+        }
+        refresh_hot.apply {
+            isRefreshing = false
+            isEnabled = true
+        }
+    }
+
 
     override fun onEvent(event: EventMap.BaseEvent) {
         if (event is EventMap.WifiImgEvent) {
