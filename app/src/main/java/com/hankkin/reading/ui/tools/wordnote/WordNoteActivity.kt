@@ -35,6 +35,7 @@ class WordNoteActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
     override fun initViews(savedInstanceState: Bundle?) {
         setStatusBarColor()
         tv_normal_title.text = resources.getString(R.string.word_note_title)
+        initPageLayout(rv_word_note)
 
         SnackbarUtils.Custom(ll, "长按可以进行更多操作奥", 3000)
                 .backColor(resources.getColor(ThemeHelper.getCurrentColor(this)))
@@ -84,13 +85,14 @@ class WordNoteActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
     }
 
     private fun setAdapter() {
+        mPageLayout.showLoading()
         mAdapter.clear()
         mAdapter.addAll(DaoFactory.getProtocol(WordNoteDaoContract::class.java).queryWordNotes())
         mAdapter.notifyDataSetChanged()
         if (mAdapter.data.size == 0) {
-            empty_word_note.showEmpty()
+            mPageLayout.showEmpty()
         } else {
-            empty_word_note.hide()
+            mPageLayout.hide()
         }
         refresh_word_note.isRefreshing = false
     }

@@ -77,8 +77,9 @@
     </LinearLayout>
 
 
-    <com.hankkin.reading.view.EmptyLayout
-        android:id="@+id/empty_translate"
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/ll_translate"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <include
@@ -96,7 +97,7 @@
             android:layout_width="match_parent"
             layout="@layout/layout_translate_history"/>
 
-    </com.hankkin.reading.view.EmptyLayout>
+    </LinearLayout>
 
 
 </LinearLayout>

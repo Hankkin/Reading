@@ -46,5 +46,7 @@
     <color name="md_color_deep_orange">#ff5722</color>
     <color name="md_color_brown">#795538</color>
     <color name="md_color_grey">#9e9e9e</color>
+    <color name="blink_color">#b1b1b1</color>
+    <color name="shimmer_color">#a2878787</color>
 
 </resources>

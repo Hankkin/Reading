@@ -201,6 +201,9 @@
     <string name="ok">确定</string>
     <string name="cancel">取消</string>
 
+    <string name="pagelayout_empty">暂无新数据</string>
+    <string name="pagelayout_error">网络开小差咯...</string>
+
 
     <string name="theme_default">默认</string>
     <string name="theme_yima">姨妈红</string>

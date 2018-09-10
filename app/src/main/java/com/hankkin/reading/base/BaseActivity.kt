@@ -2,8 +2,11 @@ package com.hankkin.reading.base
 
 import android.app.Activity
 import android.os.Bundle
+import android.view.View
 import com.hankkin.library.base.BaseSwipeBackActivity
+import com.hankkin.library.utils.AppUtils
 import com.hankkin.library.utils.RxBusTools
+import com.hankkin.library.widget.view.PageLayout
 import com.hankkin.reading.R
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.utils.LoadingUtils
@@ -22,6 +25,8 @@ abstract class BaseActivity : BaseSwipeBackActivity() {
 
     protected var activity: Activity? = null
 
+    protected lateinit var mPageLayout: PageLayout
+
     protected abstract fun getLayoutId(): Int
 
     protected abstract fun initViews(savedInstanceState: Bundle?)
@@ -37,6 +42,15 @@ abstract class BaseActivity : BaseSwipeBackActivity() {
         initViews(savedInstanceState)
         registerEvent()
         initData()
+    }
+
+    protected fun initPageLayout(targetView: Any){
+        mPageLayout = PageLayout.Builder(this)
+                .initPage(targetView)
+                .setDefaultEmptyText(resources.getString(R.string.pagelayout_empty))
+                .setDefaultErrorText(resources.getString(R.string.pagelayout_error))
+                .setDefaultLoadingBlinkText(AppUtils.getAppName(this)!!)
+                .create()
     }
 
     /**

@@ -32,6 +32,7 @@ class AccountListActivity : BaseActivity() {
     }
 
     override fun initViews(savedInstanceState: Bundle?) {
+        initPageLayout(rv_account)
         setMiuiStatusBar()
         tv_normal_title_white.text = resources.getString(R.string.account_title)
         iv_back_icon_white.setOnClickListener { finish() }
@@ -68,6 +69,7 @@ class AccountListActivity : BaseActivity() {
     }
 
     override fun initData() {
+        mPageLayout.showLoading()
         mAdapter.apply {
             mData = DaoFactory.getProtocol(AccountDaoContract::class.java).queryAllAccount()
             addAll(mData)
@@ -75,6 +77,10 @@ class AccountListActivity : BaseActivity() {
         }
         if (mData == null || mData!!.size == 0) {
             ToastUtils.showInfo(this, resources.getString(R.string.account_no_data_hint))
+            mPageLayout.showEmpty()
+        }
+        else{
+            mPageLayout.hide()
         }
     }
 

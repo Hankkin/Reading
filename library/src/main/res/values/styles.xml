@@ -83,4 +83,9 @@
         <item name="android:maxWidth">60dp</item>
         <item name="android:maxHeight">60dp</item>
     </style>
+
+    <declare-styleable name="BlinkLayout">
+        <attr name="blink_color" format="color|reference"/>
+        <attr name="blink_animation_duration" format="integer|reference"/>
+    </declare-styleable>
 </resources>
