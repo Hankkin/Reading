@@ -2,7 +2,9 @@ package com.hankkin.reading.ui.home.android
 
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
+import com.hankkin.library.utils.AppUtils
 import com.hankkin.library.utils.ToastUtils
+import com.hankkin.library.widget.view.PageLayout
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.AndroidAdapter
 import com.hankkin.reading.adapter.base.XRecyclerView
@@ -21,12 +23,27 @@ class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IVie
 
     private var mPage: Int = 0
     private lateinit var mAdapter: AndroidAdapter
+    private lateinit var mPageLayout: PageLayout
+
     override fun isHasBus(): Boolean {
         return true
     }
 
     override fun initView() {
         ViewHelper.setRefreshLayout(context, true, refresh_android, this)
+        context?.let {
+            val appName = AppUtils.getAppName(context!!)
+            mPageLayout = PageLayout.Builder(context!!)
+                    .initPage(xrv_android)
+                    .setDefaultLoadingText(appName)
+                    .setOnRetryListener(object : PageLayout.OnRetryClickListener{
+                        override fun onRetry() {
+                            loadData(0)
+                        }
+                    })
+                    .create()
+        }
+
     }
 
 
@@ -39,7 +56,7 @@ class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IVie
         loadData(mPage)
     }
 
-    fun initXrv() {
+    private fun initXrv() {
         xrv_android.run {
             mAdapter = AndroidAdapter()
             layoutManager = LinearLayoutManager(context)
@@ -66,11 +83,7 @@ class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IVie
         }
         xrv_android.refreshComplete()
         context?.let { ToastUtils.showError(it, "网络异常...") }
-        empty_android.apply {
-            showError()
-            setShowErrorButton(true)
-            setEmptyButtonClickListener { loadData(mPage) }
-        }
+        mPageLayout.showError()
     }
 
     fun loadData(page: Int) {
@@ -89,6 +102,7 @@ class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IVie
     override fun registerPresenter() = AndroidPresenter::class.java
 
     override fun setArticle(articleBean: ArticleBean) {
+        mPageLayout.hide()
         mPage = articleBean.curPage
         if (mPage < 2) {
             xrv_android.scrollToPosition(0)

@@ -14,4 +14,6 @@
     <string name="viewfinderview_status_text1">将二维码/条码放入取景框内</string>
     <string name="viewfinderview_status_text2">即可自动扫描</string>
 
+    <string name="pagelayout_empty">暂无新数据</string>
+    <string name="pagelayout_error">网络开小差咯...</string>
 </resources>

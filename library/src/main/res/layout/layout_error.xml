@@ -6,6 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:text="@string/pagelayout_error"
         android:gravity="center"
         android:textSize="20sp"
         android:id="@+id/tv_page_error"

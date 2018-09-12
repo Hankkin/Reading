@@ -5,6 +5,8 @@ import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.widget.TextView
+import com.hankkin.library.utils.AppUtils
+import com.hankkin.library.widget.view.PageLayout
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.AndroidAdapter
 import com.hankkin.reading.adapter.base.XRecyclerView
@@ -30,6 +32,8 @@ class HotListFragment : BaseMvpFragment<HotListPresenter>(), HotListContact.IVie
     private var bannerData = mutableListOf<BannerBean>()
     private lateinit var mAdapter: AndroidAdapter
     private var banner_project: XBanner? = null
+    private lateinit var mPageLayout: PageLayout
+
 
     private lateinit var hotBean: HotBean
     private var mPage: Int = 0
@@ -47,6 +51,18 @@ class HotListFragment : BaseMvpFragment<HotListPresenter>(), HotListContact.IVie
 
     override fun initView() {
         ViewHelper.setRefreshLayout(context, true, refresh_hot, this)
+        context?.let {
+            val appName = AppUtils.getAppName(context!!)
+            mPageLayout = PageLayout.Builder(context!!)
+                    .initPage(xrv_hot)
+                    .setDefaultLoadingText(appName)
+                    .setOnRetryListener(object : PageLayout.OnRetryClickListener{
+                        override fun onRetry() {
+                            getPresenter().getBannerHttp()
+                        }
+                    })
+                    .create()
+        }
         initXrv()
     }
 
@@ -55,7 +71,7 @@ class HotListFragment : BaseMvpFragment<HotListPresenter>(), HotListContact.IVie
         getPresenter().getBannerHttp()
     }
 
-    fun initXrv() {
+    private fun initXrv() {
         ViewHelper.setRefreshLayout(context, true, refresh_hot, this)
         xrv_hot.apply {
             mAdapter = AndroidAdapter()
@@ -77,7 +93,7 @@ class HotListFragment : BaseMvpFragment<HotListPresenter>(), HotListContact.IVie
 
     }
 
-    fun initBannerHeader() {
+    private fun initBannerHeader() {
         val layoutBanner = layoutInflater.inflate(R.layout.layout_project_banner_header, null)
         banner_project = layoutBanner.findViewById<XBanner>(R.id.banner_project)
         val urlList = mutableListOf<String>()
@@ -89,7 +105,7 @@ class HotListFragment : BaseMvpFragment<HotListPresenter>(), HotListContact.IVie
         banner_project?.run {
             setData(R.layout.layout_banner_imageview, urlList, contentList)
             viewPager.pageMargin = 20
-            loadImage { banner, model, view, position ->
+            loadImage { _, model, view, position ->
                 val iv = view.findViewById<SWImageView>(R.id.iv_banner_item)
                 GlideUtils.loadImageView(context, model as String?, iv)
             }
@@ -98,7 +114,7 @@ class HotListFragment : BaseMvpFragment<HotListPresenter>(), HotListContact.IVie
         xrv_hot.addHeaderView(layoutBanner)
     }
 
-    fun setAdapter(data: ArticleBean) {
+    private fun setAdapter(data: ArticleBean) {
         mPage = data.curPage
         if (mPage < 2) {
             xrv_hot.scrollToPosition(0)
@@ -132,6 +148,7 @@ class HotListFragment : BaseMvpFragment<HotListPresenter>(), HotListContact.IVie
 
     override fun setData(data: ArticleBean) {
         setAdapter(data)
+        mPageLayout.hide()
     }
 
     override fun onRefresh() {
@@ -142,11 +159,7 @@ class HotListFragment : BaseMvpFragment<HotListPresenter>(), HotListContact.IVie
     }
 
     override fun setFail() {
-        empty_hot.apply {
-            showError()
-            setShowErrorButton(true)
-            setEmptyButtonClickListener { getPresenter().getBannerHttp() }
-        }
+        mPageLayout.showError()
         refresh_hot.apply {
             isRefreshing = false
             isEnabled = true

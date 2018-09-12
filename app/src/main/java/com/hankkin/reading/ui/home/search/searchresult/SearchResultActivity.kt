@@ -2,6 +2,7 @@ package com.hankkin.reading.ui.home.search.searchresult
 
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
+import com.hankkin.library.utils.ToastUtils
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.AndroidAdapter
 import com.hankkin.reading.adapter.base.XRecyclerView
@@ -88,9 +89,7 @@ class SearchResultActivity : BaseMvpActivity<HotListPresenter>(), HotListContact
     }
 
     override fun setFail() {
-        empty_search_result.apply {
-            showError()
-        }
+        ToastUtils.showError(this,resources.getString(R.string.pagelayout_error))
     }
 
 }

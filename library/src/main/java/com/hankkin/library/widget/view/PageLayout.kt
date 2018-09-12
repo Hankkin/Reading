@@ -175,13 +175,17 @@ class PageLayout : FrameLayout {
             return this
         }
 
-        fun setDefaultLoadingText(text: String): Builder {
-            mTvLoading.text = text
+        fun setDefaultLoadingText(text: String?): Builder {
+            text?.let {
+                mTvLoading.text = it
+            }
             return this
         }
 
-        fun setDefaultLoadingBlinkText(text: String): Builder {
-            mTvLoadingBlink.text = text
+        fun setDefaultLoadingBlinkText(text: String?): Builder {
+            text?.let {
+                mTvLoadingBlink.text = it
+            }
             return this
         }
 
@@ -195,8 +199,10 @@ class PageLayout : FrameLayout {
             return this
         }
 
-        fun setDefaultEmptyText(text: String): Builder {
-            mTvEmpty.text = text
+        fun setDefaultEmptyText(text: String?): Builder {
+            text?.let {
+                mTvEmpty.text = it
+            }
             return this
         }
 
@@ -205,8 +211,10 @@ class PageLayout : FrameLayout {
             return this
         }
 
-        fun setDefaultErrorText(text: String): Builder {
-            mTvError.text = text
+        fun setDefaultErrorText(text: String?): Builder {
+            text?.let {
+                mTvError.text = it
+            }
             return this
         }
 
