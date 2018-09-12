@@ -7,7 +7,7 @@ ext {
             targetSdkVersion : 25,
 
             versionCode      : 20180912,
-            versionName      : '2.1.2',
+            versionName      : '2.2.0',
             VSupportSdk      : '27.1.1'
     ]
 

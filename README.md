@@ -86,7 +86,7 @@
 
 ## Version
 
-### V2.1.2
+### V2.2.0
   
 - [优化] 切换PageLayout
 

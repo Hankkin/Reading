@@ -49,7 +49,7 @@ class EApplication : Application() ,ThemeUtils.switchColor{
         initLeakCanary()
         initDao()
         YouDaoApplication.init(this,"46dbe20b62a7eae3")
-        Bugly.init(this,"61fd6ca178",true)
+        Bugly.init(this,"61fd6ca178",false)
     }
 
     private fun initHttp(){
