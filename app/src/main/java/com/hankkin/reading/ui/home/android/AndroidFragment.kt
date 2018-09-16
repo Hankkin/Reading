@@ -23,7 +23,6 @@ class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IVie
 
     private var mPage: Int = 0
     private lateinit var mAdapter: AndroidAdapter
-    private lateinit var mPageLayout: PageLayout
 
     override fun isHasBus(): Boolean {
         return true
@@ -31,19 +30,6 @@ class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IVie
 
     override fun initView() {
         ViewHelper.setRefreshLayout(context, true, refresh_android, this)
-        context?.let {
-            val appName = AppUtils.getAppName(context!!)
-            mPageLayout = PageLayout.Builder(context!!)
-                    .initPage(xrv_android)
-                    .setDefaultLoadingText(appName)
-                    .setOnRetryListener(object : PageLayout.OnRetryClickListener{
-                        override fun onRetry() {
-                            loadData(0)
-                        }
-                    })
-                    .create()
-        }
-
     }
 
 
@@ -83,7 +69,6 @@ class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IVie
         }
         xrv_android.refreshComplete()
         context?.let { ToastUtils.showError(it, "网络异常...") }
-        mPageLayout.showError()
     }
 
     fun loadData(page: Int) {
@@ -102,7 +87,6 @@ class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IVie
     override fun registerPresenter() = AndroidPresenter::class.java
 
     override fun setArticle(articleBean: ArticleBean) {
-        mPageLayout.hide()
         mPage = articleBean.curPage
         if (mPage < 2) {
             xrv_android.scrollToPosition(0)
