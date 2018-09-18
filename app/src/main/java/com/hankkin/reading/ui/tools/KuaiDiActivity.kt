@@ -1,8 +1,8 @@
 package com.hankkin.reading.ui.tools
 
-import android.content.Context
 import android.os.Bundle
 import android.text.Editable
+import android.text.InputType
 import android.text.TextWatcher
 import android.view.View
 import com.afollestad.materialdialogs.MaterialDialog
@@ -13,9 +13,6 @@ import com.hankkin.reading.ui.home.articledetail.CommonWebActivity
 import com.hankkin.reading.utils.ViewHelper
 import kotlinx.android.synthetic.main.activity_kuai_di.*
 import kotlinx.android.synthetic.main.layout_title_bar_back.*
-import android.content.Context.INPUT_METHOD_SERVICE
-import android.text.InputType
-import android.view.inputmethod.InputMethodManager
 
 
 class KuaiDiActivity : BaseActivity() {
@@ -31,6 +28,7 @@ class KuaiDiActivity : BaseActivity() {
     }
 
     override fun initViews(savedInstanceState: Bundle?) {
+        setStatusBarColor()
         mCompanys = mutableListOf()
         mCompanys.add(KuaiDiCompanyBean("debangwuliu", "德邦物流"))
         mCompanys.add(KuaiDiCompanyBean("shentong", "申通快递"))
