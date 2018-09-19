@@ -122,12 +122,9 @@ class ToDoListFragment : BaseMvpFragment<ToDoContract.IPresenter>(), ToDoContrac
             }
             mDoneAdapter.apply {
                 clear()
-                addAll(data.doneList[0].todoList)
+                addAll(data.doneList[data.doneList.size-1].todoList)
                 notifyDataSetChanged()
             }
-        }
-        mDoneAdapter.apply {
-
         }
         refresh_todo_list.isRefreshing = false
     }
