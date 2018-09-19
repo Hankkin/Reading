@@ -47,9 +47,9 @@ class TranslateActivity : BaseActivity() {
     private lateinit var mSubscribe: Disposable
 
     companion object {
-        fun intentTo(context: Context?,key: String){
-            val intent = Intent(context,TranslateActivity::class.java)
-            intent.putExtra(Constant.CONSTANT_KEY.TRANSLATE,key)
+        fun intentTo(context: Context?, key: String) {
+            val intent = Intent(context, TranslateActivity::class.java)
+            intent.putExtra(Constant.CONSTANT_KEY.TRANSLATE, key)
             context?.startActivity(intent)
         }
     }
@@ -102,7 +102,7 @@ class TranslateActivity : BaseActivity() {
         }
         iv_translate_star.setOnClickListener {
             if (translateBean == null) return@setOnClickListener
-            var wordNoteBean = WordNoteBean(translateBean!!.hashCode().toLong(),false)
+            var wordNoteBean = WordNoteBean(translateBean!!.hashCode().toLong(), false)
             wordNoteBean.translateBean = translateBean
             DaoFactory.getProtocol(WordNoteDaoContract::class.java).addWordToNote(wordNoteBean)
             iv_translate_stared.visibility = View.VISIBLE
@@ -131,7 +131,6 @@ class TranslateActivity : BaseActivity() {
             setHistoryAdapter()
         }
     }
-
 
 
     fun inflateSearch() {
@@ -208,24 +207,24 @@ class TranslateActivity : BaseActivity() {
     private fun setWordLayout(translate: TranslateBean?) {
         if (translate == null) return
         inflateSearch()
-        if (translate.ukPhonetic.isEmpty()) {
-            ll_translate_uk.visibility = View.GONE
-        } else {
-            ll_translate_uk.visibility = View.VISIBLE
-            tv_translate_phonrtic_uk.text = "英/" + translate.ukPhonetic + "/"
-//            ll_translate_uk.setOnClickListener {
-//                playVoice(translate.speakUrl, iv_translate_phonetics_uk)
-//            }
+        translate.ukPhonetic?.let {
+            if (translate.ukPhonetic.isEmpty()) {
+                ll_translate_uk.visibility = View.GONE
+            } else {
+                ll_translate_uk.visibility = View.VISIBLE
+                tv_translate_phonrtic_uk.text = "英/ ${translate.ukPhonetic}  /"
+            }
         }
-        if (translate.usPhonetic.isEmpty()) {
-            ll_translate_us.visibility = View.GONE
-        } else {
-            ll_translate_us.visibility = View.VISIBLE
-            tv_translate_phonrtic_us.text = "美/" + translate.usPhonetic + "/"
-//            ll_translate_us.setOnClickListener {
-//                playVoice(translate.resultSpeakUrl, iv_translate_phonetics_us)
-//            }
+
+        translate.usPhonetic?.let {
+            if (translate.usPhonetic.isEmpty()) {
+                ll_translate_us.visibility = View.GONE
+            } else {
+                ll_translate_us.visibility = View.VISIBLE
+                tv_translate_phonrtic_us.text = "美/  ${translate.usPhonetic} /"
+            }
         }
+
         ll_translate_explains.removeAllViews()
         for (explain in translate.explains) {
             val tv = layoutInflater.inflate(R.layout.adapter_translate_paraphrases_item, null) as TextView
@@ -239,14 +238,13 @@ class TranslateActivity : BaseActivity() {
         val wordNotes = DaoFactory.getProtocol(WordNoteDaoContract::class.java).queryWordNotes()
         if (wordNotes != null && wordNotes.size > 0) {
             var ids = mutableListOf<Long>()
-            for (word in wordNotes){
+            for (word in wordNotes) {
                 ids.add(word.id)
             }
-            if (ids.contains(translate.id)){
+            if (ids.contains(translate.id)) {
                 iv_translate_stared.visibility = View.VISIBLE
                 iv_translate_star.visibility = View.GONE
-            }
-            else{
+            } else {
                 iv_translate_stared.visibility = View.GONE
                 iv_translate_star.visibility = View.VISIBLE
             }

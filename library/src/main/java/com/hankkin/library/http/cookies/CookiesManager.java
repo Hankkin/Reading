@@ -43,13 +43,14 @@ public class CookiesManager implements CookieJar {
      * 清除所有cookie
      */
     public static void clearAllCookies() {
-        COOKIE_STORE.removeAll();
+        if (COOKIE_STORE != null)
+            COOKIE_STORE.removeAll();
     }
 
     /**
      * 清除指定cookie
      *
-     * @param url HttpUrl
+     * @param url    HttpUrl
      * @param cookie Cookie
      * @return if clear cookies
      */

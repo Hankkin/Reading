@@ -462,7 +462,10 @@ public class DateUtils {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        long delta = new Date().getTime() - date.getTime();
+        long delta = 0;
+        if (date != null) {
+            delta = new Date().getTime() - date.getTime();
+        }
         if (delta < 1L * ONE_MINUTE) {
             long seconds = toSeconds(delta);
             return (seconds <= 0 ? 1 : seconds) + ONE_SECOND_AGO;
