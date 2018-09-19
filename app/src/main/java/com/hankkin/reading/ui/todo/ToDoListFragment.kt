@@ -5,6 +5,7 @@ import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import android.widget.TextView
 import com.afollestad.materialdialogs.MaterialDialog
 import com.hankkin.library.utils.ToastUtils
 import com.hankkin.reading.R
@@ -109,6 +110,14 @@ class ToDoListFragment : BaseMvpFragment<ToDoContract.IPresenter>(), ToDoContrac
             clearHeader()
             if (data.doneList.size > 0) {
                 val headerDone = layoutInflater.inflate(R.layout.layout_header_done, null)
+                        .apply {
+                            findViewById<TextView>(R.id.tv_done_more).setOnClickListener {
+                                Intent(activity,MoreToDoActivity::class.java).apply {
+                                    putExtra("cate",mIndex)
+                                    startActivity(this)
+                                }
+                            }
+                        }
                 addHeaderView(headerDone)
             }
             mDoneAdapter.apply {

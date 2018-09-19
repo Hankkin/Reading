@@ -117,9 +117,12 @@ interface WanAndroidApi {
      */
     @FormUrlEncoded
     @POST("lg/todo/done/{id}/json")
-    fun completeTodo(@Path("id") id: Int,@Field("status") status: Int): Observable<BaseResponse<ToDoListBean>>
+    fun completeTodo(@Path("id") id: Int, @Field("status") status: Int): Observable<BaseResponse<ToDoListBean>>
 
     @GET("lg/todo/listnotdo/{cate}/json/{page}")
     fun listnotdo(@Path("cate") cate: Int, @Path("page") page: Int)
+
+    @POST("lg/todo/listdone/{cate}/json/{page}")
+    fun listDone(@Path("cate") cate: Int, @Path("page") page: Int): Observable<BaseResponse<DoneBean>>
 
 }

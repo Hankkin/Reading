@@ -19,3 +19,11 @@ data class ToDoListBean(val completeDate: Long,
                         val status: Int,
                         val type: Int,
                         val userId: Int) : Serializable
+
+data class DoneBean(val curPage: Int,
+                    val offset: Int,
+                    val over: Boolean,
+                    val pageCount: Int,
+                    val size: Int,
+                    val total: Int,
+                    val datas: MutableList<ToDoListBean>)
