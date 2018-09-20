@@ -35,6 +35,7 @@ import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_translate.*
 import kotlinx.android.synthetic.main.layout_translate_history.*
 import kotlinx.android.synthetic.main.layout_translate_top.*
+import org.greenrobot.greendao.DaoException
 
 class TranslateActivity : BaseActivity() {
 
@@ -226,15 +227,23 @@ class TranslateActivity : BaseActivity() {
         }
 
         ll_translate_explains.removeAllViews()
-        for (explain in translate.explains) {
-            val tv = layoutInflater.inflate(R.layout.adapter_translate_paraphrases_item, null) as TextView
-            tv.text = explain
-            ll_translate_explains.addView(tv)
+        if (translate.explains != null){
+            for (explain in translate.explains) {
+                val tv = layoutInflater.inflate(R.layout.adapter_translate_paraphrases_item, null) as TextView
+                tv.text = explain
+                ll_translate_explains.addView(tv)
+            }
         }
-        if (translate.webExplains != null) {
-            val webEx = translate.webExplains.get(0)
-            tv_translate_web.text = webEx.means.toString()
+
+        try {
+            if (translate.webExplains != null) {
+                val webEx = translate.webExplains.get(0)
+                tv_translate_web.text = webEx.means.toString()
+            }
+        }catch (e: DaoException){
+            LogUtils.e(e.message)
         }
+
         val wordNotes = DaoFactory.getProtocol(WordNoteDaoContract::class.java).queryWordNotes()
         if (wordNotes != null && wordNotes.size > 0) {
             var ids = mutableListOf<Long>()
