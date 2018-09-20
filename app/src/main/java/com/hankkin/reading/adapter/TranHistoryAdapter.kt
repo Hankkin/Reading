@@ -30,7 +30,12 @@ class TranHistoryAdapter : BaseRecyclerViewAdapter<TranslateBean>() {
         override fun onBindViewHolder(bean: TranslateBean?, position: Int) {
             bean?.run {
                 tvKey.text = query
-                tvContent.text = explains.toString()
+                if (explains != null){
+                    tvContent.text = explains.toString()
+                }
+                else{
+                    tvContent.text = "暂无释义..."
+                }
                 ll.setOnLongClickListener {
                     onItemLongClickListener.onLongClick(this, position)
                     false
