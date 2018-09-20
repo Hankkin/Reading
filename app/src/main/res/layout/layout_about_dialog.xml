@@ -28,11 +28,10 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tv_about_version"
+            android:id="@+id/tv_about_version_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_10"
-            android:text="1.0.0"
             android:textColor="@color/normal_txt"
             android:textSize="@dimen/sp_14" />
 
