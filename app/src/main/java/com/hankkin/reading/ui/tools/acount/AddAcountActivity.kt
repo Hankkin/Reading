@@ -31,6 +31,9 @@ class AddAcountActivity : BaseActivity() {
                 Constant.ACCOUNT_CATE.EMAIL, Constant.ACCOUNT_CATE.OTHER)
     }
 
+    override fun isHasBus(): Boolean {
+        return true
+    }
 
     companion object {
         fun intentTo(context: Context, id: Long){
@@ -62,6 +65,7 @@ class AddAcountActivity : BaseActivity() {
         fab_add_acount.setOnClickListener {
             checkMsg()
         }
+        tv_add_account_name.setOnClickListener { startActivity(Intent(this,SelectAppActivity::class.java)) }
     }
 
     override fun initData() {
@@ -73,17 +77,16 @@ class AddAcountActivity : BaseActivity() {
     }
 
     private fun setAccount(){
-        if (accountBean != null){
-            et_add_account_name.setText(accountBean!!.name)
-            et_add_account_name.setSelection(accountBean!!.name.length)
-            et_add_account_number.setText(accountBean!!.number)
-            et_add_account_number.setSelection(accountBean!!.number.length)
-            et_add_account_password.setText(EncryptUtils.HloveyRC4(accountBean!!.password.toString(),Constant.COMMON.DEFAULT_LOCK_KEY))
+        accountBean?.apply {
+            tv_add_account_name.text = name
+            et_add_account_number.setText(number)
+            et_add_account_number.setSelection(number.length)
+            et_add_account_password.setText(EncryptUtils.HloveyRC4(password.toString(),Constant.COMMON.DEFAULT_LOCK_KEY))
             et_add_account_password.setSelection(et_add_account_password.text.length)
-            et_add_account_bz.setText(accountBean!!.beizhu)
-            et_add_account_bz.setSelection(accountBean!!.beizhu.length)
-            tv_add_account_cate.setText(accountBean!!.cate)
-            setCateImg(accountBean!!.cate)
+            et_add_account_bz.setText(beizhu)
+            et_add_account_bz.setSelection(beizhu.length)
+            tv_add_account_cate.text = cate
+            setCateImg(cate)
         }
     }
 
@@ -103,7 +106,7 @@ class AddAcountActivity : BaseActivity() {
     }
 
     private fun checkMsg() {
-        if (et_add_account_name.text.toString().isEmpty()) {
+        if (tv_add_account_name.text.toString().isEmpty()) {
             ToastUtils.showError(this, resources.getString(R.string.account_add_name_input_hint))
             return
         }
@@ -125,8 +128,8 @@ class AddAcountActivity : BaseActivity() {
     private fun saveAccount() {
         var accountBean = AccountBean()
         accountBean.cate = tv_add_account_cate.text.toString()
-        accountBean.id = if(accountId != 0L) this!!.accountId!! else accountBean.hashCode().toLong()
-        accountBean.name = et_add_account_name.text.toString()
+        accountBean.id = if(accountId != 0L) this.accountId!! else accountBean.hashCode().toLong()
+        accountBean.name = tv_add_account_name.text.toString()
         accountBean.number = et_add_account_number.text.toString()
         accountBean.password = EncryptUtils.HloveyRC4(et_add_account_password.text.toString(),Constant.COMMON.DEFAULT_LOCK_KEY)
         accountBean.createAt = System.currentTimeMillis()
@@ -140,6 +143,13 @@ class AddAcountActivity : BaseActivity() {
         ToastUtils.showSuccess(this, resources.getString(R.string.account_add_success))
         RxBusTools.getDefault().post(EventMap.UpdateAccountListEvent())
         finish()
+    }
+
+    override fun onEvent(event: EventMap.BaseEvent) {
+        if (event is EventMap.SelectAppEvent){
+            tv_add_account_name.text = event.bean.name
+            iv_add_acount_icon.setImageDrawable(event.bean.icon)
+        }
     }
 
 }

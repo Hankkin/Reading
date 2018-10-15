@@ -1,6 +1,7 @@
 package com.hankkin.library.utils
 
 import android.content.Context
+import android.content.pm.ApplicationInfo
 
 
 object AppUtils{
@@ -81,5 +82,6 @@ object AppUtils{
 
         return null
     }
+
 
 }

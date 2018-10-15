@@ -1,6 +1,7 @@
 package com.hankkin.reading.event
 
 import android.text.TextUtils
+import com.hankkin.reading.domain.AppInfo
 import com.hankkin.reading.domain.PersonListBean
 import com.hankkin.reading.domain.ToDoListBean
 
@@ -85,6 +86,7 @@ object EventMap {
     class DeleteToDoEvent(val id: Int) : BaseEvent()
     class UpdateAccountListEvent : BaseEvent()
     class WifiImgEvent : BaseEvent()
+    class SelectAppEvent(val bean: AppInfo) : BaseEvent()
     class SearchHistoryDeleteEvent(val position:Int) : BaseEvent()
 
     class LoginSetTabEvent() : BaseEvent(){

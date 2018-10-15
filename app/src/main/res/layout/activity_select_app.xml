@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context="com.hankkin.reading.ui.tools.acount.SelectAppActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_bar_height">
+        <com.hankkin.reading.view.ClickImageView
+            android:id="@+id/iv_back_icon_white"
+            android:paddingRight="@dimen/dp_10"
+            android:paddingLeft="@dimen/dp_10"
+            android:src="@mipmap/icon_normal_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <com.bilibili.magicasakura.widgets.TintEditText
+            android:id="@+id/et_add_account_search"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:padding="@dimen/dp_6"
+            android:layout_centerVertical="true"
+            android:textSize="@dimen/sp_14"
+            android:background="@drawable/bg_search"
+            android:layout_toEndOf="@+id/iv_back_icon_white"
+            android:hint="@string/account_add_select_app_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+    <com.bilibili.magicasakura.widgets.TintView
+        android:background="@color/grey1"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_app_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

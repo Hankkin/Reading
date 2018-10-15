@@ -1,11 +1,11 @@
 package com.hankkin.reading.domain;
 
 import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.Property;
 
 import java.io.Serializable;
-import org.greenrobot.greendao.annotation.Generated;
-import org.greenrobot.greendao.annotation.Property;
 
 /**
  * @author Hankkin
@@ -13,7 +13,7 @@ import org.greenrobot.greendao.annotation.Property;
  */
 @Entity
 public class AccountBean implements Serializable{
-    private static final long serialVersionUID = 6762415309876844914L;
+    private static final long serialVersionUID = 6762415309876848914L;
     @Id
     private long id;
     private int icon;
@@ -49,10 +49,6 @@ public class AccountBean implements Serializable{
     @Generated(hash = 1267506976)
     public AccountBean() {
     }
-
-
-    
-
     public long getId() {
         return this.id;
     }
@@ -113,4 +109,5 @@ public class AccountBean implements Serializable{
     public void setBeizhu(String beizhu) {
         this.beizhu = beizhu;
     }
+
 }

@@ -70,6 +70,7 @@ class AccountListActivity : BaseActivity() {
 
     override fun initData() {
         mPageLayout.showLoading()
+        mAdapter.clear()
         mAdapter.apply {
             mData = DaoFactory.getProtocol(AccountDaoContract::class.java).queryAllAccount()
             addAll(mData)

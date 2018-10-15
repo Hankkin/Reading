@@ -6,8 +6,8 @@ ext {
             minSdkVersion    : 19,
             targetSdkVersion : 25,
 
-            versionCode      : 20180919,
-            versionName      : '2.3.0',
+            versionCode      : 20181015,
+            versionName      : '2.4.0',
             VSupportSdk      : '27.1.1'
     ]
 
@@ -45,7 +45,7 @@ ext {
             "picker-view"              : "com.contrarywind:Android-PickerView:3.2.2",
             "pickerimg"                : "com.github.LuckSiege.PictureSelector:picture_library:v1.5.3",
             "circleimageview"          : "de.hdodenhof:circleimageview:2.2.0",
-            "pickerimg_zhihu"          : "com.zhihu.android:matisse:0.4.3",
+            "pickerimg_zhihu"          : "com.zhihu.android:matisse:0.5.2-beta3",
             "novate"                   : "com.tamic.novate:novate:1.5.2.3",
             "rxbinding"                : "com.jakewharton.rxbinding2:rxbinding:2.0.0",
             "rxpermissions"            : "com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar",

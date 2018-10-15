@@ -17,17 +17,20 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.ActionBarDrawerToggle
 import android.view.Gravity
 import android.view.View
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import com.afollestad.materialdialogs.MaterialDialog
 import com.bilibili.magicasakura.utils.ThemeUtils
+import com.hankkin.library.fuct.decode.ImageUtil
 import com.hankkin.library.utils.*
 import com.hankkin.reading.adapter.MainFragmentAdapter
 import com.hankkin.reading.base.BaseActivity
 import com.hankkin.reading.common.Constant
 import com.hankkin.reading.control.UserControl
 import com.hankkin.reading.event.EventMap
+import com.hankkin.reading.glide.GlideUtils
 import com.hankkin.reading.ui.home.HomeFragment
 import com.hankkin.reading.ui.login.LoginActivity
 import com.hankkin.reading.ui.person.PersonFragment
@@ -40,10 +43,12 @@ import com.hankkin.reading.ui.tools.wordnote.WordNoteActivity
 import com.hankkin.reading.ui.person.MyCollectActivity
 import com.hankkin.reading.utils.*
 import com.tbruyelle.rxpermissions2.RxPermissions
+import com.zhihu.matisse.Matisse
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.layout_drawer_header.*
 
 @SuppressLint("RestrictedApi")
 @RequiresApi(Build.VERSION_CODES.M)
@@ -136,6 +141,14 @@ class MainActivity : BaseActivity() {
             findViewById<LinearLayout>(R.id.ll_nav_collect).setOnClickListener(doubleClick)
             findViewById<LinearLayout>(R.id.ll_nav_wordnote).setOnClickListener(doubleClick)
             findViewById<LinearLayout>(R.id.ll_nav_account).setOnClickListener(doubleClick)
+
+            findViewById<ImageView>(R.id.iv_drawer_header_bg).apply {
+                setOnClickListener{changeHeader()}
+                if (SPUtils.getString(Constant.COMMON.HEADER_BG).isNotEmpty()){
+                    GlideUtils.loadImageView(this@MainActivity,SPUtils.getString(Constant.COMMON.HEADER_BG),this)
+                }
+            }
+
         }
 
     }
@@ -245,6 +258,10 @@ class MainActivity : BaseActivity() {
         }, 200)
     }
 
+    private fun changeHeader() {
+        ViewHelper.selectImg(this)
+    }
+
     private fun changeLogo() {
         if (SPUtils.getInt(Constant.SP_KEY.LOGO) == 0) return
         enableCompont(ThemeHelper.getNameStr(this))
@@ -300,6 +317,16 @@ class MainActivity : BaseActivity() {
             changeTheme()
         } else if (event is EventMap.LoginEvent) {
             setNavHeader()
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == Constant.COMMON.REQUEST_CODE_CHOOSE && resultCode == Activity.RESULT_OK){
+            val uris = Matisse.obtainResult(data)
+            val path = ImageUtil.getImageAbsolutePath(this,uris[0])
+            SPUtils.put(Constant.COMMON.HEADER_BG,path)
+            GlideUtils.loadImageView(this, path,iv_drawer_header_bg)
         }
     }
 }

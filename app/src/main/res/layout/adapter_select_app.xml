@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/ll_adapter_select_app"
+    android:gravity="center_vertical"
+    android:padding="@dimen/dp_10"
+    android:clickable="true"
+    android:background="?attr/selectableItemBackground"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.hankkin.reading.view.ClickImageView
+        android:id="@+id/iv_adapter_select_app_icon"
+        android:src="@mipmap/ic_launcher_round"
+        android:layout_width="40dp"
+        android:layout_height="40dp" />
+
+    <TextView
+        android:textSize="@dimen/sp_13"
+        android:id="@+id/tv_adapter_select_app_name"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:textStyle="bold"
+        style="@style/blackTxt"
+        android:text="Reading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

@@ -1,6 +1,8 @@
 package com.hankkin.reading.utils
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.support.design.widget.BottomSheetDialog
 import android.support.v4.widget.SwipeRefreshLayout
 import android.view.LayoutInflater
@@ -17,6 +19,16 @@ import com.hankkin.library.utils.ToastUtils
 import com.hankkin.reading.R
 import com.hankkin.reading.common.Constant
 import com.hankkin.reading.ui.home.articledetail.CommonWebActivity
+import com.zhihu.matisse.engine.impl.GlideEngine
+import android.content.pm.ActivityInfo
+import android.net.Uri
+import com.zhihu.matisse.filter.Filter.K
+import com.hankkin.reading.MainActivity
+import com.hankkin.reading.common.Constant.COMMON.REQUEST_CODE_CHOOSE
+import com.zhihu.matisse.Matisse
+import com.zhihu.matisse.MimeType
+import com.zhihu.matisse.filter.Filter
+import com.zhihu.matisse.internal.entity.CaptureStrategy
 
 
 /**
@@ -119,7 +131,7 @@ object ViewHelper {
                     findViewById<ImageView>(R.id.iv_about_csdn).setOnClickListener { CommonWebActivity.loadUrl(context, Constant.AboutUrl.CSDN, Constant.AboutUrl.CSDN_TITLE) }
                     val bottomSheet = BottomSheetDialog(context, R.style.BottomSheetDialog)
                     findViewById<TextView>(R.id.tv_about_close).setOnClickListener { bottomSheet.dismiss() }
-                    findViewById<TextView>(R.id.tv_about_rate).setOnClickListener { ToastUtils.showInfo(context, "敬请期待") }
+                    findViewById<TextView>(R.id.tv_about_rate).setOnClickListener { CommonUtils.gradeApp(context) }
                     bottomSheet.setContentView(this)
                     bottomSheet.show()
                 }
@@ -152,5 +164,19 @@ object ViewHelper {
 
         })
     }
+
+    fun selectImg(activity: Activity) {
+        Matisse.from(activity)
+                .choose(MimeType.ofImage())
+                .countable(true)
+                .maxSelectable(1)
+                .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
+                .thumbnailScale(0.85f)
+                .imageEngine(GlideEngine())
+                .forResult(REQUEST_CODE_CHOOSE)
+    }
+
+
+
 
 }

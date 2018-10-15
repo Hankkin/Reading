@@ -13,7 +13,7 @@
         <RelativeLayout
             android:id="@+id/ll_header_bg"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="200dp"
             android:gravity="bottom"
             android:orientation="vertical"
             android:theme="@style/ThemeOverlay.AppCompat.Dark">
@@ -22,7 +22,7 @@
                 android:id="@+id/iv_drawer_header_bg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
                 android:src="@mipmap/bg_drawer_header" />
 
             <LinearLayout

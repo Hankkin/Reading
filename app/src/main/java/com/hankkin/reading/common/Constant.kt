@@ -10,7 +10,9 @@ object Constant {
         const val WEATHER_KEY = "lwfgtgl1hehjy4vd"
         const val DB_NAME = "reading.db"
         const val SP_NAME = "Reading"
+        const val HEADER_BG = "header_bg"
         const val DEFAULT_LOCK_KEY = "a9dhn72ndka9d"
+        const val REQUEST_CODE_CHOOSE = 9999
     }
 
     object AboutUrl {

@@ -24,6 +24,7 @@
     <string name="drawer_pwd">账号本子</string>
     <string name="drawer_about">关于Reading</string>
     <string name="drawer_exit">退出</string>
+    <string name="drawer_select_header">请选择图片</string>
 
     <string name="about_version">版本号</string>
     <string name="about_use">Reading用途</string>
@@ -66,8 +67,8 @@
     <string name="account_cate_email">邮箱</string>
     <string name="account_cate_work">工作</string>
     <string name="account_cate_other">其他</string>
-    <string name="account_add_name_hint">标题  例如微信</string>
-    <string name="account_add_name_input_hint">请输入标题</string>
+    <string name="account_add_name_hint">请选择应用</string>
+    <string name="account_add_name_input_hint">请选择应用</string>
     <string name="account_add_number_hint">账号/ID/邮箱/手机号</string>
     <string name="account_add_number_input_hint">请输入账号</string>
     <string name="account_add_password_hint">密码</string>
@@ -87,6 +88,7 @@
     <string name="account_detail_delete_hint">是否删除该帐号？</string>
     <string name="account_detail_delete_success_hint">已删除</string>
     <string name="account_detail_complete_success_hint">已完成该条TODO</string>
+    <string name="account_add_select_app_search">搜索已安装的应用</string>
 
     <string name="person_title">我的</string>
     <string name="person_no_login">未登录</string>

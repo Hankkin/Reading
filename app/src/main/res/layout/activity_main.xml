@@ -35,11 +35,11 @@
 
     <!--去掉background，会影响4.4系统的状态栏-->
     <android.support.design.widget.NavigationView
+        android:background="@color/white"
         android:id="@+id/nav_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="#F1F3F4"
         android:fitsSystemWindows="true" />
 
 
