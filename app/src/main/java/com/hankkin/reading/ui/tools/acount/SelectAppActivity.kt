@@ -30,7 +30,7 @@ class SelectAppActivity : BaseActivity() {
     override fun initViews(savedInstanceState: Bundle?) {
         setMiuiStatusBar()
         initPageLayout(rv_app_list)
-        mPageLayout.showLoading()
+        mPageLayout?.showLoading()
     }
 
     override fun initData() {
@@ -91,7 +91,7 @@ class SelectAppActivity : BaseActivity() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     mAdapter.addAll(it)
-                    mPageLayout.hide()
+                    mPageLayout?.hide()
                 }
     }
 

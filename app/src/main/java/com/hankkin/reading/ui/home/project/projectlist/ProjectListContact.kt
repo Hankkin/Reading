@@ -10,6 +10,7 @@ import com.hankkin.library.mvp.contract.IPresenterContract
 interface ProjectListContact {
     interface IView : IBaseViewContract {
         fun setCateList(data: ArticleBean)
+        fun setFail()
     }
 
     interface IPresenter : IPresenterContract {

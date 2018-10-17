@@ -2,24 +2,22 @@ package com.hankkin.reading.ui.home.project.projectlist
 
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
+import com.hankkin.library.widget.view.PageLayout
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.AndroidAdapter
 import com.hankkin.reading.adapter.base.XRecyclerView
 import com.hankkin.reading.base.BaseMvpFragment
 import com.hankkin.reading.domain.ArticleBean
-import com.hankkin.reading.domain.BannerBean
 import com.hankkin.reading.domain.CateBean
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.utils.ViewHelper
-import com.stx.xhb.xbanner.XBanner
-import kotlinx.android.synthetic.main.fragment_android.*
-import kotlinx.android.synthetic.main.fragment_hot_list.*
 import kotlinx.android.synthetic.main.fragment_project_list.*
 
 /**
  * Created by huanghaijie on 2018/5/15.
  */
 class ProjectListFragment : BaseMvpFragment<ProjectListPresenter>(), ProjectListContact.IView, SwipeRefreshLayout.OnRefreshListener {
+
 
     private lateinit var mAdapter: AndroidAdapter
 
@@ -38,6 +36,7 @@ class ProjectListFragment : BaseMvpFragment<ProjectListPresenter>(), ProjectList
 
 
     override fun initView() {
+        initPageLayout(refresh_project)
         ViewHelper.setRefreshLayout(context, true, refresh_project, this)
         initXrv()
     }
@@ -47,7 +46,7 @@ class ProjectListFragment : BaseMvpFragment<ProjectListPresenter>(), ProjectList
         getPresenter().getCateList(mPage, cateBean.id)
     }
 
-    fun initXrv() {
+    private fun initXrv() {
         ViewHelper.setRefreshLayout(context, true, refresh_project, this)
         xrv_project.apply {
             mAdapter = AndroidAdapter()
@@ -68,7 +67,7 @@ class ProjectListFragment : BaseMvpFragment<ProjectListPresenter>(), ProjectList
     }
 
 
-    fun setAdapter(data: ArticleBean) {
+    private fun setAdapter(data: ArticleBean) {
 
         mPage = data.curPage
         if (mPage < 2) {
@@ -86,12 +85,22 @@ class ProjectListFragment : BaseMvpFragment<ProjectListPresenter>(), ProjectList
                 refresh_project.isRefreshing = false
             }
         }
-
+        mPageLayout.hide()
     }
 
 
     override fun setCateList(data: ArticleBean) {
         setAdapter(data)
+    }
+
+    override fun setFail() {
+        mPageLayout.showError()
+        mPageLayout.setOnRetryListener(object : PageLayout.OnRetryClickListener{
+            override fun onRetry() {
+                getPresenter().getCateList(mPage, cateBean.id)
+            }
+
+        })
     }
 
     override fun onRefresh() {

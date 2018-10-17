@@ -199,7 +199,6 @@ public class BlinkLayout extends LinearLayout {
         if (destinationBitmap == null) {
             destinationBitmap = createBitmap(getWidth(), getHeight());
         }
-
         return destinationBitmap;
     }
 

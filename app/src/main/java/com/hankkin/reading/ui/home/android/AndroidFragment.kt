@@ -2,7 +2,6 @@ package com.hankkin.reading.ui.home.android
 
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
-import com.hankkin.library.utils.AppUtils
 import com.hankkin.library.utils.ToastUtils
 import com.hankkin.library.widget.view.PageLayout
 import com.hankkin.reading.R
@@ -29,7 +28,9 @@ class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IVie
     }
 
     override fun initView() {
+        initPageLayout(xrv_android)
         ViewHelper.setRefreshLayout(context, true, refresh_android, this)
+        initXrv()
     }
 
 
@@ -38,7 +39,6 @@ class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IVie
     }
 
     override fun initData() {
-        initXrv()
         loadData(mPage)
     }
 
@@ -68,7 +68,12 @@ class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IVie
             isEnabled = true
         }
         xrv_android.refreshComplete()
-        context?.let { ToastUtils.showError(it, "网络异常...") }
+        mPageLayout.showError()
+        mPageLayout.setOnRetryListener(object : PageLayout.OnRetryClickListener{
+            override fun onRetry() {
+                loadData(mPage)
+            }
+        })
     }
 
     fun loadData(page: Int) {
@@ -101,6 +106,7 @@ class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IVie
         if (refresh_android.isRefreshing) {
             refresh_android.isRefreshing = false
         }
+        mPageLayout.hide()
     }
 
     override fun cancelCollectResult(id: Int) {

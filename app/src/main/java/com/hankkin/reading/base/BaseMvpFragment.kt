@@ -9,7 +9,10 @@ import android.view.ViewGroup
 import com.hankkin.reading.event.EventMap
 import com.hankkin.library.mvp.contract.IPresenterContract
 import com.hankkin.library.mvp.view.MvpFragment
+import com.hankkin.library.utils.AppUtils
 import com.hankkin.library.utils.RxBusTools
+import com.hankkin.library.widget.view.PageLayout
+import com.hankkin.reading.R
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.Consumer
 
@@ -27,7 +30,11 @@ abstract class BaseMvpFragment<out T : IPresenterContract> : MvpFragment<T>() {
     private var isInitView = false
 
     private var isFirstLoad = true
+
     var disposables = CompositeDisposable()
+
+    protected lateinit var mPageLayout: PageLayout
+
 
 
     override fun onAttach(context: Context?) {
@@ -45,6 +52,14 @@ abstract class BaseMvpFragment<out T : IPresenterContract> : MvpFragment<T>() {
         return inflater.inflate(getLayoutId(), container, false)
     }
 
+    protected fun initPageLayout(targetView: Any){
+        mPageLayout = PageLayout.Builder(context!!)
+                .initPage(targetView)
+                .setDefaultEmptyText(resources.getString(R.string.pagelayout_empty))
+                .setDefaultErrorText(resources.getString(R.string.pagelayout_error))
+                .setDefaultLoadingBlinkText(AppUtils.getAppName(this.context!!)!!)
+                .create()
+    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

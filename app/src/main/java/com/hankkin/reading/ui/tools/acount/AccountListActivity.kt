@@ -69,7 +69,7 @@ class AccountListActivity : BaseActivity() {
     }
 
     override fun initData() {
-        mPageLayout.showLoading()
+        mPageLayout?.showLoading()
         mAdapter.clear()
         mAdapter.apply {
             mData = DaoFactory.getProtocol(AccountDaoContract::class.java).queryAllAccount()
@@ -78,10 +78,10 @@ class AccountListActivity : BaseActivity() {
         }
         if (mData == null || mData!!.size == 0) {
             ToastUtils.showInfo(this, resources.getString(R.string.account_no_data_hint))
-            mPageLayout.showEmpty()
+            mPageLayout?.showEmpty()
         }
         else{
-            mPageLayout.hide()
+            mPageLayout?.hide()
         }
     }
 

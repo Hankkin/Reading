@@ -6,15 +6,14 @@ import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Gravity
 import com.afollestad.materialdialogs.MaterialDialog
+import com.hankkin.library.utils.RxBusTools
 import com.hankkin.library.utils.ToastUtils
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.WordNoteAdapter
 import com.hankkin.reading.base.BaseActivity
-import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.dao.DaoFactory
+import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.ui.tools.translate.TranslateActivity
-import com.hankkin.library.utils.RxBusTools
-import com.hankkin.reading.utils.MyStatusBarUtil
 import com.hankkin.reading.utils.SnackbarUtils
 import com.hankkin.reading.utils.ThemeHelper
 import com.hankkin.reading.utils.ViewHelper
@@ -85,14 +84,14 @@ class WordNoteActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
     }
 
     private fun setAdapter() {
-        mPageLayout.showLoading()
+        mPageLayout?.showLoading()
         mAdapter.clear()
         mAdapter.addAll(DaoFactory.getProtocol(WordNoteDaoContract::class.java).queryWordNotes())
         mAdapter.notifyDataSetChanged()
         if (mAdapter.data.size == 0) {
-            mPageLayout.showEmpty()
+            mPageLayout?.showEmpty()
         } else {
-            mPageLayout.hide()
+            mPageLayout?.hide()
         }
         refresh_word_note.isRefreshing = false
     }

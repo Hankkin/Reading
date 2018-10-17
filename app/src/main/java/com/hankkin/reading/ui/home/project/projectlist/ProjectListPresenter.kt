@@ -17,6 +17,8 @@ class ProjectListPresenter : RxLifePresenter<ProjectListContact.IView>(), Projec
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeNx ({
                     getMvpView().setCateList(it.data)
+                },{
+                    getMvpView().setFail()
                 }).bindRxLifeEx(RxLife.ON_DESTROY)
     }
 
