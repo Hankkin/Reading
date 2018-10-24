@@ -80,9 +80,7 @@ class MainActivity : BaseActivity() {
         return true
     }
 
-    override fun isSupportSwipeBack(): Boolean {
-        return false
-    }
+    override fun isSupportSwipeBack() = true
 
 
     override fun initData() {

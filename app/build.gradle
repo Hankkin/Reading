@@ -67,7 +67,6 @@ dependencies {
     implementation rootProject.ext.dependencies["PersistentCookieJar"]
     implementation rootProject.ext.dependencies["agentweb"]
     implementation rootProject.ext.dependencies["pickerimg_zhihu"]
-    implementation rootProject.ext.dependencies["VegaLayoutManager"]
     //materialdialog
     implementation('com.github.afollestad.material-dialogs:core:0.8.5.8@aar') {
         transitive = true
