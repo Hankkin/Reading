@@ -8,6 +8,7 @@ import com.hankkin.reading.adapter.base.XRecyclerView
 import com.hankkin.reading.base.BaseMvpFragment
 import com.hankkin.reading.domain.WxArticleBean
 import com.hankkin.reading.domain.WxArticleListBean
+import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.utils.ViewHelper
 import kotlinx.android.synthetic.main.fragment_wxarticle_list.*
 
@@ -19,8 +20,11 @@ class WxArticleListFragment : BaseMvpFragment<WxArticleListPresenter>(), WxArtic
     private lateinit var mAdapter: WxArticleListAdapter
     private lateinit var wxArticleListBean: WxArticleBean
     private var mPage: Int = 1
+    private var mIndex: Int? = 0
 
     override fun registerPresenter() = WxArticleListPresenter::class.java
+
+    override fun isHasBus() = true
 
     override fun getLayoutId(): Int {
         return R.layout.fragment_wxarticle_list
@@ -33,6 +37,7 @@ class WxArticleListFragment : BaseMvpFragment<WxArticleListPresenter>(), WxArtic
     }
 
     override fun initData() {
+        mIndex = arguments?.getInt("index")
         wxArticleListBean = (arguments?.getSerializable("bean")) as WxArticleBean
         getPresenter().getWxArticleList(wxArticleListBean.id,mPage)
     }
@@ -80,6 +85,12 @@ class WxArticleListFragment : BaseMvpFragment<WxArticleListPresenter>(), WxArtic
         refresh_wx_list.isRefreshing = true
         mPage = 0
         getPresenter().getWxArticleList(wxArticleListBean.id,mPage)
+    }
+
+    override fun onEvent(event: EventMap.BaseEvent) {
+        if (event is EventMap.XrvScollToPosEvent && event.index == mIndex){
+            xrv_wx_list.smoothScrollToPosition(0)
+        }
     }
 
 }

@@ -1,19 +1,20 @@
 package com.hankkin.reading.ui.wxarticle
 
 import android.os.Bundle
+import android.os.Handler
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
+import android.view.View
+import com.hankkin.library.fuct.common.DoubleClickListener
+import com.hankkin.library.utils.RxBusTools
+import com.hankkin.library.utils.ToastUtils
 import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseMvpFragment
-import com.hankkin.reading.domain.CateBean
 import com.hankkin.reading.domain.WxArticleBean
-import com.hankkin.reading.ui.home.project.ProjectFragment
-import com.hankkin.reading.ui.home.project.projectlist.ProjectListFragment
-import com.hankkin.reading.ui.todo.ToDoListFragment
+import com.hankkin.reading.event.EventMap
 import com.kekstudio.dachshundtablayout.indicators.PointMoveIndicator
-import kotlinx.android.synthetic.main.fragment_project.*
 import kotlinx.android.synthetic.main.fragment_wxarticle.*
 
 /**
@@ -28,11 +29,18 @@ class WxArticleFragment : BaseMvpFragment<WxArticlePresenter>(), WxArticleContac
     override fun registerPresenter() = WxArticlePresenter::class.java
 
     override fun initView() {
-        getPresenter().getWxTabs()
+        toobar_wx.setOnClickListener(object : DoubleClickListener(){
+            override fun onDoubleClick(v: View?) {
+                RxBusTools.getDefault().post(EventMap.XrvScollToPosEvent(vp_wx.currentItem))
+            }
+        })
     }
 
     override fun initData() {
-
+        Handler().postDelayed({
+            ToastUtils.showTarget(context!!,resources.getString(R.string.double_click_to_top),ll_wx_top)
+        },1000)
+        getPresenter().getWxTabs()
     }
 
     override fun setTabs(data: MutableList<WxArticleBean>) {

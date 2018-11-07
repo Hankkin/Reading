@@ -86,6 +86,7 @@ object EventMap {
     class DeleteToDoEvent(val id: Int) : BaseEvent()
     class UpdateAccountListEvent : BaseEvent()
     class WifiImgEvent : BaseEvent()
+    class XrvScollToPosEvent(val index: Int) : BaseEvent()
     class SelectAppEvent(val bean: AppInfo) : BaseEvent()
     class SearchHistoryDeleteEvent(val position:Int) : BaseEvent()
 

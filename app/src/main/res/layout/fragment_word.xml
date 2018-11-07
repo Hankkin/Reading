@@ -57,22 +57,25 @@
         android:layout_height="@dimen/title_bar_height"
         android:background="@color/theme_color_primary" />
 
-    <EditText
-        android:id="@+id/et_tools_search"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/title_bar_height"
+
+
+    <android.support.v7.widget.CardView
         android:layout_marginBottom="@dimen/dp_10"
-        android:layout_marginLeft="@dimen/dp_10"
         android:layout_marginRight="@dimen/dp_10"
-        android:layout_marginTop="-20dp"
-        android:background="@drawable/bg_white_circle"
-        android:drawablePadding="@dimen/dp_8"
-        android:drawableStart="@mipmap/icon_search_grey"
-        android:hint="@string/translate_search_hint"
-        android:imeOptions="actionSearch"
-        android:paddingLeft="@dimen/dp_10"
-        android:singleLine="true"
-        android:textSize="@dimen/sp_14" />
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginTop="-30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/dp_6">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_tools"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_10" />
+
+    </android.support.v7.widget.CardView>
+
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -84,24 +87,10 @@
             android:orientation="vertical">
 
             <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dp_14"
-                app:cardCornerRadius="@dimen/dp_6">
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_tools"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/dp_10" />
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
                 android:id="@+id/card_word_every"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dp_14"
+                android:layout_margin="@dimen/dp_10"
                 app:cardCornerRadius="@dimen/dp_6">
 
                 <LinearLayout
@@ -122,6 +111,34 @@
 
                 </LinearLayout>
             </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_10"
+                android:background="?attr/selectableItemBackground"
+                app:cardCornerRadius="@dimen/dp_6">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/xrv_tools_lisy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbarAlwaysDrawVerticalTrack="true"
+                    android:scrollbarFadeDuration="1"
+                    android:scrollbarSize="4dp"
+                    android:scrollbars="vertical" />
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                android:layout_marginTop="@dimen/dp_20"
+                android:textSize="@dimen/sp_14"
+                android:padding="@dimen/dp_10"
+                android:layout_gravity="bottom"
+                android:id="@+id/tv_tools_version"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>

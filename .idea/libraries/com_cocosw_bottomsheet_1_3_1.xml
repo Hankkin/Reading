@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="com.cocosw:bottomsheet-1.3.1">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../gradle-4.1/caches/transforms-1/files-1.1/bottomsheet-1.3.1.aar/bb5c2b725dc79fd33018a289db272f4f/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/../gradle-4.1/caches/transforms-1/files-1.1/bottomsheet-1.3.1.aar/bb5c2b725dc79fd33018a289db272f4f/res" />
+      <root url="file://$PROJECT_DIR$/../gradle-4.1/caches/transforms-1/files-1.1/bottomsheet-1.3.1.aar/1055985ff76c554f30443b50068bdadb/res" />
+      <root url="jar://$PROJECT_DIR$/../gradle-4.1/caches/transforms-1/files-1.1/bottomsheet-1.3.1.aar/1055985ff76c554f30443b50068bdadb/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

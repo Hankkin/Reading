@@ -65,15 +65,15 @@ class MainActivity : BaseActivity() {
         private const val DICTIONARY_INDEX = 0
         private const val TODO_INDEX = 1
         private const val TRANSLATE_INDEX = 2
-        private const val PERSON_INDEX = 3
+//        private const val PERSON_INDEX = 3
     }
 
 
     private val fgList = listOf<Fragment>(
             HomeFragment(),
             WxArticleFragment(),
-            ToolsFragment(),
-            PersonFragment()
+            ToolsFragment()
+//            PersonFragment()
     )
 
     override fun getLayoutId(): Int {
@@ -136,14 +136,14 @@ class MainActivity : BaseActivity() {
     fun initNavView() {
         nav_view.inflateHeaderView(R.layout.layout_drawer_header)
         nav_view.getHeaderView(0)?.run {
-            findViewById<LinearLayout>(R.id.ll_nav_theme).setOnClickListener(doubleClick)
-            findViewById<LinearLayout>(R.id.ll_nav_setting).setOnClickListener(doubleClick)
-            findViewById<LinearLayout>(R.id.ll_nav_exit).setOnClickListener(doubleClick)
-            findViewById<LinearLayout>(R.id.ll_nav_about).setOnClickListener(doubleClick)
-            findViewById<LinearLayout>(R.id.ll_nav_collect).setOnClickListener(doubleClick)
-            findViewById<LinearLayout>(R.id.ll_nav_wordnote).setOnClickListener(doubleClick)
-            findViewById<LinearLayout>(R.id.ll_nav_account).setOnClickListener(doubleClick)
-            findViewById<LinearLayout>(R.id.ll_nav_todo).setOnClickListener(doubleClick)
+            findViewById<LinearLayout>(R.id.ll_nav_theme).setOnClickListener(click)
+            findViewById<LinearLayout>(R.id.ll_nav_setting).setOnClickListener(click)
+            findViewById<LinearLayout>(R.id.ll_nav_exit).setOnClickListener(click)
+            findViewById<LinearLayout>(R.id.ll_nav_about).setOnClickListener(click)
+            findViewById<LinearLayout>(R.id.ll_nav_collect).setOnClickListener(click)
+            findViewById<LinearLayout>(R.id.ll_nav_wordnote).setOnClickListener(click)
+            findViewById<LinearLayout>(R.id.ll_nav_account).setOnClickListener(click)
+            findViewById<LinearLayout>(R.id.ll_nav_todo).setOnClickListener(click)
 
             findViewById<ImageView>(R.id.iv_drawer_header_bg).apply {
                 setOnClickListener { changeHeader() }
@@ -179,10 +179,10 @@ class MainActivity : BaseActivity() {
                 setTabColor(TRANSLATE_INDEX)
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_person -> {
-                setTabColor(PERSON_INDEX)
-                return@OnNavigationItemSelectedListener true
-            }
+//            R.id.navigation_person -> {
+//                setTabColor(PERSON_INDEX)
+//                return@OnNavigationItemSelectedListener true
+//            }
         }
         false
     }
@@ -198,7 +198,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun clearTabColor() {
-        for (i in 0..3
+        for (i in 0 until fgList.size
         ) {
             ((navigation.getChildAt(0) as BottomNavigationMenuView)
                     .getChildAt(i) as BottomNavigationItemView).setTextColor(resources.getColorStateList(R.color.grey))
@@ -240,7 +240,7 @@ class MainActivity : BaseActivity() {
     }
 
 
-    private val doubleClick = View.OnClickListener { v ->
+    private val click = View.OnClickListener { v ->
         drawer_layout.closeDrawer(Gravity.START)
         drawer_layout.postDelayed({
             when (v.id) {

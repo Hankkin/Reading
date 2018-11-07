@@ -9,6 +9,7 @@
     android:orientation="vertical">
 
         <com.bilibili.magicasakura.widgets.TintToolbar
+            android:id="@+id/toobar_wx"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_40"
             android:background="@color/theme_color_primary"
@@ -31,6 +32,7 @@
         </com.bilibili.magicasakura.widgets.TintToolbar>
 
         <com.bilibili.magicasakura.widgets.TintLinearLayout
+            android:id="@+id/ll_wx_top"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:background="@color/theme_color_primary">

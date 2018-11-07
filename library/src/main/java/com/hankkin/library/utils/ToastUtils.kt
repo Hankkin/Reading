@@ -1,6 +1,7 @@
 package com.hankkin.library.utils
 
 import android.content.Context
+import android.view.View
 import com.hankkin.library.R
 import com.hankkin.library.widget.toasty.Toasty
 
@@ -9,40 +10,51 @@ import com.hankkin.library.widget.toasty.Toasty
  */
 object ToastUtils{
 
-    fun init(context: Context) {
-        Toasty.Config.getInstance().setErrorColor(context.resources.getColor(R.color.md_color_red))
-                .setInfoColor(context.resources.getColor(R.color.deep_transparent))
-                .setSuccessColor(context.resources.getColor(R.color.md_color_green))
-                .setWarningColor(context.resources.getColor(R.color.md_color_pink))
-                .apply()
-    }
-
-    fun init(context: Context,infoColor: Int) {
-        Toasty.Config.getInstance().setErrorColor(context.resources.getColor(R.color.md_color_red))
-                .setInfoColor(infoColor)
-                .setSuccessColor(context.resources.getColor(R.color.md_color_green))
-                .setWarningColor(context.resources.getColor(R.color.md_color_pink))
-                .apply()
-    }
-
     fun showToast(context: Context,str: String){
-        Toasty.normal(context,str).show()
+        Toasty.normal(context)
+                .text(str)
+                .show()
+    }
+
+    fun showTarget(context: Context,str: String,target: View){
+        Toasty.info(context)
+                .text(str)
+                .showIcon(false)
+                .target(target)
+                .animate(true)
+                .offsetY(20)
+                .show()
     }
 
     fun showSuccess(context: Context,str: String){
-        Toasty.success(context,str).show()
+        Toasty.success(context).
+                text(str)
+                .show()
     }
 
     fun showInfo(context: Context,str: String){
-        Toasty.info(context,str).show()
+        Toasty.info(context)
+                .text(str)
+                .show()
+    }
+
+    fun showInfoTarget(context: Context,str: String,target: View){
+        Toasty.info(context)
+                .text(str)
+                .target(target)
+                .animate(true)
+                .show()
     }
 
     fun showError(context: Context,str: String){
-        Toasty.error(context,str).show()
+        Toasty.error(context)
+                .text(str).show()
     }
 
     fun showWarning(context: Context,str: String){
-        Toasty.warning(context,str)
+        Toasty.warning(context)
+                .text(str)
+                .show()
     }
 
 }

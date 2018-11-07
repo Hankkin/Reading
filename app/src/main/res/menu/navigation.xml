@@ -13,12 +13,12 @@
 
     <item
         android:id="@+id/navigation_tran"
-        android:icon="@mipmap/tab_word"
-        android:title="@string/title_translate" />
-
-    <item
-        android:id="@+id/navigation_person"
         android:icon="@drawable/home_person_selector"
         android:title="@string/title_person" />
+
+    <!--<item-->
+        <!--android:id="@+id/navigation_person"-->
+        <!--android:icon="@drawable/home_person_selector"-->
+        <!--android:title="@string/title_person" />-->
 
 </menu>
