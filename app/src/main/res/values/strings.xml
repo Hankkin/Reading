@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Reading</string>
     <string name="title_home">首页</string>
+    <string name="title_wxarticle">公众号</string>
     <string name="title_todo">TODO</string>
     <string name="title_done">DONE</string>
     <string name="title_translate">工作台</string>

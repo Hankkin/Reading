@@ -17,12 +17,6 @@ import kotlinx.android.synthetic.main.fragment_project.*
  */
 class ProjectFragment : BaseMvpFragment<ProjectPresenter>(), ProjectContact.IView {
 
-    public fun newInstance(index: Int) {
-        val fragment = ProjectFragment()
-        val args = Bundle()
-        args.putInt("index", index)
-        fragment.arguments = args
-    }
 
     override fun getLayoutId(): Int {
         return R.layout.fragment_project

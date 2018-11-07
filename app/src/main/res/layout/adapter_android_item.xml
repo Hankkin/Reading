@@ -21,11 +21,11 @@
             android:layout_height="wrap_content">
 
             <TextView
+                style="@style/greyTxt"
                 android:id="@+id/tv_adapter_android_author"
-                style="@style/normalTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold" />
+                 />
 
             <com.bilibili.magicasakura.widgets.TintTextView
                 android:id="@+id/tv_adapter_android_chapter"
@@ -43,6 +43,7 @@
             android:orientation="horizontal">
 
             <TextView
+                style="@style/normalTxt"
                 android:id="@+id/tv_adapter_android_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -70,6 +71,7 @@
             android:layout_marginTop="@dimen/dp_10">
 
             <LinearLayout
+                android:layout_centerVertical="true"
                 android:id="@+id/ll_adapter_android_tags"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -78,6 +80,7 @@
             </LinearLayout>
 
             <com.bilibili.magicasakura.widgets.TintImageView
+                android:layout_centerVertical="true"
                 android:id="@+id/iv_adapter_android_collected"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -88,6 +91,7 @@
                 app:imageTint="@color/theme_color_primary" />
 
             <ImageView
+                android:layout_centerVertical="true"
                 android:id="@+id/iv_adapter_android_collect_normal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -96,11 +100,12 @@
                 android:src="@mipmap/icon_collect_normal" />
 
             <TextView
+                android:layout_centerVertical="true"
                 android:id="@+id/tv_adapter_android_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:textSize="@dimen/sp_13" />
+                style="@style/greyTxt" />
         </RelativeLayout>
     </LinearLayout>
 

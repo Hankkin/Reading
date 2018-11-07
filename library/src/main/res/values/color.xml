@@ -50,5 +50,6 @@
     <color name="colorProgressGradientEnd">#1ae8ff</color>
     <color name="blink_color">#b1b1b1</color>
     <color name="shimmer_color">#a2878787</color>
+    <color name="grey_text">#C3C4D1</color>
 
 </resources>

@@ -54,7 +54,7 @@ class HomeFragment : BaseFragment() {
         val mAdapter = HomeFragmentPagerAdapter(childFragmentManager,mFgList )
         vp_home.run {
             adapter = mAdapter
-            offscreenPageLimit = 2
+            offscreenPageLimit = 3
             addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
                 override fun onPageScrollStateChanged(p0: Int) {
                 }
@@ -114,17 +114,14 @@ class HomeFragment : BaseFragment() {
         when (index) {
             0 -> {
                 isOne = true
-                fab_menu_add.visibility = View.VISIBLE
                 appbar.elevation = 1f
             }
             1 -> {
                 isTwo = true
-                fab_menu_add.visibility = View.GONE
                 appbar.elevation = 0f
             }
             2 -> {
                 isThree = true
-                fab_menu_add.visibility = View.GONE
                 appbar.elevation = 0f
             }
         }

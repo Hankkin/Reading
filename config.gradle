@@ -6,8 +6,8 @@ ext {
             minSdkVersion    : 19,
             targetSdkVersion : 25,
 
-            versionCode      : 20181015,
-            versionName      : '2.4.0',
+            versionCode      : 20181107,
+            versionName      : '3.0.0',
             VSupportSdk      : '27.1.1'
     ]
 

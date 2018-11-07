@@ -24,7 +24,10 @@ import android.widget.Toast
 import com.afollestad.materialdialogs.MaterialDialog
 import com.bilibili.magicasakura.utils.ThemeUtils
 import com.hankkin.library.fuct.decode.ImageUtil
-import com.hankkin.library.utils.*
+import com.hankkin.library.utils.LogUtils
+import com.hankkin.library.utils.RxBusTools
+import com.hankkin.library.utils.SPUtils
+import com.hankkin.library.utils.ToastUtils
 import com.hankkin.reading.adapter.MainFragmentAdapter
 import com.hankkin.reading.base.BaseActivity
 import com.hankkin.reading.common.Constant
@@ -33,14 +36,15 @@ import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.glide.GlideUtils
 import com.hankkin.reading.ui.home.HomeFragment
 import com.hankkin.reading.ui.login.LoginActivity
+import com.hankkin.reading.ui.person.MyCollectActivity
 import com.hankkin.reading.ui.person.PersonFragment
 import com.hankkin.reading.ui.person.SettingActivity
 import com.hankkin.reading.ui.person.ThemeActivity
-import com.hankkin.reading.ui.todo.ToDoFragment
+import com.hankkin.reading.ui.todo.ToDoActivity
 import com.hankkin.reading.ui.tools.ToolsFragment
 import com.hankkin.reading.ui.tools.acount.AccountListActivity
 import com.hankkin.reading.ui.tools.wordnote.WordNoteActivity
-import com.hankkin.reading.ui.person.MyCollectActivity
+import com.hankkin.reading.ui.wxarticle.WxArticleFragment
 import com.hankkin.reading.utils.*
 import com.tbruyelle.rxpermissions2.RxPermissions
 import com.zhihu.matisse.Matisse
@@ -67,7 +71,7 @@ class MainActivity : BaseActivity() {
 
     private val fgList = listOf<Fragment>(
             HomeFragment(),
-            ToDoFragment(),
+            WxArticleFragment(),
             ToolsFragment(),
             PersonFragment()
     )
@@ -139,11 +143,12 @@ class MainActivity : BaseActivity() {
             findViewById<LinearLayout>(R.id.ll_nav_collect).setOnClickListener(doubleClick)
             findViewById<LinearLayout>(R.id.ll_nav_wordnote).setOnClickListener(doubleClick)
             findViewById<LinearLayout>(R.id.ll_nav_account).setOnClickListener(doubleClick)
+            findViewById<LinearLayout>(R.id.ll_nav_todo).setOnClickListener(doubleClick)
 
             findViewById<ImageView>(R.id.iv_drawer_header_bg).apply {
-                setOnClickListener{changeHeader()}
-                if (SPUtils.getString(Constant.COMMON.HEADER_BG).isNotEmpty()){
-                    GlideUtils.loadImageView(this@MainActivity,SPUtils.getString(Constant.COMMON.HEADER_BG),this)
+                setOnClickListener { changeHeader() }
+                if (SPUtils.getString(Constant.COMMON.HEADER_BG).isNotEmpty()) {
+                    GlideUtils.loadImageView(this@MainActivity, SPUtils.getString(Constant.COMMON.HEADER_BG), this)
                 }
             }
 
@@ -252,6 +257,7 @@ class MainActivity : BaseActivity() {
                 R.id.ll_nav_exit -> finish()
                 R.id.ll_nav_wordnote -> startActivity(Intent(this@MainActivity, WordNoteActivity::class.java))
                 R.id.ll_nav_account -> startActivity(Intent(this@MainActivity, AccountListActivity::class.java))
+                R.id.ll_nav_todo -> startActivity(Intent(this@MainActivity, ToDoActivity::class.java))
             }
         }, 200)
     }
@@ -320,11 +326,11 @@ class MainActivity : BaseActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == Constant.COMMON.REQUEST_CODE_CHOOSE && resultCode == Activity.RESULT_OK){
+        if (requestCode == Constant.COMMON.REQUEST_CODE_CHOOSE && resultCode == Activity.RESULT_OK) {
             val uris = Matisse.obtainResult(data)
-            val path = ImageUtil.getImageAbsolutePath(this,uris[0])
-            SPUtils.put(Constant.COMMON.HEADER_BG,path)
-            GlideUtils.loadImageView(this, path,iv_drawer_header_bg)
+            val path = ImageUtil.getImageAbsolutePath(this, uris[0])
+            SPUtils.put(Constant.COMMON.HEADER_BG, path)
+            GlideUtils.loadImageView(this, path, iv_drawer_header_bg)
         }
     }
 }

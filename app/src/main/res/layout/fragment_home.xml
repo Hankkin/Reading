@@ -97,7 +97,6 @@
         android:paddingLeft="10dp"
         fab:menu_labels_ellipsize="end"
         fab:menu_labels_singleLine="true"
-        fab:menu_backgroundColor="#99ffffff"
         fab:menu_colorNormal="@color/theme_color_primary"
         fab:menu_colorPressed="@color/theme_color_primary"
         fab:menu_colorRipple="@color/theme_color_primary"

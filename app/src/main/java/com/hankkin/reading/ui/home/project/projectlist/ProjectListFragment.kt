@@ -17,10 +17,7 @@ import kotlinx.android.synthetic.main.fragment_project_list.*
  * Created by huanghaijie on 2018/5/15.
  */
 class ProjectListFragment : BaseMvpFragment<ProjectListPresenter>(), ProjectListContact.IView, SwipeRefreshLayout.OnRefreshListener {
-
-
     private lateinit var mAdapter: AndroidAdapter
-
     private lateinit var cateBean: CateBean
     private var mPage: Int = 0
 
@@ -61,14 +58,12 @@ class ProjectListFragment : BaseMvpFragment<ProjectListPresenter>(), ProjectList
 
                 override fun onRefresh() {
                 }
-
             })
         }
     }
 
 
     private fun setAdapter(data: ArticleBean) {
-
         mPage = data.curPage
         if (mPage < 2) {
             xrv_project.scrollToPosition(0)

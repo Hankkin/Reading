@@ -25,6 +25,10 @@
         <item name="android:textColor">@color/normal_txt</item>
         <item name="android:textSize">@dimen/sp_16</item>
     </style>
+    <style name="greyTxt">
+        <item name="android:textColor">@color/grey_text</item>
+        <item name="android:textSize">@dimen/sp_13</item>
+    </style>
 
     <style name="normalTxtBig">
         <item name="android:textColor">@color/normal_txt</item>

@@ -55,6 +55,7 @@
                 />
         </com.bilibili.magicasakura.widgets.TintLinearLayout>
         <android.support.v4.view.ViewPager
+            android:background="@color/white"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:id="@+id/vp_todo"
             android:layout_width="match_parent"

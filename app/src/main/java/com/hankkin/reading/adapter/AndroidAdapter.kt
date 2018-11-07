@@ -40,7 +40,7 @@ class AndroidAdapter : BaseRecyclerViewAdapter<ArticleDetailBean>() {
         val tvChapter by lazy { itemView.findViewById<TextView>(R.id.tv_adapter_android_chapter) }
         val tvTime by lazy { itemView.findViewById<TextView>(R.id.tv_adapter_android_time) }
         val ivPic by lazy { itemView.findViewById<ImageView>(R.id.iv_adapter_android_pic) }
-        val llTags by lazy { itemView.findViewById<LinearLayout>(R.id.ll_adapter_android_tags) }
+        val llTags: LinearLayout by lazy { itemView.findViewById<LinearLayout>(R.id.ll_adapter_android_tags) }
         val ivCollect by lazy { itemView.findViewById<ImageView>(R.id.iv_adapter_android_collect_normal) }
         val ivCollected by lazy { itemView.findViewById<TintImageView>(R.id.iv_adapter_android_collected) }
         val ll by lazy { itemView.findViewById<LinearLayout>(R.id.ll_adapter_android) }

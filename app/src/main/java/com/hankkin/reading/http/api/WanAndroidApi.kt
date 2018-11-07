@@ -125,4 +125,16 @@ interface WanAndroidApi {
     @POST("lg/todo/listdone/{cate}/json/{page}")
     fun listDone(@Path("cate") cate: Int, @Path("page") page: Int): Observable<BaseResponse<DoneBean>>
 
+    /**
+     * 公众号tab
+     */
+    @GET("wxarticle/chapters/json")
+    fun getWxChapters(): Observable<BaseResponse<MutableList<WxArticleBean>>>
+
+    /**
+     * 公众号历史数据
+     */
+    @GET("wxarticle/list/{id}/{page}/json")
+    fun getWxList(@Path("id") id: Int,@Path("page") page: Int): Observable<BaseResponse<WxArticleListBean>>
+
 }

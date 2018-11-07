@@ -5,6 +5,7 @@
     android:paddingLeft="@dimen/dp_4"
     android:paddingRight="@dimen/dp_4"
     android:paddingTop="1dp"
+    android:textSize="@dimen/sp_12"
     android:textColor="@color/theme_color_primary"
     android:paddingBottom="1dp"
     android:background="@drawable/bg_border_theme_round"

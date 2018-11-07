@@ -8,8 +8,8 @@
 
     <item
         android:id="@+id/navigation_todo"
-        android:icon="@mipmap/tab_todo"
-        android:title="@string/title_todo" />
+        android:icon="@mipmap/tab_wx"
+        android:title="@string/title_wxarticle" />
 
     <item
         android:id="@+id/navigation_tran"

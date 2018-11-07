@@ -29,9 +29,6 @@ class ToDoFragment : BaseFragment() {
                 AddToDoActivity::class.java
             } else { LoginActivity::class.java }))
         }
-    }
-
-    override fun initData() {
         val temp = mutableListOf<String>("Only One", "Work", "Study", "Life")
         val adapter = PageAdapter(childFragmentManager, temp)
         vp_todo.adapter = adapter
@@ -39,6 +36,10 @@ class ToDoFragment : BaseFragment() {
         val indicator = DachshundIndicator(tab_todo)
         tab_todo.animatedIndicator = indicator
         vp_todo.offscreenPageLimit = temp.size
+    }
+
+    override fun initData() {
+
     }
 
 
