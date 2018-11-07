@@ -201,10 +201,14 @@ class ToolsFragment : BaseMvpFragment<ToolsContract.IPresenter>(), ToolsContract
         if (event is EventMap.UpdateEveryEvent) {
             setEveryWord()
         } else if (event is EventMap.LoginEvent) {
-            setSetting()
             mAdapter.apply {
                 add(PersonListBean(R.mipmap.icon_person_set_exit, resources.getString(R.string.person_info_logout)))
                 mAdapter.notifyDataSetChanged()
+                if (UserControl.isLogin()) {
+                    tv_tools_title.text = "Hi,${UserControl.getCurrentUser()?.username}"
+                } else {
+                    tv_tools_title.text = "Hi,小猿猿"
+                }
             }
         } else if (event is EventMap.PersonClickEvent) {
             when (event.index) {

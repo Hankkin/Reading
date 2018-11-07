@@ -1,7 +1,7 @@
 # Reading
 
 ## 简介
- Reading: Reading是一款基于WanAndroid OpenApi开发的阅读类工具，如果你是一个热衷于Android开发者，那么这款软件能帮助你阅读精品Android文章。同时Reading中还包含"英文单词"、"账号本子"、"天气"、"查单词"、"快递查询"等小工具。项目基于"Kotlin+MVP"架构开发，风格大概也许属于Material Desgin原质化风格，包含主题颜色切换、百变Logo、等功能。在此感谢WanAndroid的OpenApi,以及其它开源项目的贡献。
+ Reading: Reading是一款基于WanAndroid OpenApi开发的阅读类工具，如果你是一个热衷于Android开发者，那么这款软件能帮助你阅读精品Android文章。同时Reading中还包含"英文单词"、"账号本子"、"天气"、"查单词"等小工具。项目基于"Kotlin+MVP"架构开发，风格大概也许属于Material Desgin原质化风格，包含主题颜色切换、百变Logo、等功能。在此感谢WanAndroid的OpenApi,以及其它开源项目的贡献。
  
 ## ScreenShot
 
@@ -42,7 +42,6 @@
 - **收藏列表**
 
 #### 2.工作台
-- **快递查询** 使用快递100免费API进行快递查询
 - **扫一扫** 快速扫一扫、从相册选择扫一扫
 - **查询单词** 使用有道SDK查询单词 加入单词本
 - **单词本** 单词本记录功能 标记重点
@@ -85,6 +84,14 @@
 - **手势解锁** 参考[Github-ihsg/PatternLocker](https://github.com/ihsg/PatternLocker)
 
 ## Version
+
+### V3.0.0
+
+- [新增] 微信公众号
+
+- [优化] 优化UI排版，功能删减合并
+
+- [修复] 部分bug修复
 
 ### V2.4.0
   
