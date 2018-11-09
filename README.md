@@ -16,7 +16,7 @@
 <img width="173" height=“274” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/5.jpeg"></img>
 <img width="173" height=“274” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/6.jpeg"></img>
 <img width="173" height=“274” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/7.jpeg"></img>
-<img width="173" height=“274” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/8.jpeg"></img>
+<img width="173" height=“274” src="http://lc-2hxprqvs.cn-n1.lcfile.com/4816d3bcff1402f46181.jpeg"></img>
 <img width="173" height=“274” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/9.jpeg"></img>
 <img width="173" height=“274” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/11.jpeg"></img>
 <img width="173" height=“274” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/12.jpeg"></img>
@@ -24,7 +24,7 @@
 <img width="173" height=“274” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/14.jpeg"></img>
 <img width="173" height=“274” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/15.jpeg"></img>
 <img width="173" height=“274” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/16.jpeg"></img>
-<img width="173" height=“274” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/17.jpeg"></img>
+<img width="173" height=“274” src="http://lc-2hxprqvs.cn-n1.lcfile.com/144d71ae6eeb0bd3d873.jpeg"></img>
 
 ## DownLoad
 
