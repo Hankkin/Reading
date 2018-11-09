@@ -3,7 +3,6 @@ package com.hankkin.reading.ui.tools
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.afollestad.materialdialogs.MaterialDialog
@@ -14,13 +13,11 @@ import com.hankkin.library.utils.SPUtils
 import com.hankkin.library.utils.ToastUtils
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.PersonListAdapter
-import com.hankkin.reading.adapter.ToolsAdapter
 import com.hankkin.reading.base.BaseMvpFragment
 import com.hankkin.reading.common.Constant
 import com.hankkin.reading.control.UserControl
 import com.hankkin.reading.dao.DaoFactory
 import com.hankkin.reading.domain.PersonListBean
-import com.hankkin.reading.domain.ToolsBean
 import com.hankkin.reading.domain.Weatherbean
 import com.hankkin.reading.domain.WordNoteBean
 import com.hankkin.reading.event.EventMap
@@ -40,6 +37,7 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_word.*
+import kotlinx.android.synthetic.main.layout_tools.*
 import kotlinx.android.synthetic.main.layout_word_every.*
 import kotlinx.android.synthetic.main.layout_word_no_data.*
 import java.util.*
@@ -51,9 +49,6 @@ import java.util.*
 class ToolsFragment : BaseMvpFragment<ToolsContract.IPresenter>(), ToolsContract.IView {
     val REQUEST_CODE_SCAN = 0x1
 
-    private lateinit var mData: MutableList<ToolsBean>
-
-    private lateinit var mToolsAdapter: ToolsAdapter
     private lateinit var mAdapter: PersonListAdapter
 
     private var mWords: MutableList<WordNoteBean>? = null
@@ -86,50 +81,31 @@ class ToolsFragment : BaseMvpFragment<ToolsContract.IPresenter>(), ToolsContract
                         Intent(context, PersonInfoActivity::class.java)
                     })
         }
+        ll_tools_scan.setOnClickListener {
+            val intent = Intent(context, CaptureActivity::class.java)
+            val bundle = Bundle()
+            val config = ZxingConfig()
+            config.reactColor = ThemeHelper.getCurrentColor(context)
+            bundle.putSerializable(com.hankkin.library.fuct.common.Constant.INTENT_ZXING_CONFIG, config)
+            intent.putExtras(bundle)
+            startActivityForResult(intent, REQUEST_CODE_SCAN)
+        }
+        ll_tools_note.setOnClickListener { startActivity(Intent(context, WordNoteActivity::class.java)) }
+        ll_tools_word.setOnClickListener { startActivity(Intent(context, TranslateActivity::class.java)) }
+        ll_tools_pwd.setOnClickListener { if (SPUtils.getInt(Constant.SP_KEY.LOCK_OPEN) != 0) {
+            startActivity(Intent(context, LockSetActivity::class.java))
+        } else {
+            startActivity(Intent(context, AccountListActivity::class.java))
+        } }
     }
 
 
     override fun initData() {
-        addData()
-        rv_tools.layoutManager = GridLayoutManager(context, 4)
-        mToolsAdapter = ToolsAdapter()
-        mToolsAdapter.addAll(mData)
-        rv_tools.adapter = mToolsAdapter
-        mToolsAdapter.setOnItemClickListener { t, position ->
-            when (t.id) {
-                Constant.TOOLS.ID_WORD -> startActivity(Intent(context, TranslateActivity::class.java))
-                Constant.TOOLS.ID_WORD_NOTE -> startActivity(Intent(context, WordNoteActivity::class.java))
-                Constant.TOOLS.ID_PWD_NOTE -> {
-                    if (SPUtils.getInt(Constant.SP_KEY.LOCK_OPEN) != 0) {
-                        startActivity(Intent(context, LockSetActivity::class.java))
-                    } else {
-                        startActivity(Intent(context, AccountListActivity::class.java))
-                    }
-                }
-                Constant.TOOLS.ID_SAOYISAO -> {
-                    val intent = Intent(context, CaptureActivity::class.java)
-                    val bundle = Bundle()
-                    val config = ZxingConfig()
-                    config.reactColor = ThemeHelper.getCurrentColor(context)
-                    bundle.putSerializable(com.hankkin.library.fuct.common.Constant.INTENT_ZXING_CONFIG, config)
-                    intent.putExtras(bundle)
-                    startActivityForResult(intent, REQUEST_CODE_SCAN)
-                }
-            }
-        }
         setEveryWord()
         setSetting()
         getPresenter().getWeather("beijing")
     }
 
-    private fun addData() {
-        mData = mutableListOf<ToolsBean>(
-                ToolsBean(Constant.TOOLS.ID_SAOYISAO, activity!!.resources.getString(R.string.work_sao), R.mipmap.icon_saoyisao),
-                ToolsBean(Constant.TOOLS.ID_WORD, activity!!.resources.getString(R.string.work_word), R.mipmap.icon_word),
-                ToolsBean(Constant.TOOLS.ID_WORD_NOTE, activity!!.resources.getString(R.string.work_word_note), R.mipmap.icon_wrod_note),
-                ToolsBean(Constant.TOOLS.ID_PWD_NOTE, activity!!.resources.getString(R.string.work_pwd_note), R.mipmap.icon_pwd_tools)
-        )
-    }
 
     fun getWords() = DaoFactory.getProtocol(WordNoteDaoContract::class.java).queryEmphasisWord()
 

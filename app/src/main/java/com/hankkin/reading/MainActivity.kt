@@ -23,6 +23,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.afollestad.materialdialogs.MaterialDialog
 import com.bilibili.magicasakura.utils.ThemeUtils
+import com.bumptech.glide.Glide
 import com.hankkin.library.fuct.decode.ImageUtil
 import com.hankkin.library.utils.LogUtils
 import com.hankkin.library.utils.RxBusTools
@@ -33,11 +34,10 @@ import com.hankkin.reading.base.BaseActivity
 import com.hankkin.reading.common.Constant
 import com.hankkin.reading.control.UserControl
 import com.hankkin.reading.event.EventMap
-import com.hankkin.reading.glide.GlideUtils
+import com.hankkin.reading.ui.gank.GankFragment
 import com.hankkin.reading.ui.home.HomeFragment
 import com.hankkin.reading.ui.login.LoginActivity
 import com.hankkin.reading.ui.person.MyCollectActivity
-import com.hankkin.reading.ui.person.PersonFragment
 import com.hankkin.reading.ui.person.SettingActivity
 import com.hankkin.reading.ui.person.ThemeActivity
 import com.hankkin.reading.ui.todo.ToDoActivity
@@ -46,6 +46,7 @@ import com.hankkin.reading.ui.tools.acount.AccountListActivity
 import com.hankkin.reading.ui.tools.wordnote.WordNoteActivity
 import com.hankkin.reading.ui.wxarticle.WxArticleFragment
 import com.hankkin.reading.utils.*
+import com.hankkin.reading.view.BottomNavigationViewHelper
 import com.tbruyelle.rxpermissions2.RxPermissions
 import com.zhihu.matisse.Matisse
 import io.reactivex.Observable
@@ -63,17 +64,17 @@ class MainActivity : BaseActivity() {
     companion object {
         private const val DEFAULT_FG_SIZE = 3
         private const val DICTIONARY_INDEX = 0
-        private const val TODO_INDEX = 1
-        private const val TRANSLATE_INDEX = 2
-//        private const val PERSON_INDEX = 3
+        private const val TODO_INDEX = 2
+        private const val TRANSLATE_INDEX = 3
+        private const val GANK_INDEX = 1
     }
 
 
     private val fgList = listOf<Fragment>(
             HomeFragment(),
+            GankFragment(),
             WxArticleFragment(),
             ToolsFragment()
-//            PersonFragment()
     )
 
     override fun getLayoutId(): Int {
@@ -148,11 +149,12 @@ class MainActivity : BaseActivity() {
             findViewById<ImageView>(R.id.iv_drawer_header_bg).apply {
                 setOnClickListener { changeHeader() }
                 if (SPUtils.getString(Constant.COMMON.HEADER_BG).isNotEmpty()) {
-                    GlideUtils.loadImageView(this@MainActivity, SPUtils.getString(Constant.COMMON.HEADER_BG), this)
+                    Glide.with(this@MainActivity).load(SPUtils.getString(Constant.COMMON.HEADER_BG)).into(this)
                 }
             }
 
         }
+        BottomNavigationViewHelper.disableShiftMode(navigation)
 
     }
 
@@ -179,10 +181,10 @@ class MainActivity : BaseActivity() {
                 setTabColor(TRANSLATE_INDEX)
                 return@OnNavigationItemSelectedListener true
             }
-//            R.id.navigation_person -> {
-//                setTabColor(PERSON_INDEX)
-//                return@OnNavigationItemSelectedListener true
-//            }
+            R.id.navigation_gank -> {
+                setTabColor(GANK_INDEX)
+                return@OnNavigationItemSelectedListener true
+            }
         }
         false
     }
@@ -330,7 +332,8 @@ class MainActivity : BaseActivity() {
             val uris = Matisse.obtainResult(data)
             val path = ImageUtil.getImageAbsolutePath(this, uris[0])
             SPUtils.put(Constant.COMMON.HEADER_BG, path)
-            GlideUtils.loadImageView(this, path, iv_drawer_header_bg)
+            Glide.with(this).load(path).into(iv_drawer_header_bg)
+
         }
     }
 }

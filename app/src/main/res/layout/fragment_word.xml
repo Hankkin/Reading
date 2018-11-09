@@ -11,14 +11,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/theme_color_primary"
-        android:paddingLeft="@dimen/dp_10"
-        android:paddingRight="@dimen/dp_10">
+        android:paddingBottom="@dimen/dp_20"
+        android:paddingTop="@dimen/dp_20"
+        android:paddingRight="@dimen/dp_10"
+        android:paddingLeft="@dimen/dp_10">
 
         <TextView
             android:id="@+id/tv_tools_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:text="Hi,小猿猿"
             android:textColor="@android:color/white"
             android:textSize="@dimen/sp_18"
@@ -28,7 +29,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_tools_title"
-            android:layout_marginTop="@dimen/dp_8"
             android:text="Welcome to Reading"
             android:textColor="@color/white"
             android:textSize="@dimen/sp_12" />
@@ -52,29 +52,9 @@
 
     </com.bilibili.magicasakura.widgets.TintRelativeLayout>
 
-    <com.bilibili.magicasakura.widgets.TintFrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/title_bar_height"
-        android:background="@color/theme_color_primary" />
 
 
-
-    <android.support.v7.widget.CardView
-        android:layout_marginBottom="@dimen/dp_10"
-        android:layout_marginRight="@dimen/dp_10"
-        android:layout_marginLeft="@dimen/dp_10"
-        android:layout_marginTop="-30dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="@dimen/dp_6">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_tools"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/dp_10" />
-
-    </android.support.v7.widget.CardView>
+    <include layout="@layout/layout_tools"/>
 
 
     <android.support.v4.widget.NestedScrollView

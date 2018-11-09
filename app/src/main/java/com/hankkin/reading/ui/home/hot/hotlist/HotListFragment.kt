@@ -4,7 +4,7 @@ import android.content.Intent
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.TextView
-import com.hankkin.library.utils.AppUtils
+import com.bumptech.glide.Glide
 import com.hankkin.library.widget.view.PageLayout
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.AndroidAdapter
@@ -16,10 +16,10 @@ import com.hankkin.reading.domain.HotBean
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.ui.home.articledetail.CommonWebActivity
 import com.hankkin.reading.ui.home.search.SearchActivity
-import com.hankkin.reading.glide.GlideUtils
 import com.hankkin.reading.utils.ViewHelper
 import com.hankkin.reading.view.widget.SWImageView
 import com.stx.xhb.xbanner.XBanner
+import kotlinx.android.synthetic.main.fragment_android.*
 import kotlinx.android.synthetic.main.fragment_hot_list.*
 
 /**
@@ -92,7 +92,7 @@ class HotListFragment : BaseMvpFragment<HotListPresenter>(), HotListContact.IVie
             viewPager.pageMargin = 20
             loadImage { _, model, view, position ->
                 val iv = view.findViewById<SWImageView>(R.id.iv_banner_item)
-                GlideUtils.loadImageView(context, model as String?, iv)
+                Glide.with(context).load(model as String?).into(iv)
             }
             setOnItemClickListener { banner, model, position -> context?.let { CommonWebActivity.loadUrl(it, bannerData[position].url, bannerData[position].title) } }
         }
@@ -161,6 +161,11 @@ class HotListFragment : BaseMvpFragment<HotListPresenter>(), HotListContact.IVie
     override fun onEvent(event: EventMap.BaseEvent) {
         if (event is EventMap.WifiImgEvent) {
             mAdapter.notifyDataSetChanged()
+        }
+        else if (event is EventMap.ToUpEvent) {
+            xrv_android.smoothScrollToPosition(0)
+        } else if (event is EventMap.HomeRefreshEvent) {
+            onRefresh()
         }
     }
 

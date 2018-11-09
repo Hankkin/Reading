@@ -11,6 +11,7 @@ import com.hankkin.reading.domain.ArticleBean
 import com.hankkin.reading.domain.CateBean
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.utils.ViewHelper
+import kotlinx.android.synthetic.main.fragment_android.*
 import kotlinx.android.synthetic.main.fragment_project_list.*
 
 /**
@@ -23,13 +24,9 @@ class ProjectListFragment : BaseMvpFragment<ProjectListPresenter>(), ProjectList
 
     override fun registerPresenter() = ProjectListPresenter::class.java
 
-    override fun isHasBus(): Boolean {
-        return true
-    }
+    override fun isHasBus() = true
 
-    override fun getLayoutId(): Int {
-        return R.layout.fragment_project_list
-    }
+    override fun getLayoutId() = R.layout.fragment_project_list
 
 
     override fun initView() {
@@ -90,7 +87,7 @@ class ProjectListFragment : BaseMvpFragment<ProjectListPresenter>(), ProjectList
 
     override fun setFail() {
         mPageLayout.showError()
-        mPageLayout.setOnRetryListener(object : PageLayout.OnRetryClickListener{
+        mPageLayout.setOnRetryListener(object : PageLayout.OnRetryClickListener {
             override fun onRetry() {
                 getPresenter().getCateList(mPage, cateBean.id)
             }
@@ -109,6 +106,10 @@ class ProjectListFragment : BaseMvpFragment<ProjectListPresenter>(), ProjectList
     override fun onEvent(event: EventMap.BaseEvent) {
         if (event is EventMap.WifiImgEvent) {
             mAdapter.notifyDataSetChanged()
+        } else if (event is EventMap.ToUpEvent) {
+            xrv_android.smoothScrollToPosition(0)
+        } else if (event is EventMap.HomeRefreshEvent) {
+            onRefresh()
         }
     }
 

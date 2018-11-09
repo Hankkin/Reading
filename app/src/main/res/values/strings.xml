@@ -2,6 +2,7 @@
     <string name="app_name">Reading</string>
     <string name="title_home">首页</string>
     <string name="title_wxarticle">公众号</string>
+    <string name="title_gank">干货</string>
     <string name="title_todo">TODO</string>
     <string name="title_done">DONE</string>
     <string name="title_translate">工作台</string>
@@ -201,7 +202,7 @@
     <string name="tools_kuaidi_hint">TIPS：本功能使用【快递100】开源API，请勿作为商业使用，如涉及隐私或构成侵权，请联系我修改或删除。\n 再次声明该功能一切数据解释权归【快递100】所有。</string>
 
     <string name="lock_title">请设置手势密码</string>
-    <string name="double_click_to_top">双击两次可快速返回顶部</string>
+    <string name="double_click_to_top">双击顶部两次可快速返回</string>
 
     <string name="ok">确定</string>
     <string name="cancel">取消</string>

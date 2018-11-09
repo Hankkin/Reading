@@ -2,6 +2,7 @@ package com.hankkin.reading.adapter
 
 import android.view.ViewGroup
 import android.widget.TextView
+import com.bilibili.magicasakura.widgets.TintImageView
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.base.BaseRecyclerViewAdapter
 import com.hankkin.reading.adapter.base.BaseRecyclerViewHolder
@@ -20,11 +21,12 @@ class ToolsAdapter : BaseRecyclerViewAdapter<ToolsBean>() {
     private class ViewHolder(parent: ViewGroup, layoutId: Int,val listener: OnItemClickListener<ToolsBean>) : BaseRecyclerViewHolder<ToolsBean>(parent, layoutId) {
 
         val tv by lazy { itemView.findViewById<TextView>(R.id.tv_adapter_tools) }
-        val iv by lazy { itemView.findViewById<ClickImageView>(R.id.iv_adapter_tools) }
+        val iv by lazy { itemView.findViewById<TintImageView>(R.id.iv_adapter_tools) }
 
         override fun onBindViewHolder(bean: ToolsBean, position: Int) {
             tv.text = bean.title
             iv.setImageResource(bean.res)
+            iv.tint()
             iv.setOnClickListener { listener.onClick(bean,position) }
         }
     }

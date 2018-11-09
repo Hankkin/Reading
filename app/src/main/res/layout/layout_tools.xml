@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView android:layout_margin="@dimen/dp_10"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/dp_6"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/ll_tools_scan"
+            android:layout_weight="1"
+            android:padding="@dimen/dp_10"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <com.bilibili.magicasakura.widgets.TintImageView
+                android:src="@mipmap/icon_saoyisao"
+                app:imageTint="@color/theme_color_primary"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+            <TextView
+                android:text="@string/work_sao"
+                style="@style/normalTxt"
+                android:layout_marginTop="@dimen/dp_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_tools_word"
+            android:layout_weight="1"
+            android:padding="@dimen/dp_10"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <com.bilibili.magicasakura.widgets.TintImageView
+                android:src="@mipmap/icon_word"
+                app:imageTint="@color/theme_color_primary"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+            <TextView
+                android:text="@string/work_word"
+                style="@style/normalTxt"
+                android:layout_marginTop="@dimen/dp_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_tools_note"
+            android:layout_weight="1"
+            android:padding="@dimen/dp_10"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <com.bilibili.magicasakura.widgets.TintImageView
+                android:src="@mipmap/icon_wrod_note"
+                app:imageTint="@color/theme_color_primary"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+            <TextView
+                android:text="@string/work_word_note"
+                style="@style/normalTxt"
+                android:layout_marginTop="@dimen/dp_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_tools_pwd"
+            android:layout_weight="1"
+            android:padding="@dimen/dp_10"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <com.bilibili.magicasakura.widgets.TintImageView
+                android:src="@mipmap/icon_pwd_tools"
+                app:imageTint="@color/theme_color_primary"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+            <TextView
+                android:text="@string/work_pwd_note"
+                style="@style/normalTxt"
+                android:layout_marginTop="@dimen/dp_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</android.support.v7.widget.CardView>

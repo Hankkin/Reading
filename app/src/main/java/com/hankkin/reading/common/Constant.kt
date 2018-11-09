@@ -44,6 +44,10 @@ object Constant {
         const val WEATHER_URL = "https://api.seniverse.com/"
     }
 
+    object GankUrl{
+        const val BASE_URL = "https://gank.io/api/"
+    }
+
     object OSChinaUrl {
         const val REDIRECT_URL = "http://hankkin.cn/authorize/"
         const val CLIENT_ID = "vU5v471WoDUJdHksxN6c"

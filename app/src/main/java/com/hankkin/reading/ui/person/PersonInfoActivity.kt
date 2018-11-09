@@ -1,12 +1,12 @@
 package com.hankkin.reading.ui.person
 
 import com.afollestad.materialdialogs.MaterialDialog
+import com.bumptech.glide.Glide
 import com.hankkin.library.utils.SPUtils
 import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseMvpActivity
 import com.hankkin.reading.control.UserControl
 import com.hankkin.reading.domain.UserInfoBean
-import com.hankkin.reading.glide.GlideUtils
 import kotlinx.android.synthetic.main.activity_person_info.*
 import kotlinx.android.synthetic.main.layout_title_bar_back.*
 
@@ -67,8 +67,6 @@ class PersonInfoActivity : BaseMvpActivity<PersonInfoPresenter>(), PersonInfoCon
                     tv_person_info_gender.text = resources.getString(R.string.person_info_girl)
                 }
             }
-            if (userInfoBean.portrait.isNotEmpty())
-                GlideUtils.loadImageView(this,userInfoBean.portrait,iv_person_info_avatar)
         }
     }
 

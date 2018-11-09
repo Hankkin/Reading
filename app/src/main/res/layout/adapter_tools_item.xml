@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="@dimen/dp_10"
     android:gravity="center"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.hankkin.reading.view.ClickImageView
-        android:clickable="true"
+    <com.bilibili.magicasakura.widgets.TintImageView
+        app:imageTint="@color/theme_color_primary"
         android:id="@+id/iv_adapter_tools"
-        android:src="@mipmap/icon_kuaidi"
-        android:layout_width="45dp"
-        android:layout_height="45dp" />
+        android:layout_width="30dp"
+        android:layout_height="30dp" />
     <TextView
+        style="@style/normalTxt"
         android:id="@+id/tv_adapter_tools"
-        android:layout_marginTop="@dimen/dp_8"
+        android:layout_marginTop="@dimen/dp_6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

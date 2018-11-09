@@ -39,7 +39,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginTop="@dimen/dp_6"
             android:orientation="horizontal">
 
             <TextView
@@ -48,7 +48,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginTop="@dimen/dp_8"
+                android:layout_marginTop="@dimen/dp_6"
                 android:layout_toLeftOf="@+id/iv_adapter_android_pic"
                 android:layout_weight="1"
                 android:ellipsize="end"
@@ -56,8 +56,8 @@
 
             <com.hankkin.reading.view.widget.SWImageView
                 android:id="@+id/iv_adapter_android_pic"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:layout_alignParentRight="true"
                 android:layout_marginLeft="@dimen/dp_10"
                 android:src="@mipmap/bg_default"
@@ -68,7 +68,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_10">
+            android:layout_marginTop="@dimen/dp_6">
 
             <LinearLayout
                 android:layout_centerVertical="true"

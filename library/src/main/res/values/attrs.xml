@@ -16,7 +16,7 @@
             <enum name="circle" value="1"/>
             <enum name="round" value="2"/>
         </attr>
-        <attr name="radius" format="dimension"/>ssss
+        <attr name="radius" format="dimension"/>
     </declare-styleable>
 
     <declare-styleable name="RippleView">
@@ -35,6 +35,18 @@
         <attr name="rv_zoom" format="boolean" />
         <attr name="rv_zoomScale" format="float" />
 
+    </declare-styleable>
+
+    <declare-styleable name="NineGridImageLayout">
+        <attr name="spacing" format="dimension" />
+        <attr name="singleSize" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="RoundCornerImageView">
+        <attr name="borderWidth1" format="dimension" />
+        <attr name="borderColor1" format="color" />
+        <attr name="mradius" format="dimension" />
+        <attr name="ratio1" />
     </declare-styleable>
 
 </resources>

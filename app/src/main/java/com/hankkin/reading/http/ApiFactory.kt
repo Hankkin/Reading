@@ -16,6 +16,7 @@ class ApiFactory {
     private var commonApi: Any? = null
     private var toolsApi: Any? = null
     private var osChinaApi: Any? = null
+    private var gankApi: Any? = null
 
     fun <T> create(clazz: Class<T>, type: String): T {
         when (type) {
@@ -42,6 +43,14 @@ class ApiFactory {
                     }
                 }
                 return osChinaApi as T
+            }
+            Constant.GankUrl.BASE_URL ->{
+                if (gankApi == null){
+                    synchronized(ApiFactory::class.java){
+                        gankApi = HttpClient.getBuilder(type).build().create(clazz)
+                    }
+                }
+                return gankApi as T
             }
             else -> {
                 return commonApi as T

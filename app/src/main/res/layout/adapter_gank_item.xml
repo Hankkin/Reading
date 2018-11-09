@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:padding="@dimen/dp_10"
-        android:id="@+id/ll_wx"
+        android:id="@+id/ll_gank"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackground"
@@ -23,7 +23,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/tv_adapter_wx_author"
+                android:id="@+id/tv_adapter_gank_author"
                 style="@style/greyTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -38,28 +38,32 @@
         </RelativeLayout>
 
         <TextView
-            android:id="@+id/tv_adapter_wx_title"
+            android:id="@+id/tv_adapter_gank_title"
             style="@style/normalTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_6" />
+
+        <com.howshea.basemodule.component.viewGroup.NineGridImageLayout
+            android:layout_marginTop="@dimen/dp_6"
+            android:id="@+id/img_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_6">
 
-            <LinearLayout
-                android:id="@+id/ll_adapter_wx_tags"
+            <TextView
+                android:id="@+id/tv_adapter_gank_type"
+                style="@style/greyTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:orientation="horizontal">
-
-            </LinearLayout>
+                android:layout_centerVertical="true" />
 
             <TextView
-                android:id="@+id/tv_adapter_wx_time"
+                android:id="@+id/tv_adapter_gank_time"
                 style="@style/greyTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

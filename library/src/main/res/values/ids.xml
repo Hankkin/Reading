@@ -7,4 +7,24 @@
     <item name="decode_succeeded" type="id"/>
     <item name="encode_failed" type="id"/>
     <item name="decode_failed" type="id"/>
+
+    <item name="loadingView" type="id"/>
+    <item name="contentView" type="id"/>
+    <item name="errorView" type="id"/>
+    <item name="rootView" type="id"/>
+    <item name="refreshView" type="id"/>
+    <item name="recyclerView" type="id"/>
+    <item name="image_orientation" type="id"/>
+    <item name="state_origin" type="id"/>
+    <item name="state_default" type="id"/>
+    <item name="state_current" type="id"/>
+    <item name="state_thumb" type="id"/>
+    <item name="state_temp" type="id"/>
+    <item name="state_touch_down" type="id"/>
+    <item name="state_touch_drag" type="id"/>
+    <item name="state_touch_scale" type="id"/>
+    <item name="state_exit" type="id"/>
+    <item name="state_touch_scale_rotate" type="id"/>
+
+    <item name="view_image_watcher" type="id" />
 </resources>

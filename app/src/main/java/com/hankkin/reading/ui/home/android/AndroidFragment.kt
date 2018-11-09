@@ -121,7 +121,7 @@ class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IVie
 
     override fun onEvent(it: EventMap.BaseEvent) {
         if (it is EventMap.ToUpEvent) {
-            xrv_android.scrollToPosition(0)
+            xrv_android.smoothScrollToPosition(0)
         } else if (it is EventMap.HomeRefreshEvent) {
             onRefresh()
         } else if (it is EventMap.ChangeThemeEvent) {
