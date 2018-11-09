@@ -29,6 +29,7 @@ import com.hankkin.library.utils.LogUtils
 import com.hankkin.library.utils.RxBusTools
 import com.hankkin.library.utils.SPUtils
 import com.hankkin.library.utils.ToastUtils
+import com.hankkin.library.widget.toasty.Toasty
 import com.hankkin.reading.adapter.MainFragmentAdapter
 import com.hankkin.reading.base.BaseActivity
 import com.hankkin.reading.common.Constant
@@ -235,8 +236,10 @@ class MainActivity : BaseActivity() {
 
         })
 
+        Toasty.Config.getInstance()
+                .setInfoColor(resources.getColor(ThemeHelper.getCurrentColor(this)))
+                .apply(application)
         changeLogo()
-
         setTabColor(vp_main.currentItem)
         RxBusTools.getDefault().post(EventMap.ChangeFabEvent())
     }

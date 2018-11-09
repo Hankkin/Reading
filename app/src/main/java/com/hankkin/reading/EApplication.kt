@@ -58,10 +58,11 @@ class EApplication : Application(), ThemeUtils.switchColor {
     }
 
     private fun initCommon() {
-        Toasty.Config.getInstance()
-                .apply(this)
         ThemeUtils.setSwitchColor(this)
         BGASwipeBackHelper.init(this, null)
+        Toasty.Config.getInstance()
+                .setInfoColor(resources.getColor(ThemeHelper.getCurrentColor(this)))
+                .apply(this)
     }
 
     private fun initLeakCanary() {
