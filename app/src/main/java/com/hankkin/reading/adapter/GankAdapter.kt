@@ -3,6 +3,7 @@ package com.hankkin.reading.adapter
 import android.app.Activity
 import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.view.ViewCompat
+import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -42,11 +43,16 @@ class GankAdapter : BaseRecyclerViewAdapter<ResultBean>() {
                 tvChapter.text = type + "/" + source
                 tvTime.text = publishedAt.substring(0,10).replace("-",".")
                 tvTitle.text = desc
+                if ("福利".equals(type)){
+                    images = mutableListOf()
+                    images?.add(url)
+                }
+                picLayout.visibility = if (images == null) View.GONE else View.VISIBLE
                 picLayout.run {
                     images?.run {
                         setData(this,1.0F)
                         onItemClick { v, position ->
-                            val intent = ImageActivity.newIntent(context, images, position)
+                            val intent = ImageActivity.newIntent(context, images!!, position)
                             val options = ActivityOptionsCompat.makeSceneTransitionAnimation(context as Activity, v, ViewCompat.getTransitionName(v))
                             context.startActivity(intent, options.toBundle())
                         }
@@ -61,6 +67,7 @@ class GankAdapter : BaseRecyclerViewAdapter<ResultBean>() {
                     }
 
                 }
+
                 ll.setOnClickListener { CommonWebActivity.loadUrl(itemView.context, url, desc) }
             }
         }

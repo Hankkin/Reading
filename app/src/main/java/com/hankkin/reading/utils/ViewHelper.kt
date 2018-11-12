@@ -2,7 +2,7 @@ package com.hankkin.reading.utils
 
 import android.app.Activity
 import android.content.Context
-import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.support.design.widget.BottomSheetDialog
 import android.support.v4.widget.SwipeRefreshLayout
 import android.view.LayoutInflater
@@ -15,20 +15,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.afollestad.materialdialogs.MaterialDialog
 import com.hankkin.library.utils.AppUtils
-import com.hankkin.library.utils.ToastUtils
 import com.hankkin.reading.R
 import com.hankkin.reading.common.Constant
-import com.hankkin.reading.ui.home.articledetail.CommonWebActivity
-import com.zhihu.matisse.engine.impl.GlideEngine
-import android.content.pm.ActivityInfo
-import android.net.Uri
-import com.zhihu.matisse.filter.Filter.K
-import com.hankkin.reading.MainActivity
 import com.hankkin.reading.common.Constant.COMMON.REQUEST_CODE_CHOOSE
+import com.hankkin.reading.glide.Glide4Engine
+import com.hankkin.reading.ui.home.articledetail.CommonWebActivity
 import com.zhihu.matisse.Matisse
 import com.zhihu.matisse.MimeType
-import com.zhihu.matisse.filter.Filter
-import com.zhihu.matisse.internal.entity.CaptureStrategy
+import com.zhihu.matisse.engine.impl.GlideEngine
 
 
 /**
@@ -172,7 +166,7 @@ object ViewHelper {
                 .maxSelectable(1)
                 .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
                 .thumbnailScale(0.85f)
-                .imageEngine(GlideEngine())
+                .imageEngine(Glide4Engine())
                 .forResult(REQUEST_CODE_CHOOSE)
     }
 

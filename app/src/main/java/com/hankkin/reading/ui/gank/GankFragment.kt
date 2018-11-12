@@ -1,88 +1,60 @@
 package com.hankkin.reading.ui.gank
 
-import android.os.Handler
-import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.widget.LinearLayoutManager
-import android.view.View
-import com.hankkin.library.fuct.common.DoubleClickListener
-import com.hankkin.library.utils.ToastUtils
+import android.support.design.widget.TabLayout
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
+import android.support.v4.app.FragmentStatePagerAdapter
 import com.hankkin.reading.R
-import com.hankkin.reading.adapter.GankAdapter
-import com.hankkin.reading.adapter.base.XRecyclerView
-import com.hankkin.reading.base.BaseMvpFragment
-import com.hankkin.reading.domain.GankBean
-import com.hankkin.reading.utils.ViewHelper
+import com.hankkin.reading.base.BaseFragment
+import com.kekstudio.dachshundtablayout.indicators.PointMoveIndicator
 import kotlinx.android.synthetic.main.fragment_gank.*
 
 /**
  * Created by Hankkin on 2018/11/8.
  */
-class GankFragment : BaseMvpFragment<GankPresenter>(), GankContract.IView, SwipeRefreshLayout.OnRefreshListener {
-    private val GANK_CATE = "Android"
+class GankFragment : BaseFragment(){
 
-    private lateinit var mAdapter: GankAdapter
-    private var mPage = 1
-
-
-    override fun registerPresenter() = GankPresenter::class.java
 
 
     override fun getLayoutId() = R.layout.fragment_gank
 
+    override fun initViews() {
 
-    override fun initView() {
-
-        ViewHelper.setRefreshLayout(context!!, true, refresh_gank, this)
-        mAdapter = GankAdapter()
-        xrv_gank.apply {
-            layoutManager = LinearLayoutManager(context)
-            setPullRefreshEnabled(false)
-            clearHeader()
-            adapter = mAdapter
-            setLoadingListener(object : XRecyclerView.LoadingListener {
-                override fun onLoadMore() {
-                    mPage++
-                    getPresenter().getGanks(GANK_CATE, mPage)
-                }
-
-                override fun onRefresh() {
-                }
-
-            })
-        }
-        ll_gank_top.setOnClickListener(object : DoubleClickListener() {
-            override fun onDoubleClick(v: View?) {
-                xrv_gank.smoothScrollToPosition(0)
-            }
-        })
     }
+
 
     override fun initData() {
-        Handler().postDelayed({
-            ToastUtils.showTarget(context!!, resources.getString(R.string.double_click_to_top), ll_gank_top)
-        }, 1000)
-        getPresenter().getGanks(GANK_CATE, mPage)
+        tab_gank.apply {
+            val adapter = PageAdapter(childFragmentManager)
+            vp_gank.adapter = adapter
+            setupWithViewPager(vp_gank)
+            tabMode = TabLayout.MODE_SCROLLABLE
+            val indicator = PointMoveIndicator(tab_gank)
+            animatedIndicator = indicator
+            vp_gank.offscreenPageLimit = 2
+        }
     }
 
-    override fun setGanks(gankBean: GankBean) {
-        if (mPage == 1) {
-            mAdapter.clear()
-        }
-        mAdapter.addAll(gankBean.results)
-        mAdapter.notifyDataSetChanged()
-        if (gankBean.results.size < 20) {
-            xrv_gank.noMoreLoading()
-        }
-        if (refresh_gank.isRefreshing) {
-            refresh_gank.isRefreshing = false
-        }
-        xrv_gank.refreshComplete()
-    }
+    class PageAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
 
+        private val mFgList = listOf<Fragment>(
+                GankTodayFragment(),
+                GankAndroidFragment()
+        )
+        private val titles = listOf<String>("今日推荐","Android")
 
-    override fun onRefresh() {
-        mPage = 1
-        getPresenter().getGanks(GANK_CATE, mPage)
+        override fun getItem(i: Int): Fragment {
+            return mFgList[i]
+        }
+
+        override fun getCount(): Int {
+            return mFgList.size
+        }
+
+        override fun getPageTitle(position: Int): CharSequence {
+            return titles[position]
+        }
+
     }
 
 }

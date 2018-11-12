@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     app:ignore="NamespaceTypo">
 
@@ -28,22 +29,28 @@
             android:textStyle="bold" />
     </com.bilibili.magicasakura.widgets.TintLinearLayout>
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/refresh_gank"
+    <com.bilibili.magicasakura.widgets.TintLinearLayout
+        android:background="@color/theme_color_primary"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <com.hankkin.reading.adapter.base.XRecyclerView
-            android:id="@+id/xrv_gank"
+        android:layout_height="45dp">
+        <com.kekstudio.dachshundtablayout.DachshundTabLayout
+            android:id="@+id/tab_gank"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="-1dp"
-            android:scrollbarAlwaysDrawVerticalTrack="true"
-            android:scrollbarFadeDuration="1"
-            android:scrollbarSize="4dp"
-            android:scrollbars="vertical" />
+            android:layout_height="@dimen/dp_40"
+            custom:tabGravity="fill"
+            custom:tabMode="fixed"
+            custom:tabSelectedTextColor="@color/white"
+            custom:tabTextColor="@color/grey2"
+            custom:tabIndicatorColor="@color/white"
+            />
+    </com.bilibili.magicasakura.widgets.TintLinearLayout>
 
-    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <android.support.v4.view.ViewPager
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:id="@+id/vp_gank"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </LinearLayout>
 

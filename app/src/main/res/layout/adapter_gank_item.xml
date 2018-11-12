@@ -55,7 +55,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_6">
 
-            <TextView
+            <com.bilibili.magicasakura.widgets.TintTextView
+                android:textColor="@color/theme_color_primary"
                 android:id="@+id/tv_adapter_gank_type"
                 style="@style/greyTxt"
                 android:layout_width="wrap_content"

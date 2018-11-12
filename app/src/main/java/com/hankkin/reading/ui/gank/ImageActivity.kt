@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.view.PagerAdapter
+import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.transition.Fade
 import android.view.View
@@ -41,9 +42,22 @@ class ImageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image)
-        window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        MyStatusBarUtil.setColorForSwipeBack(this,resources.getColor(R.color.black))
         view_pager.adapter = ImagePagerAdapter(imageList)
         view_pager.currentItem = position
+        tv_po.text = "${position+1}/${imageList.size}"
+        view_pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
+            override fun onPageScrollStateChanged(state: Int) {
+            }
+
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+                tv_po.text = "${position+1}/${imageList.size}"
+            }
+
+            override fun onPageSelected(position: Int) {
+            }
+
+        })
     }
 
 
@@ -63,7 +77,6 @@ class ImageActivity : AppCompatActivity() {
                 window.enterTransition = Fade()
                 window.exitTransition = Fade()
             }
-            view.tv_po.text = "${position+1}/${imageList.size}"
             view.pv.setOnClickListener { onBackPressed() }
             container.addView(view)
             return view
