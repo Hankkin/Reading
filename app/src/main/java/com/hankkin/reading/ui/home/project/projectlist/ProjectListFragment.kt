@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_project_list.*
  */
 class ProjectListFragment : BaseMvpFragment<ProjectListPresenter>(), ProjectListContact.IView, SwipeRefreshLayout.OnRefreshListener {
     private lateinit var mAdapter: AndroidAdapter
-    private lateinit var cateBean: CateBean
+    private var cateBean: CateBean? = null
     private var mPage: Int = 0
 
     override fun registerPresenter() = ProjectListPresenter::class.java
@@ -37,7 +37,9 @@ class ProjectListFragment : BaseMvpFragment<ProjectListPresenter>(), ProjectList
 
     override fun initData() {
         cateBean = (arguments!!.getSerializable("bean")) as CateBean
-        getPresenter().getCateList(mPage, cateBean.id)
+        cateBean?.apply {
+            getPresenter().getCateList(mPage, id)
+        }
     }
 
     private fun initXrv() {
@@ -50,7 +52,7 @@ class ProjectListFragment : BaseMvpFragment<ProjectListPresenter>(), ProjectList
             adapter = mAdapter
             setLoadingListener(object : XRecyclerView.LoadingListener {
                 override fun onLoadMore() {
-                    getPresenter().getCateList(mPage, cateBean.id)
+                    getPresenter().getCateList(mPage, cateBean!!.id)
                 }
 
                 override fun onRefresh() {
@@ -89,9 +91,8 @@ class ProjectListFragment : BaseMvpFragment<ProjectListPresenter>(), ProjectList
         mPageLayout.showError()
         mPageLayout.setOnRetryListener(object : PageLayout.OnRetryClickListener {
             override fun onRetry() {
-                getPresenter().getCateList(mPage, cateBean.id)
+                getPresenter().getCateList(mPage, cateBean!!.id)
             }
-
         })
     }
 
@@ -99,7 +100,9 @@ class ProjectListFragment : BaseMvpFragment<ProjectListPresenter>(), ProjectList
         xrv_project.reset()
         refresh_project.isRefreshing = true
         mPage = 0
-        getPresenter().getCateList(mPage, cateBean.id)
+        cateBean?.apply {
+            getPresenter().getCateList(mPage, id)
+        }
     }
 
 

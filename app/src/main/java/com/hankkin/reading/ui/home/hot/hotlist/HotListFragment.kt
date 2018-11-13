@@ -32,7 +32,7 @@ class HotListFragment : BaseMvpFragment<HotListPresenter>(), HotListContact.IVie
     private lateinit var mAdapter: AndroidAdapter
     private var xBanner: XBanner? = null
 
-    private lateinit var hotBean: HotBean
+    private var hotBean: HotBean? = null
     private var mPage: Int = 0
 
     override fun registerPresenter() = HotListPresenter::class.java
@@ -66,7 +66,7 @@ class HotListFragment : BaseMvpFragment<HotListPresenter>(), HotListContact.IVie
             adapter = mAdapter
             setLoadingListener(object : XRecyclerView.LoadingListener {
                 override fun onLoadMore() {
-                    getPresenter().queryKey(mPage, hotBean.name)
+                    getPresenter().queryKey(mPage, hotBean!!.name)
                 }
 
                 override fun onRefresh() {
@@ -128,7 +128,9 @@ class HotListFragment : BaseMvpFragment<HotListPresenter>(), HotListContact.IVie
             findViewById<TextView>(R.id.tv_hot_more).setOnClickListener { startActivity(Intent(activity, SearchActivity::class.java)) }
         }
         xrv_hot.addHeaderView(hotSearch)
-        getPresenter().queryKey(mPage, hotBean.name)
+        hotBean?.apply {
+            getPresenter().queryKey(mPage, name)
+        }
     }
 
     override fun setData(data: ArticleBean) {
@@ -140,7 +142,9 @@ class HotListFragment : BaseMvpFragment<HotListPresenter>(), HotListContact.IVie
         xrv_hot.reset()
         refresh_hot.isRefreshing = true
         mPage = 0
-        getPresenter().queryKey(mPage, hotBean.name)
+        hotBean?.apply {
+            getPresenter().queryKey(mPage, name)
+        }
     }
 
     override fun setFail() {
