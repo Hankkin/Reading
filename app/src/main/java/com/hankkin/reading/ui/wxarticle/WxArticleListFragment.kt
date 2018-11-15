@@ -69,7 +69,7 @@ class WxArticleListFragment : BaseMvpFragment<WxArticleListPresenter>(), WxArtic
         }
         mAdapter.addAll(data.datas)
         mAdapter.notifyDataSetChanged()
-        if (data.size < 20) {
+        if (data.datas?.size!! < 20) {
             xrv_wx_list.noMoreLoading()
         }
         xrv_wx_list.refreshComplete()
