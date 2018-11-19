@@ -40,16 +40,18 @@ class GankTodayFragment : BaseMvpFragment<GankTodayPresenter>(), GankTodayContra
         getPresenter().getGanksToday()
     }
 
-    override fun setGanks(gankBean: GankToadyBean) {
-        mAdapter.addAll(gankBean.results.Android)
-        mAdapter.addAll(gankBean.results.App)
-        mAdapter.addAll(gankBean.results.iOS)
-        mAdapter.addAll(gankBean.results.前端)
-        mAdapter.addAll(gankBean.results.休息视频)
-        mAdapter.addAll(gankBean.results.拓展资源)
-        mAdapter.addAll(gankBean.results.福利)
-        mAdapter.addAll(gankBean.results.瞎推荐)
-        mAdapter.notifyDataSetChanged()
+    override fun setGanks(gankBean: GankToadyBean?) {
+        mAdapter.apply {
+            gankBean?.results?.Android?.let { addAll(it) }
+            gankBean?.results?.App?.let { addAll(it) }
+            gankBean?.results?.iOS?.let { addAll(it) }
+            gankBean?.results?.前端?.let { addAll(it) }
+            gankBean?.results?.休息视频?.let { addAll(it) }
+            gankBean?.results?.拓展资源?.let { addAll(it) }
+            gankBean?.results?.福利?.let { addAll(it) }
+            gankBean?.results?.瞎推荐?.let { addAll(it) }
+            notifyDataSetChanged()
+        }
         refresh_gank.isRefreshing = false
     }
 

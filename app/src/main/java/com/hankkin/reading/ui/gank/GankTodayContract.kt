@@ -9,7 +9,7 @@ import com.hankkin.reading.domain.GankToadyBean
  */
 interface GankTodayContract {
     interface IView : IBaseViewContract{
-        fun setGanks(gankBean: GankToadyBean)
+        fun setGanks(gankBean: GankToadyBean?)
     }
 
     interface IPresenter : IPresenterContract {
