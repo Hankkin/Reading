@@ -18,6 +18,7 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.widget.ImageView;
 
+import com.hankkin.library.utils.LogUtils;
 import com.hankkin.reading.R;
 
 
@@ -98,84 +99,89 @@ public class SWImageView extends android.support.v7.widget.AppCompatImageView {
         if (drawable == null) {
             return;
         }
-        Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
-        if (bitmap == null) {
-            return;
-        }
-        bitmapShader = new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
-        float scale = 1.0f;
-        int viewwidth = getWidth();
-        int viewheight = getHeight();
-        int drawablewidth = bitmap.getWidth();
-        int drawableheight = bitmap.getHeight();
-        float dx = 0, dy = 0;
-
-        float scale1 = 1.0f;
-        float scale2 = 1.0f;
-        final boolean fits = (drawablewidth < 0 || viewwidth == drawablewidth)
-                && (drawableheight < 0 || viewheight == drawableheight);
-        if (type == TYPE_CIRCLE) {
-            int size = Math.min(drawablewidth, drawableheight);
-            scale = width * 1.0f / size;
-        } else if (type == TYPE_ROUND) {
-            scale = Math.max(viewwidth * 1.0f / drawablewidth, viewheight
-                    * 1.0f / drawableheight);
-        } else {
-            return;
-        }
-
-        if (drawablewidth <= 0 || drawableheight <= 0) {
-            drawable.setBounds(0, 0, viewwidth, viewheight);
-            matrix = null;
-        } else {
-            drawable.setBounds(0, 0, drawablewidth, drawableheight);
-            if (ScaleType.MATRIX == getScaleType()) {
-                if (matrix.isIdentity()) {
-                    matrix = null;
-                }
-            } else if (fits) {
-                matrix = null;
-            } else if (ScaleType.CENTER == getScaleType()) {
-                matrix.setTranslate(Math.round((viewwidth - drawablewidth) * 0.5f),
-                        Math.round((viewheight - drawableheight) * 0.5f));
-            } else if (ScaleType.CENTER_CROP == getScaleType()) {
-                if (drawablewidth * viewheight > viewwidth * drawableheight) {
-                    dx = (viewwidth - drawablewidth * scale) * 0.5f;
-                } else {
-                    dy = (viewheight - drawableheight * scale) * 0.5f;
-                }
-                matrix.setScale(scale, scale);
-                matrix.postTranslate((int) (dx + 0.5f), (int) (dy + 0.5f));
-            } else if (ScaleType.CENTER_INSIDE == getScaleType()) {
-
-                if (drawablewidth <= viewwidth && drawableheight <= viewheight) {
-                    scale = 1.0f;
-                } else {
-                    scale = Math.min((float) viewwidth / (float) drawablewidth,
-                            (float) viewheight / (float) drawableheight);
-                }
-                dx = Math.round((viewwidth - drawablewidth * scale) * 0.5f);
-                dy = Math.round((viewheight - drawableheight * scale) * 0.5f);
-                matrix.setScale(scale, scale);
-                matrix.postTranslate(dx, dy);
-            } else {
-                if (drawablewidth * viewheight > viewwidth * drawableheight) {
-                    dx = (viewwidth - drawablewidth * scale) * 0.5f;
-                } else {
-                    dy = (viewheight - drawableheight * scale) * 0.5f;
-                }
-                matrix.setScale(scale, scale);
-                matrix.postTranslate((int) (dx + 0.5f), (int) (dy + 0.5f));
+        try {
+            Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
+            if (bitmap == null) {
+                return;
             }
+            bitmapShader = new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
+            float scale = 1.0f;
+            int viewwidth = getWidth();
+            int viewheight = getHeight();
+            int drawablewidth = bitmap.getWidth();
+            int drawableheight = bitmap.getHeight();
+            float dx = 0, dy = 0;
+
+            float scale1 = 1.0f;
+            float scale2 = 1.0f;
+            final boolean fits = (drawablewidth < 0 || viewwidth == drawablewidth)
+                    && (drawableheight < 0 || viewheight == drawableheight);
+            if (type == TYPE_CIRCLE) {
+                int size = Math.min(drawablewidth, drawableheight);
+                scale = width * 1.0f / size;
+            } else if (type == TYPE_ROUND) {
+                scale = Math.max(viewwidth * 1.0f / drawablewidth, viewheight
+                        * 1.0f / drawableheight);
+            } else {
+                return;
+            }
+
+            if (drawablewidth <= 0 || drawableheight <= 0) {
+                drawable.setBounds(0, 0, viewwidth, viewheight);
+                matrix = null;
+            } else {
+                drawable.setBounds(0, 0, drawablewidth, drawableheight);
+                if (ScaleType.MATRIX == getScaleType()) {
+                    if (matrix.isIdentity()) {
+                        matrix = null;
+                    }
+                } else if (fits) {
+                    matrix = null;
+                } else if (ScaleType.CENTER == getScaleType()) {
+                    matrix.setTranslate(Math.round((viewwidth - drawablewidth) * 0.5f),
+                            Math.round((viewheight - drawableheight) * 0.5f));
+                } else if (ScaleType.CENTER_CROP == getScaleType()) {
+                    if (drawablewidth * viewheight > viewwidth * drawableheight) {
+                        dx = (viewwidth - drawablewidth * scale) * 0.5f;
+                    } else {
+                        dy = (viewheight - drawableheight * scale) * 0.5f;
+                    }
+                    matrix.setScale(scale, scale);
+                    matrix.postTranslate((int) (dx + 0.5f), (int) (dy + 0.5f));
+                } else if (ScaleType.CENTER_INSIDE == getScaleType()) {
+
+                    if (drawablewidth <= viewwidth && drawableheight <= viewheight) {
+                        scale = 1.0f;
+                    } else {
+                        scale = Math.min((float) viewwidth / (float) drawablewidth,
+                                (float) viewheight / (float) drawableheight);
+                    }
+                    dx = Math.round((viewwidth - drawablewidth * scale) * 0.5f);
+                    dy = Math.round((viewheight - drawableheight * scale) * 0.5f);
+                    matrix.setScale(scale, scale);
+                    matrix.postTranslate(dx, dy);
+                } else {
+                    if (drawablewidth * viewheight > viewwidth * drawableheight) {
+                        dx = (viewwidth - drawablewidth * scale) * 0.5f;
+                    } else {
+                        dy = (viewheight - drawableheight * scale) * 0.5f;
+                    }
+                    matrix.setScale(scale, scale);
+                    matrix.postTranslate((int) (dx + 0.5f), (int) (dy + 0.5f));
+                }
+            }
+            if (ScaleType.FIT_XY == getScaleType() && matrix != null) {
+                scale1 = viewwidth * 1.0f / drawablewidth;
+                scale2 = viewheight * 1.0f / drawableheight;
+                matrix.setScale(scale1, scale2);
+            }
+            bitmapShader.setLocalMatrix(matrix);
+            paint.setShader(bitmapShader);
+        }catch (ClassCastException e){
+            LogUtils.e(e.getMessage());
         }
-        if (ScaleType.FIT_XY == getScaleType() && matrix != null) {
-            scale1 = viewwidth * 1.0f / drawablewidth;
-            scale2 = viewheight * 1.0f / drawableheight;
-            matrix.setScale(scale1, scale2);
-        }
-        bitmapShader.setLocalMatrix(matrix);
-        paint.setShader(bitmapShader);
     }
+
 
     protected void onDraw(Canvas canvas) {
         if (getDrawable() == null) {
@@ -247,7 +253,7 @@ public class SWImageView extends android.support.v7.widget.AppCompatImageView {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         if (type == TYPE_ROUND) {
-            rectF = new RectF(border_width/2,border_width/2, getWidth()- border_width / 2, getHeight()- border_width / 2);
+            rectF = new RectF(border_width / 2, border_width / 2, getWidth() - border_width / 2, getHeight() - border_width / 2);
         }
     }
 

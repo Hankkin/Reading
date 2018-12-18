@@ -15,6 +15,7 @@ import com.hankkin.reading.domain.BannerBean
 import com.hankkin.reading.domain.HotBean
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.ui.home.articledetail.CommonWebActivity
+import com.hankkin.reading.ui.home.hot.HotFragment
 import com.hankkin.reading.ui.home.search.SearchActivity
 import com.hankkin.reading.utils.ViewHelper
 import com.hankkin.reading.view.widget.SWImageView
@@ -34,6 +35,7 @@ class HotListFragment : BaseMvpFragment<HotListPresenter>(), HotListContact.IVie
 
     private var hotBean: HotBean? = null
     private var mPage: Int = 0
+    private var mIndex: Int = 0
 
     override fun registerPresenter() = HotListPresenter::class.java
 
@@ -54,6 +56,7 @@ class HotListFragment : BaseMvpFragment<HotListPresenter>(), HotListContact.IVie
 
     override fun initData() {
         hotBean = arguments?.getSerializable("bean") as HotBean
+        mIndex = arguments?.getInt("index")!!
         getPresenter().getBannerHttp()
     }
 
@@ -94,7 +97,7 @@ class HotListFragment : BaseMvpFragment<HotListPresenter>(), HotListContact.IVie
                 val iv = view.findViewById<SWImageView>(R.id.iv_banner_item)
                 Glide.with(context).load(model as String?).into(iv)
             }
-            setOnItemClickListener { banner, model, position -> context?.let { CommonWebActivity.loadUrl(it, bannerData[position].url, bannerData[position].title) } }
+            setOnItemClickListener { _, _, position -> context?.let { CommonWebActivity.loadUrl(it, bannerData[position].url, bannerData[position].title) } }
         }
         xrv_hot.addHeaderView(layoutBanner)
     }
@@ -149,7 +152,7 @@ class HotListFragment : BaseMvpFragment<HotListPresenter>(), HotListContact.IVie
 
     override fun setFail() {
         mPageLayout.showError()
-        mPageLayout.setOnRetryListener(object : PageLayout.OnRetryClickListener{
+        mPageLayout.setOnRetryListener(object : PageLayout.OnRetryClickListener {
             override fun onRetry() {
                 getPresenter().getBannerHttp()
             }
@@ -163,13 +166,12 @@ class HotListFragment : BaseMvpFragment<HotListPresenter>(), HotListContact.IVie
 
 
     override fun onEvent(event: EventMap.BaseEvent) {
-        if (event is EventMap.WifiImgEvent) {
-            mAdapter.notifyDataSetChanged()
-        }
-        else if (event is EventMap.ToUpEvent) {
-            xrv_android.smoothScrollToPosition(0)
-        } else if (event is EventMap.HomeRefreshEvent) {
-            onRefresh()
+        when (event) {
+            is EventMap.WifiImgEvent -> mAdapter.notifyDataSetChanged()
+            is EventMap.ToUpEvent -> if ((parentFragment as HotFragment).getCurrentIndex() == mIndex && isVisible) {
+                xrv_hot.smoothScrollToPosition(0)
+            }
+            is EventMap.HomeRefreshEvent -> onRefresh()
         }
     }
 

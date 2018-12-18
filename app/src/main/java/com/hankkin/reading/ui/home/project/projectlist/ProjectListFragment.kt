@@ -10,8 +10,10 @@ import com.hankkin.reading.base.BaseMvpFragment
 import com.hankkin.reading.domain.ArticleBean
 import com.hankkin.reading.domain.CateBean
 import com.hankkin.reading.event.EventMap
+import com.hankkin.reading.ui.home.project.ProjectFragment
 import com.hankkin.reading.utils.ViewHelper
 import kotlinx.android.synthetic.main.fragment_android.*
+import kotlinx.android.synthetic.main.fragment_person.*
 import kotlinx.android.synthetic.main.fragment_project_list.*
 
 /**
@@ -21,6 +23,7 @@ class ProjectListFragment : BaseMvpFragment<ProjectListPresenter>(), ProjectList
     private lateinit var mAdapter: AndroidAdapter
     private var cateBean: CateBean? = null
     private var mPage: Int = 0
+    private  var mIndex: Int? = 0
 
     override fun registerPresenter() = ProjectListPresenter::class.java
 
@@ -37,6 +40,7 @@ class ProjectListFragment : BaseMvpFragment<ProjectListPresenter>(), ProjectList
 
     override fun initData() {
         cateBean = (arguments!!.getSerializable("bean")) as CateBean
+        mIndex = arguments!!.getInt("index")
         cateBean?.apply {
             getPresenter().getCateList(mPage, id)
         }
@@ -107,12 +111,12 @@ class ProjectListFragment : BaseMvpFragment<ProjectListPresenter>(), ProjectList
 
 
     override fun onEvent(event: EventMap.BaseEvent) {
-        if (event is EventMap.WifiImgEvent) {
-            mAdapter.notifyDataSetChanged()
-        } else if (event is EventMap.ToUpEvent) {
-            xrv_android.smoothScrollToPosition(0)
-        } else if (event is EventMap.HomeRefreshEvent) {
-            onRefresh()
+        when (event) {
+            is EventMap.WifiImgEvent -> mAdapter.notifyDataSetChanged()
+            is EventMap.ToUpEvent -> if (((parentFragment as ProjectFragment).getCurrentIndex() == mIndex) && isVisible){
+                xrv_project.smoothScrollToPosition(0)
+            }
+            is EventMap.HomeRefreshEvent -> onRefresh()
         }
     }
 

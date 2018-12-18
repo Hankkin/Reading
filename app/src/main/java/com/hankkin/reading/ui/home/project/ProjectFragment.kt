@@ -43,6 +43,7 @@ class ProjectFragment : BaseMvpFragment<ProjectPresenter>(), ProjectContact.IVie
 
     }
 
+    fun getCurrentIndex() = vp_project.currentItem
 
     class PageAdapter(fm: FragmentManager, val data: MutableList<CateBean>) : FragmentStatePagerAdapter(fm) {
 

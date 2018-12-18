@@ -51,6 +51,8 @@ class HotFragment : BaseMvpFragment<HotPresenter>(), HotContact.IView {
 
     }
 
+    fun getCurrentIndex() = vp_hot.currentItem
+
 
     class PageAdapter(fm: FragmentManager, val data: MutableList<HotBean>) : FragmentStatePagerAdapter(fm) {
 

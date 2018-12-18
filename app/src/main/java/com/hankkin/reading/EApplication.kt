@@ -13,7 +13,6 @@ import com.hankkin.library.http.HttpConfig
 import com.hankkin.library.utils.AppUtils
 import com.hankkin.library.utils.FileUtils
 import com.hankkin.library.utils.SPUtils
-import com.hankkin.library.utils.ToastUtils
 import com.hankkin.library.widget.toasty.Toasty
 import com.hankkin.reading.common.Constant
 import com.hankkin.reading.greendao.DaoMaster

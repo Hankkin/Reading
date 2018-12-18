@@ -69,7 +69,7 @@ class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IVie
         }
         xrv_android.refreshComplete()
         mPageLayout.showError()
-        mPageLayout.setOnRetryListener(object : PageLayout.OnRetryClickListener{
+        mPageLayout.setOnRetryListener(object : PageLayout.OnRetryClickListener {
             override fun onRetry() {
                 loadData(mPage)
             }
@@ -120,20 +120,18 @@ class AndroidFragment : BaseMvpFragment<AndroidPresenter>(), AndroidContact.IVie
     }
 
     override fun onEvent(it: EventMap.BaseEvent) {
-        if (it is EventMap.ToUpEvent) {
-            xrv_android.smoothScrollToPosition(0)
-        } else if (it is EventMap.HomeRefreshEvent) {
-            onRefresh()
-        } else if (it is EventMap.ChangeThemeEvent) {
-            ViewHelper.changeRefreshColor(refresh_android, context)
-        } else if (it is EventMap.CollectEvent) {
-            if (it.flag == EventMap.CollectEvent.COLLECT) {
+        when (it) {
+            is EventMap.ToUpEvent -> if (isVisible) {
+                xrv_android.smoothScrollToPosition(0)
+            }
+            is EventMap.HomeRefreshEvent -> onRefresh()
+            is EventMap.ChangeThemeEvent -> ViewHelper.changeRefreshColor(refresh_android, context)
+            is EventMap.CollectEvent -> if (it.flag == EventMap.CollectEvent.COLLECT) {
                 getPresenter().collectHttp(it.id)
             } else {
                 getPresenter().cancelCollectHttp(it.id)
             }
-        } else if (it is EventMap.WifiImgEvent) {
-            mAdapter.notifyDataSetChanged()
+            is EventMap.WifiImgEvent -> mAdapter.notifyDataSetChanged()
         }
     }
 
