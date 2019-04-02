@@ -61,7 +61,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginLeft="@dimen/dp_10"
                 android:src="@mipmap/bg_default"
-                app:type="round" />
+                app:stype="round" />
         </RelativeLayout>
 
 

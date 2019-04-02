@@ -1,5 +1,6 @@
 package com.hankkin.reading.view.widget;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -25,7 +26,8 @@ import com.hankkin.reading.R;
 /**
  * Created by Administrator on 2016/7/25.
  */
-public class SWImageView extends android.support.v7.widget.AppCompatImageView {
+@SuppressLint("AppCompatCustomView")
+public class SWImageView extends ImageView {
 
     //save bundle state
     private static final String STATE_INSTANCE = "state_instance";
@@ -73,7 +75,7 @@ public class SWImageView extends android.support.v7.widget.AppCompatImageView {
         TypedArray array = context.obtainStyledAttributes(attrs,
                 R.styleable.SWImageView);
         borderRadius = dp2px(array.getDimension(R.styleable.SWImageView_borderRadius, BODER_RADIUS_DEFAULT));
-        type = array.getInt(R.styleable.SWImageView_type, TYPE_NORMAL);
+        type = array.getInt(R.styleable.SWImageView_stype, TYPE_NORMAL);
         border_width = dp2px(array.getDimension(R.styleable.SWImageView_borderWidth, BORDER_WIDTH));
         border_color = array.getInt(R.styleable.SWImageView_borderColor, BORDER_COLOR);
         array.recycle();

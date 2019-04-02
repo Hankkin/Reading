@@ -10,7 +10,7 @@
         app:borderWidth="1dp"
         android:src="@mipmap/icon_person_avatar"
         android:id="@+id/iv_adapter_friend_avatar"
-        app:type="circle"
+        app:stype="circle"
         android:layout_width="70dp"
         android:layout_height="70dp" />
 

@@ -44,7 +44,7 @@
                         android:src="@mipmap/icon_person_avatar"
                         app:borderColor="@color/grey"
                         app:borderWidth="1dp"
-                        app:type="circle"
+                        app:stype="circle"
                         />
 
                     <LinearLayout

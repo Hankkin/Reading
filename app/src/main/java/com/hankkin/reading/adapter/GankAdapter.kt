@@ -53,8 +53,8 @@ class GankAdapter : BaseRecyclerViewAdapter<ResultBean>() {
                         setData(this,1.0F)
                         onItemClick { v, position ->
                             val intent = ImageActivity.newIntent(context, images!!, position)
-                            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(context as Activity, v, ViewCompat.getTransitionName(v))
-                            context.startActivity(intent, options.toBundle())
+                            val options = ViewCompat.getTransitionName(v)?.let { ActivityOptionsCompat.makeSceneTransitionAnimation(context as Activity, v, it) }
+                            context.startActivity(intent, options?.toBundle())
                         }
                     }
                     loadImages { v, url ->

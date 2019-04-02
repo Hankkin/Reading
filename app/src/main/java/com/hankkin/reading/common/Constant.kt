@@ -56,7 +56,7 @@ object Constant {
     }
 
     object WanAndroidUrl {
-        const val BASE_URL = "http://www.wanandroid.com/"
+        const val BASE_URL = "https://www.wanandroid.com/"
     }
 
     object CONSTANT_KEY {

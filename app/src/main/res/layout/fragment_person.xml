@@ -35,7 +35,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:src="@mipmap/icon_person_avatar"
-                    app:type="circle" />
+                    app:stype="circle" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"

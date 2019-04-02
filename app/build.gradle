@@ -10,7 +10,6 @@ apply plugin: 'org.greenrobot.greendao'
 android {
     sourceSets.main.jniLibs.srcDirs = ['libs']
     compileSdkVersion rootProject.ext.android.compileSdkVersion
-    buildToolsVersion rootProject.ext.android.buildToolsVersion
     defaultConfig {
         applicationId "com.hankkin.reading"
         minSdkVersion rootProject.ext.android.minSdkVersion
@@ -55,7 +54,7 @@ greendao {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation rootProject.ext.dependencies["design"]
     implementation rootProject.ext.dependencies["cardview"]
     implementation rootProject.ext.dependencies["base-rv-helper"]

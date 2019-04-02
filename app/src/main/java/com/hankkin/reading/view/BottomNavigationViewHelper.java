@@ -23,7 +23,7 @@ public class BottomNavigationViewHelper {
             for (int i = 0; i < menuView.getChildCount(); i++) {
                 BottomNavigationItemView item = (BottomNavigationItemView) menuView.getChildAt(i);
                 //去除shift效果
-                item.setShiftingMode(false);
+                item.setShifting(false);
                 item.setChecked(item.getItemData().isChecked());
             }
         } catch (NoSuchFieldException e) {

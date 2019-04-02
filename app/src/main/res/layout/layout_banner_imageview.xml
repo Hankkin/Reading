@@ -7,7 +7,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <com.hankkin.reading.view.widget.SWImageView
-        app:type="round"
+        app:stype="round"
         android:id="@+id/iv_banner_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
