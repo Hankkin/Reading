@@ -11,7 +11,6 @@
 
     <com.hankkin.reading.view.ClickImageView
         android:id="@+id/iv_adapter_select_app_icon"
-        android:src="@mipmap/ic_launcher_round"
         android:layout_width="40dp"
         android:layout_height="40dp" />
 
