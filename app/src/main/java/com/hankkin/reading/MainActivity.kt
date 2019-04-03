@@ -89,6 +89,7 @@ class MainActivity : BaseActivity() {
     override fun isSupportSwipeBack() = true
 
 
+    @SuppressLint("CheckResult")
     override fun initData() {
         SPUtils.put(Constant.SP_KEY.WIFI_IMG, 1)//默认加载图片
         RxPermissions(this).requestEach(Manifest.permission.ACCESS_FINE_LOCATION,
@@ -99,17 +100,15 @@ class MainActivity : BaseActivity() {
                 Manifest.permission.READ_PHONE_STATE,
 //                Manifest.permission.READ_SMS,
 //                Manifest.permission.RECORD_AUDIO,
-//                Manifest.permission.CAMERA,
+                Manifest.permission.CAMERA,
 //                Manifest.permission.CALL_PHONE,
 //                Manifest.permission.SEND_SMS,
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE).subscribe { p0 ->
-            if (p0.granted) {
-                LogUtils.d(p0.name + " is granted")
-            } else if (p0.shouldShowRequestPermissionRationale) {
-                Toast.makeText(activity, "请在设置-应用-权限管理中开启权限", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(activity, "权限被拒绝，无法启用存储功能", Toast.LENGTH_SHORT).show()
+            when {
+                p0.granted -> LogUtils.d(p0.name + " is granted")
+                p0.shouldShowRequestPermissionRationale -> Toast.makeText(activity, "请在设置-应用-权限管理中开启权限", Toast.LENGTH_SHORT).show()
+                else -> Toast.makeText(activity, "权限被拒绝，无法启用存储功能", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -135,7 +134,7 @@ class MainActivity : BaseActivity() {
         initNavView()
     }
 
-    fun initNavView() {
+    private fun initNavView() {
         nav_view.inflateHeaderView(R.layout.layout_drawer_header)
         nav_view.getHeaderView(0)?.run {
             findViewById<LinearLayout>(R.id.ll_nav_theme).setOnClickListener(click)
@@ -163,7 +162,7 @@ class MainActivity : BaseActivity() {
         drawer_layout.openDrawer(Gravity.LEFT)
     }
 
-    fun setStatuBar() {
+    private fun setStatuBar() {
         MyStatusBarUtil.setColorForSwipeBackDrawerLayout(this, resources.getColor(ThemeHelper.getCurrentColor(this)), 0)
         MyStatusBarUtil.setColorNoTranslucentForDrawerLayout(this@MainActivity, drawer_layout, resources.getColor(ThemeHelper.getCurrentColor(this)))
     }
@@ -252,13 +251,7 @@ class MainActivity : BaseActivity() {
                 R.id.ll_nav_theme -> startActivity(Intent(this@MainActivity, ThemeActivity::class.java))
                 R.id.ll_nav_setting -> startActivity(Intent(this@MainActivity, SettingActivity::class.java))
                 R.id.ll_nav_about -> ViewHelper.showAboutDialog(this@MainActivity)
-                R.id.ll_nav_collect -> {
-                    if (!UserControl.isLogin()) {
-                        startActivity(Intent(this@MainActivity, LoginActivity::class.java))
-                    } else {
-                        startActivity(Intent(this@MainActivity, MyCollectActivity::class.java))
-                    }
-                }
+                R.id.ll_nav_collect -> startActivity(Intent(this@MainActivity, if (!UserControl.isLogin()) LoginActivity::class.java else LoginActivity::class.java))
                 R.id.ll_nav_exit -> finish()
                 R.id.ll_nav_wordnote -> startActivity(Intent(this@MainActivity, WordNoteActivity::class.java))
                 R.id.ll_nav_account -> startActivity(Intent(this@MainActivity, AccountListActivity::class.java))

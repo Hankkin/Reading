@@ -92,11 +92,13 @@ class ToolsFragment : BaseMvpFragment<ToolsContract.IPresenter>(), ToolsContract
         }
         ll_tools_note.setOnClickListener { startActivity(Intent(context, WordNoteActivity::class.java)) }
         ll_tools_word.setOnClickListener { startActivity(Intent(context, TranslateActivity::class.java)) }
-        ll_tools_pwd.setOnClickListener { if (SPUtils.getInt(Constant.SP_KEY.LOCK_OPEN) != 0) {
-            startActivity(Intent(context, LockSetActivity::class.java))
-        } else {
-            startActivity(Intent(context, AccountListActivity::class.java))
-        } }
+        ll_tools_pwd.setOnClickListener {
+            if (SPUtils.getInt(Constant.SP_KEY.LOCK_OPEN) != 0) {
+                startActivity(Intent(context, LockSetActivity::class.java))
+            } else {
+                startActivity(Intent(context, AccountListActivity::class.java))
+            }
+        }
     }
 
 
@@ -107,7 +109,7 @@ class ToolsFragment : BaseMvpFragment<ToolsContract.IPresenter>(), ToolsContract
     }
 
 
-    fun getWords() = DaoFactory.getProtocol(WordNoteDaoContract::class.java).queryEmphasisWord()
+    private fun getWords() = DaoFactory.getProtocol(WordNoteDaoContract::class.java).queryEmphasisWord()
 
     private fun setSetting() {
         mAdapter = PersonListAdapter()
@@ -174,10 +176,9 @@ class ToolsFragment : BaseMvpFragment<ToolsContract.IPresenter>(), ToolsContract
     }
 
     override fun onEvent(event: EventMap.BaseEvent) {
-        if (event is EventMap.UpdateEveryEvent) {
-            setEveryWord()
-        } else if (event is EventMap.LoginEvent) {
-            mAdapter.apply {
+        when (event) {
+            is EventMap.UpdateEveryEvent -> setEveryWord()
+            is EventMap.LoginEvent -> mAdapter.apply {
                 add(PersonListBean(R.mipmap.icon_person_set_exit, resources.getString(R.string.person_info_logout)))
                 mAdapter.notifyDataSetChanged()
                 if (UserControl.isLogin()) {
@@ -186,8 +187,7 @@ class ToolsFragment : BaseMvpFragment<ToolsContract.IPresenter>(), ToolsContract
                     tv_tools_title.text = "Hi,小猿猿"
                 }
             }
-        } else if (event is EventMap.PersonClickEvent) {
-            when (event.index) {
+            is EventMap.PersonClickEvent -> when (event.index) {
                 0 -> startActivity(
                         if (!UserControl.isLogin()) {
                             Intent(context, LoginActivity::class.java)

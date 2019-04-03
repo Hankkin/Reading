@@ -82,7 +82,7 @@ class PersonFragment : BaseMvpFragment<PersonContract.IPresenter>(), PersonContr
     }
 
 
-    fun initHeaderAnim() {
+    private fun initHeaderAnim() {
         val name = if (!UserControl.isLogin()) {
             "未登录"
         } else {
