@@ -21,8 +21,8 @@ import com.hankkin.reading.greendao.GreenOpenHelper
 import com.hankkin.reading.utils.ThemeHelper
 import com.hankkin.reading.utils.ThemeHelper.*
 import com.squareup.leakcanary.LeakCanary
-import com.tencent.bugly.Bugly
-import com.tencent.bugly.crashreport.CrashReport
+//import com.tencent.bugly.Bugly
+//import com.tencent.bugly.crashreport.CrashReport
 import com.youdao.sdk.app.YouDaoApplication
 
 /**
@@ -49,7 +49,7 @@ class EApplication : Application(), ThemeUtils.switchColor {
         initLeakCanary()
         initDao()
         YouDaoApplication.init(this, "46dbe20b62a7eae3")
-        Bugly.init(this, "61fd6ca178", false)
+//        Bugly.init(this, "61fd6ca178", false)
     }
 
     private fun initHttp() {

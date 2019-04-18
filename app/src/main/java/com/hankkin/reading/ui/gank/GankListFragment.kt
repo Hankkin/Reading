@@ -1,11 +1,7 @@
 package com.hankkin.reading.ui.gank
 
-import android.os.Handler
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
-import android.view.View
-import com.hankkin.library.fuct.common.DoubleClickListener
-import com.hankkin.library.utils.ToastUtils
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.GankAdapter
 import com.hankkin.reading.adapter.base.XRecyclerView
@@ -17,21 +13,21 @@ import kotlinx.android.synthetic.main.fragment_gank_item.*
 /**
  * Created by Hankkin on 2018/11/8.
  */
-class GankAndroidFragment : BaseMvpFragment<GankPresenter>(), GankContract.IView, SwipeRefreshLayout.OnRefreshListener {
-    private val GANK_CATE = "Android"
+class GankListFragment : BaseMvpFragment<GankListPresenter>(), GankListContract.IView, SwipeRefreshLayout.OnRefreshListener {
 
     private lateinit var mAdapter: GankAdapter
     private var mPage = 1
+    private lateinit var mCate: String
 
 
-    override fun registerPresenter() = GankPresenter::class.java
+    override fun registerPresenter() = GankListPresenter::class.java
 
 
     override fun getLayoutId() = R.layout.fragment_gank_item
 
 
     override fun initView() {
-
+        mCate = arguments?.getString("bean").toString()
         ViewHelper.setRefreshLayout(context!!, true, refresh_gank, this)
         mAdapter = GankAdapter()
         xrv_gank.apply {
@@ -42,7 +38,7 @@ class GankAndroidFragment : BaseMvpFragment<GankPresenter>(), GankContract.IView
             setLoadingListener(object : XRecyclerView.LoadingListener {
                 override fun onLoadMore() {
                     mPage++
-                    getPresenter().getGanks(GANK_CATE, mPage)
+                    getPresenter().getGanks(mCate, mPage)
                 }
 
                 override fun onRefresh() {
@@ -53,7 +49,7 @@ class GankAndroidFragment : BaseMvpFragment<GankPresenter>(), GankContract.IView
     }
 
     override fun initData() {
-        getPresenter().getGanks(GANK_CATE, mPage)
+        getPresenter().getGanks(mCate, mPage)
     }
 
     override fun setGanks(gankBean: GankBean) {
@@ -74,7 +70,7 @@ class GankAndroidFragment : BaseMvpFragment<GankPresenter>(), GankContract.IView
 
     override fun onRefresh() {
         mPage = 1
-        getPresenter().getGanks(GANK_CATE, mPage)
+        getPresenter().getGanks(mCate, mPage)
     }
 
 }

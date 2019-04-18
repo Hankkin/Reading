@@ -9,16 +9,15 @@ import io.reactivex.schedulers.Schedulers
  * Created by Hankkin on 2018/11/8.
  */
 class GankPresenter : RxLifePresenter<GankContract.IView>(),GankContract.IPresenter{
-
-    override fun getGanks(cate: String, page: Int) {
+    override fun getGanksToday() {
         HttpClientUtils.Builder.getGankHttp().
-                getGank(cate,page)
+                getToday()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     getMvpView().setGanks(it)
                 }
                 .bindRxLifeEx(RxLife.ON_DESTROY)
-
     }
+
 }

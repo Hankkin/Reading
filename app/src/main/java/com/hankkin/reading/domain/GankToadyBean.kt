@@ -6,7 +6,8 @@ import java.io.Serializable
  * Created by Hankkin on 2018/11/8.
  */
 data class GankToadyBean(val error: Boolean,
-                    val results: TodayBean?) : Serializable
+                         val category: MutableList<String>,
+                         val results: TodayBean?) : Serializable
 
 data class TodayBean(val Android: MutableList<ResultBean>?,
                      val App: MutableList<ResultBean>?,
