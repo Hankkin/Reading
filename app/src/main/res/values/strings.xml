@@ -232,4 +232,6 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="hi_login">Hi,小猿猿,请登录呦</string>
+    <string name="change_person_theme">您将切换\'我的\'页面主题，下次启动生效，是否重启Reading？</string>
 </resources>

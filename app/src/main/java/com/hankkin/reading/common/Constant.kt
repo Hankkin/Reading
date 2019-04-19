@@ -100,6 +100,7 @@ object Constant {
         const val WORDNOTE = "wordnote"
         const val ACCOUNT = "account"
         const val DB_UPDATE_TIME = "da_update_time"
+        const val PERSON_THEME = "person_theme"
     }
 
 

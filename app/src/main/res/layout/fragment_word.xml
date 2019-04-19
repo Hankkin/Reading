@@ -7,7 +7,9 @@
     android:orientation="vertical">
 
 
-    <com.bilibili.magicasakura.widgets.TintRelativeLayout
+    <com.bilibili.magicasakura.widgets.TintLinearLayout
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/theme_color_primary"
@@ -16,41 +18,70 @@
         android:paddingRight="@dimen/dp_10"
         android:paddingLeft="@dimen/dp_10">
 
-        <TextView
-            android:id="@+id/tv_tools_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hi,小猿猿"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/sp_18"
-            android:textStyle="italic|bold" />
+        <LinearLayout
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_tools_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hi_login"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/sp_18"
+                android:textStyle="italic|bold" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_tools_title"
-            android:text="Welcome to Reading"
-            android:textColor="@color/white"
-            android:textSize="@dimen/sp_12" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_tools_title"
+                android:text="Welcome to Reading"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_12" />
+        </LinearLayout>
 
-        <ImageView
-            android:id="@+id/iv_translate_weather"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/dp_4"
-            android:layout_toLeftOf="@+id/tv_translate_weather" />
 
-        <TextView
-            android:id="@+id/tv_translate_weather"
+        <LinearLayout
+            android:gravity="right"
+            android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:textColor="@color/white"
-            android:textSize="@dimen/sp_14" />
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_alignParentEnd="true"
+                android:id="@+id/iv_person_change"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_10"
+                android:src="@mipmap/exchange"
+                android:visibility="visible" />
 
-    </com.bilibili.magicasakura.widgets.TintRelativeLayout>
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_marginEnd="@dimen/dp_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/iv_translate_weather"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/dp_4"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_translate_weather"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_14" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+
+    </com.bilibili.magicasakura.widgets.TintLinearLayout>
 
 
 
@@ -66,31 +97,8 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/card_word_every"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dp_10"
-                app:cardCornerRadius="@dimen/dp_6">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="@dimen/dp_10">
-
-
-                    <include
-                        android:id="@+id/layout_word_every"
-                        layout="@layout/layout_word_every"/>
-                    <include
-                        android:visibility="gone"
-                        android:id="@+id/layout_word_no_data"
-                        layout="@layout/layout_word_no_data"/>
-
-
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
+            <include layout="@layout/layout_card_word"/>
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"

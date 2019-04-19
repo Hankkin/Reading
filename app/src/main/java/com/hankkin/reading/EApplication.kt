@@ -20,7 +20,7 @@ import com.hankkin.reading.greendao.DaoSession
 import com.hankkin.reading.greendao.GreenOpenHelper
 import com.hankkin.reading.utils.ThemeHelper
 import com.hankkin.reading.utils.ThemeHelper.*
-import com.squareup.leakcanary.LeakCanary
+//import com.squareup.leakcanary.LeakCanary
 //import com.tencent.bugly.Bugly
 //import com.tencent.bugly.crashreport.CrashReport
 import com.youdao.sdk.app.YouDaoApplication
@@ -65,10 +65,10 @@ class EApplication : Application(), ThemeUtils.switchColor {
     }
 
     private fun initLeakCanary() {
-        if (LeakCanary.isInAnalyzerProcess(this)) {
-            return
-        }
-        LeakCanary.install(this)
+//        if (LeakCanary.isInAnalyzerProcess(this)) {
+//            return
+//        }
+//        LeakCanary.install(this)
     }
 
     private fun initDao() {

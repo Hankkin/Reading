@@ -30,9 +30,7 @@ class LoginActivity : BaseActivity() {
         vp_login.adapter = adapter
     }
 
-    override fun isHasBus(): Boolean {
-        return super.isHasBus()
-    }
+    override fun isHasBus() = true
 
     override fun onEvent(event: EventMap.BaseEvent) {
         if (event is EventMap.LoginSetTabEvent)

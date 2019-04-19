@@ -39,6 +39,7 @@ import com.hankkin.reading.ui.gank.GankFragment
 import com.hankkin.reading.ui.home.HomeFragment
 import com.hankkin.reading.ui.login.LoginActivity
 import com.hankkin.reading.ui.person.MyCollectActivity
+import com.hankkin.reading.ui.person.PersonFragment
 import com.hankkin.reading.ui.person.SettingActivity
 import com.hankkin.reading.ui.person.ThemeActivity
 import com.hankkin.reading.ui.todo.ToDoActivity
@@ -48,6 +49,7 @@ import com.hankkin.reading.ui.tools.wordnote.WordNoteActivity
 import com.hankkin.reading.ui.wxarticle.WxArticleFragment
 import com.hankkin.reading.utils.*
 import com.hankkin.reading.view.BottomNavigationViewHelper
+import com.hankkin.reading.view.widget.SWImageView
 import com.tbruyelle.rxpermissions2.RxPermissions
 import com.zhihu.matisse.Matisse
 import io.reactivex.Observable
@@ -71,11 +73,11 @@ class MainActivity : BaseActivity() {
     }
 
 
-    private val fgList = listOf<Fragment>(
+    private val fgList = mutableListOf<Fragment>(
             HomeFragment(),
             GankFragment(),
             WxArticleFragment(),
-            ToolsFragment()
+            PersonFragment()
     )
 
     override fun getLayoutId(): Int {
@@ -122,6 +124,10 @@ class MainActivity : BaseActivity() {
     override fun initViews(savedInstanceState: Bundle?) {
 
         setStatuBar()
+        if (SPUtils.getInt(Constant.SP_KEY.PERSON_THEME) == 1) {
+            fgList.removeAt(3)
+            fgList.add(ToolsFragment())
+        }
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         val mainAdapter = MainFragmentAdapter(supportFragmentManager, fgList)
@@ -145,6 +151,7 @@ class MainActivity : BaseActivity() {
             findViewById<LinearLayout>(R.id.ll_nav_wordnote).setOnClickListener(click)
             findViewById<LinearLayout>(R.id.ll_nav_account).setOnClickListener(click)
             findViewById<LinearLayout>(R.id.ll_nav_todo).setOnClickListener(click)
+            findViewById<SWImageView>(R.id.iv_avatar).setOnClickListener(click)
 
             findViewById<ImageView>(R.id.iv_drawer_header_bg).apply {
                 setOnClickListener { changeHeader() }
@@ -251,11 +258,12 @@ class MainActivity : BaseActivity() {
                 R.id.ll_nav_theme -> startActivity(Intent(this@MainActivity, ThemeActivity::class.java))
                 R.id.ll_nav_setting -> startActivity(Intent(this@MainActivity, SettingActivity::class.java))
                 R.id.ll_nav_about -> ViewHelper.showAboutDialog(this@MainActivity)
-                R.id.ll_nav_collect -> startActivity(Intent(this@MainActivity, if (!UserControl.isLogin()) LoginActivity::class.java else LoginActivity::class.java))
+                R.id.ll_nav_collect -> startActivity(Intent(this@MainActivity, if (!UserControl.isLogin()) LoginActivity::class.java else MyCollectActivity::class.java))
                 R.id.ll_nav_exit -> finish()
                 R.id.ll_nav_wordnote -> startActivity(Intent(this@MainActivity, WordNoteActivity::class.java))
                 R.id.ll_nav_account -> startActivity(Intent(this@MainActivity, AccountListActivity::class.java))
                 R.id.ll_nav_todo -> startActivity(Intent(this@MainActivity, ToDoActivity::class.java))
+                R.id.iv_avatar -> startActivity(Intent(this@MainActivity, if (!UserControl.isLogin()) LoginActivity::class.java else LoginActivity::class.java))
             }
         }, 200)
     }

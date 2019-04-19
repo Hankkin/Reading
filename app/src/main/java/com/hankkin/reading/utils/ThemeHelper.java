@@ -59,11 +59,11 @@ public class ThemeHelper {
     }
 
     public static int getTheme(Context context) {
-        return getSharePreference(context).getInt(CURRENT_THEME, COLOR_YIMA);
+        return getSharePreference(context).getInt(CURRENT_THEME, COLOR_ZHIHU);
     }
 
     public static boolean isDefaultTheme(Context context) {
-        return getTheme(context) == COLOR_YIMA;
+        return getTheme(context) == COLOR_ZHIHU;
     }
 
     public static String getName(Context context, int currentTheme) {
@@ -188,7 +188,7 @@ public class ThemeHelper {
             case COLOR_XINGHONG:
                 return R.color.xinghong;
         }
-        return R.color.yima;
+        return R.color.zhihu;
     }
 
     public static int getCurrentLogo(Context context) {
@@ -224,7 +224,7 @@ public class ThemeHelper {
             case COLOR_XINGHONG:
                 return R.mipmap.xinghong;
         }
-        return R.mipmap.yima;
+        return R.mipmap.zhihu;
     }
 
 }

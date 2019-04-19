@@ -33,6 +33,11 @@
 
         </com.bilibili.magicasakura.widgets.TintToolbar>
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/ll_wxarticle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
         <com.bilibili.magicasakura.widgets.TintLinearLayout
             android:id="@+id/ll_wx_top"
             android:layout_width="match_parent"
@@ -51,10 +56,12 @@
         </com.bilibili.magicasakura.widgets.TintLinearLayout>
 
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vp_wx"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_wx"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+    </LinearLayout>
+
 
 </LinearLayout>

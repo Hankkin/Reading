@@ -31,6 +31,8 @@
 
 
                 <com.hankkin.reading.view.widget.SWImageView
+                    app:borderWidth="1dp"
+                    app:borderColor="@color/white"
                     android:id="@+id/iv_person_avatar"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
@@ -85,6 +87,17 @@
                         android:visibility="gone" />
 
                     <ImageView
+                        android:layout_toStartOf="@+id/iv_person_feedback"
+                        android:id="@+id/iv_person_change"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/dp_16"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:src="@mipmap/exchange"
+                        android:visibility="visible" />
+
+                    <ImageView
                         android:layout_toStartOf="@+id/iv_person_set"
                         android:id="@+id/iv_person_feedback"
                         android:layout_width="wrap_content"
@@ -128,6 +141,10 @@
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/dp_10"
             android:orientation="vertical">
+
+            <include layout="@layout/layout_tools"/>
+
+            <include layout="@layout/layout_card_word"/>
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
@@ -255,20 +272,20 @@
                     android:scrollbars="vertical" />
             </android.support.v7.widget.CardView>
 
+            <TextView
+                android:textSize="@dimen/sp_14"
+                android:padding="@dimen/dp_10"
+                android:layout_gravity="bottom"
+                android:id="@+id/tv_person_version"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
 
     </android.support.v4.widget.NestedScrollView>
 
 
-    <TextView
-        android:textSize="@dimen/sp_14"
-        android:padding="@dimen/dp_10"
-        android:layout_gravity="bottom"
-        android:id="@+id/tv_person_version"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 </android.support.design.widget.CoordinatorLayout>
 
 

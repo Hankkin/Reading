@@ -1,5 +1,6 @@
 package com.hankkin.reading.adapter
 
+import android.text.TextUtils
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -30,7 +31,7 @@ class WordNoteAdapter : BaseRecyclerViewAdapter<WordNoteBean>() {
         override fun onBindViewHolder(bean: WordNoteBean?, position: Int) {
             bean?.run {
                 tvKey.text = translateBean.query
-                tvContent.text = translateBean.explains.toString()
+                tvContent.text = if(translateBean.explains == null) "..." else translateBean.explains.toString()
                 itemView.setOnClickListener { onItemClickListener.onClick(this, position) }
                 itemView.setOnLongClickListener {
                     onItemLongClickListener.onLongClick(this, position)

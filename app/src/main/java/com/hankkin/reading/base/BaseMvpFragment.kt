@@ -52,13 +52,14 @@ abstract class BaseMvpFragment<out T : IPresenterContract> : MvpFragment<T>() {
         return inflater.inflate(getLayoutId(), container, false)
     }
 
-    protected fun initPageLayout(targetView: Any){
+    protected fun initPageLayout(targetView: Any, isShowLoading: Boolean = false){
         mPageLayout = PageLayout.Builder(context!!)
                 .initPage(targetView)
                 .setDefaultEmptyText(resources.getString(R.string.pagelayout_empty))
                 .setDefaultErrorText(resources.getString(R.string.pagelayout_error))
                 .setDefaultLoadingBlinkText(AppUtils.getAppName(this.context!!)!!)
                 .create()
+        if (isShowLoading) mPageLayout.showLoading()
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

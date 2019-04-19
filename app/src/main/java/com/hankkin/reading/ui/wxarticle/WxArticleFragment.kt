@@ -10,6 +10,7 @@ import android.view.View
 import com.hankkin.library.fuct.common.DoubleClickListener
 import com.hankkin.library.utils.RxBusTools
 import com.hankkin.library.utils.ToastUtils
+import com.hankkin.library.widget.view.PageLayout
 import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseMvpFragment
 import com.hankkin.reading.domain.WxArticleBean
@@ -29,6 +30,14 @@ class WxArticleFragment : BaseMvpFragment<WxArticlePresenter>(), WxArticleContac
     override fun registerPresenter() = WxArticlePresenter::class.java
 
     override fun initView() {
+        initPageLayout(ll_wxarticle, true)
+        mPageLayout.setOnRetryListener(object : PageLayout.OnRetryClickListener{
+            override fun onRetry() {
+                mPageLayout.showLoading()
+                getPresenter().getWxTabs()
+            }
+
+        })
         toobar_wx.setOnClickListener(object : DoubleClickListener(){
             override fun onDoubleClick(v: View?) {
                 RxBusTools.getDefault().post(EventMap.XrvScollToPosEvent(vp_wx.currentItem))
@@ -37,13 +46,11 @@ class WxArticleFragment : BaseMvpFragment<WxArticlePresenter>(), WxArticleContac
     }
 
     override fun initData() {
-        Handler().postDelayed({
-            ToastUtils.showTarget(context!!,resources.getString(R.string.double_click_to_top),ll_wx_top)
-        },1000)
         getPresenter().getWxTabs()
     }
 
     override fun setTabs(data: MutableList<WxArticleBean>) {
+        ToastUtils.showTarget(context!!,resources.getString(R.string.double_click_to_top),ll_wx_top)
         val adapter = PageAdapter(childFragmentManager, data)
         vp_wx.adapter = adapter
         tab_wx.setupWithViewPager(vp_wx)
@@ -51,6 +58,7 @@ class WxArticleFragment : BaseMvpFragment<WxArticlePresenter>(), WxArticleContac
         val indicator = PointMoveIndicator(tab_wx)
         tab_wx.animatedIndicator = indicator
         vp_wx.offscreenPageLimit = data.size
+        mPageLayout.hide()
     }
 
     class PageAdapter(fm: FragmentManager, val data: MutableList<WxArticleBean>) : FragmentStatePagerAdapter(fm) {

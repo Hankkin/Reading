@@ -10,6 +10,7 @@ import com.hankkin.reading.domain.GankToadyBean
 interface GankContract {
     interface IView : IBaseViewContract{
         fun setGanks(gankBean: GankToadyBean?)
+        fun setFail()
     }
 
     interface IPresenter : IPresenterContract {

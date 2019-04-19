@@ -2,6 +2,7 @@ package com.hankkin.reading.ui.gank
 
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
+import com.hankkin.library.widget.view.PageLayout
 import com.hankkin.reading.R
 import com.hankkin.reading.adapter.GankAdapter
 import com.hankkin.reading.adapter.base.XRecyclerView
@@ -28,6 +29,13 @@ class GankListFragment : BaseMvpFragment<GankListPresenter>(), GankListContract.
 
     override fun initView() {
         mCate = arguments?.getString("bean").toString()
+        initPageLayout(xrv_gank)
+        mPageLayout.setOnRetryListener(object : PageLayout.OnRetryClickListener{
+            override fun onRetry() {
+                mPageLayout.showLoading()
+                getPresenter().getGanks(mCate, mPage)
+            }
+        })
         ViewHelper.setRefreshLayout(context!!, true, refresh_gank, this)
         mAdapter = GankAdapter()
         xrv_gank.apply {
@@ -65,6 +73,7 @@ class GankListFragment : BaseMvpFragment<GankListPresenter>(), GankListContract.
             refresh_gank.isRefreshing = false
         }
         xrv_gank.refreshComplete()
+        mPageLayout.hide()
     }
 
 

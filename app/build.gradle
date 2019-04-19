@@ -94,8 +94,8 @@ dependencies {
 //    implementation 'com.tencent.bugly:crashreport_upgrade:latest.release'
 //    implementation 'com.tencent.bugly:nativecrashreport:latest.release'
     //内存泄露工具
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.1'
-    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.1'
+//    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.1'
+//    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     implementation project(':magicasakura')
     implementation project(':library')
