@@ -81,7 +81,7 @@
                         style="@style/whiteTxtBig"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
+                        android:layout_centerVertical="true"
                         android:text="@string/title_person"
                         android:textStyle="bold"
                         android:visibility="gone" />
