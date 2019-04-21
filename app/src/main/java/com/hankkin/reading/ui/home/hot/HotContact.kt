@@ -10,6 +10,7 @@ import com.hankkin.library.mvp.contract.IPresenterContract
 interface HotContact{
     interface IView : IBaseViewContract {
         fun setHot(data: MutableList<HotBean>)
+        fun setFail()
     }
 
     interface IPresenter : IPresenterContract {

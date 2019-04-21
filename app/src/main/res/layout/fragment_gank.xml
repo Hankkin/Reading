@@ -35,6 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <com.bilibili.magicasakura.widgets.TintLinearLayout
+            android:orientation="horizontal"
             android:background="@color/theme_color_primary"
             android:layout_width="match_parent"
             android:layout_height="45dp">
@@ -44,10 +45,18 @@
                 android:layout_height="@dimen/dp_40"
                 custom:tabGravity="fill"
                 custom:tabMode="fixed"
+                android:layout_weight="1"
                 custom:tabSelectedTextColor="@color/white"
                 custom:tabTextColor="@color/grey2"
                 custom:tabIndicatorColor="@color/white"
                 />
+            <ImageView
+                android:id="@+id/iv_gank_sort"
+                android:paddingRight="@dimen/dp_10"
+                android:paddingLeft="@dimen/dp_10"
+                android:src="@mipmap/icon_arrow_bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
         </com.bilibili.magicasakura.widgets.TintLinearLayout>
 
 

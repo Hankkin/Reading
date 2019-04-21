@@ -16,6 +16,8 @@ class HotPresenter : RxLifePresenter<HotContact.IView>(), HotContact.IPresenter 
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeNx({
                     getMvpView().setHot(it.data)
+                }, {
+                    getMvpView().setFail()
                 }).bindRxLifeEx(RxLife.ON_DESTROY)
     }
 

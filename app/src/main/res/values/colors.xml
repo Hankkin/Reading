@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="theme_color_primary">#2196f3</color>
-    <color name="theme_color_primary_dark">#2196f3</color>
-    <color name="colorAccent">#2196f3</color>
+    <color name="theme_color_primary">#057FFF</color>
+    <color name="theme_color_primary_dark">#057FFF</color>
+    <color name="colorAccent">#057FFF</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
     <color name="blue">#0E6EB8</color>
@@ -39,9 +39,9 @@
     <color name="yidi_dark">#3f51b5</color>
     <color name="yidi_accent">#3f51b5</color>
 
-    <color name="zhihu">#2196f3</color>
-    <color name="zhihu_dark">#2196f3</color>
-    <color name="zhihu_accent">#2196f3</color>
+    <color name="zhihu">#057FFF</color>
+    <color name="zhihu_dark">#057FFF</color>
+    <color name="zhihu_accent">#057FFF</color>
 
     <color name="jilao">#673ab7</color>
     <color name="jilao_dark">#673ab7</color>

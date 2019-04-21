@@ -5,6 +5,7 @@ import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
+import com.hankkin.library.widget.view.PageLayout
 import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseMvpFragment
 import com.hankkin.reading.domain.HotBean
@@ -44,14 +45,26 @@ class HotFragment : BaseMvpFragment<HotPresenter>(), HotContact.IView {
             animatedIndicator = indicator
             vp_hot.offscreenPageLimit = temp.size
         }
+        mPageLayout.hide()
 
+    }
+
+    override fun setFail() {
+        mPageLayout.showError()
     }
 
     override fun initView() {
-
+        initPageLayout(ll_hot, true)
+        mPageLayout.setOnRetryListener(object : PageLayout.OnRetryClickListener{
+            override fun onRetry() {
+                mPageLayout.showLoading()
+                getPresenter().getHot()
+            }
+        })
     }
 
     fun getCurrentIndex() = vp_hot.currentItem
+
 
 
     class PageAdapter(fm: FragmentManager, val data: MutableList<HotBean>) : FragmentStatePagerAdapter(fm) {

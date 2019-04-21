@@ -2,6 +2,7 @@ package com.hankkin.reading.event
 
 import android.text.TextUtils
 import com.hankkin.reading.domain.AppInfo
+import com.hankkin.reading.domain.CategoryBean
 import com.hankkin.reading.domain.PersonListBean
 import com.hankkin.reading.domain.ToDoListBean
 
@@ -111,5 +112,7 @@ object EventMap {
         }
     }
     class PersonClickEvent(val index: Int,bean: PersonListBean): BaseEvent()
+
+    class CateEvent(val data: ArrayList<CategoryBean>): BaseEvent()
 
 }

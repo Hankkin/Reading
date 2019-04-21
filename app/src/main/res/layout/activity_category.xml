@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/normal_bg"
+    tools:context=".ui.category.CategoryActivity">
+
+    <include layout="@layout/layout_title_bar_back"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_category"
+        android:layout_marginTop="@dimen/title_bar_height"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <com.github.clans.fab.FloatingActionButton
+        android:layout_gravity="bottom|right"
+        fab:menu_colorNormal="@color/theme_color_primary"
+        fab:menu_colorPressed="@color/theme_color_primary"
+        fab:menu_colorRipple="@color/theme_color_primary"
+        android:id="@+id/fab_cate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/fab_confirm"
+        style="@style/menu_labels_style"
+        fab:fab_size="normal"
+        android:layout_marginRight="@dimen/dp_16"
+        android:layout_marginBottom="@dimen/dp_16"
+        fab:fab_label="@string/home_fab_up" />
+
+</FrameLayout>

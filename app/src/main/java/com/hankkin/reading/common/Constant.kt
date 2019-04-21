@@ -65,6 +65,7 @@ object Constant {
         const val KEY_WEB_URL = "web_url"
         const val KEY_WEB_TITLE = "web_title"
         const val KEY_TODO = "todo"
+        const val KEY_CATEGORY = "category"
     }
 
 
