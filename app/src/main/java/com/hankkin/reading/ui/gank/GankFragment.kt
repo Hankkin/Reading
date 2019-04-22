@@ -5,15 +5,21 @@ import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import com.hankkin.library.utils.SPUtils
 import com.hankkin.library.widget.view.PageLayout
 import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseMvpFragment
+import com.hankkin.reading.common.Constant
 import com.hankkin.reading.domain.CategoryBean
 import com.hankkin.reading.domain.GankToadyBean
 import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.ui.category.CategoryActivity
 import com.kekstudio.dachshundtablayout.indicators.PointMoveIndicator
 import kotlinx.android.synthetic.main.fragment_gank.*
+import org.json.JSONArray
+
 
 /**
  * Created by Hankkin on 2018/11/8.
@@ -51,7 +57,12 @@ class GankFragment : BaseMvpFragment<GankPresenter>(), GankContract.IView {
     }
 
     override fun initData() {
-        getPresenter().getGanksToday()
+        val titles = SPUtils.getString(Constant.SP_KEY.CATEGORY_SORT)
+        if (titles.isNotEmpty()) {
+            setTabs(ArrayList(Gson().fromJson(titles,Array<CategoryBean>::class.java).asList()))
+        }else {
+            getPresenter().getGanksToday()
+        }
     }
 
     private fun setTabs(data: ArrayList<CategoryBean>) {
@@ -69,22 +80,22 @@ class GankFragment : BaseMvpFragment<GankPresenter>(), GankContract.IView {
 
     class PageAdapter(fm: FragmentManager, val data: ArrayList<CategoryBean>) : FragmentStatePagerAdapter(fm) {
 
-
+        private val temp = data.filter { it.isOpen }
         override fun getItem(i: Int): Fragment {
             val bundle = Bundle()
             val fg = GankListFragment()
             bundle.putInt("index", i)
-            bundle.putString("bean", data.get(i).title)
+            bundle.putString("bean", temp.get(i).title)
             fg.arguments = bundle
             return fg
         }
 
         override fun getCount(): Int {
-            return data.filter { it.isOpen }.size
+            return temp.size
         }
 
         override fun getPageTitle(position: Int): CharSequence {
-            return data[position].title
+            return temp[position].title
         }
 
     }

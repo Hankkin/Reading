@@ -13,7 +13,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Switch
 import android.widget.TextView
+import com.google.gson.Gson
 import com.hankkin.library.utils.RxBusTools
+import com.hankkin.library.utils.SPUtils
 import com.hankkin.library.widget.view.RecycleViewDivider
 import com.hankkin.reading.R
 import com.hankkin.reading.base.BaseActivity
@@ -23,6 +25,7 @@ import com.hankkin.reading.event.EventMap
 import com.hankkin.reading.utils.ThemeHelper
 import kotlinx.android.synthetic.main.activity_category.*
 import kotlinx.android.synthetic.main.layout_title_bar_back.*
+import org.json.JSONArray
 import java.util.*
 
 
@@ -51,6 +54,7 @@ class CategoryActivity : BaseActivity() {
         fab_cate.setColorNormalResId(ThemeHelper.getCurrentColor(this))
         fab_cate.setOnClickListener {
             RxBusTools.getDefault().post(EventMap.CateEvent(mAdapter.data))
+            SPUtils.put(Constant.SP_KEY.CATEGORY_SORT,Gson().toJson(mAdapter.data))
             finish()
         }
     }

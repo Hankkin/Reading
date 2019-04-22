@@ -3,6 +3,7 @@ package com.hankkin.library.utils
 import android.content.Context
 import android.os.Looper
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.cache.InternalCacheDiskCacheFactory
 import java.io.File
 
 /**
@@ -16,7 +17,7 @@ object CacheUtils {
     // 图片缓存子目录
     const val GLIDE_CARCH_DIR = "image_catch"
 
-    fun clearGlideImg(context: Context) {
+    private fun clearGlideImg(context: Context) {
         if (Looper.myLooper() == Looper.getMainLooper()) {
             Thread(Runnable {
                 Glide.get(context).clearDiskCache()
@@ -26,15 +27,15 @@ object CacheUtils {
         }
     }
 
-    fun getCachesSize(context: Context, dbName: String) =
+    fun clearCacte(context: Context) {
+        clearGlideImg(context)
+    }
+
+    fun getCachesSize(context: Context) =
             FileUtils.getFormatSize(getGlideCacheSize(context))
 
 
-    fun getDBCacheSize(context: Context, dbName: String): Double =
-                    context.getDatabasePath(dbName).length().toDouble()
-
-
-    fun getGlideCacheSize(context: Context): Double =
+    private fun getGlideCacheSize(context: Context): Double =
             FileUtils.getFolderSize(
-                    File(context.cacheDir.absolutePath + "/" + GLIDE_CARCH_DIR)).toDouble()
+                    File(context.cacheDir.absolutePath + "/" + InternalCacheDiskCacheFactory.DEFAULT_DISK_CACHE_DIR)).toDouble()
 }

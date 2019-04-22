@@ -102,6 +102,7 @@ object Constant {
         const val ACCOUNT = "account"
         const val DB_UPDATE_TIME = "da_update_time"
         const val PERSON_THEME = "person_theme"
+        const val CATEGORY_SORT = "category_sort"
     }
 
 

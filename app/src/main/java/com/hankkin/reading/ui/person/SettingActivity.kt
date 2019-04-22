@@ -14,6 +14,7 @@ import com.hankkin.reading.utils.DBUtils
 import com.hankkin.reading.utils.LoadingUtils
 import com.hankkin.reading.utils.ThemeHelper
 import com.hankkin.reading.utils.ViewHelper
+import com.tencent.bugly.beta.Beta
 //import com.tencent.bugly.beta.Beta
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -151,19 +152,18 @@ class SettingActivity : BaseActivity() {
             ViewHelper.showConfirmDialog(this,
                     resources.getString(R.string.setting_clear_cache_hint),
                     MaterialDialog.SingleButtonCallback { dialog, which ->
-                        CacheUtils.clearGlideImg(this)
+                        CacheUtils.clearCacte(this)
                         ToastUtils.showInfo(this, resources.getString(R.string.setting_clear_cache_success))
-                        tv_setting_cache_size.setText("0KB")
+                        tv_setting_cache_size.text = "0KB"
                     })
         }
         rl_setting_api.setOnClickListener { CommonWebActivity.loadUrl(this,"http://hankkin.cn/threeapi/",resources.getString(R.string.setting_api)) }
-
         tv_setting_version.text = "V "+ AppUtils.getVersionName(this)
-//        rl_setting_update.setOnClickListener { Beta.checkUpgrade(true,false) }
+        rl_setting_update.setOnClickListener { Beta.checkUpgrade(true,false) }
     }
 //
     override fun initData() {
-        tv_setting_cache_size.text = CacheUtils.getCachesSize(this, Constant.COMMON.DB_NAME)
+        tv_setting_cache_size.text = CacheUtils.getCachesSize(this)
     }
 
     override fun onEvent(event: EventMap.BaseEvent) {
