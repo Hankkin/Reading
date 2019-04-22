@@ -123,7 +123,7 @@ class CategoryActivity : BaseActivity() {
 
         override fun onSelectedChanged(viewHolder: RecyclerView.ViewHolder?, actionState: Int) {
             if (actionState != ItemTouchHelper.ACTION_STATE_IDLE) {
-                viewHolder?.itemView?.setBackgroundColor(viewHolder.itemView.context.resources.getColor(R.color.grey1))
+                viewHolder?.itemView?.setBackgroundColor(resources.getColor(R.color.grey1))
             }
             super.onSelectedChanged(viewHolder, actionState)
         }
