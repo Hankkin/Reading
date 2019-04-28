@@ -2,8 +2,10 @@ package com.hankkin.library.base
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import cn.bingoogolapple.swipebacklayout.BGAKeyboardUtil
 import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper
 import com.hankkin.library.R
+import com.hankkin.library.utils.SPUtils
 
 /**
  * Created by huanghaijie on 2018/8/24.
@@ -31,7 +33,7 @@ abstract class BaseSwipeBackActivity : AppCompatActivity(), BGASwipeBackHelper.D
         // 设置滑动返回是否可用。默认值为 true
         mSwipeBackHelper.setSwipeBackEnable(true)
         // 设置是否仅仅跟踪左侧边缘的滑动返回。默认值为 true
-        mSwipeBackHelper.setIsOnlyTrackingLeftEdge(true)
+        mSwipeBackHelper.setIsOnlyTrackingLeftEdge(SPUtils.getBoolean(com.hankkin.library.fuct.common.Constant.SLIDE_LEFT))
         // 设置是否是微信滑动返回样式。默认值为 true
         mSwipeBackHelper.setIsWeChatStyle(true)
         // 设置阴影资源 id。默认值为 R.drawable.bga_sbl_shadow
@@ -72,6 +74,9 @@ abstract class BaseSwipeBackActivity : AppCompatActivity(), BGASwipeBackHelper.D
      */
     override fun onSwipeBackLayoutExecuted() {
         mSwipeBackHelper.swipeBackward()
+        BGAKeyboardUtil.closeKeyboard(this)
+        finish()
+        overridePendingTransition(0, 0)
     }
 
     override fun onBackPressed() {

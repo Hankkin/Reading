@@ -24,6 +24,7 @@ public class Constant {
     /*传递的zxingconfing*/
 
     public static final String INTENT_ZXING_CONFIG = "zxingConfig";
+    public static final String SLIDE_LEFT = "slide_left";
 
 
 }

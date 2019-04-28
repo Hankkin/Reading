@@ -54,6 +54,7 @@ class SettingActivity : BaseActivity() {
         ll_setting_backup.visibility = if (switch_lock_backup.isChecked) View.VISIBLE else View.GONE
         switch_img.isChecked = SPUtils.getInt(Constant.SP_KEY.WIFI_IMG) != 0
         switch_logo.isChecked = SPUtils.getInt(Constant.SP_KEY.LOGO) != 0
+        switch_slide.isChecked = SPUtils.getBoolean(com.hankkin.library.fuct.common.Constant.SLIDE_LEFT)
 
         //开启账号锁
         switch_lock.setOnCheckedChangeListener { buttonView, isChecked ->
@@ -63,6 +64,11 @@ class SettingActivity : BaseActivity() {
         switch_lock_backup.setOnCheckedChangeListener { buttonView, isChecked ->
             SPUtils.put(Constant.SP_KEY.LOCK_BACKUP_OPEN, if (isChecked) 1 else 0)
             ll_setting_backup.visibility = if (isChecked) View.VISIBLE else View.GONE
+        }
+        //左侧返回
+        switch_slide.setOnCheckedChangeListener { compoundButton, isChecked ->
+            SPUtils.put(com.hankkin.library.fuct.common.Constant.SLIDE_LEFT, isChecked)
+            activity?.let { ToastUtils.showInfo(it,"您已设置左侧边缘的滑动,下次启动生效") }
         }
         //数据备份
         rl_setting_data_backup.setOnClickListener {

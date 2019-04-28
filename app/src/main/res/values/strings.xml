@@ -235,4 +235,5 @@
     <string name="hi_login">Hi,小猿猿,请登录呦</string>
     <string name="change_person_theme">您将切换\'我的\'页面主题，下次启动生效，是否重启Reading？</string>
     <string name="category_sort">分类展示</string>
+    <string name="slide_left">是否仅仅跟踪左侧边缘的滑动</string>
 </resources>
