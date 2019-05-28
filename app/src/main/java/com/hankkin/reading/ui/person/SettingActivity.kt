@@ -15,7 +15,6 @@ import com.hankkin.reading.utils.LoadingUtils
 import com.hankkin.reading.utils.ThemeHelper
 import com.hankkin.reading.utils.ViewHelper
 import com.tencent.bugly.beta.Beta
-//import com.tencent.bugly.beta.Beta
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

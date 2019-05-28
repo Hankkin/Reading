@@ -22,9 +22,6 @@ import com.hankkin.reading.utils.ThemeHelper
 import com.hankkin.reading.utils.ThemeHelper.*
 import com.squareup.leakcanary.LeakCanary
 import com.tencent.bugly.Bugly
-//import com.squareup.leakcanary.LeakCanary
-//import com.tencent.bugly.Bugly
-//import com.tencent.bugly.crashreport.CrashReport
 import com.youdao.sdk.app.YouDaoApplication
 
 /**
