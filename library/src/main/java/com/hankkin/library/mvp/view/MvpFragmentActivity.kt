@@ -23,31 +23,12 @@ abstract class MvpFragmentActivity<out T : IPresenterContract> : FragmentActivit
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mPresenter.onCreate()
-    }
-
-    override fun onStart() {
-        super.onStart()
-        mPresenter.onStart()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        mPresenter.onResume()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        mPresenter.onPause()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        mPresenter.onStop()
+        mPresenter.onCreate(this)
+        lifecycle.addObserver(mPresenter)
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        mPresenter.onDestroy()
+        mPresenter.onDestroy(this)
     }
 }

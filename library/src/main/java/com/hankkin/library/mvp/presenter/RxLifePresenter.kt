@@ -1,5 +1,6 @@
 package com.hankkin.library.mvp.presenter
 
+import android.arch.lifecycle.LifecycleOwner
 import com.hankkin.library.domin.BaseResponse
 import com.hankkin.library.mvp.contract.IBaseViewContract
 import com.hankkin.library.mvp.contract.IPresenterContract
@@ -23,33 +24,16 @@ abstract class RxLifePresenter<out V : IBaseViewContract> : IBasePresenter<V>, I
     override fun getMvpView() = mMVPView
 
     enum class RxLife {
-        ON_CREATE, ON_START, ON_RESUME, ON_PAUSE, ON_STOP, ON_DESTROY
+        ON_CREATE, ON_DESTROY
     }
 
     private val mRxLifeMap = HashMap<RxLife, ArrayList<Disposable>>()
 
-
-    override fun onCreate() {
+    override fun onCreate(owner: LifecycleOwner) {
         destroyRxLife(RxLife.ON_CREATE)
     }
 
-    override fun onStart() {
-        destroyRxLife(RxLife.ON_START)
-    }
-
-    override fun onResume() {
-        destroyRxLife(RxLife.ON_RESUME)
-    }
-
-    override fun onPause() {
-        destroyRxLife(RxLife.ON_PAUSE)
-    }
-
-    override fun onStop() {
-        destroyRxLife(RxLife.ON_STOP)
-    }
-
-    override fun onDestroy() {
+    override fun onDestroy(owner: LifecycleOwner) {
         destroyRxLife(RxLife.ON_DESTROY)
     }
 
