@@ -162,7 +162,7 @@ class SettingActivity : BaseActivity() {
                         tv_setting_cache_size.text = "0KB"
                     })
         }
-        rl_setting_api.setOnClickListener { CommonWebActivity.loadUrl(this,"http://hankkin.cn/threeapi/",resources.getString(R.string.setting_api)) }
+        rl_setting_api.setOnClickListener { CommonWebActivity.loadUrl(this,"http://hankkin.club/threeapi/",resources.getString(R.string.setting_api)) }
         tv_setting_version.text = "V "+ AppUtils.getVersionName(this)
         rl_setting_update.setOnClickListener { Beta.checkUpgrade(true,false) }
     }
