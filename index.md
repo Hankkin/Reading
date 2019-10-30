@@ -5,7 +5,7 @@
  
 ## ScreenShot
 
-![](https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/reading.gif?raw=true)
+![](https://github.com/Hankkin/Reading/raw/develop-1.0.0/sceenshot/reading.gif)
 
 
 
