@@ -8,20 +8,6 @@
 ![](https://github.com/Hankkin/Reading/raw/develop-1.0.0/sceenshot/reading.gif)
 
 
-![](https://github.com/Hankkin/Reading/raw/develop-1.0.0/sceenshot/1.jpeg)
-![](https://github.com/Hankkin/Reading/raw/develop-1.0.0/sceenshot/2.jpeg)
-![](https://github.com/Hankkin/Reading/raw/develop-1.0.0/sceenshot/3.jpeg)
-![](https://github.com/Hankkin/Reading/raw/develop-1.0.0/sceenshot/4.jpeg)
-![](https://github.com/Hankkin/Reading/raw/develop-1.0.0/sceenshot/5.jpeg)
-![](https://github.com/Hankkin/Reading/raw/develop-1.0.0/sceenshot/6.jpeg)
-![](https://github.com/Hankkin/Reading/raw/develop-1.0.0/sceenshot/7.jpeg)
-![](https://github.com/Hankkin/Reading/raw/develop-1.0.0/sceenshot/9.jpeg)
-![](https://github.com/Hankkin/Reading/raw/develop-1.0.0/sceenshot/11.jpeg)
-![](https://github.com/Hankkin/Reading/raw/develop-1.0.0/sceenshot/12.jpeg)
-![](https://github.com/Hankkin/Reading/raw/develop-1.0.0/sceenshot/13.jpeg)
-![](https://github.com/Hankkin/Reading/raw/develop-1.0.0/sceenshot/14.jpeg)
-![](https://github.com/Hankkin/Reading/raw/develop-1.0.0/sceenshot/15.jpeg)
-![](https://github.com/Hankkin/Reading/raw/develop-1.0.0/sceenshot/16.jpeg)
 
 ## DownLoad
 
