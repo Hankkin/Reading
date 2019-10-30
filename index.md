@@ -5,6 +5,7 @@
  
 ## ScreenShot
 
+![](https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/reading.gif)
 <img width="220" height=“400” src="https://github.com/Hankkin/Reading/blob/develop-1.0.0/sceenshot/reading.gif"></img>
 
 
